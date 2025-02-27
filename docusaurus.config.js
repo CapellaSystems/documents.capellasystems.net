@@ -24,7 +24,7 @@ const config = {
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'CapellaDocuments', // Usually your GitHub org/user name.
   projectName: 'CapellaDocumentsTest', // Usually your repo name.
-  deploymentBranch: "gh-pages",
+  deploymentBranch: 'gh-pages',
   
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
