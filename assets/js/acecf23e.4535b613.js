@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkcapella_document_test=self.webpackChunkcapella_document_test||[]).push([[1903],{1912:e=>{e.exports=JSON.parse('{"blogBasePath":"/CapellaDocumentsTest/blog","blogTitle":"Blog","authorsListPath":"/CapellaDocumentsTest/blog/authors"}')}}]);
