@@ -15,17 +15,16 @@ const config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://github.com',
+  url: 'https://your-docusaurus-site.example.com',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/CapellaDocumentsTest/',
+  baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'CapellaDocuments', // Usually your GitHub org/user name.
-  projectName: 'CapellaDocumentsTest', // Usually your repo name.
-  deploymentBranch: "gh-pages",
-  
+  organizationName: 'facebook', // Usually your GitHub org/user name.
+  projectName: 'docusaurus', // Usually your repo name.
+
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
@@ -77,25 +76,13 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'Capella Documentation',
+        title: 'My Site',
         logo: {
           alt: 'My Site Logo',
           src: 'img/logo.svg',
         },
         items: [
-		  {
-            type: 'docSidebar',
-            sidebarId: 'StreamSidebar',
-            position: 'left',
-            label: 'Cambria Stream',
-          },
           {
-            type: 'docSidebar',
-            sidebarId: 'FTCSidebar',
-            position: 'left',
-            label: 'Cambria FTC',
-          },
-          /*{
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
@@ -106,7 +93,7 @@ const config = {
             href: 'https://github.com/facebook/docusaurus',
             label: 'GitHub',
             position: 'right',
-          },*/
+          },
         ],
       },
       footer: {
