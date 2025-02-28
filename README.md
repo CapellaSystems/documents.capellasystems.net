@@ -1,41 +1,42 @@
-# Website
+# Capella Systems Documentation
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+Welcome to the official **Capella Systems** documentation repository. This repository contains user guides, API references, and technical documentation for our software solutions.
 
-### Installation
+## 📖 About This Repository
+This repository serves as a centralized resource for **Capella Systems** software documentation. Here, you will find:
+- Installation guides
+- Configuration instructions
+- API documentation
+- Troubleshooting and FAQs
 
-```
-$ yarn
-```
+For more information about our products, visit [Capella Systems](https://www.capellasystems.net).
 
-### Local Development
+---
 
-```
-$ yarn start
-```
+## ⚠️ Disclaimer & Copyright Notice
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+© [2025] Capella Systems. All rights reserved.
 
-### Build
+This repository and its contents are the property of **Capella Systems** and are intended for informational and educational purposes only.  
 
-```
-$ yarn build
-```
+### **Usage Rights**
+- The documentation provided here is for **authorized users** of Capella Systems software.
+- Redistribution, modification, or reproduction of this documentation, in part or in full, **without prior written permission** from Capella Systems is strictly prohibited.
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+### **Third-Party Usage**
+- Any references to third-party software, tools, or services are for **informational purposes only**.
+- Capella Systems is not responsible for any issues arising from third-party integrations.
 
-### Deployment
+### **No Warranty**
+This documentation is provided **"as is"** without warranty of any kind. Capella Systems disclaims all liability for any damages resulting from the use or misuse of the information provided in this repository.
 
-Using SSH:
+For any questions regarding licensing or usage rights, please contact **support@capellasystems.net**.
 
-```
-$ USE_SSH=true yarn deploy
-```
+---
 
-Not using SSH:
+## 📩 Contributing & Support
+If you find any issues or have suggestions for improvement, please contact our support team at **support@capellasystems.net**.
 
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
+---
 
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+**Thank you for using Capella Systems software!**
