@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18.x'  # Match your Docusaurus Node version
+          node-version: '22.14.0'  # Match your Docusaurus Node version
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
