@@ -12,13 +12,12 @@ Organizations should consult their **IT department** to determine the necessity 
 
 ## Description
 
-Executables and scripts need to be **trusted** to ensure that only **authorized programs** run on a machine. When a script or executable is registered as **trusted**, the system administrator has explicitly **allowed** it to execute. Without this, potentially **malicious programs** could run.
+The reason why executables and scripts need to be trusted is to ensure that only authorized programs are executed on a machine. When a script or an executable is registered as trusted, it means that the user or the system administrator has explicitly allowed it to run on the machine. Without this trust, any script or executable could potentially run on a machine, including those that are malicious or harmful.
 
-Registering trusted executables and scripts helps to:
+By registering trusted executables and scripts, organizations can ensure that only authorized programs are executed on their machines, thereby reducing the risk of malware infections, data theft, and other security breaches. Additionally, the trusted list can help prevent unauthorized modifications to scripts or executables, as any change to the program will change its SHA256 hash, requiring the trusted list to be updated.
 
-- Reduce the risk of **malware infections** and **security breaches**.
-- Prevent **unauthorized modifications** (changes to a script modify its **SHA256 hash**, requiring re-registration).
-- Enhance **system security** by ensuring only authorized programs execute.
+Overall, the registration of trusted executables and scripts is an important security measure that helps to mitigate the risk of security incidents caused by malicious programs, and organizations should take this process seriously to ensure the safety of their systems and data.
+
 
 ## Instructions
 
@@ -41,7 +40,8 @@ Alternatively, create a `.reg` file containing the **SHA256 hashes** and **run i
 
 ### Registering Trusted Perl Scripts
 
-To register a **trusted Perl script**, follow the same steps as **trusted executables**, but use the registry key **TrustedScriptSHA256** instead of **TrustedAppSHA256**.
+To register a **trusted Perl script**, follow the same steps as **trusted executables**, but use the registry key **TrustedScriptSHA256** instead of **TrustedAppSHA256**. 
+
 
 > **Note:** Any changes to a Perl script will **modify** its SHA256 hash, requiring the trusted list to be **updated**.
 
@@ -60,6 +60,4 @@ Python scripts **execute in a sandbox**, meaning they **do not** need to be regi
 
 Organizations should **work with their IT department** to properly **identify risky executables and scripts**.
 
----
 
-This document provides **step-by-step instructions** on securing **executables and scripts** within **Cambria FTC and Cluster**. Let me know if any refinements are needed!

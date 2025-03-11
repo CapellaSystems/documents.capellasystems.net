@@ -1,5 +1,5 @@
 ---
-title: Cambria Cluster / FTC 5.4.0
+title: (Example) Cambria Cluster / FTC 5.4.0
 sidebar_position: 1
 description: Help documentation for Akamai Cloud Kubernetes with Cambria Cluster and FTC 5.4.0.
 ---

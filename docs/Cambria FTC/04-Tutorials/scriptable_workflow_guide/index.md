@@ -1,5 +1,4 @@
-
-# Scriptable Workflow Guide
+# (UC) Scriptable Workflow
 
 ## Overview
 
@@ -40,6 +39,9 @@ When running script analysis in 'Properties and Contents' mode (configurable in 
 
 Compressed video/audio and muxer properties can also be analyzed:
 
+(Requires FTC 3.4.1 or newer)
+
+
 ```xml
 <Muxer Format="MP4 Muxer" moov_at_start="0" isFragmented="0">
     <Track handler="video" codec_type="avc1" />
@@ -61,8 +63,13 @@ The script outputs a new Job XML that is used for transcoding. This process is c
 **Note:** Temporary files (Input XML, Output XML, and script files) are automatically deleted unless preserved using the `--s 1` command-line option.
 
 
+Available encoding settings:
+The script can add, remove or modify any settings stored in the Job XML. To get a list of which 
+settings can be modified, use FTC or the Manager to extract a Job XML which contains the desired 
+video and audio encoders, video or audio filters, notification, upload, audio mapping, etc.
 
-## Sample Scripts
+
+
 
 ### ModifyBitrateBasedOnSourceResolution.py
 
@@ -119,4 +126,5 @@ if video:
                 setting.setAttribute('FrameRate', str(sourceFrameRate / 2))
             else:
                 setting.setAttribute('FrameRate', str(sourceFrameRate))
-```
+
+

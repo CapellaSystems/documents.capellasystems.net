@@ -24,24 +24,24 @@ Submit a job through API:
 POST: https://localhost:8648/CambriaFC/v1/Jobs
 ```
 
-Sample JobXML:
+## Sample JobXML for the Body of the API call:
+ 
+-Please replace SourceFilename with the path to your source
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<JobDescr Description="Analysis UCP_submitter_3" NumberOfRetries="1" Priority="5" Submitter="default" JobTag="">
-  <Job Type="SourceAnalysis" SourceFilename="C:\Users\Public\Documents\Source.MXF" OutputFilename="c:\temp\analysisB37.xml">
-  </Job>
-</JobDescr>
-```
+-Please replace OutputFilename with the output location and name you desire
 
 
 ![Screenshot](01_screenshot.png)
 
 
-After job completion, search for `Metadata HasSTDB37` in the output. If set to `1`, the source has captions; otherwise, no captions are detected.
-
-
 ![Screenshot](02_screenshot.png)
+
+The job will be queued to the FTC Manager and complete. 
+
+## Sample output:
+
+Please search for Metadata HasSTDB37 in the output. If it’s set to 1 then the source has captions otherwise no captions have been detected on the source.
+
 
 ![Screenshot](03_screenshot.png)
 
@@ -89,15 +89,7 @@ FTC will extract captions from a source file and generate a WebVTT output.
 
 Sample WebVTT Output:
 
-```vtt
-WEBVTT
-
-00:00:11.911 --> 00:00:15.915 line:72% position:52% align:left
-<c.white>字幕サンプル 1</c>
-
-00:00:15.915 --> 00:00:17.917 line:72% position:58% align:left
-<c.yellow>字幕サンプル 2</c>
-```
+![Screenshot](10_screenshot.png)
 
 
 ## Step 3: Burn in WebVTT Captions on Video
@@ -105,7 +97,6 @@ WEBVTT
 1. Import the source as in previous steps and add a **source-side filter**.
 
 
-![Screenshot](10_screenshot.png)
 
 
 2. Apply **Timecode Overwrite Filter** to reset timecode to match the WebVTT file.
@@ -115,6 +106,9 @@ WEBVTT
 
 ![Screenshot](11_screenshot.png)
 
+Next Please choose Subtitile burn in as the filter
+
+![Screenshot](12_screenshot.png)
 
 4. Configure the filter:
    - Set **Subtitle Source Type** to **Web Video Text Tracks Format**.
@@ -138,15 +132,13 @@ WEBVTT
 6. Switch to the **Encoding Tab**, add an encoding preset.
 
 
-![Screenshot](16_screenshot.png)
+![Screenshot](15_screenshot.png)
 
 
 7. Queue the job in **Manager** and wait for the output video with burnt-in subtitles.
 
 
-![Screenshot](10_screenshot.png)
+![Screenshot](16_screenshot.png)
 
 
----
 
-This document outlines the step-by-step process for detecting, extracting, and burning ARIB STD B37 captions. Let me know if any adjustments are needed!

@@ -1,4 +1,4 @@
-# Delete Source!
+# Delete Source after Transcoding
 
 ## Table of Contents
 1. [Method 1: Cleanup Tab *(Preferred Method)*](#method-1-cleanup-tab-preferred-method)
@@ -11,7 +11,7 @@
 
 This is the preferred method for deletion because it is the most used and allows users to retrieve their source file within a certain time frame before deletion. This function ensures that all files used within the watch folder will be deleted after a specified time. Users can set it to delete either all files used or only those successfully processed.
 
-### Steps
+### Steps to use the Cleanup function in Watch Folder:
 1. From the Watch Folder Configuration, go to the **"Cleanup" tab**.  
 2. Adjust how often the Watch Folder will cycle through cleaning by changing the **"Clean up watch folder every:"** to the desired time.
 3. Click the **"Add…"** button twice to open the Trigger section. (From here you can configure what triggers the deletion of files within the Watch Folder.)
@@ -34,7 +34,7 @@ Now, files in the Watch Folder will be cleaned within the Cleanup cycle if all r
 
 Using the Post Task Command Line, users can enter a command to delete the source file immediately after successful transcoding.
 
-### Steps
+### Steps to use the Post Task command line in Watch Folder:
 1. From the Watch Folder Configuration, go to the **Encoding tab** and add/edit an encoding preset.  
    ![Watchfolder Post Task](03_watchfolder_post_task.png)
 2. Select the **"Post Task" tab** and look for **"Command Line"**.
@@ -57,7 +57,7 @@ Entering the wrong command will result in the source not being deleted.
 
 Using the Simple Action feature allows users to delete a source in a queue format. This method is useful if additional tasks, such as uploading the source to S3, need to be performed before deletion.
 
-### Steps
+### Steps to Use Simple Action in Watch Folder:
 1. From the Watch Folder Configuration, go to the **Encoding tab** and click **"Add Simple Action…"**.  
 2. In the **Action dropdown menu**, select **"Delete source"**.
 
