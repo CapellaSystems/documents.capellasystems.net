@@ -1,6 +1,6 @@
 # Capella Systems Documentation
 
-Welcome to the official **Capella Systems** documentation repository. This repository contains user guides, API references, and technical documentation for our software solutions. Plesae visit our website at https://capellasystems.github.io/docs/.
+Welcome to the official **Capella Systems** documentation repository. This repository contains user guides, API references, and technical documentation for our software solutions. Plesae visit our website at https://capellasystems.github.io/.
 
 ## 📖 About This Repository
 This repository serves as a centralized resource for **Capella Systems** software documentation. Here, you will find:
