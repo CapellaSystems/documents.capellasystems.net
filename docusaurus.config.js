@@ -10,8 +10,8 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'Capella Docuements',
+  tagline: "Welcome to the Capella's Documentation",
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -113,46 +113,50 @@ const config = {
         style: 'dark',
         links: [
           {
+            title: 'Company',
+            items: [
+              {
+                label: 'About',
+                href: 'https://www.capellasystems.net/about-capella',
+              },
+              {
+                label: 'Newsfeed',
+                href: 'https://www.capellasystems.net/newsfeed',
+              },
+              {
+                label: 'Contact Us',
+                href: 'https://www.capellasystems.net/contact-us',
+              },
+            ],
+          },
+          {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'Cambria Stream',
+                href: 'https://documents.capellasystems.net/docs/Cambria%20Stream/Installation%20Guides/Kubernetes/AWS/placeholder',
+              },
+              {
+                label: 'Cambria FTC',
+                href: 'https://documents.capellasystems.net/docs/Cambria%20FTC/Installation%20Guides/Kubernetes/AWS/Akamai_Linode_Kubernetes_CambriaClusterFTC_Installation',
               },
             ],
           },
           {
-            title: 'Community',
+            title: 'Other',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+                label: 'Terms of Use',
+                href: 'https://www.capellasystems.net/terms-of-use',
               },
               {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'X',
-                href: 'https://x.com/docusaurus',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                label: 'Privacy Policy',
+                href: 'https://www.capellasystems.net/online-privacy-policy',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Capella Systems`,
       },
       prism: {
         theme: prismThemes.github,
