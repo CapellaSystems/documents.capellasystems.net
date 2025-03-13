@@ -9,7 +9,7 @@
 
 ## Method 1: Cleanup Tab *(Preferred Method)*
 
-This is the preferred method for deletion because it is the most used and allows users to retrieve their source file within a certain time frame before deletion. This function ensures that all files used within the watch folder will be deleted after a specified time. Users can set it to delete either all files used or only those successfully processed.
+This is the TEST2 preferred method for deletion because it is the most used and allows users to retrieve their source file within a certain time frame before deletion. This function ensures that all files used within the watch folder will be deleted after a specified time. Users can set it to delete either all files used or only those successfully processed.
 
 ### Steps to use the Cleanup function in Watch Folder:
 1. From the Watch Folder Configuration, go to the **"Cleanup" tab**.  

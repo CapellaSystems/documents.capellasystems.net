@@ -22,7 +22,10 @@ jobs:
 
       - name: Build website
         run: yarn build
-
+        
+      - name: Add CNAME file
+        run: echo "documents.capellasystems.net" > build/CNAME
+        
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
