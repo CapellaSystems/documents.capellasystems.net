@@ -18,7 +18,7 @@ title: Capella Cambria Cluster Redundancy Feature
 
 ## Introduction
 
-Cambria Cluster Manager is a **powerful tool** that manages multiple **Cambria FC machines** for job distribution with redundancy. If a machine becomes unavailable due to crashes, network issues, or reboots, **Cambria Cluster** detects the failure and reassigns jobs **automatically**.
+Cambria Cluster Manager is a **powerful tool** that manages multiple **Cambria FTC machines** for job distribution with redundancy. If a machine becomes unavailable due to crashes, network issues, or reboots, **Cambria Cluster** detects the failure and reassigns jobs **automatically**.
 
 However, previously, **Cambria Cluster Manager** itself did not have redundancy. The **Cambria Cluster Redundancy Feature** resolves this by allowing **two machines** to be configured as **Cambria Cluster Managers**:
 
@@ -97,13 +97,7 @@ The **PostgreSQL database** is mirrored, which includes:
 
 2. **Ensure both A & B have dongles** with the Redundancy Feature enabled.
 
-3. On **Machines A & B**, open **Cambria Cluster** and set **Redundancy Role** to **No Backup**.
-
-   
-   
-   ![Screenshot](01_screenshot.png)
-   
-   
+3. On **Machines A & B**, open **Cambria Cluster** and set **Redundancy Role** to **No Backup**.   
 
 4. On **Machine A**, set **Machine C** to **Online**.
 
@@ -123,11 +117,7 @@ The **PostgreSQL database** is mirrored, which includes:
    - **Primary Machine A** should show:  
      - *"Primary Cluster Active, Database in Redundancy Mode."*
    - **Backup Machine B** should show:  
-     - *"Backup Machine Connected, Mirroring Database."*
-
-   
-   
-   ![Screenshot](02_screenshot.png)
+     - *"Backup Machine Connected, Mirroring Database."
    
    
 
