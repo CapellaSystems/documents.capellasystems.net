@@ -62,18 +62,11 @@ title: FTC Harmonic VOS Upload Guide
 
    
    
-   ![Screenshot](03_screenshot.png)
-   
-   
 
 ### 9. Specify your **Harmonic VOS credentials**.
 
 > **NOTE:** You must have a **Cambria FTC License with Harmonic VOS Upload Enabled**.
 
-   
-   
-   ![Screenshot](04_screenshot.png)
-   
    
 
 > **String Replacement:** You can specify values like **%sourceName%**, **%sourcePath#%** as shown in the tooltip.
