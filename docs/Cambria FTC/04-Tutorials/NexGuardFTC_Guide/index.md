@@ -42,10 +42,7 @@ Place your NexGuard license in the appropriate directory:
 4. **The filter must be added as a Target filter.**
 
    
-   
-   ![Screenshot](02_screenshot.png)
-   
-   
+ 
 
 ## Configuring the NexGuard Filter
 
@@ -57,9 +54,6 @@ Place your NexGuard license in the appropriate directory:
    - **Recipient**
    - **Title**
 
-   
-   
-   ![Screenshot](03_screenshot.png)
    
    
 
@@ -77,10 +71,7 @@ Place your NexGuard license in the appropriate directory:
 3. Newly queued jobs will be marked as **‘New’** in NexGuard Manager.
 
    
-   
-   ![Screenshot](04_screenshot.png)
-   
-   
+
 
 ## Verifying Watermarking
 
