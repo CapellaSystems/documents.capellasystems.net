@@ -87,9 +87,6 @@ Once all target layers are created, click **Convert/Queue**.
 
    
    
-   ![Screenshot](05_screenshot.png)
-   
-   
 
 ### 13. **Verify the VOS Upload**  
 Use the following **CMD commands** to generate an **access token** and check the **VOS Decision Queue JSON Response**:
