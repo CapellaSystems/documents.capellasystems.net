@@ -25,10 +25,6 @@ Place your NexGuard license in the appropriate directory:
 1. Open **FTC**.
 2. Import desired source(s) into FTC.
    - Sources can be added by clicking **‘Add Sources’** or by using **drag and drop**.
-
-   
-   
-   ![Screenshot](01_screenshot.png)
    
    
 
@@ -54,7 +50,8 @@ Place your NexGuard license in the appropriate directory:
    - **Recipient**
    - **Title**
 
-   
+
+      ![Screenshot](01_screenshot.png)
    
 
 4. Click **‘Ok’** in Filter Settings.
