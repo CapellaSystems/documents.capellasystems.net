@@ -5,7 +5,7 @@
 <meta name="generator" content="Docusaurus v3.7.0">
 <title data-rh="true">Capella Cambria Cluster Redundancy Feature | Capella Docuements</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://documents.capellasystems.net/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://documents.capellasystems.net/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://documents.capellasystems.net/docs/Cambria FTC/Tutorials/cluster-redundancy"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Capella Cambria Cluster Redundancy Feature | Capella Docuements"><meta data-rh="true" name="description" content="Version: V2 #8426"><meta data-rh="true" property="og:description" content="Version: V2 #8426"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://documents.capellasystems.net/docs/Cambria FTC/Tutorials/cluster-redundancy"><link data-rh="true" rel="alternate" href="https://documents.capellasystems.net/docs/Cambria FTC/Tutorials/cluster-redundancy" hreflang="en"><link data-rh="true" rel="alternate" href="https://documents.capellasystems.net/docs/Cambria FTC/Tutorials/cluster-redundancy" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Capella Docuements RSS Feed">
 <link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="Capella Docuements Atom Feed"><link rel="stylesheet" href="/assets/css/styles.ac183f09.css">
-<script src="/assets/js/runtime~main.a527e1e0.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.e6062841.js" defer="defer"></script>
 <script src="/assets/js/main.c69007f9.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -15,7 +15,7 @@
 <table><thead><tr><th>Version</th><th>Description</th><th>Date</th></tr></thead><tbody><tr><td>Draft 0.1</td><td>First draft of the documentation</td><td>Jan 21, 2015</td></tr><tr><td>Draft 0.2</td><td>Second draft of the documentation</td><td>Feb 18, 2015</td></tr></tbody></table>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="introduction">Introduction<a href="#introduction" class="hash-link" aria-label="Direct link to Introduction" title="Direct link to Introduction">​</a></h2>
-<p>CCambria Cluster Manager is very powerful and can manage multiple Cambria FC
+<p>Cambria Cluster Manager is very powerful and can manage multiple Cambria FC
 machines for distribution of jobs redundantly. If any machine becomes unavailable, such as
 due to crashes, network disconnection, unexpected reboots, etc, Cambria Cluster can detect
 so and reassign jobs to other available machines automatically.</p>
@@ -28,12 +28,6 @@ machine will takeover, and resume Cluster Manager’s role.</p>
 database replication, such that, all data in the database are mirrored in real time, reliably. This
 document provides instructions in setting up, testing, verifying, and troubleshooting the Cluster
 Redundancy.</p>
-<ul>
-<li><strong>Primary Cluster Manager</strong> (Active)</li>
-<li><strong>Backup Cluster Manager</strong> (Standby)</li>
-</ul>
-<p>If the <strong>Primary</strong> machine fails, the <strong>Backup</strong> machine takes over <strong>automatically</strong>.</p>
-<p>Redundancy is implemented through <strong>PostgreSQL database replication</strong>, ensuring real-time mirroring of <strong>all critical data</strong>.</p>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="naming-conventions">Naming Conventions<a href="#naming-conventions" class="hash-link" aria-label="Direct link to Naming Conventions" title="Direct link to Naming Conventions">​</a></h2>
 <table><thead><tr><th>Term</th><th>Description</th></tr></thead><tbody><tr><td><strong>Redundancy Role</strong></td><td>Can be <strong>Primary</strong>, <strong>Backup</strong>, or <strong>No Backup</strong></td></tr><tr><td><strong>Redundancy Primary</strong></td><td>Machine running <strong>Cambria Cluster</strong> as the active <strong>Primary Manager</strong></td></tr><tr><td><strong>Redundancy Backup</strong></td><td>Machine running <strong>Cambria Cluster</strong> as the <strong>Backup Manager</strong></td></tr><tr><td><strong>Cluster Machine</strong></td><td>Any <strong>non-redundant</strong> machine in the cluster</td></tr><tr><td><strong>Client Machine</strong></td><td>Machine running <strong>Cambria FTC</strong></td></tr><tr><td><strong>Redundancy Triggering</strong></td><td>Process where the <strong>Backup</strong> takes over as <strong>Primary</strong> when failure occurs</td></tr></tbody></table>
@@ -41,40 +35,105 @@ Redundancy.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="redundancy-trigger-criteria">Redundancy Trigger Criteria<a href="#redundancy-trigger-criteria" class="hash-link" aria-label="Direct link to Redundancy Trigger Criteria" title="Direct link to Redundancy Trigger Criteria">​</a></h2>
 <p>For redundancy to activate, the following <strong>conditions must be met</strong>:</p>
 <ol>
-<li>The <strong>Primary Cluster Manager</strong> is offline (Backup does not receive its broadcast).</li>
-<li>The <strong>Backup Cluster Manager</strong> is online (receives broadcast from any Client Machine).</li>
-<li>The <strong>Backup</strong> has been online for <strong>30+ seconds</strong> while the <strong>Primary</strong> is offline.</li>
+<li>
+<p>“Redundancy Primary” is offline (in the perspective of “Redundancy Backup”). That is,
+“Redundancy Backup” does not receive broadcast from “Redundancy Primary”.</p>
+</li>
+<li>
+<p>“Redundancy Backup” is online. That is, it receives broadcast from any of the “Client
+machine”.</p>
+</li>
+<li>
+<p>The timestamp of (2) is 30s greater than (1). Basically, “Redundancy Primary” was
+offline for more than 30s during “Redundancy Backup” is online.</p>
+</li>
 </ol>
-<p>If both machines go offline, redundancy <strong>will not trigger</strong> unless the <strong>Backup</strong> remains online <strong>30 seconds longer</strong> than the <strong>Primary</strong>.</p>
+<p>Note that this covers the case of both machines are offline. As long as “Redundancy Backup”
+is back online within 30s of when “Redundancy Primary” is back online, redundancy won’t
+trigger.</p>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="what-is-backed-up">What is Backed Up?<a href="#what-is-backed-up" class="hash-link" aria-label="Direct link to What is Backed Up?" title="Direct link to What is Backed Up?">​</a></h2>
 <p>The <strong>PostgreSQL database</strong> is mirrored, which includes:</p>
 <ul>
-<li><strong>Job List</strong></li>
-<li><strong>Watch Folder Settings</strong></li>
-<li><strong>Client Machine List</strong></li>
-<li><strong>Options &amp; Preferences</strong></li>
+<li>
+<p><strong>Job List</strong></p>
+</li>
+<li>
+<p><strong>Watch Folder Settings</strong></p>
+</li>
+<li>
+<p><strong>Client Machine List</strong></p>
+</li>
+<li>
+<p><strong>Options &amp; Preferences</strong></p>
+</li>
 </ul>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="expected-behavior--important-notes">Expected Behavior &amp; Important Notes<a href="#expected-behavior--important-notes" class="hash-link" aria-label="Direct link to Expected Behavior &amp; Important Notes" title="Direct link to Expected Behavior &amp; Important Notes">​</a></h2>
+<p>-Redundancy should triggers according to “Redundancy trigger criteria”.</p>
 <ul>
-<li><strong>Redundancy triggers only when failure conditions are met.</strong></li>
-<li><strong>Backup Cluster</strong> machine&#x27;s <strong>database will be wiped</strong> and will mirror the <strong>Primary Cluster</strong>.</li>
-<li><strong>Redundancy Feature is dongle-protected</strong> – dongles must not expire.</li>
-<li><strong>If a dongle expires, redundancy and cluster operations will fail.</strong></li>
+<li>
+<p>When the machine is configured to be “Redundancy Backup”, its existing database will
+be wiped and will mirror/replicate specified “Redundancy Primary” database. Hence,
+please be careful when changing “Redundancy Role”</p>
+</li>
+<li>
+<p>Redundancy Feature is Dongle protected. When the dongle expires, Cluster service will
+no longer work (and hence affecting Redundancy). Hence, it is a must that customer
+dongles are not programmed to expire within days for each dongles. It also implies that
+dongles should not be removed at the same time.</p>
+</li>
 </ul>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="limitations">Limitations<a href="#limitations" class="hash-link" aria-label="Direct link to Limitations" title="Direct link to Limitations">​</a></h2>
 <ol>
-<li><strong>Primary Cluster Manager must be configured first</strong> before Backup.</li>
-<li><strong>Database passwords are stored locally</strong> – users should secure machines.</li>
-<li><strong>Database replication is not encrypted.</strong></li>
-<li><strong>Backup Cluster Manager is read-only</strong> – no encoding jobs can be run on it.</li>
-<li><strong>Fast internet connection and disk I/O are required</strong>.</li>
-<li><strong>Backup machine must match the Primary machine’s specs.</strong></li>
-<li><strong>Static IPs are required</strong> – PostgreSQL replication <strong>cannot handle IP changes</strong>.</li>
-<li><strong>Only a 1:1 redundancy setup is supported</strong> (one Primary, one Backup).</li>
-<li><strong>Primary and Backup must be in the same subnet.</strong></li>
+<li>
+<p>**User must configure “Redundancy Primary” before “Redundancy Backup”</p>
+</li>
+<li>
+<p><strong>Database passwords are stored locally</strong> – users should secure machines.</p>
+</li>
+<li>
+<p><strong>Database replication is not encrypted.</strong></p>
+</li>
+<li>
+<p><strong>Backup Cluster Manager is read-only</strong> – no encoding jobs can be run on it.</p>
+</li>
+<li>
+<p><strong>For “Redundancy Backup”, no encoding can be made locally.</strong>.</p>
+</li>
+<li>
+<p><strong>Fast internet connections and disk I/O is required for “Redundancy Primary” and
+“Redundancy Backup”.</strong></p>
+</li>
+<li>
+<p><strong>For “Redundancy Primary”, we expect that PostgreSQL database requires additional
+1GB of disk space to store temporarily file (vs “No Backup”)</strong>.</p>
+</li>
+<li>
+<p>**Because of the replication nature, we expect that the “Redundancy Backup” is identical
+to “Redundancy Primary” in terms of machine spec, configurations, as well as internet
+connections. This minimizes possibilities of behavioral difference after “Redundancy
+Triggers”.</p>
+</li>
+<li>
+<p><strong>Due to demanding internet connections requirement, Ethernet connections are expected.</strong></p>
+</li>
+<li>
+<p><strong>Due to technical limitation of PostgreSQL database replication, it cannot handle IP
+changes. So, both “Redundancy Primary” and “Redundancy Backup” should be assigned
+with static IP. Please consult network administrators for such settings.</strong></p>
+</li>
+<li>
+<p><strong>Only 1:1 backup is supported. That is, multiple “Redundancy Backups” are not supported
+for one “Redundancy Primary”.</strong></p>
+</li>
+<li>
+<p><strong>“Redundancy Primary” and “Redundancy Backup” must be in same subnet.</strong></p>
+</li>
+<li>
+<p><strong>. Only single “Redundancy Primary” can exist in same subnet.</strong></p>
+</li>
 </ol>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="how-to-configure-redundancy">How to Configure Redundancy<a href="#how-to-configure-redundancy" class="hash-link" aria-label="Direct link to How to Configure Redundancy" title="Direct link to How to Configure Redundancy">​</a></h2>
@@ -87,44 +146,64 @@ Redundancy.</p>
 <p><strong>Ensure both A &amp; B have dongles</strong> with the Redundancy Feature enabled.</p>
 </li>
 <li>
-<p>On <strong>Machines A &amp; B</strong>, open <strong>Cambria Cluster</strong> and set <strong>Redundancy Role</strong> to <strong>No Backup</strong>.</p>
+<p>In Redundancy tab of A and B, Role should be &quot;No Backup&quot;. Clicking &quot;Redundancy log&quot;
+will show:</p>
+</li>
+</ol>
+<ul>
+<li>[No Backup] [Information] All Cluster executables are started, operating…</li>
+<li>[No Backup] [Information] Starting all Cluster executables…</li>
+</ul>
+<ol start="4">
+<li>
+<p>For A, in “Cluster Machine Info” tab, Machine C should appear as “Standby”. Set it to
+“Online” by setting it to be “Connect machine to Cluster”. When jobs are generated in A
+through Watch Folder or Cluster FileConvert application, they should be automatically
+assigned to C.</p>
 </li>
 <li>
-<p>On <strong>Machine A</strong>, set <strong>Machine C</strong> to <strong>Online</strong>.</p>
-</li>
-<li>
-<p>On <strong>Machine A</strong>, go to <strong>Redundancy Tab</strong> → Click <strong>Configure</strong> → Set Role to <strong>Primary</strong>.</p>
-</li>
-<li>
-<p>Enter <strong>Machine B&#x27;s IP</strong> in <strong>Backup IP</strong> field. Click <strong>Apply</strong>.</p>
+<p>For A, in “Redundancy” tab, click “Configure” and change Redundancy Role to “Primary”.
+Note that you must put in machine B&#x27;s IP as &quot;Backup IP&quot;, eg, 10.0.0.45 (Machine B’s IP
+can be obtained from the Redundancy tab in B). Click Apply. Note that “UAC” popup will
+be shown and administrative privilege is required (for configuring PostgreSQL database)</p>
 </li>
 <li>
 <p><strong>Wait 30 seconds</strong> for settings to apply.</p>
 </li>
 <li>
-<p>On <strong>Machine B</strong>, go to <strong>Redundancy Tab</strong> → Click <strong>Configure</strong> → Set Role to <strong>Backup</strong>.</p>
+<p>Now, we work on Machine B. Similar to step 5, configure B to be “Backup”. Note that you
+must put in machine A&#x27;s IP as &quot;Primary IP&quot;. Click Apply similarly.</p>
 </li>
 <li>
-<p>Enter <strong>Machine A’s IP</strong> in <strong>Primary IP</strong> field. Click <strong>Apply</strong>.</p>
+<p>It can take 30s to a few minutes to apply the changes. The time taken varies greatly with
+existing database size in Machine A.</p>
 </li>
 <li>
-<p>Wait <strong>30 seconds to a few minutes</strong> for synchronization.</p>
-</li>
-<li>
-<p>Verify setup:</p>
+<p>Machine A will show these in “Redundancy Log”:</p>
 </li>
 </ol>
 <ul>
-<li><strong>Primary Machine A</strong> should show:<!-- -->
-<ul>
-<li><em>&quot;Primary Cluster Active, Database in Redundancy Mode.&quot;</em></li>
+<li>[Primary] [Information] All Cluster executables are started, operating...</li>
+<li>[Primary] [Information] Database is now in redundancy mode. Starting all Cluster executables</li>
 </ul>
-</li>
-<li><strong>Backup Machine B</strong> should show:<!-- -->
+<ol start="10">
+<li>Machine B will show these in “Redundancy Log”:</li>
+</ol>
 <ul>
-<li>*&quot;Backup Machine Connected, Mirroring Database.&quot;</li>
+<li>This machine is a backup machine and is backing up database. Redundancy log is not available</li>
 </ul>
-</li>
+<ol start="11">
+<li>To identify that the redundancy actually works, following indicators can be observed:
+For Machine A:</li>
+</ol>
+<ul>
+<li>“Last Error” shows “No error”</li>
+<li>“Backup machine IP address” shows configured “Redundancy Backup” IP address</li>
+<li>“Backup machine state” shows “Connected/Working”</li>
+<li>“Primary Health” should be green,
+For Machine B:</li>
+<li>“Last Error” shows “No error”</li>
+<li>“Backup Health” should be green.</li>
 </ul>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="how-to-test-redundancy-manually">How to Test Redundancy Manually<a href="#how-to-test-redundancy-manually" class="hash-link" aria-label="Direct link to How to Test Redundancy Manually" title="Direct link to How to Test Redundancy Manually">​</a></h2>
@@ -138,41 +217,57 @@ Redundancy.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="handling-a-redundancy-trigger-event">Handling a Redundancy Trigger Event<a href="#handling-a-redundancy-trigger-event" class="hash-link" aria-label="Direct link to Handling a Redundancy Trigger Event" title="Direct link to Handling a Redundancy Trigger Event">​</a></h2>
 <ol>
 <li>
-<p>If <strong>Machine A (Primary)</strong> fails and <strong>Machine B (Backup)</strong> takes over:</p>
-<ul>
-<li><strong>Machine B</strong> will be labeled <strong>&quot;Primary (Redundancy Triggered)&quot;</strong>.</li>
-</ul>
+<p>Let’s say, Machine A was a “Redundancy Primary”, Machine B was a “Redundancy
+Backup”, and now, Redundancy triggered and Machine A is “Stopped” and Machine B’s
+Redundancy Role is “Primary (Redundancy triggered)”.</p>
 </li>
 <li>
-<p><strong>To restore Machine A:</strong></p>
-<ul>
-<li>Verify <strong>Machine B’s database</strong> is intact before proceeding.</li>
-<li>Restart <strong>Machine A</strong>.</li>
-<li>Set <strong>Machine A’s Role</strong> to <strong>Backup</strong>, entering <strong>Machine B’s IP</strong>.</li>
-<li>Click <strong>Apply</strong>.</li>
-</ul>
+<p>To remove the warnings for Machine B (due to Redundancy triggered), change its role to
+“Primary”</p>
 </li>
 <li>
-<p>Machine A will now become the <strong>Backup</strong>, mirroring Machine B.</p>
+<p>Note that by following steps below, Machine A’s database will be wiped. It is important
+that user should verify the database in Machine B and the Cluster is operating fine
+before proceeding.</p>
 </li>
 <li>
-<p><strong>To restore Machine A as Primary:</strong></p>
-<ul>
-<li>Manually trigger redundancy as described earlier.</li>
-</ul>
+<p>After Machine A is fixed (eg, due to network outage, rebooted, etc), configure its
+Redundancy Role to be “Redundancy Backup” and put Machine B’s IP as “Primary IP” in
+Machine A. Apply.</p>
+</li>
+<li>
+<p>Machine A will become “Redundancy Backup” and replicating/backing up from Machine
+B. These 5 steps are required and have to be initiated from user, otherwise, no further
+Redundancy can be triggered.</p>
+</li>
+<li>
+<p>User can use above section (“How to trigger Redundancy manually”) to cause Machine
+A to become “Redundancy Primary” again. However, Redundancy feature is designed
+such that machines are anonymous in nature. When users use same spec machines for
+A and B and configured them similarly, both machines should be comfortable to be
+“Redundancy Primary”. Hence, such additional redundancy processing should be not
+necessary</p>
 </li>
 </ol>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="handling-database-corruption-or-redundancy-errors">Handling Database Corruption or Redundancy Errors<a href="#handling-database-corruption-or-redundancy-errors" class="hash-link" aria-label="Direct link to Handling Database Corruption or Redundancy Errors" title="Direct link to Handling Database Corruption or Redundancy Errors">​</a></h2>
 <ul>
-<li><strong>Ensure the Redundancy Feature is licensed.</strong><br>
-<!-- -->Without a valid dongle, redundancy will not work.</li>
-<li><strong>If the database is corrupted</strong>, reset the role to <strong>No Backup</strong> and reconfigure redundancy.</li>
-<li><strong>If PostgreSQL fails</strong>, use the <strong>Database Fixer Tool</strong>:<!-- -->
-<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">C:\Program Files (x86)\Capella\CambriaCluster\CpPostgresDbFixer.exe</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<li>
+<p>Redundancy feature requires corresponding license. Without such dongle/software
+license, such feature is not available.</p>
+</li>
+<li>
+<p>Database can be corrupted or become unable to handle any request, when database
+configuration or initial backup phase is interrupted.</p>
 </li>
 </ul>
-<hr>
-<p>This concludes the <strong>Cambria Cluster Redundancy Feature Documentation</strong>.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Cambria FTC/04-Tutorials/Capella Cambria Cluster.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/Cambria FTC/API/methods/SetYouTubeThumbnail"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">SetYouTubeThumbnail</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/Cambria FTC/Tutorials/Color Space Coversion/"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Cambria FTC Color Space Conversion</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#document-history" class="table-of-contents__link toc-highlight">Document History</a></li><li><a href="#introduction" class="table-of-contents__link toc-highlight">Introduction</a></li><li><a href="#naming-conventions" class="table-of-contents__link toc-highlight">Naming Conventions</a></li><li><a href="#redundancy-trigger-criteria" class="table-of-contents__link toc-highlight">Redundancy Trigger Criteria</a></li><li><a href="#what-is-backed-up" class="table-of-contents__link toc-highlight">What is Backed Up?</a></li><li><a href="#expected-behavior--important-notes" class="table-of-contents__link toc-highlight">Expected Behavior &amp; Important Notes</a></li><li><a href="#limitations" class="table-of-contents__link toc-highlight">Limitations</a></li><li><a href="#how-to-configure-redundancy" class="table-of-contents__link toc-highlight">How to Configure Redundancy</a></li><li><a href="#how-to-test-redundancy-manually" class="table-of-contents__link toc-highlight">How to Test Redundancy Manually</a></li><li><a href="#handling-a-redundancy-trigger-event" class="table-of-contents__link toc-highlight">Handling a Redundancy Trigger Event</a></li><li><a href="#handling-database-corruption-or-redundancy-errors" class="table-of-contents__link toc-highlight">Handling Database Corruption or Redundancy Errors</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Company</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://www.capellasystems.net/about-capella" target="_blank" rel="noopener noreferrer" class="footer__link-item">About<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.capellasystems.net/newsfeed" target="_blank" rel="noopener noreferrer" class="footer__link-item">Newsfeed<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.capellasystems.net/contact-us" target="_blank" rel="noopener noreferrer" class="footer__link-item">Contact Us<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://documents.capellasystems.net/docs/Cambria%20Stream/Installation%20Guides/Kubernetes/AWS/placeholder" target="_blank" rel="noopener noreferrer" class="footer__link-item">Cambria Stream<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://documents.capellasystems.net/docs/Cambria%20FTC/Installation%20Guides/Kubernetes/AWS/Akamai_Linode_Kubernetes_CambriaClusterFTC_Installation" target="_blank" rel="noopener noreferrer" class="footer__link-item">Cambria FTC<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">Other</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://www.capellasystems.net/terms-of-use" target="_blank" rel="noopener noreferrer" class="footer__link-item">Terms of Use<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.capellasystems.net/online-privacy-policy" target="_blank" rel="noopener noreferrer" class="footer__link-item">Privacy Policy<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 Capella Systems</div></div></div></footer></div>
+<p>-Database can be in “read-only” state as configured by Cluster Redundancy</p>
+<p>-With Redundancy feature, user can set the machine back to “No Backup” and then to
+desired Role. This will resolve most unexpected issues</p>
+<ul>
+<li>Without Redundancy feature, user can use “PostgreSQL Database Fixer” to rebuild the
+database. Such tool can be found in “C:\Program Files
+(x86)\Capella\CambriaCluster\CpPostgresDbFixer.exe”</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Cambria FTC/04-Tutorials/Capella Cambria Cluster.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/Cambria FTC/API/methods/SetYouTubeThumbnail"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">SetYouTubeThumbnail</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/Cambria FTC/Tutorials/Color Space Coversion/"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Cambria FTC Color Space Conversion</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#document-history" class="table-of-contents__link toc-highlight">Document History</a></li><li><a href="#introduction" class="table-of-contents__link toc-highlight">Introduction</a></li><li><a href="#naming-conventions" class="table-of-contents__link toc-highlight">Naming Conventions</a></li><li><a href="#redundancy-trigger-criteria" class="table-of-contents__link toc-highlight">Redundancy Trigger Criteria</a></li><li><a href="#what-is-backed-up" class="table-of-contents__link toc-highlight">What is Backed Up?</a></li><li><a href="#expected-behavior--important-notes" class="table-of-contents__link toc-highlight">Expected Behavior &amp; Important Notes</a></li><li><a href="#limitations" class="table-of-contents__link toc-highlight">Limitations</a></li><li><a href="#how-to-configure-redundancy" class="table-of-contents__link toc-highlight">How to Configure Redundancy</a></li><li><a href="#how-to-test-redundancy-manually" class="table-of-contents__link toc-highlight">How to Test Redundancy Manually</a></li><li><a href="#handling-a-redundancy-trigger-event" class="table-of-contents__link toc-highlight">Handling a Redundancy Trigger Event</a></li><li><a href="#handling-database-corruption-or-redundancy-errors" class="table-of-contents__link toc-highlight">Handling Database Corruption or Redundancy Errors</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Company</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://www.capellasystems.net/about-capella" target="_blank" rel="noopener noreferrer" class="footer__link-item">About<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.capellasystems.net/newsfeed" target="_blank" rel="noopener noreferrer" class="footer__link-item">Newsfeed<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.capellasystems.net/contact-us" target="_blank" rel="noopener noreferrer" class="footer__link-item">Contact Us<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://documents.capellasystems.net/docs/Cambria%20Stream/Installation%20Guides/Kubernetes/AWS/placeholder" target="_blank" rel="noopener noreferrer" class="footer__link-item">Cambria Stream<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://documents.capellasystems.net/docs/Cambria%20FTC/Installation%20Guides/Kubernetes/AWS/Akamai_Linode_Kubernetes_CambriaClusterFTC_Installation" target="_blank" rel="noopener noreferrer" class="footer__link-item">Cambria FTC<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">Other</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://www.capellasystems.net/terms-of-use" target="_blank" rel="noopener noreferrer" class="footer__link-item">Terms of Use<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.capellasystems.net/online-privacy-policy" target="_blank" rel="noopener noreferrer" class="footer__link-item">Privacy Policy<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 Capella Systems</div></div></div></footer></div>
 </body>
 </html>
