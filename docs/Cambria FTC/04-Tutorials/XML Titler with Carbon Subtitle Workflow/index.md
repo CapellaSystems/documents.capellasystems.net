@@ -25,17 +25,9 @@ This guide focuses on **XML Titler** with **Carbon Subtitle XML**.
 
 ## Carbon Subtitle XML Descriptions
 
-**Carbon Subtitle XML** is a proprietary format, widely used in the **Asia market**. While FTC does not support **all** its attributes, it supports most features for **minimal modifications** in workflows.
+Carbon subtitle xml is a proprietary subtitle format, but was widely used particularly in the asia market. While FTC does not support all attributes and features of it, most of them are supported to enable Carbon subtitle workflow with minimal modifications from customers.
 
-### XML Structure
-
-Each subtitle line is encapsulated in **"TitlerData"**, with **each line** represented as a **"data" XML child**.
-
-Each subtitle line must include:
-
-- **StartTimecode**: When the subtitle appears on the screen.
-- **EndTimecode**: When the subtitle disappears.
-- **Title**: The subtitle text.
+We start by describing the subtitle XML format with this example:
 
 Example:
 
@@ -115,23 +107,16 @@ If your source does **not** have a valid timecode, you must **overwrite** it usi
 
    
    
-   ![Screenshot](05_screenshot.png)
+   ![Screenshot](06_screenshot.png)
    
    
 
 1. **Ensure the Timecode Filter is positioned at the top** of the filter list.
 2. XML Titler **requires valid timecode** to work.
 
-### Step 5: Multiple Subtitles (Optional)
-
-- You can **add multiple XML Titlers** to include **subtitles in different languages**.
-- Each XML Titler applies a **different language track** to the same video.
-
-> **Example:** English and Chinese subtitles on the same video.
-
    
    
-   ![Screenshot](06_screenshot.png)
+   ![Screenshot](07_screenshot.png)
    
    
 
@@ -153,6 +138,10 @@ If your source does **not** have a valid timecode, you must **overwrite** it usi
 
 ### 3. **EZTitles Plugin Not Found?**
 - If **EZTitles Subtitle Plugin** is missing, ensure it is **purchased and installed**.
+
+
+![Screenshot](08_screenshot.png)
+
 
 ### 4. **Using Watch Folder for Subtitle Workflow**
 - **Watch Folder** supports **dynamic subtitle XML binding**.

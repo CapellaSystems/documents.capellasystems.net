@@ -18,9 +18,21 @@ title: Capella Cambria Cluster Redundancy Feature
 
 ## Introduction
 
-Cambria Cluster Manager is a **powerful tool** that manages multiple **Cambria FTC machines** for job distribution with redundancy. If a machine becomes unavailable due to crashes, network issues, or reboots, **Cambria Cluster** detects the failure and reassigns jobs **automatically**.
+CCambria Cluster Manager is very powerful and can manage multiple Cambria FC
+machines for distribution of jobs redundantly. If any machine becomes unavailable, such as
+due to crashes, network disconnection, unexpected reboots, etc, Cambria Cluster can detect
+so and reassign jobs to other available machines automatically.
 
-However, previously, **Cambria Cluster Manager** itself did not have redundancy. The **Cambria Cluster Redundancy Feature** resolves this by allowing **two machines** to be configured as **Cambria Cluster Managers**:
+However, there is no mechanism to add redundancy for the Cambria Cluster Manager
+itself previously. To resolve this, Cambria Cluster Redundancy is introduced. It allows users to
+configure 2 machines as Cambria Cluster Manager, while only one of them is active, and the
+other one serves as backup. When the main machine becomes unavailable, the backup
+machine will takeover, and resume Cluster Manager’s role.
+
+Such redundancy added by Cluster Redundancy is implemented via PostgreSQL
+database replication, such that, all data in the database are mirrored in real time, reliably. This
+document provides instructions in setting up, testing, verifying, and troubleshooting the Cluster
+Redundancy.
 
 - **Primary Cluster Manager** (Active)
 - **Backup Cluster Manager** (Standby)
