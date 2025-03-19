@@ -80,6 +80,12 @@ The filter is now configured and added to your preset. Click **OK** to finish se
    
    ![Screenshot](02_screenshot.png)
    
+
+The Filter is now configured and added to your preset, Click OK to finish setting up your encoding preset.
+
+Click Queue All Jobs to queue jobs in Cambria Manager, or Click Convert All Jobs to convert now in Cambria FTC.
+
+
    
 
 ## Limitations
