@@ -71,7 +71,7 @@ trigger.
 
 ## What is Backed Up?
 
-The **PostgreSQL database** is mirrored, which includes:
+The PostgreSQL database** is mirrored, which includes:
 
 - **Job List**
 
@@ -100,48 +100,48 @@ dongles should not be removed at the same time.
 
 ## Limitations
 
-1. **User must configure “Redundancy Primary” before “Redundancy Backup”
+1. User must configure “Redundancy Primary” before “Redundancy Backup”
 
-2. **Database passwords are stored locally** – users should secure machines.
+2. Database passwords are stored locally – users should secure machines.
 
-3. **Database replication is not encrypted.**
+3. Database replication is not encrypted.**
 
-4. **Backup Cluster Manager is read-only** – no encoding jobs can be run on it.
+4. Backup Cluster Manager is read-only – no encoding jobs can be run on it.
 
-5. **For “Redundancy Backup”, no encoding can be made locally.**.
+5. For “Redundancy Backup”, no encoding can be made locally.
 
-6. **Fast internet connections and disk I/O is required for “Redundancy Primary” and
-“Redundancy Backup”.**
+6. Fast internet connections and disk I/O is required for “Redundancy Primary” and
+“Redundancy Backup”.
 
-7. **For “Redundancy Primary”, we expect that PostgreSQL database requires additional
-1GB of disk space to store temporarily file (vs “No Backup”)**.
+7. For “Redundancy Primary”, we expect that PostgreSQL database requires additional
+1GB of disk space to store temporarily file (vs “No Backup”).
 
-8. **Because of the replication nature, we expect that the “Redundancy Backup” is identical
+8. Because of the replication nature, we expect that the “Redundancy Backup” is identical
 to “Redundancy Primary” in terms of machine spec, configurations, as well as internet
 connections. This minimizes possibilities of behavioral difference after “Redundancy
 Triggers”.
 
-9. **Due to demanding internet connections requirement, Ethernet connections are expected.**
+9. Due to demanding internet connections requirement, Ethernet connections are expected.
 
-10. **Due to technical limitation of PostgreSQL database replication, it cannot handle IP
+10. Due to technical limitation of PostgreSQL database replication, it cannot handle IP
 changes. So, both “Redundancy Primary” and “Redundancy Backup” should be assigned
-with static IP. Please consult network administrators for such settings.**
+with static IP. Please consult network administrators for such settings.
 
-11. **Only 1:1 backup is supported. That is, multiple “Redundancy Backups” are not supported
-for one “Redundancy Primary”.**
+11. Only 1:1 backup is supported. That is, multiple “Redundancy Backups” are not supported
+for one “Redundancy Primary”.
 
-12. **“Redundancy Primary” and “Redundancy Backup” must be in same subnet.**
+12. “Redundancy Primary” and “Redundancy Backup” must be in same subnet.
 
-13. **. Only single “Redundancy Primary” can exist in same subnet.**
+13. Only single “Redundancy Primary” can exist in same subnet.
 
 ---
 
 ## How to Configure Redundancy
 
-1. **Prepare two machines** for Cambria Cluster – Machine **A** (Primary) and Machine **B** (Backup).  
+1. Prepare two machines for Cambria Cluster – Machine **A** (Primary) and Machine **B** (Backup).  
    Also prepare a **Client Machine C**.
 
-2. **Ensure both A & B have dongles** with the Redundancy Feature enabled.
+2. Ensure both A & B have dongles with the Redundancy Feature enabled.
 
 3. In Redundancy tab of A and B, Role should be "No Backup". Clicking "Redundancy log"
 will show:
@@ -160,7 +160,7 @@ Note that you must put in machine B's IP as "Backup IP", eg, 10.0.0.45 (Machine 
 can be obtained from the Redundancy tab in B). Click Apply. Note that “UAC” popup will
 be shown and administrative privilege is required (for configuring PostgreSQL database)
 
-6. **Wait 30 seconds** for settings to apply.
+6. Wait 30 seconds** for settings to apply.
 
 7. Now, we work on Machine B. Similar to step 5, configure B to be “Backup”. Note that you
 must put in machine A's IP as "Primary IP". Click Apply similarly.
