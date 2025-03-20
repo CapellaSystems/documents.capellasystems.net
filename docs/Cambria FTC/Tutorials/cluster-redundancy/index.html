@@ -5,7 +5,7 @@
 <meta name="generator" content="Docusaurus v3.7.0">
 <title data-rh="true">Capella Cambria Cluster Redundancy Feature | Capella Docuements</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://documents.capellasystems.net/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://documents.capellasystems.net/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://documents.capellasystems.net/docs/Cambria FTC/Tutorials/cluster-redundancy"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Capella Cambria Cluster Redundancy Feature | Capella Docuements"><meta data-rh="true" name="description" content="Version: V2 #8426"><meta data-rh="true" property="og:description" content="Version: V2 #8426"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://documents.capellasystems.net/docs/Cambria FTC/Tutorials/cluster-redundancy"><link data-rh="true" rel="alternate" href="https://documents.capellasystems.net/docs/Cambria FTC/Tutorials/cluster-redundancy" hreflang="en"><link data-rh="true" rel="alternate" href="https://documents.capellasystems.net/docs/Cambria FTC/Tutorials/cluster-redundancy" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Capella Docuements RSS Feed">
 <link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="Capella Docuements Atom Feed"><link rel="stylesheet" href="/assets/css/styles.ac183f09.css">
-<script src="/assets/js/runtime~main.e6062841.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.f65a4230.js" defer="defer"></script>
 <script src="/assets/js/main.c69007f9.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -53,7 +53,7 @@ is back online within 30s of when “Redundancy Primary” is back online, redun
 trigger.</p>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="what-is-backed-up">What is Backed Up?<a href="#what-is-backed-up" class="hash-link" aria-label="Direct link to What is Backed Up?" title="Direct link to What is Backed Up?">​</a></h2>
-<p>The <strong>PostgreSQL database</strong> is mirrored, which includes:</p>
+<p>The PostgreSQL database** is mirrored, which includes:</p>
 <ul>
 <li>
 <p><strong>Job List</strong></p>
@@ -88,62 +88,62 @@ dongles should not be removed at the same time.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="limitations">Limitations<a href="#limitations" class="hash-link" aria-label="Direct link to Limitations" title="Direct link to Limitations">​</a></h2>
 <ol>
 <li>
-<p>**User must configure “Redundancy Primary” before “Redundancy Backup”</p>
+<p>User must configure “Redundancy Primary” before “Redundancy Backup”</p>
 </li>
 <li>
-<p><strong>Database passwords are stored locally</strong> – users should secure machines.</p>
+<p>Database passwords are stored locally – users should secure machines.</p>
 </li>
 <li>
-<p><strong>Database replication is not encrypted.</strong></p>
+<p>Database replication is not encrypted.**</p>
 </li>
 <li>
-<p><strong>Backup Cluster Manager is read-only</strong> – no encoding jobs can be run on it.</p>
+<p>Backup Cluster Manager is read-only – no encoding jobs can be run on it.</p>
 </li>
 <li>
-<p><strong>For “Redundancy Backup”, no encoding can be made locally.</strong>.</p>
+<p>For “Redundancy Backup”, no encoding can be made locally.</p>
 </li>
 <li>
-<p><strong>Fast internet connections and disk I/O is required for “Redundancy Primary” and
-“Redundancy Backup”.</strong></p>
+<p>Fast internet connections and disk I/O is required for “Redundancy Primary” and
+“Redundancy Backup”.</p>
 </li>
 <li>
-<p><strong>For “Redundancy Primary”, we expect that PostgreSQL database requires additional
-1GB of disk space to store temporarily file (vs “No Backup”)</strong>.</p>
+<p>For “Redundancy Primary”, we expect that PostgreSQL database requires additional
+1GB of disk space to store temporarily file (vs “No Backup”).</p>
 </li>
 <li>
-<p>**Because of the replication nature, we expect that the “Redundancy Backup” is identical
+<p>Because of the replication nature, we expect that the “Redundancy Backup” is identical
 to “Redundancy Primary” in terms of machine spec, configurations, as well as internet
 connections. This minimizes possibilities of behavioral difference after “Redundancy
 Triggers”.</p>
 </li>
 <li>
-<p><strong>Due to demanding internet connections requirement, Ethernet connections are expected.</strong></p>
+<p>Due to demanding internet connections requirement, Ethernet connections are expected.</p>
 </li>
 <li>
-<p><strong>Due to technical limitation of PostgreSQL database replication, it cannot handle IP
+<p>Due to technical limitation of PostgreSQL database replication, it cannot handle IP
 changes. So, both “Redundancy Primary” and “Redundancy Backup” should be assigned
-with static IP. Please consult network administrators for such settings.</strong></p>
+with static IP. Please consult network administrators for such settings.</p>
 </li>
 <li>
-<p><strong>Only 1:1 backup is supported. That is, multiple “Redundancy Backups” are not supported
-for one “Redundancy Primary”.</strong></p>
+<p>Only 1:1 backup is supported. That is, multiple “Redundancy Backups” are not supported
+for one “Redundancy Primary”.</p>
 </li>
 <li>
-<p><strong>“Redundancy Primary” and “Redundancy Backup” must be in same subnet.</strong></p>
+<p>“Redundancy Primary” and “Redundancy Backup” must be in same subnet.</p>
 </li>
 <li>
-<p><strong>. Only single “Redundancy Primary” can exist in same subnet.</strong></p>
+<p>Only single “Redundancy Primary” can exist in same subnet.</p>
 </li>
 </ol>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="how-to-configure-redundancy">How to Configure Redundancy<a href="#how-to-configure-redundancy" class="hash-link" aria-label="Direct link to How to Configure Redundancy" title="Direct link to How to Configure Redundancy">​</a></h2>
 <ol>
 <li>
-<p><strong>Prepare two machines</strong> for Cambria Cluster – Machine <strong>A</strong> (Primary) and Machine <strong>B</strong> (Backup).<br>
+<p>Prepare two machines for Cambria Cluster – Machine <strong>A</strong> (Primary) and Machine <strong>B</strong> (Backup).<br>
 <!-- -->Also prepare a <strong>Client Machine C</strong>.</p>
 </li>
 <li>
-<p><strong>Ensure both A &amp; B have dongles</strong> with the Redundancy Feature enabled.</p>
+<p>Ensure both A &amp; B have dongles with the Redundancy Feature enabled.</p>
 </li>
 <li>
 <p>In Redundancy tab of A and B, Role should be &quot;No Backup&quot;. Clicking &quot;Redundancy log&quot;
@@ -168,7 +168,7 @@ can be obtained from the Redundancy tab in B). Click Apply. Note that “UAC” 
 be shown and administrative privilege is required (for configuring PostgreSQL database)</p>
 </li>
 <li>
-<p><strong>Wait 30 seconds</strong> for settings to apply.</p>
+<p>Wait 30 seconds** for settings to apply.</p>
 </li>
 <li>
 <p>Now, we work on Machine B. Similar to step 5, configure B to be “Backup”. Note that you
