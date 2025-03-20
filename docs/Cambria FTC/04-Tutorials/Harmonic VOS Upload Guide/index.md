@@ -43,6 +43,12 @@ title: FTC Harmonic VOS Upload Guide
 - Set the **Bitrate**.
 - **Enable** the **"Use fixed length GOP"** checkbox.
 
+   
+   
+   ![Screenshot](02_screenshot.png)
+   
+   
+
 ### 8. Configure **Post Task**:
 - In the **Preset Editor**, go to the **Post Task** tab.
 - **Enable** the **"Use Upload"** checkbox.
@@ -55,11 +61,6 @@ title: FTC Harmonic VOS Upload Guide
 
 > **NOTE:** You must have a **Cambria FTC License with Harmonic VOS Upload Enabled**.
 
-
-    ![Screenshot](01_screenshot.png)
-
-
-   ![Screenshot](02_screenshot.png)
    
 
 > **String Replacement:** You can specify values like **%sourceName%**, **%sourcePath#%** as shown in the tooltip.
