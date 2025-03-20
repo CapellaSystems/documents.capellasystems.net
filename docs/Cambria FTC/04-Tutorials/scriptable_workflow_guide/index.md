@@ -63,7 +63,7 @@ The script outputs a new Job XML that is used for transcoding. This process is c
 **Note:** Temporary files (Input XML, Output XML, and script files) are automatically deleted unless preserved using the `--s 1` command-line option.
 
 
-## Available encoding settings:
+**Available encoding settings**:
 The script can add, remove or modify any settings stored in the Job XML. To get a list of which 
 settings can be modified, use FTC or the Manager to extract a Job XML which contains the desired 
 video and audio encoders, video or audio filters, notification, upload, audio mapping, etc.
