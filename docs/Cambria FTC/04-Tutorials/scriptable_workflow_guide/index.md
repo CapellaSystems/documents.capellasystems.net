@@ -68,7 +68,26 @@ The script can add, remove or modify any settings stored in the Job XML. To get 
 settings can be modified, use FTC or the Manager to extract a Job XML which contains the desired 
 video and audio encoders, video or audio filters, notification, upload, audio mapping, etc.
 
+## Sample Scripts
+Sample scripts can be found as part of the FTC installation package, located in:
+C:\Users\Public\Documents\Capella\Cambria\Scripts. Users may use them as is, or can customize a
+script to their liking. Here are names and descriptions for some of the scripts.
 
+1) ModifyBitrateBasedOnSourceResolution.py
+Script looks at the width/height of the source. If it is SD, it sets the H.264 bitrate to 2000bps. If it is
+HD, it sets the bitrate to 5000mbps. [This assumes that the XML setting for bitrate is 'BitrateKbps',
+which is not the case for all encoders].
+
+2) FailIfPAL.py
+Script looks at the frame rate and makes the job fail if the frame rate is PAL (ie 25 or 50).
+
+3) FailIfNotHD.py
+Script looks at the frame size and makes the job fail if the width is less than 1280 or if the height is less
+than 720.
+
+4) SetInTimecodeTo_01_00_00_00.py
+Script sets the In Timecode to 01:00:00:00, and sets no Out point (so we keep transcoding until the end
+of the file).
 
 
 ### ModifyBitrateBasedOnSourceResolution.py
