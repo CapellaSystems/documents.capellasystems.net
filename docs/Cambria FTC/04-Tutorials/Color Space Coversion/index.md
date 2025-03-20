@@ -40,7 +40,7 @@ You may want to use a format that retains color precision:
 - **10/12-bit bit depth**
 - **4:2:2 / 4:4:4 Color Format** (4:4:4 can be via **MOV ProRes**)
 
-If converting **SD/HD BT.709 to UHD/4K BT.2020**, you can follow **Case Study 2** below and select **BT.709 to BT.2020**.
+If you are just interested in converting from SD/HD in BT.709 to UHD/4K in BT.2020 color space, you can use “Case Study 2” below, and select BT.709 to BT.2020. This is a rare workflow though.
 
 ## Handling Color Related Metadata
 
@@ -50,7 +50,7 @@ Converting between **SDR and HDR** involves multiple steps:
 2. Set proper **Color Primaries, Transfer Characteristics, and Matrix Coefficients** in **Video Settings** (except for X265, which requires command-line options).
 3. Enable **"Write Color Info"** in **Container Format Settings** (MP4 only).
 
-> **Note:** Static/dynamic metadata (HDR10, HDR10+) is not injected automatically. For **X265 encoding**, static metadata can be added via **command-line options**.
+> During SDR/HDR conversions, only colors, luminance, and mappings are performed as necessary. There is no detection nor injection of additional static/dynamic metadata, such as HDR10/HDR10+. If you are converting to X265, you can add static metadata via Extra Options as command lines. 
 
 [X265 CLI Documentation](https://x265.readthedocs.io/en/default/cli.html#vui-video-usability-information-options)
 
@@ -67,45 +67,55 @@ Converting between **SDR and HDR** involves multiple steps:
 2. The filter can be applied as a **source or target filter**, but applying it as a **source filter** is more efficient.
 3. In **Video Settings** (Encoding Tab), select **Color Primaries, Transfer Coefficients, and Matrix Coefficients**.
 
+
+![Screenshot](02_screenshot.png)
+
+
 > **Note:** This conversion **has loss** and is **not perfectly reversible**.
 
 ## Case Study 2: HDR Conversions (HLG/PQ)
 
-1. In **Preset Editor**, add the **Color Space Conversion** filter.
+This case is about converting between HLG and PQ. This conversion is reversible. Unlike Case Study 1, we select Color Space Conversion Filter:
 
-   
-   
-   ![Screenshot](02_screenshot.png)
-   
-   
 
-2. The filter can be applied as a **source or target filter**, but applying it as a **source filter** is more efficient.
-3. In **Video Settings** (Encoding Tab), select **Color Primaries, Transfer Coefficients, and Matrix Coefficients**.
+![Screenshot](03_screenshot.png)
+
+
+The filter can be added as a source or target filter. However, this is more efficient and accurate as a source filter.
+
+
+Then, select proper Color Primaries, Transfer Coefficients and Matrix Coefficients in Video Settings in the Encoding Tab of the Preset Editor Window:
+
+
+![Screenshot](04_screenshot.png)
+
 
 ## Case Study 3: SDR to HDR Conversions (BT.709 to HLG/PQ)
 
-1. Similar to **Case Study 2**, select **"BT.709 to HLG"** in **Conversion Mode**.
-2. For **BT.709 to PQ**, add an **additional Color Space Conversion filter** to convert **HLG to PQ**.
-3. In **Video Settings** (Encoding Tab), select **Color Primaries, Transfer Coefficients, and Matrix Coefficients**.
+This is similar to Case Study 2 in setup, just choose “BT.709 to HLG” in “Conversion Mode”. If you want to convert BT.709 to PQ, you can add an additional Color Space Conversion filter, and convert HLG to PQ.
+
+Similarly, you also need to select proper Color Primaries, Transfer Coefficients and Matrix Coefficients in Video Settings in the Encoding Tab of the Preset Editor Window:
 
 ## Case Study 4: HDR to SDR Conversions (PQ/HLG to BT.709)
 
-1. Similar setup to **Case Study 2 and 3**, but involves **tone mapping**.
-2. **HDR to SDR conversion results in data loss** due to the **difference in color space size**.
-3. **FTC uses a modified version of the Hable algorithm** for tone mapping.
+While this is also similar to Case Study 2 and 3 in setup, as well as selecting proper Color Primaries, Transfer Coefficients and Matrix Coefficients in Video Settings, this is a highly controversial case.
+
+First of all, as you can foresee, there are lots of data loss in such conversion, because, PQ/HLG (BT.2020 color space) is much larger than BT.709, and to achieve satisfactory conversion results, tone mapping algorithm is also used.
+
+Currently, FTC is using a modified version of the Hable algorithm and is very conservative in nature. We are investigating to expose more options for users to fine tune the parameters, as well as using other well known algorithms, such as Reinhard.
+
 
 > **Note:** Future versions may allow users to fine-tune **Reinhard or other tone mapping algorithms**.
 
 ## Special Handling of MP4 Muxer
 
-By default, color information set in **Video Settings** is applied to the container. However, MP4 outputs **do not** write color information metadata by default.
+BBy default, the color information that was set in Video Settings will be applied to the container as well, and there is no separate color information setting in Container Format Settings section. 
 
-> **Solution:** Enable **"Write Color Info"** in **Container Format Settings** (if your players support it).
 
-   
-   
-   ![Screenshot](03_screenshot.png)
-   
+The only exception is MP4 Muxer. To retain maximum compatibility with hardware players with our MP4 outputs, FTC does not write color information metadata by default (as well as not writing other metadata, but not described in this document). Hence, if your output is MP4 and when your players have no such issue, you should also write color information to the container as well (the example is PQ):
+
+
+![Screenshot](05_screenshot.png)
    
 
 ## Special Handling of X265 Encoder
@@ -116,7 +126,7 @@ Example settings for **PQ encoding**:
 
    
    
-   ![Screenshot](04_screenshot.png)
+   ![Screenshot](06_screenshot.png)
    
    
 
@@ -127,7 +137,3 @@ For **HDR10 encoding**, configure **MaxCLL and MaxFALL** via:
 ```
 
 > **Note:** FTC does **not** measure or relay these values from the source. Users must manually input them.
-
----
-
-This concludes the guide for **Cambria FTC Color Space Conversion**.
