@@ -3,7 +3,7 @@ id: scriptable-workflow
 title: Scriptable Workflow
 ---
 
-# (UC) Scriptable Workflow
+# Scriptable Workflow
 
 ## Overview
 
