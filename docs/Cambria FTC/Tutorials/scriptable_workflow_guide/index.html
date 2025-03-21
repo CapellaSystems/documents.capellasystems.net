@@ -5,7 +5,7 @@
 <meta name="generator" content="Docusaurus v3.7.0">
 <title data-rh="true">Scriptable Workflow | Capella Docuements</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://documents.capellasystems.net/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://documents.capellasystems.net/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://documents.capellasystems.net/docs/Cambria FTC/Tutorials/scriptable_workflow_guide/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Scriptable Workflow | Capella Docuements"><meta data-rh="true" name="description" content="Overview"><meta data-rh="true" property="og:description" content="Overview"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://documents.capellasystems.net/docs/Cambria FTC/Tutorials/scriptable_workflow_guide/"><link data-rh="true" rel="alternate" href="https://documents.capellasystems.net/docs/Cambria FTC/Tutorials/scriptable_workflow_guide/" hreflang="en"><link data-rh="true" rel="alternate" href="https://documents.capellasystems.net/docs/Cambria FTC/Tutorials/scriptable_workflow_guide/" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Capella Docuements RSS Feed">
 <link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="Capella Docuements Atom Feed"><link rel="stylesheet" href="/assets/css/styles.ac183f09.css">
-<script src="/assets/js/runtime~main.39c46985.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.1ea0d68e.js" defer="defer"></script>
 <script src="/assets/js/main.e9e40341.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -45,17 +45,61 @@ The script can add, remove or modify any settings stored in the Job XML. To get 
 <code>C:\Users\Public\Documents\Capella\Cambria\Scripts</code></p>
 <p>Users may use them as-is or customize a script to their liking. Some example scripts:</p>
 <ol>
-<li><strong>ModifyBitrateBasedOnSourceResolution.py</strong> — Sets bitrate to 2000kbps for SD, 5000kbps for HD.</li>
-<li><strong>FailIfPAL.py</strong> — Fails the job if the source framerate is 25 or 50 fps.</li>
-<li><strong>FailIfNotHD.py</strong> — Fails the job if the resolution is lower than 1280x720.</li>
-<li><strong>SetInTimecodeTo_01_00_00_00.py</strong> — Sets the In timecode to 01:00:00:00.</li>
-<li><strong>Create5MinuteSegment.py</strong> — Sets In point to 0 and Out point to 5 minutes.</li>
-<li><strong>UseHalfSourceFrameRateIfMoreThan30fps.pl</strong> — Halves framerate if over 30 fps.</li>
-<li><strong>AddPreroll_Postroll.py</strong> — Adds preroll/postroll files.</li>
-<li><strong>MapAdditionalAudio.py</strong> — Combines audio sources.</li>
-<li><strong>PassthroughAudioIfAC3.py</strong> — Passes through AC-3 audio; re-encodes otherwise.</li>
-<li><strong>SkipAdaptiveStreamingLayersBasedOnSourceResolution.py</strong> — Removes adaptive layers higher than source res.</li>
-<li><strong>AdaptiveBitrateLadderBasedOnVideoComplexity.py</strong> — Adjusts bitrates based on complexity.</li>
+<li>
+<p>ModifyBitrateBasedOnSourceResolution.py
+Script looks at the width/height of the source. If it is SD, it sets the H.264 bitrate to 2000bps. If it is
+HD, it sets the bitrate to 5000mbps. [This assumes that the XML setting for bitrate is &#x27;BitrateKbps&#x27;,
+which is not the case for all encoders].</p>
+</li>
+<li>
+<p>FailIfPAL.py
+Script looks at the frame rate and makes the job fail if the frame rate is PAL (ie 25 or 50).</p>
+</li>
+<li>
+<p>FailIfNotHD.py
+Script looks at the frame size and makes the job fail if the width is less than 1280 or if the height is less
+than 720.</p>
+</li>
+<li>
+<p>SetInTimecodeTo_01_00_00_00.py
+Script sets the In Timecode to 01:00:00:00, and sets no Out point (so we keep transcoding until the end
+of the file).</p>
+</li>
+<li>
+<p>Create5MinuteSegment.py
+Script set In point at 0 and Out point at 5 minutes.</p>
+</li>
+<li>
+<p>UseHalfSourceFrameRateIfMoreThan30fps.pl
+Script inspects the source frame rate. If it is 30 or less, output frame rate is set to source frame rate. If it
+is over 30, output frame rate is set to half of source frame rate. [This assumes that the target can use any
+frame rate, so for example this wouldn&#x27;t work with DV output].</p>
+</li>
+<li>
+<p>AddPreroll_Postroll.py
+Stitches the source file with a preroll and/or postroll source file.</p>
+</li>
+<li>
+<p>MapAdditionalAudio.py
+Used with Watch Folder &#x27;Group of Files&#x27;. Combines audio from external sources to the audio of the
+main source file. This can for example combine audio of different languages into a multi-track source.</p>
+</li>
+<li>
+<p>PassthroughAudioIfAC3.py
+If the source&#x27;s audio is encoded in AC-3 format, use Audio Passthrough. Otherwise, re-encode audio to
+the format specified in the original job encoding settings.</p>
+</li>
+<li>
+<p>SkipAdaptiveStreamingLayersBasedOnSourceResolution.py
+Removes any Adaptive Streaming (DASH, Smooth Streaming) layer if that layer&#x27;s resolution is higher
+than the source resolution.</p>
+</li>
+<li>
+<p>AdaptiveBitrateLadderBasedOnVideoComplexity.py
+Measures the source video complexity (a measure of how difficult it is to encode) and modifies the
+bitrate for each DASH or HLS layer. Less complex sources will be encoded at lower bitrate than more
+difficult sources.</p>
+</li>
 </ol>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="2-writing-a-script">2. Writing a Script<a href="#2-writing-a-script" class="hash-link" aria-label="Direct link to 2. Writing a Script" title="Direct link to 2. Writing a Script">​</a></h2>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="common-header">Common Header<a href="#common-header" class="hash-link" aria-label="Direct link to Common Header" title="Direct link to Common Header">​</a></h3>
