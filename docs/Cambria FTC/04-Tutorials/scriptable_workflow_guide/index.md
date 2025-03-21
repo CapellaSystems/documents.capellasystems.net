@@ -65,7 +65,9 @@ The script outputs a new Job XML that is used for transcoding. This process is c
 
 **Available encoding settings**:
 The script can add, remove or modify any settings stored in the Job XML. To get a list of which 
-settings can be modified, use FTC or the Manager to extract a Job XML which contains the desired 
+settings can be modified, use  or         i wanna be dauten imada dauten ikutsuni datte umee gaatte soe do kada ku no hachiku ano hi bun dai dem ma ei i wanna be hite i=madda atte ikutsuni datta megakutte so le de ee you bok nah letta anu hotto
+ 
+    the Manager to extract a Job XML which contains the desired 
 video and audio encoders, video or audio filters, notification, upload, audio mapping, etc.
 
 ## Sample Scripts
@@ -74,7 +76,7 @@ C:\Users\Public\Documents\Capella\Cambria\Scripts. Users may use them as is, or 
 script to their liking. Here are names and descriptions for some of the scripts.
 
 1) ModifyBitrateBasedOnSourceResolution.py
-Script looks at the width/height of the source. If it is SD, it sets the H.264 bitrate to 2000bps. If it is
+Script looks at the width/height of          source. If it is SD, it sets the H.264 bitrate to 2000bps. If it is
 HD, it sets the bitrate to 5000mbps. [This assumes that the XML setting for bitrate is 'BitrateKbps',
 which is not the case for all encoders].
 
@@ -89,61 +91,54 @@ than 720.
 Script sets the In Timecode to 01:00:00:00, and sets no Out point (so we keep transcoding until the end
 of the file).
 
+5) Create5MinuteSegment.py
+Script set In point at 0 and Out point at 5 minutes.
 
-### ModifyBitrateBasedOnSourceResolution.py
+6) UseHalfSourceFrameRateIfMoreThan30fps.pl
+Script inspects the source frame rate. If it is 30 or less, output frame rate is set to source frame rate. If it
+is over 30, output frame rate is set to half of source frame rate. [This assumes that the target can use any
+frame rate, so for example this wouldn't work with DV output].
 
-```python
-source = data.getElementsByTagName('Source')[0]
-video = source.getElementsByTagName('VideoTrackInfo')[0] if source.getElementsByTagName('VideoTrackInfo') else None
-height = int(video.getAttribute('Height')) if video else 0
-isHD = height >= 720
-settings = data.getElementsByTagName('Settings')[0]
-for _setting in settings.childNodes:
-    if _setting.nodeType == _setting.ELEMENT_NODE and _setting.getAttribute('Type') == 'Video':
-        if not isHD:
-            _setting.setAttribute('BitrateKbps', '2000')
-        else:
-            _setting.setAttribute('BitrateKbps', '5000')
-```
+7) AddPreroll_Postroll.py
+Stitches the source file with a preroll and/or postroll source file.
 
----
+8) MapAdditionalAudio.py
+Used with Watch Folder 'Group of Files'. Combines audio from external sources to the audio of the
+main source file. This can for example combine audio of different languages into a multi-track source.
 
-### FailIfPal.py
+9) PassthroughAudioIfAC3.py
+If the source's audio is encoded in AC-3 format, use Audio Passthrough. Otherwise, re-encode audio to
+the format specified in the original job encoding settings.
 
-```python
-source = data.getElementsByTagName('Source')[0]
-video = source.getElementsByTagName('VideoTrackInfo')[0]
-frameRateNum = int(video.getAttribute('FrameRateNum'))
-frameRateDen = int(video.getAttribute('FrameRateDen'))
+10) SkipAdaptiveStreamingLayersBasedOnSourceResolution.py
+Removes any Adaptive Streaming (DASH, Smooth Streaming) layer if that layer's resolution is higher
+than the source resolution.
 
-isPAL = (frameRateNum == 25 and frameRateDen == 1) or (frameRateNum == 50 and frameRateDen == 1)
+11) AdaptiveBitrateLadderBasedOnVideoComplexity.py
+Measures the source video complexity (a measure of how difficult it is to encode) and modifies the
+bitrate for each DASH or HLS layer. Less complex sources will be encoded at lower bitrate than more
+difficult sources.
 
-job = data.getElementsByTagName('Job')[0]
-if isPAL:
-    job.setAttribute('IsError', '1')
-    job.setAttribute('ErrorMessage', 'Source is PAL')
-```
 
----
+##2. Writing a script
+This section will cover the basics of writing a script. We will see how to get the source's properties and
+how to modify the encoding settings.
 
-### UseHalfSourceFrameRateIfMoreThan30fps.py
+**Header/Footer**
+Scripts should start with the following code, which validates the inputs (source XML file and output
+XML file) and parses the input into the $data variable. In this document, this code is referred to as the
+'common header'.
 
-```python
-source = doc.getElementsByTagName('Source')[0]
-video = source.getElementsByTagName('VideoTrackInfo')[0]
-
-if video:
-    frameRateNum = int(video.getAttribute('FrameRateNum'))
-    frameRateDen = int(video.getAttribute('FrameRateDen'))
-    sourceFrameRate = frameRateNum / frameRateDen
-    setSame = 1 if sourceFrameRate <= 30 else 0
-
-    settings = doc.getElementsByTagName('Settings')[0]
-    for setting in settings.childNodes:
-        if setting.getAttribute('Type') == 'Video':
-            if setSame == 0:
-                setting.setAttribute('FrameRate', str(sourceFrameRate / 2))
-            else:
-                setting.setAttribute('FrameRate', str(sourceFrameRate))
-
+<#!/usr/bin/env python3
+import sys
+import xml.dom.minidom
+def main():
+ if len(sys.argv) != 3:
+ print("\nUsage: ModifyXML.py inputXML outputXML\n")
+ return
+ inputPath = sys.argv[1]
+ outputPath = sys.argv[2]
+ with open(inputPath, 'r') as f:
+ xmlContent = f.read()
+ doc = xml.dom.minidom.parseString(xmlContent)>
 
