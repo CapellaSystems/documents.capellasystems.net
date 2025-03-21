@@ -117,8 +117,13 @@ bitrate for each DASH or HLS layer. Less complex sources will be encoded at lowe
 difficult sources.
 
 ## 2. Writing a Script
+This section will cover the basics of writing a script. We will see how to get the source's properties and
+how to modify the encoding settings.
 
-### Common Header
+### Header/Footage
+Scripts should start with the following code, which validates the inputs (source XML file and output
+XML file) and parses the input into the $data variable. In this document, this code is referred to as the
+'common header'.
 
 ```python
 #!/usr/bin/env python3
@@ -138,6 +143,11 @@ def main():
     doc = xml.dom.minidom.parseString(xmlContent)
 ```
 
+Scripts should end with the following code, which closes the input and output files, and writes the
+modified Job XML contents into the output location. In this document, this code is referred to as the
+'common footer'.
+
+
 ### Common Footer
 
 ```python
@@ -147,14 +157,16 @@ def main():
 
 ### Special Job Settings
 
-Fail the job:
+The following special settings can be added to a job settings, under the 'Job' element.
+To cause the transcoding to fail (for example because the source has unacceptable properties, such as
+resolution too low):
 
 ```python
 job.setAttribute('IsError', '1')
 job.setAttribute('ErrorMessage', 'Source resolution is too low')
 ```
 
-Skip the job:
+To skip transcoding altogether, without causing the job to fail:
 
 ```python
 job.setAttribute('NoAction', '1')
@@ -164,21 +176,32 @@ job.setAttribute('NoAction', '1')
 
 To retain and reuse the temporary Script Transform files:
 
-1. Queue a job in Cambria Manager and extract the Job XML via 'Diagnostics > Extract Job XML'.
-2. Open Command Prompt and navigate to: `C:\Program Files (x86)\Capella\Cambria\cpx64`
-3. Run: `CpJobExec.exe --xml JobData.xml --s 1`
+1. Create a Job XML that contains a script. You can do this by “queuing” an encoding job. Then
+from Cambria Manager, right click on the Job and select ‘Diagnostics’ ‘Extract Job XML’. A 
+JobData.xml file will be created.
+2. Open up command prompt (CMD)
+3. Change directory to C:\Program Files (x86)\Capella\Cambria\cpx64
+4. Run CpJobExec.exe --xml JobData.xml --s 1
 
-This creates files in:
-`C:\Users\Public\Documents\Capella\Cambria\Scripts_Tmp\`
+The “--s 1” parameter for CpJobExec.exe will turn off the automatic delete of the Script Transform
+files.
+Location and description of Script Transform Files:
+C:\Users\Public\Documents\Capella\Cambria\Scripts_Tmp\
+The folder will include these files:
+1. Input XML: src_xxxxx.xml (original Job XML with Source elements and attributes)
+2. Output XML: tgt_xxxxx.xml (job XML generate by the script)
+3. Python Script: script_xxxxx.py (the script used)
+4. Batch file: rerun_xxxxx.bat (used to re-run the script and generate a new job XML)
 
-- `src_xxxxx.xml`: Input XML
-- `tgt_xxxxx.xml`: Output XML
-- `script_xxxxx.py`: Script used
-- `rerun_xxxxx.bat`: Re-runs the transform
+You can now modify the script and re-execute it by double-clicking the 'rerun_xxxxx.bat' file. This
+will overwrite the 'tgt_xxxxx.xml' file.
 
-Modify and test your scripts by editing and double-clicking the `.bat` file.
+You can also test different input properties by modifying the 'src_xxxxx.xml' file.
 
 ## 4. Sample Script Logic (Simplified)
+
+This section contains the logic of different scripts, with the common header, common footer and
+variable declaration removed for simplicity.
 
 ### ModifyBitrateBasedOnSourceResolution.py
 
