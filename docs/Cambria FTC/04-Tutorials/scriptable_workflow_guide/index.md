@@ -126,7 +126,7 @@ bitrate for each DASH or HLS layer. Less complex sources will be encoded at lowe
 difficult sources.
 
 
-##2. Writing a script
+## 2. Writing a script
 This section will cover the basics of writing a script. We will see how to get the source's properties and
 how to modify the encoding settings.
 
@@ -167,7 +167,7 @@ job.setAttribute('ErrorMessage', 'Source resolution is too low')
 To skip transcoding altogether, without causing the job to fail:
 job.setAttribute('NoAction', '1')
 
-##3. Editing/Troubleshooting a Custom Script
+## 3. Editing/Troubleshooting a Custom Script
 Being able to retain and reuse the temporary files that are created in the Script Transform step can aid
 in script writing and debugging. Here are the steps on how to retain the temporary Script Transform
 files.
@@ -201,7 +201,7 @@ will overwrite the 'tgt_xxxxx.xml' file.
 
 You can also test different input properties by modifying the 'src_xxxxx.xml' file.
 
-##4. Sample Scripts
+## 4. Sample Scripts
 
 This section contains the logic of different scripts, with the common header, common footer and
 variable declaration removed for simplicity.
