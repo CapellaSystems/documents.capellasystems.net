@@ -142,3 +142,144 @@ def main():
  xmlContent = f.read()
  doc = xml.dom.minidom.parseString(xmlContent)>
 
+Scripts should end with the following code, which closes the input and output files, and writes the
+modified Job XML contents into the output location. In this document, this code is referred to as the
+'common footer'.
+
+<with open(outputPath, 'w') as f:
+ f.write(doc.toxml())>
+
+**Special Job Settings**
+
+The following special settings can be added to a job settings, under the 'Job' element.
+To cause the transcoding to fail (for example because the source has unacceptable properties, such as
+resolution too low):
+
+job.setAttribute('IsError', '1')
+job.setAttribute('ErrorMessage', 'Source resolution is too low')
+
+To skip transcoding altogether, without causing the job to fail:
+job.setAttribute('NoAction', '1')
+
+##3. Editing/Troubleshooting a Custom Script
+Being able to retain and reuse the temporary files that are created in the Script Transform step can aid
+in script writing and debugging. Here are the steps on how to retain the temporary Script Transform
+files.
+
+1. Create a Job XML that contains a script. You can do this by “queuing” an encoding job. Then
+from Cambria Manager, right click on the Job and select ‘Diagnostics’ ‘Extract Job XML’. A 
+JobData.xml file will be created.
+
+2. Open up command prompt (CMD)
+
+3. Change directory to C:\Program Files (x86)\Capella\Cambria\cpx64
+
+4. Run CpJobExec.exe --xml JobData.xml --s 1
+
+The “--s 1” parameter for CpJobExec.exe will turn off the automatic delete of the Script Transform
+files.
+
+Location and description of Script Transform Files:
+C:\Users\Public\Documents\Capella\Cambria\Scripts_Tmp\
+
+1. Input XML: src_xxxxx.xml (original Job XML with Source elements and attributes)
+
+2. Output XML: tgt_xxxxx.xml (job XML generate by the script)
+
+3. Python Script: script_xxxxx.py (the script used)
+
+4. Batch file: rerun_xxxxx.bat (used to re-run the script and generate a new job XML)
+
+You can now modify the script and re-execute it by double-clicking the 'rerun_xxxxx.bat' file. This
+will overwrite the 'tgt_xxxxx.xml' file.
+
+You can also test different input properties by modifying the 'src_xxxxx.xml' file.
+
+##4. Sample Scripts
+
+This section contains the logic of different scripts, with the common header, common footer and
+variable declaration removed for simplicity.
+
+**ModifyBitrateBasedOnSourceResolution.py**
+Sets video bitrate to 5000kbps if the source height is 720 pixels or greater. Otherwise, video bitrate is
+set to 2000kbps.
+
+<source = data.getElementsByTagName('Source')[0]
+ video = source.getElementsByTagName('VideoTrackInfo')[0] if
+source.getElementsByTagName('VideoTrackInfo') else None
+ height = int(video.getAttribute('Height')) if video else 0
+ isHD = height >= 720
+ settings = data.getElementsByTagName('Settings')[0]
+ for _setting in settings.childNodes:
+ if _setting.nodeType == _setting.ELEMENT_NODE and
+_setting.getAttribute('Type') == 'Video':
+ bitrate = int(_setting.getAttribute('BitrateKbps'))
+ if not isHD:
+ _setting.setAttribute('BitrateKbps', '2000')
+ else:
+ _setting.setAttribute('BitrateKbps', '5000')>
+
+
+##FailIfPal.py
+**Fails the transcoding job if the source frame rate is 25fps or 50fps**
+source = data.getElementsByTagName('Source')[0]
+video = source.getElementsByTagName('VideoTrackInfo')[0]
+frameRateNum = int(video.getAttribute('FrameRateNum'))
+frameRateDen = int(video.getAttribute('FrameRateDen'))
+
+isPAL = (frameRateNum == 25 and frameRateDen == 1) or (frameRateNum == 50 and frameRateDen == 1)
+
+job = data.getElementsByTagName('Job')[0]
+if isPAL:
+    job.setAttribute('IsError', '1')
+    job.setAttribute('ErrorMessage', 'Source is PAL')
+
+##UseHalfSourceFrameRateIfMoreThan30fps.py
+**Encoding using source's frame rate, or half source's frame rate if it is greater than 30fps.**
+source = doc.getElementsByTagName('Source')[0]
+video = source.getElementsByTagName('VideoTrackInfo')[0]
+
+if video:
+    frameRateNum = int(video.getAttribute('FrameRateNum'))
+    frameRateDen = int(video.getAttribute('FrameRateDen'))
+    sourceFrameRate = frameRateNum / frameRateDen
+    setSame = 1 if sourceFrameRate <= 30 else 0
+
+    settings = doc.getElementsByTagName('Settings')[0]
+    for setting in settings.childNodes:
+        if setting.getAttribute('Type') == 'Video':
+            if setSame == 0:
+                setting.setAttribute('FrameRate', str(sourceFrameRate / 2))
+            else:
+                setting.setAttribute('FrameRate', str(sourceFrameRate))
+
+##PassthroughAudioIfAC3.py
+**Use Audio Passthrough if the source contains AC-3 audio. Otherwise, re-encode audio as specified in
+the encoding settings.**
+$source = $data->getElementsByTagName('Source')->item(0);
+$audio = $source->getElementsByTagName('AudioTrackInfo')->item(0);
+if($audio)
+{
+ $format = $audio->getAttribute('Format');
+ if ($format eq 'AC-3 Audio')
+ {
+ $isAC3 = 1;
+ }
+ $settings = $data->getElementsByTagName('Settings')->item(0);
+ @list = $settings->getChildNodes;
+ for my $_setting (@list)
+ {
+ $type = $_setting->getAttribute('Type');
+ if ($type eq 'Audio')
+ {
+ $encoderName = $_setting->getAttribute('EncoderName');
+ if ($isAC3 == 1)
+ {
+ $_setting->setAttribute('EncoderName', 'Audio
+Passthrough');
+ }
+ }
+ }
+}
+
+
