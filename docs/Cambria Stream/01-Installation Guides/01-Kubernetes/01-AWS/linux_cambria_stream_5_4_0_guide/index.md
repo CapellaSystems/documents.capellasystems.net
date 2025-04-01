@@ -27,6 +27,15 @@ Cambria Stream Manager | Cambria Stream | Cambria License Manager (EULA):
 
 [EULA_Cambria_Stream.pdf](https://www.dropbox.com/s/fla62h4o9kuqn7k/EULA_Cambria_Stream.pdf?dl=0)
 
+:::note
+
+!Important! Before You Begin
+PDF documents have a copy/paste issue. For best results, download this document and any referenced PDF documents in this guide and open them in a PDF viewer such as Adobe Acrobat.
+
+For commands that are in more than one line, copy each line one by one and check that the copied command matches the one in the document.
+
+:::
+
 ### 1.1 Cambria Stream Version 5.4.0 | Linux Help Documentation 5.4.0
 
 The Cambria Stream build that includes support for Linux is now in version 5.4.0. Not all the functionality in the Windows version is expected to work on Linux. 
