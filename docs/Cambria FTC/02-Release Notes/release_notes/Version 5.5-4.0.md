@@ -1,7 +1,4 @@
-#Cambria 5.4
 
-Release Notes Updated (10/03/2024)  
-Release Build 5.4.0.21784(and 5.4.0.x Branch Builds)  
 Release notes cover Cluster, FTC, FTC API Packager, Cluster/FTC Linux & Kubernetes
 
 ### Important Notifications
@@ -111,9 +108,7 @@ Manufactured under license from Dolby Laboratories. Dolby and the double-D symbo
 
 ## Version 5.5
 
-Release Notes Updated (4/03/2025)  
 Release Build 5.5.0.23674 (and 5.5.0.x Branch Builds)  
-Release notes cover Cluster, FTC, FTC API Packager, Cluster/FTC Linux & Kubernetes
 
 | Module | Feature | Capella Reference # |
 | --- | --- | --- |
