@@ -124,6 +124,8 @@ Release Build 5.5.0.23674 (and 5.5.0.x Branch Builds)
 
 ## Version 5.4
 
+5.4.0.21784 Release (and 5.4.0.x Branch Builds)
+
 | Module | Feature | Capella Reference # |
 | --- | --- | --- |
 | Linux (Docker Installation) | **Base image for docker container updated to use Ubuntu 24.04** | 19613 |
@@ -141,6 +143,8 @@ Release Build 5.5.0.23674 (and 5.5.0.x Branch Builds)
 | WebGUI | **WebUI Preset Editor enhanced** <br /><br />Target Preset Editor for the WebUI updated to be more in-line with the Preset Editor for the Application UI.<br /> Note: Functions such as video/audio filters, scriptable workflow, post task commands cannot be configured through the WebUI Preset Editor. If these functions are needed, we recommend using the Windows application UI to create JobXML templates for API submission. | 19029 |
 
 ## Version 5.3
+
+Release Build 5.3.0.19943 Release (and 5.3.0.x Branch Builds)
 
 | Module | Feature | Capella Reference # |
 | --- | --- | --- |
@@ -161,6 +165,8 @@ Release Build 5.5.0.23674 (and 5.5.0.x Branch Builds)
 
 ## Version 5.2
 
+Release Build 5.2.0.15716 Release
+
 | Module | Feature | Capella Reference # |
 | --- | --- | --- |
 | Filters | **Added Video Denoiser Filter** <br /><br />Filter added to remove grain/noise from video. | 18321 |
@@ -174,6 +180,8 @@ Release Build 5.5.0.23674 (and 5.5.0.x Branch Builds)
 
 
 ## Version 5.1
+
+Release Build 5.1.0.12651 Release
 
 | Module | Feature | Capella Reference # |
 | --- | --- | --- |
@@ -195,6 +203,8 @@ Release Build 5.5.0.23674 (and 5.5.0.x Branch Builds)
 
 ## Version 5.0
 
+Release Build 5.0.0.60048 Release
+
 | Module | Feature | Capella Reference # |
 | --- | --- | --- |
 | Exporter (Audio) | **Fraunhofer FDK encoder** <br /><br />Added as optional configuration in the audio encoder settings. | 16730 |
@@ -210,6 +220,8 @@ Release Build 5.5.0.23674 (and 5.5.0.x Branch Builds)
 | Linux | **FTC (Linux) Improvements** <br /><br />- Job Tag column added to WebUI <br />- Cluster (running on Windows) can distribute jobs to FTC (Linux) Link to FTC 5.0 Linux startup guide: | 16977 |
 
 ## Version 4.8
+
+Release Build 4.8.0.58101 Release
 
 | Module | Feature | Capella Reference # |
 | --- | --- | --- |
@@ -227,6 +239,8 @@ Release Build 5.5.0.23674 (and 5.5.0.x Branch Builds)
 | Windows OS | **Windows 11 and Windows Server 2022 Supported** | 16483 |
 
 ## Version 4.7
+
+Release Build 4.7.0.55614 Release
 
 | Module | Feature | Capella Reference # |
 | --- | --- | --- |
@@ -251,6 +265,8 @@ Release Build 5.5.0.23674 (and 5.5.0.x Branch Builds)
 
 ## Version 4.6
 
+Release Build 4.6.1.53502 Release
+
 | Module | Feature | Capella Reference # |
 | --- | --- | --- |
 | Target (Closed Caption) | **Closed Caption exporter added** <br /><br />The new exporter in FTC called "Closed Captions" allows you to extract closed captions from a source (such as 608, 708, and Teletext) and output those captions to a specific caption file. Currently the exporter only outputs to WebVTT format (.vtt). <br /><br />Limitations: <br />- The exporter has an option for "Teletext Page Number" which needs to be used to extract Teletext caption information. This option is ignored for all other source caption types. <br />- DVB subtitles are not currently supported <br />- Japanese characters are not supported for WebVTT filename output, this will be fixed for 4.8. | 15245, 15229 |
@@ -269,6 +285,8 @@ Release Build 5.5.0.23674 (and 5.5.0.x Branch Builds)
 
 ## Version 4.5
 
+Release Build 4.5.0.51047 Release
+
 | Module | Feature | Capella Reference # |
 | --- | --- | --- |
 | Target (MP4, Elementary Stream) | **VP9 codec added to MP4 and Elementary Stream exporters** | 11889 |
@@ -283,6 +301,8 @@ Release Build 5.5.0.23674 (and 5.5.0.x Branch Builds)
 | Licensing | **Upgraded to use latest version of Cryptlex API** <br /><br />Please refer to the licensing note at the start of the Cluster/FTC 4.5 release notes. | 14883, 14913, 14924 |
 
 ## Version 4.4
+
+Release Build 4.4.0.48597 Release
 
 | Module | Feature | Capella Reference # |
 | --- | --- | --- |
@@ -303,6 +323,8 @@ Release Build 5.5.0.23674 (and 5.5.0.x Branch Builds)
 
 ## Version 4.3
 
+Release Build 4.3.0.46201 Release
+
 | Module | Feature | Capella Reference # |
 | --- | --- | --- |
 | Source (Growing source) | **Growing source files can now be segmented by Timecode** | 13540 |
@@ -314,6 +336,8 @@ Release Build 5.5.0.23674 (and 5.5.0.x Branch Builds)
 | Scripts | **MultiTargetBitrateLadderBasedOnVideoComplexity.pl script added** <br /><br />It allows multiple individual targets (MP4 or TS) to use source video complexity values to set target bitrates. | 13788 |
 
 ## Version 4.2
+
+Release Build 4.2.0.45213 Release
 
 | Module | Feature | Capella Reference # |
 | --- | --- | --- |
@@ -338,6 +362,8 @@ Release Build 5.5.0.23674 (and 5.5.0.x Branch Builds)
 
 ## Version 4.1
 
+Release Build 4.1.2.41862 Release
+
 | Module | Feature | Capella Reference # |
 | --- | --- | --- |
 | Source | **S3 optimization for source handling**<br /><br /> Performance is improved for sources being read from S3. | 13030 |
@@ -356,7 +382,6 @@ Release Build 5.5.0.23674 (and 5.5.0.x Branch Builds)
 | API | Role Based API Access (Beta) This feature allows for the administrator of Cambria Cluster to set role based permissions for API access. This can be unlocked for beta testing for those who request it. Please contact Capella at [support@capellasystems.net](support@capellasystems.net) if you are interested in testing. | 11930 |
 
 ## Known Issues
-
 
 | Module | Feature | Capella Reference # |
 | --- | --- | --- |
