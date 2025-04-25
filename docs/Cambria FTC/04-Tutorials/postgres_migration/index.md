@@ -1,3 +1,7 @@
+---
+id: database-migration
+title: Database Migration from v5.0 or ealier
+---
 
 # Cambria FTC and Cluster 5.0: Database Migration
 
