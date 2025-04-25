@@ -1,5 +1,5 @@
 ---
-title: FTC and Cluster Trusted Executables and Scripts
+title: Trusted Executables and Scripts
 ---
 
 # Cambria FTC and Cluster: Trusted Executables and Scripts
