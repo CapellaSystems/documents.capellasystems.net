@@ -1,6 +1,6 @@
 ---
-id: ftc-harmonic-vos-upload-guide
-title: FTC Harmonic VOS Upload Guide
+id: harmonic-vos-upload-guide
+title: Harmonic VOS Upload Guide
 ---
 
 # FTC Harmonic VOS Upload Guide

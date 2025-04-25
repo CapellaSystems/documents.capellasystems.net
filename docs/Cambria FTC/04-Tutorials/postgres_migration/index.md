@@ -1,3 +1,8 @@
+---
+id: Database-Migration
+title: Database Migration
+---
+
 # Cambria FTC and Cluster 5.0: Database Migration
 
 **Note:** If you have not downloaded any Cambria FTC/Cluster software before version 5.0, then this document does not apply to you. This document only applies for users who want to migrate their database information from Postgres 9.3 over to Postgres 14.3.
