@@ -1,8 +1,8 @@
-# AVID FTC Guide
+# AVID INTERPLAY
 
 ## Objective
 
-This documentation gives shows how to use Cambria FTC AVID exporter with AVID Interplay.
+This documentation Shows how to use Cambria FTC AVID exporter with AVID Interplay.
 
 ## Prerequisites
 
