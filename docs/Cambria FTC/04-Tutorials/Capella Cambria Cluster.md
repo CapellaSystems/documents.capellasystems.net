@@ -3,7 +3,7 @@ id: cluster-redundancy
 title: Cluster Redundancy Feature
 ---
 
-# Capella Cambria Cluster Redundancy Feature
+# Cluster Redundancy Feature
 
 **Version:** V2 #8426  
 

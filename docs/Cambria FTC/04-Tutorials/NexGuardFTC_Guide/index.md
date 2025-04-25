@@ -1,9 +1,9 @@
 ---
 id: nexguard-ftc-guide
-title: NexGuard Filter for Capella Cambria FTC
+title: NexGuard Filter
 ---
 
-# NexGuard Filter for Capella Cambria FTC
+# NexGuard Filter
 
 > **Please contact NexGuard regarding license and NexGuard Manager (Server) before proceeding.**
 

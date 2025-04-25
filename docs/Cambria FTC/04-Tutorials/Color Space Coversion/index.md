@@ -3,7 +3,7 @@ id: color-space-conversion
 title: Color Space Conversion
 ---
 
-# Cambria FTC Color Space Conversion
+# Color Space Conversion
 
 ## Table of Contents
 

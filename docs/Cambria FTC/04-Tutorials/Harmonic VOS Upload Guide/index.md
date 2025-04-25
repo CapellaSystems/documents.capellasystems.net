@@ -1,9 +1,9 @@
 ---
-id: ftc-harmonic-vos-upload-guide
-title: Harmonic VOS Upload Guide
+id: harmonic-vos-upload
+title: Harmonic VOS Upload 
 ---
 
-# FTC Harmonic VOS Upload Guide
+# Harmonic VOS Upload
 
 > **NOTE:** This will require a local web server that needs to be open to the public.
 
