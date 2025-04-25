@@ -1,6 +1,6 @@
 ---
 id: teletrax-watermarking
-title: Using the Teletrax Watermarking Filter on Cambria
+title: Using the Teletrax Watermarking Filter 
 ---
 
 # Using the Teletrax Watermarking Filter on Cambria

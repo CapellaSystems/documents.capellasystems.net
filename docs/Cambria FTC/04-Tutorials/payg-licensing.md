@@ -1,5 +1,5 @@
 ---
-title: "Pay As You Go Licensing Guide"
+title: "Pay As You Go Licensing"
 description: "Understanding how credits are deducted from your PAYG balance and where to view your current balance."
 slug: "/payg-licensing"
 ---

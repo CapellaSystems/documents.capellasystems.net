@@ -1,6 +1,6 @@
 ---
 id: color-space-conversion
-title: Cambria FTC Color Space Conversion
+title: FTC Color Space Conversion
 ---
 
 # Cambria FTC Color Space Conversion

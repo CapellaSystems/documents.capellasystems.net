@@ -1,6 +1,6 @@
 ---
 id: cluster-redundancy
-title: Capella Cambria Cluster Redundancy Feature
+title: Cluster Redundancy Feature
 ---
 
 # Capella Cambria Cluster Redundancy Feature
