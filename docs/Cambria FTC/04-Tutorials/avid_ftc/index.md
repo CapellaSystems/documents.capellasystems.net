@@ -1,4 +1,4 @@
-# AVID INTERPLAY
+# AVID Interplay
 
 ## Objective
 
