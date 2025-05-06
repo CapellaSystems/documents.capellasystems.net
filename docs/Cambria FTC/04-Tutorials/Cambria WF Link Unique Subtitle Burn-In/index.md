@@ -1,3 +1,10 @@
+---
+id: subtitle-burnin-guide
+title: Cambria Watch Folder – Unique Subtitle Burn-In
+sidebar_label: Subtitle Burn-In
+---
+
+
 **NOTE: User will need to know \# of subtitles to use as they set up Watch-Folder.**
 
 1. Launch Cambria Manger
