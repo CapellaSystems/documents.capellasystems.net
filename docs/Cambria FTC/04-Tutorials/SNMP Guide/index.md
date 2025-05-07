@@ -1,37 +1,45 @@
+---
+title: SNMP Guide for Cambria FTC & Cluster
+---
+
+# SNMP Setup and Testing with FTC/Cluster
+
 Section 1: How to setup and use WinSNMP with FTC and Cluster?
 
-1. Search for Add or Remove programs in the Windows search bar
+Search for Add or Remove programs in the Windows search bar
 
-2. Under Apps & features select Optional features
+Under Apps & features select Optional features
 
-3. Click Add a feature, search for SNMP
+Click Add a feature, search for SNMP
 
-4. Select SNMP option from list and Click Install
+Select SNMP option from list and Click Install
 
 ![Screenshot](01_screenshot.png)
 
-5. Go to service manager (services.msc)
 
-6. Double click SNMP Service and go security tab (if no tab exists, close service manager and reopen)
+Go to service manager (services.msc)
 
-7. Hit Add for community and add "public" as READ ONLY, "private" as ReadWrite
-
-8. Select Accept SNMP packets from any host (or, specify machine name for SNMP Manager)
+Double click SNMP Service and go security tab (if no tab exists, close service manager and reopen)
 
 ![Screenshot](02_screenshot.png)
 
 
-9. go Traps tab.
+Hit Add for community and add "public" as READ ONLY, "private" as ReadWrite
 
-10. Set community name as "public"
+Select Accept SNMP packets from any host (or, specify machine name for SNMP Manager)
 
-11. Trap destination as IP address of your machine
+go Traps tab.
 
-12. Click Apply to save settings
+Set community name as "public"
+
+Trap destination as IP address of your machine
 
 ![Screenshot](03_screenshot.png)
 
-13. Make sure that snmp.exe is running in the system from task manager
+
+Click Apply to save settings
+
+Make sure that snmp.exe is running in the system from task manager
 
 Section 2: Testing WinSNMP with FTC and Cluster using snmpwalk tool and snmptrapd.
 
@@ -59,11 +67,17 @@ SNMPwalk is an SNMP application that uses the SNMP GETNEXT requests to query. Th
 
 Below is how to test snmpwalk using the third-party tool net-snmp.
 
+![Screenshot](04_screenshot.png)
+
+
 Test snmpwalk:
 
-1. Launch cmd.exe
+![Screenshot](05_screenshot.png)
 
-2. Enter this in as your command to see all the following details for FTC/Cluster
+
+Launch cmd.exe
+
+Enter this in as your command to see all the following details for FTC/Cluster
 
 C:\usr\bin\snmpwalk.exe -v 2c -c public localhost .1.3.6.1.4.1.47181
 
@@ -82,11 +96,13 @@ This will result in an output that would give you the following details: 1.3.6.1
 1.3.6.1.4.1.47181.0.0.7: Paused Jobs
 
 You can individually enter the OIDs above to get specific results, for example:
+
 C:\usr\bin\snmpwalk.exe -v 2c -c public localhost .1.3.6.1.4.1.47181.0.0.1
 
 This will only result in: Total Jobs
 
-3. More information regarding these commands can be found in your FTC installation directory under the MIBs folder:
+More information regarding these commands can be found in your FTC installation directory under the MIBs folder:
+
 C:\Program Files (x86)\Capella\Cambria\MIBs\CAPELLA-FTC-CLUSTER-MIB.my
 
 SNMP Traps are alert messages sent from a remote SNMP-enabled device to a central collector, the "SNMP manager.
@@ -95,32 +111,35 @@ In our case, FTC/Cluster the agent sends a trap message to a snmptrap daemon whi
 
 The snmptrapd service is an SNMP application that receives and logs SNMP TRAP messages. Test snmptrap:
 
-1. If Win SNMP Trap Daemon is working, please stop (SNMP TRAP service in service manager) You can also go Resource Monitor to check if snmptrapd.exe is
+If Win SNMP Trap Daemon is working, please stop (SNMP TRAP service in service manager) You can also go Resource Monitor to check if snmptrapd.exe is
+
 occupying 162 port. (If it is occupied, Win SNMP trap daemon is running)
 
-2. Please download the following folder from this dropbox link:
+Please download the following folder from this dropbox link:
 
-3. Once this folder is downloaded place the snmptrap_test.bat file in the following directory:
+Once this folder is downloaded place the snmptrap_test.bat file in the following directory:
 
 C:\usr
 
-4. Also from the downloaded folder place the snmpd.conf and snmptrapd.conf in the following directory:
+Also from the downloaded folder place the snmpd.conf and snmptrapd.conf in the following directory:
+
 C:\usr\etc\snmp
 
 NOTE: These files are needed to test snmptrap functionality.
 
-5. First change the cmd directory to C:\usr\bin , then enter the following command in cmd to see snmptrp console:
+First change the cmd directory to C:\usr\bin , then enter the following command in cmd to see snmptrp console:
+
 snmptrapd -Lo -Of -c ../etc/snmp/snmptrapd.conf
 
-![Screenshot](04_screenshot.png)
-
 Run following bat executable to send test snmptrap message:
-C:\usr\snmptrap_test.bat
-If trap is correctly sent out, snmptrap daemon will show something like this:
-
-![Screenshot](05_screenshot.png)
-
-7. Do something in FTC by queing a job that fails to Manager/Cluster to fire trap notification. (such as changing total number of failed job)
-NOTE: 1.3.6.1.4.1.47181.0.0.3: Failed Jobs
 
 ![Screenshot](06_screenshot.png)
+
+
+C:\usr\snmptrap_test.bat
+
+If trap is correctly sent out, snmptrap daemon will show something like this:
+
+Do something in FTC by queing a job that fails to Manager/Cluster to fire trap notification. (such as changing total number of failed job)
+
+NOTE: 1.3.6.1.4.1.47181.0.0.3: Failed Jobs
