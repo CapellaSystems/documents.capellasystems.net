@@ -1,5 +1,5 @@
 ---
-id: cambria-video-segments
+id: video-segments
 title: Cambria Video Segments
 ---
 
