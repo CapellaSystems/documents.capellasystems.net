@@ -138,7 +138,7 @@ This section contains instructions for Cambria Stream Manager installation and a
 
 Download the sample docker compose yaml file:
 
-:::warn
+
 !Warning! Using Cambria Stream Bundled in Cambria Stream Manager
 By default, Cambria Stream Manager and Cambria Stream come bundled together. If you plan to use the Cambria Stream that comes bundled with Cambria Stream Manager, make sure to use a strong machine to handle the Cambria Stream workflows. 
 :::
