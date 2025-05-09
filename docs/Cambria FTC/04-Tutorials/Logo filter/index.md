@@ -1,5 +1,5 @@
 ---
-id: logo-filter
+id: cambria-logo-filter
 title: Cambria Logo Filter
 ---
 
@@ -7,34 +7,34 @@ title: Cambria Logo Filter
 
 ## Feature Overview
 
-The **Logo Filter** in Cambria FTC allows you to overlay a static image or animated logo (including `.mov`) on your video. You can control the position, size, transparency, and duration of the logo display.
+Cambria FTC provides a **Logo Filter** that allows users to overlay images or video files as logos on their source video. This guide explains the two ways to access the Logo Filter UI and describes each function within the UI in detail.
 
 ---
 
-## How to Access the Logo Filter
+## Accessing the Logo Filter UI
 
-### First Method
+### First Way
 
-1. Upload a video file to FTC  
-2. Click on the **Filter** icon
+1. Upload a video file to FTC.
+2. Click on the **Filter** icon.
 
 ![Screenshot](01_filter_icon.png)
 
-3. Click on the arrow next to **ADD** and select **logo**
+3. Click on the arrow next to **ADD** and select **Logo**.
 
 ![Screenshot](02_add_logo.png)
 
 ---
 
-### Second Method
+### Second Way
 
-1. Upload a video file to FTC  
-2. Click on the **Encoding** tab  
-3. Add a preset and click on the **Filter** tab
+1. Upload a video file to FTC.
+2. Click on the **Encoding** tab.
+3. Add a preset and click on the **Filter** tab.
 
 ![Screenshot](03_encoding_tab.png)
 
-4. Click on the arrow next to **ADD** and select **logo**
+4. Click on the arrow next to **ADD** and select **Logo**.
 
 ![Screenshot](04_add_logo_encoding.png)
 
@@ -42,77 +42,73 @@ The **Logo Filter** in Cambria FTC allows you to overlay a static image or anima
 
 ## Logo Filter UI Breakdown
 
-### Playback Controls
+Below is a description of the available controls and functions in the Logo Filter user interface:
 
-These buttons allow you to preview and navigate the video:
+![Screenshot](05_add_logo_encoding.png)
 
-- **Go to Beginning**
-- **Go to Previous Frame**
-- **Pause / Play**
-- **Go to Next Frame**
+1. These buttons control the scrolling of the source. You may scrub through the source or use the buttons.  
+From left to right, they are:
+
+- **Go to Beginning**  
+- **Go to Previous Frame**  
+- **Pause / Play**  
+- **Go to Next Frame**  
 - **Go to End**
 
-![Screenshot](05_controls.png)
 
 ---
 
-### Source Selector
+### Source Selection
 
-If multiple sources are present, select which source the logo filter should apply to.
+If you have multiple sources, you can use this dropdown to select which source to apply the filter to.
 
-![Screenshot](06_source_selector.png)
-
----
-
-### Jump to Time
-
-You can jump directly to a specific time or timecode instead of using the playback buttons.
-
-![Screenshot](07_timecode_jump.png)
 
 ---
 
-### Time Display
+### Jump to Time/Timecode
 
-This panel shows:
-
-- **Current time**
-- **Current timecode**
-- **Total duration** of the video
-
-![Screenshot](08_timecode_display.png)
+Instead of using playback buttons, you can skip directly to a specific time or timecode.
 
 ---
 
-### Logo Source File
+### Timecode Display
 
-Click **Browse** to select your logo source file.
+This box shows:
 
-Supported file types:
+- Current time in the video  
+- Current timecode  
+- Total duration of the video
+
+---
+
+### Load Logo File
+
+Click **Browse** to add the source of your logo. Supported image formats include:
 
 - `.bmp`, `.jpg`, `.jpeg`, `.png`, `.tif`, `.tiff`, `.tga`
-- You may also use `.mov` (choose `.mov` in the file type dropdown)
 
-![Screenshot](09_logo_input.png)
+You may also add a **.mov file** as a logo.  
+To do this, select `.mov` in the dropdown menu when browsing.
 
----
-
-### Logo Settings
-
-In this section, you can:
-
-- Adjust **size**
-- Adjust **transparency**
-- Adjust **offset**
-- Set the time range to apply the filter
-
-![Screenshot](10_logo_settings.png)
 
 ---
 
-### Save Filter
+### Logo Properties
 
-Once the logo is positioned and configured:
+This panel allows you to adjust:
 
-- Click **OK** to apply and save the filter
+- **Size**  
+- **Transparency**  
+- **Offset**  
+
+You may also choose to apply the logo filter to a specific segment of the source.
+
+---
+
+### Apply the Filter
+
+Click **OK** to apply the filter and save your settings.
+
+---
+
 
