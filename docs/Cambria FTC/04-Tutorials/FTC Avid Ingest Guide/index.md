@@ -1,8 +1,3 @@
----
-id: Avid-ingest-guide
-title: Avid Ingest Guide
----
-
 # AVID Interplay
 
 ## Objective
