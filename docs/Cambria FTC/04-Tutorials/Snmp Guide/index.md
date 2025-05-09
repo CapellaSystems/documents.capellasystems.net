@@ -16,7 +16,7 @@ This guide explains how to set up and test SNMP (Simple Network Management Proto
 3. Click **Add a feature**, search for `SNMP`  
 4. Select **SNMP** from the list and click **Install**
 
-![Screenshot](01_snmp_install.png)
+![Screenshot](01_screenshot.png)
 
 ---
 
@@ -34,7 +34,7 @@ This guide explains how to set up and test SNMP (Simple Network Management Proto
 5. Under **Accept SNMP packets from**:
    - Choose **Any host** (or specify the hostname/IP of the SNMP Manager)
 
-![Screenshot](02_snmp_security.png)
+![Screenshot](02_screenshot.png)
 
 ---
 
@@ -45,7 +45,7 @@ This guide explains how to set up and test SNMP (Simple Network Management Proto
 3. Set **Trap destination** to the IP address of your machine  
 4. Click **Apply** to save settings
 
-![Screenshot](03_snmp_traps.png)
+![Screenshot](03_screenshot.png)
 
 > ✅ Make sure `snmp.exe` is running (check via Task Manager)
 
@@ -127,7 +127,7 @@ C:\usr\etc\snmp
 5. First change the cmd directory to C:\usr\bin , then enter the following command in cmd to see snmptrp console:
 **snmptrapd -Lo -Of -c ../etc/snmp/snmptrapd.conf
 
-![Screenshot](04_snmp_traps.png)
+![Screenshot](04_screenshot.png)
 
 6. Run following bat executable to send test snmptrap message:
 C:\usr\snmptrap_test.bat
@@ -135,10 +135,10 @@ If trap is correctly sent out, snmptrap daemon will show something like this:
 
 Run following bat executable to send test snmptrap message:
 
-![Screenshot](05_snmp_traps.png)
+![Screenshot](05_screenshot.png)
 
 7. Do something in FTC by queuing a job that fails to the Manager/Cluster to fire trap notification. (such as changing total number of failed job)
 NOTE: 1.3.6.1.4.1.47181.0.0.3: Failed Jobs
 
-![Screenshot](06_snmp_traps.png)
+![Screenshot](06_screenshot.png)
 

@@ -1,6 +1,6 @@
 ---
 id: scte35
-title: Cambria FTC SCTE-35 Insertion
+title: SCTE-35 Insertion
 ---
 
 # SCTE-35 Insertion in Cambria FTC
