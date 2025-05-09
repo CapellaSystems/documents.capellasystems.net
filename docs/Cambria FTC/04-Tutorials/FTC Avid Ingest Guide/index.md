@@ -1,6 +1,6 @@
 ---
-id: Avid-index-guide
-title: Avid Index Guide
+id: Avid-ingest-guide
+title: Avid Ingest Guide
 ---
 
 # AVID Interplay
