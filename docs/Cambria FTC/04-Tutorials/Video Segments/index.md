@@ -1,9 +1,9 @@
 ---
 id: video-segments
-title: Cambria Video Segmentsasdasd
+title: Cambria Video Segment
 ---
 
-# Video Segments in Cambria FTCsdsa
+# Video Segments in Cambria
 
 ## Feature Overview
 
