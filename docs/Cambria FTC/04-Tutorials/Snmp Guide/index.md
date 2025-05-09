@@ -136,9 +136,3 @@ If trap is correctly sent out, snmptrap daemon will show something like this:
 Run following bat executable to send test snmptrap message:
 
 ![Screenshot](05_screenshot.png)
-
-7. Do something in FTC by queuing a job that fails to the Manager/Cluster to fire trap notification. (such as changing total number of failed job)
-NOTE: 1.3.6.1.4.1.47181.0.0.3: Failed Jobs
-
-![Screenshot](06_screenshot.png)
-
