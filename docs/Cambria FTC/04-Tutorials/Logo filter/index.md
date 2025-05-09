@@ -1,5 +1,5 @@
 ---
-id: Alogo-filter
+id: logo-filter
 title: Cambria Logo Filter
 ---
 
