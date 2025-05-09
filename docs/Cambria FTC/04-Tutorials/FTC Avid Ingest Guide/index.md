@@ -1,3 +1,8 @@
+---
+id: Avid-index-guide
+title: Avid Index Guide
+---
+
 # AVID Interplay
 
 ## Objective
