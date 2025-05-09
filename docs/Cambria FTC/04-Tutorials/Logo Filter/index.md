@@ -1,70 +1,129 @@
-# Cambria FTC – Logo Filter
+---
+id: logo-filter
+title: Cambria Logo Filter
+---
 
-Currently, there are two ways to get to the Logo Filter UI.
+# Logo Filter in Cambria FTC
 
-**First Way**
+## Feature Overview
 
-1. Upload a video file to FTC and click on the **Filter** icon.
+The **Logo Filter** in Cambria FTC allows you to overlay a static image or animated logo (including `.mov`) on your video. You can control the position, size, transparency, and duration of the logo display.
 
-  
-![](01_filter_icon.png)
-  
+---
 
-2. Click on the arrow next to **ADD** and click on **logo**.
+## How to Access the Logo Filter
 
-  
-![](02_add_logo.png)
-  
+### First Method
 
-**Second Way**
+1. Upload a video file to FTC  
+2. Click on the **Filter** icon
 
-1. Upload a video file to FTC and click on the **Encoding** tab.
+![Screenshot](01_filter_icon.png)
 
-2. Add a preset and click on the **Filter** tab.
+3. Click on the arrow next to **ADD** and select **logo**
 
-  
-![](03_encoding_tab.png)
-  
+![Screenshot](02_add_logo.png)
 
-3. Click on the arrow next to **ADD** and click on **logo**.
+---
 
-  
-![](04_add_logo_encoding.png)
-  
+### Second Method
 
-4. Below is a breakdown of the functions in the Logo Filter UI.
+1. Upload a video file to FTC  
+2. Click on the **Encoding** tab  
+3. Add a preset and click on the **Filter** tab
 
-![](05_controls.png)
+![Screenshot](03_encoding_tab.png)
 
-1. These series of buttons control the scrolling of the source. You may scrub through the source or use the buttons.
+4. Click on the arrow next to **ADD** and select **logo**
 
-From left to right they are: **Go to Beginning**, **Go to Previous Frame**, **Pause / Play**, **Go to Next Frame**, and **Go to End**.
-  
+![Screenshot](04_add_logo_encoding.png)
 
-2. If you have multiple sources, you can use this box to select which source to apply the filter upon.
+---
 
+## Logo Filter UI Breakdown
 
-3. Instead of using the buttons to scroll the source, you may skip directly to the **time** or **timecode**.
+### Playback Controls
 
+These buttons allow you to preview and navigate the video:
 
-4. This box shows the **current time**, **current timecode**, and **total duration** of the video.
-  
+- **Go to Beginning**
+- **Go to Previous Frame**
+- **Pause / Play**
+- **Go to Next Frame**
+- **Go to End**
 
-5. Click **Browse** to add the source of your logo. The currently supported files for the source of the logo are:
+![Screenshot](05_controls.png)
 
-* `.bmp`
-* `.jpg`
-* `.jpeg`
-* `.png`
-* `.tif`
-* `.tiff`
-* `.tga`
+---
 
-You may also add a `.mov` file as a logo. Just select `.mov` in the dropdown menu when browsing.
+### Source Selector
 
+If multiple sources are present, select which source the logo filter should apply to.
 
-6. This is where you can adjust the **size**, **transparency**, and **offset** of the logo. You may also choose to apply this filter to a **certain segment** of the source.
+![Screenshot](06_source_selector.png)
 
+---
 
-7. Click **OK** to apply the filter and save.
+### Jump to Time
 
+You can jump directly to a specific time or timecode instead of using the playback buttons.
+
+![Screenshot](07_timecode_jump.png)
+
+---
+
+### Time Display
+
+This panel shows:
+
+- **Current time**
+- **Current timecode**
+- **Total duration** of the video
+
+![Screenshot](08_timecode_display.png)
+
+---
+
+### Logo Source File
+
+Click **Browse** to select your logo source file.
+
+Supported file types:
+
+- `.bmp`, `.jpg`, `.jpeg`, `.png`, `.tif`, `.tiff`, `.tga`
+- You may also use `.mov` (choose `.mov` in the file type dropdown)
+
+![Screenshot](09_logo_input.png)
+
+---
+
+### Logo Settings
+
+In this section, you can:
+
+- Adjust **size**
+- Adjust **transparency**
+- Adjust **offset**
+- Set the time range to apply the filter
+
+![Screenshot](10_logo_settings.png)
+
+---
+
+### Save Filter
+
+Once the logo is positioned and configured:
+
+- Click **OK** to apply and save the filter
+
+---
+
+## Summary
+
+The Logo Filter feature in Cambria FTC provides flexible branding and watermarking support by allowing you to overlay static or animated logos onto your video with full control over appearance and timing.
+
+---
+
+For any questions or technical support, contact Capella Systems at:
+
+📧 **support@capellasystems.net**
