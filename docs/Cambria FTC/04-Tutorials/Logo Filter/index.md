@@ -116,14 +116,3 @@ Once the logo is positioned and configured:
 
 - Click **OK** to apply and save the filter
 
----
-
-## Summary
-
-The Logo Filter feature in Cambria FTC provides flexible branding and watermarking support by allowing you to overlay static or animated logos onto your video with full control over appearance and timing.
-
----
-
-For any questions or technical support, contact Capella Systems at:
-
-📧 **support@capellasystems.net**
