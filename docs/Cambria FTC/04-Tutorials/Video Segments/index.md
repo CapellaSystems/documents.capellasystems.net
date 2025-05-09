@@ -1,6 +1,6 @@
 ---
 id: video-segments
-title: Cambria Video Segments!!!
+title: Cambria Video Segments
 ---
 
 # Video Segments in Cambria FTC
