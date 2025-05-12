@@ -1,5 +1,5 @@
 ---
-id: cambria-logo-filter
+id: logo-filter
 title: Cambria Logo Filter
 ---
 
