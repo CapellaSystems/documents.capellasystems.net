@@ -1,6 +1,6 @@
 ---
 id: video-segments
-title: Cambria Video Segment
+title: Video Segment
 ---
 
 # Video Segments in Cambria Jordan!

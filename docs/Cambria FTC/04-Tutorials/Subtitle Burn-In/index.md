@@ -1,6 +1,6 @@
 ---
 id: cambria-subtitle-burnin
-title: Cambria Watch Folder Subtitle Burn-In Workflow
+title: Watch Folder Subtitle Burn-In Workflow
 ---
 
 # Subtitle Burn-In Workflow with Cambria Watch Folder

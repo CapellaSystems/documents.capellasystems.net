@@ -1,6 +1,6 @@
 ---
 id: snmp-guide
-title: SNMP Setup and Testing with Cambria FTC
+title: SNMP Setup and Testing
 ---
 
 # SNMP Setup and Testing with Cambria FTC and Cluster
