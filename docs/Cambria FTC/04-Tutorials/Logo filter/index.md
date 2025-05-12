@@ -1,6 +1,6 @@
 ---
 id: logo-filter
-title: Cambria Logo Filter
+title: Logo Filter
 ---
 
 # Logo Filter in Cambria FTC
