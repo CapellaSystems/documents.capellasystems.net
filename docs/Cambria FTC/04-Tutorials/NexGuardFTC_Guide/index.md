@@ -88,6 +88,3 @@ Watermarking can be verified using **NexGuard File QC Reader** or a similar tool
   - **Cloud**
   - If you use **FTC in a VM or Cloud environment (AWS, etc.), you must obtain a Cloud license** from NexGuard.
 
----
-
-This concludes the **NexGuard FTC Guide**.
