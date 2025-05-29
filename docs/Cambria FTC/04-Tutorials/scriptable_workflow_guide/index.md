@@ -13,7 +13,7 @@ Scriptable Workflows enable users to customize encoding Job parameters at the be
 
 To use Scriptable Workflows, users must be familiar with Cambria FTC and the Job XML format it employs. Job XML contains settings for sources, encoders, multiplexers, filters, as well as notification settings, upload settings, audio mapping, and more. The script will either modify or generate this Job XML.
 
-### What You Can Do With Scripts
+### Examples of What You Can Do With Scripts
 
 - Modifying target settings (resolution, frame rate, bitrate, etc.) based on source properties.
 - Automatically failing the Job if a certain source property value exists.
@@ -72,46 +72,46 @@ Sample scripts can be found as part of the FTC installation package, located in:
 
 Users may use them as-is or customize a script to their liking. Some example scripts:
 
-1) ModifyBitrateBasedOnSourceResolution.py
+1) `ModifyBitrateBasedOnSourceResolution.py`
 Script looks at the width/height of the source. If it is SD, it sets the H.264 bitrate to 2000bps. If it is
 HD, it sets the bitrate to 5000mbps. [This assumes that the XML setting for bitrate is 'BitrateKbps',
 which is not the case for all encoders].
 
-2) FailIfPAL.py
+2) `FailIfPAL.py`
 Script looks at the frame rate and makes the job fail if the frame rate is PAL (ie 25 or 50).
 
-3) FailIfNotHD.py
+3) `FailIfNotHD.py`
 Script looks at the frame size and makes the job fail if the width is less than 1280 or if the height is less
 than 720.
 
-4) SetInTimecodeTo_01_00_00_00.py
+4) `SetInTimecodeTo_01_00_00_00.py`
 Script sets the In Timecode to 01:00:00:00, and sets no Out point (so we keep transcoding until the end
 of the file).
 
-5) Create5MinuteSegment.py
+5) `Create5MinuteSegment.py`
 Script set In point at 0 and Out point at 5 minutes.
 
-6) UseHalfSourceFrameRateIfMoreThan30fps.pl
+6) `UseHalfSourceFrameRateIfMoreThan30fps.pl`
 Script inspects the source frame rate. If it is 30 or less, output frame rate is set to source frame rate. If it
 is over 30, output frame rate is set to half of source frame rate. [This assumes that the target can use any
 frame rate, so for example this wouldn't work with DV output].
 
-7) AddPreroll_Postroll.py
+7) `AddPreroll_Postroll.py`
 Stitches the source file with a preroll and/or postroll source file.
 
-8) MapAdditionalAudio.py
+8) `MapAdditionalAudio.py`
 Used with Watch Folder 'Group of Files'. Combines audio from external sources to the audio of the
 main source file. This can for example combine audio of different languages into a multi-track source.
 
-9) PassthroughAudioIfAC3.py
+9) `PassthroughAudioIfAC3.py`
 If the source's audio is encoded in AC-3 format, use Audio Passthrough. Otherwise, re-encode audio to
 the format specified in the original job encoding settings.
 
-10) SkipAdaptiveStreamingLayersBasedOnSourceResolution.py
+10) `SkipAdaptiveStreamingLayersBasedOnSourceResolution.py`
 Removes any Adaptive Streaming (DASH, Smooth Streaming) layer if that layer's resolution is higher
 than the source resolution.
 
-11) AdaptiveBitrateLadderBasedOnVideoComplexity.py
+11) `AdaptiveBitrateLadderBasedOnVideoComplexity.py`
 Measures the source video complexity (a measure of how difficult it is to encode) and modifies the
 bitrate for each DASH or HLS layer. Less complex sources will be encoded at lower bitrate than more
 difficult sources.
@@ -120,7 +120,7 @@ difficult sources.
 This section will cover the basics of writing a script. We will see how to get the source's properties and
 how to modify the encoding settings.
 
-### Header/Footage
+### Common Header
 Scripts should start with the following code, which validates the inputs (source XML file and output
 XML file) and parses the input into the $data variable. In this document, this code is referred to as the
 'common header'.
