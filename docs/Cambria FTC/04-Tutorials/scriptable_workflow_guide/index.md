@@ -5,7 +5,7 @@ title: Scriptable Workflow
 
 # Scriptable Workflow
 
-## Overview
+## 1. Overview
 
 Scriptable Workflows enable users to customize encoding Job parameters at the beginning of a Job using Python or Perl scripts. These scripts can access video and audio properties of the source material, such as resolution, frame rate, loudness, and complexity, and adjust Job parameters accordingly. If the 'Group of Files' feature is enabled in Watch Folder, the script can access all files in the group and combine them in various ways.
 
