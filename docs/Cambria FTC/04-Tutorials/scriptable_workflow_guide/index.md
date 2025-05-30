@@ -151,8 +151,8 @@ modified Job XML contents into the output location. In this document, this code 
 ### Common Footer
 
 ```python
-    with open(outputPath, 'w') as f:
-        f.write(doc.toxml())
+with open(outputPath, 'w') as f:
+    f.write(doc.toxml())
 ```
 
 ### Special Job Settings
@@ -180,8 +180,8 @@ To retain and reuse the temporary Script Transform files:
 from Cambria Manager, right click on the Job and select ‘Diagnostics’ ‘Extract Job XML’. A 
 JobData.xml file will be created.
 2. Open up command prompt (CMD)
-3. Change directory to C:\Program Files (x86)\Capella\Cambria\cpx64
-4. Run CpJobExec.exe --xml JobData.xml --s 1
+3. Change directory to `C:\Program Files (x86)\Capella\Cambria\cpx64`
+4. Run `CpJobExec.exe --xml JobData.xml --s 1`
 
 The “--s 1” parameter for CpJobExec.exe will turn off the automatic delete of the Script Transform
 files.
