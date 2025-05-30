@@ -111,6 +111,7 @@ const config = {
       },
       footer: {
         style: 'dark',
+        position: 'center',
         links: [
           {
             title: 'Company',
