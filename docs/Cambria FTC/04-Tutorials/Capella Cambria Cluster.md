@@ -18,7 +18,7 @@ title: Cluster Redundancy Feature
 
 ## Introduction
 
-Cambria Cluster Manager is test very powerful and can manage multiple Cambria FC
+Cambria Cluster Manager is very powerful and can manage multiple Cambria FC
 machines for distribution of jobs redundantly. If any machine becomes unavailable, such as
 due to crashes, network disconnection, unexpected reboots, etc, Cambria Cluster can detect
 so and reassign jobs to other available machines automatically.
