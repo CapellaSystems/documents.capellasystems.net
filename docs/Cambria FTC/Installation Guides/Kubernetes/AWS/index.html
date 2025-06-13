@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-Cambria FTC/Installation Guides/Kubernetes/AWS/index" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">index | Capella Documents</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://documents.capellasystems.net/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://documents.capellasystems.net/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://documents.capellasystems.net/docs/Cambria FTC/Installation Guides/Kubernetes/AWS/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="index | Capella Documents"><meta data-rh="true" name="description" content="Cambria Cluster / FTC 5.5.0"><meta data-rh="true" property="og:description" content="Cambria Cluster / FTC 5.5.0"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://documents.capellasystems.net/docs/Cambria FTC/Installation Guides/Kubernetes/AWS/"><link data-rh="true" rel="alternate" href="https://documents.capellasystems.net/docs/Cambria FTC/Installation Guides/Kubernetes/AWS/" hreflang="en"><link data-rh="true" rel="alternate" href="https://documents.capellasystems.net/docs/Cambria FTC/Installation Guides/Kubernetes/AWS/" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Capella Documents RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="Capella Documents Atom Feed"><link rel="stylesheet" href="/assets/css/styles.08940255.css">
+<script src="/assets/js/runtime~main.6d509de8.js" defer="defer"></script>
+<script src="/assets/js/main.e4961398.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Capella Documentation</b></a><a class="navbar__item navbar__link" href="/docs/Cambria Stream/Installation Guides/Kubernetes/AWS/cambria_stream_aws_kubernetes/">Cambria Stream</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/docs/Cambria FTC/Installation Guides/Kubernetes/AWS/">Cambria FTC</a></div><div class="navbar__items navbar__items--right"><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/docs/Cambria FTC/Installation Guides/Kubernetes/AWS/">Installation Guides</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" tabindex="0" href="/docs/Cambria FTC/Installation Guides/Kubernetes/AWS/">Kubernetes</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/docs/Cambria FTC/Installation Guides/Kubernetes/AWS/">index</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/Cambria FTC/Installation Guides/Kubernetes/Akamai/">index</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/docs/Cambria FTC/Installation Guides/Windows/placeholder">Windows</a></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/docs/Cambria FTC/Release Notes/FTC v5.5 to v4.0">Release Notes</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/docs/Cambria FTC/API/API_Methods">API</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/docs/Cambria FTC/Tutorials/Arib-stdb3/">Tutorials</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/docs/Cambria FTC/FAQ/placeholder">FAQ</a></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Installation Guides</span><meta itemprop="position" content="1"></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Kubernetes</span><meta itemprop="position" content="2"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">index</span><meta itemprop="position" content="3"></li></ul></nav><div class="theme-doc-markdown markdown"><header><h1>index</h1></header><p>Cambria Cluster / FTC 5.5.0</p>
+<p>Akamai Cloud Kubernetes Help Documentation</p>
+<p>Terraform Installation</p>
+<p>Document History</p>
+<p>Version</p>
+<p>Date</p>
+<p>Description</p>
+<p>5.4.0</p>
+<p>5.5.0</p>
+<p>10/03/2024 Updated for release 5.4.0.21627 (Linux)</p>
+<p>04/11/2025 Updated for release 5.5.0.23529 (Linux)</p>
+<ul>
+<li>Download the online version of this document for the latest information and latest files. Always
+download the latest files</li>
+</ul>
+<p>Do not move forward with the installation process if you do not agree with the End User License
+Agreement (EULA) for our products. You can download and read the EULA for Cambria FTC, Cambria
+Cluster, and Cambria License Manager from the links below:</p>
+<p>Cambria Cluster | Cambria FTC | Cambria License Manager
+<a href="https://www.dropbox.com/s/1wg7ee7a59kzi8h/EULA%5C_Cambria%5C_License%5C_Manager.pdf?dl=0" target="_blank" rel="noopener noreferrer">https://www.dropbox.com/s/1wg7ee7a59kzi8h/EULA\_Cambria\_License\_Manager.pdf?dl=0</a>
+<a href="https://www.dropbox.com/s/oemlax63aatjjiw/EULA%5C_Cluster.pdf?dl=0" target="_blank" rel="noopener noreferrer">https://www.dropbox.com/s/oemlax63aatjjiw/EULA\_Cluster.pdf?dl=0</a>
+<a href="https://www.dropbox.com/s/ualv9usxsowh6m2/EULA%5C_FTC.pdf?dl=0" target="_blank" rel="noopener noreferrer">https://www.dropbox.com/s/ualv9usxsowh6m2/EULA\_FTC.pdf?dl=0</a></p>
+<p>Limitations and Security Information
+Cambria FTC, Cluster, and License Manager are installed on Linux Docker containers. Limitations and security checks
+done for this version are included in our general Linux Documents below.</p>
+<p>Note: these documents are for informational use only. The setup for Kubernetes starts in section 2. Create
+Kubernetes Cluster.</p>
+<p>Cambria FTC / Cluster:
+<a href="https://www.dropbox.com/scl/fi/0rvskhpqtla6dffhbfli5/Linux%5C_Cambria%5C_Cluster%5C_and%5C_FTC%5C_5%5C_5%5C_0%5C_Guide.pdf?rlkey=ngry" target="_blank" rel="noopener noreferrer">https://www.dropbox.com/scl/fi/0rvskhpqtla6dffhbfli5/Linux\_Cambria\_Cluster\_and\_FTC\_5\_5\_0\_Guide.pdf?rlkey=ngry</a>
+jzox121ow5fgbc4y8n2yd</p>
+<p>Note: this document references Kubernetes version 1.32 only</p>
+<p>!Important! Before You Begin</p>
+<p>PDF documents have a copy/paste issue. For best results, download this document and any referenced PDF
+documents in this guide and open them in a PDF viewer such as Adobe Acrobat.</p>
+<p>For commands that are in more than one line, copy each line one by one and check that the copied command
+matches the one in the document.</p>
+<p>⚠ Critical Information: Read Before Proceeding with Installation
+Before starting the installation, carefully review the following considerations. Skipping this section may
+result in errors, failed deployments, or misconfigurations.</p>
+<p>Read only the Critical Information: Read Before Proceeding with Installation sections of the following documents:</p>
+<p>Cambria Cluster Installation:
+<a href="https://www.dropbox.com/scl/fi/irkmp89qh17bo9w4459qw/Cambria%5C_Cluster%5C_and%5C_FTC%5C_5%5C_5%5C_0%5C_on%5C_Akamai%5C_Kubernete" target="_blank" rel="noopener noreferrer">https://www.dropbox.com/scl/fi/irkmp89qh17bo9w4459qw/Cambria\_Cluster\_and\_FTC\_5\_5\_0\_on\_Akamai\_Kubernete</a>
+s.pdf?rlkey=vmq8fcqdbv3dul5cqq9em4r91&amp;st=5gecxrgs&amp;dl=0</p>
+<p>Monitoring and Logging with Prometheus and Loki:
+<a href="https://www.dropbox.com/scl/fi/rxshb6038wd9yg81kxagd/Prometheus%5C_Grafana%5C_Setup%5C_for%5C_Cambria%5C_Cluster%5C_5%5C_5%5C_0%5C" target="_blank" rel="noopener noreferrer">https://www.dropbox.com/scl/fi/rxshb6038wd9yg81kxagd/Prometheus\_Grafana\_Setup\_for\_Cambria\_Cluster\_5\_5\_0\</a>_
+on_Akamai_Kubernetes.pdf?rlkey=5l561e8x251y46gywx57k5svm&amp;st=prp5ca3q&amp;dl=0</p>
+<p>1. Prerequisites</p>
+<p>1.1. X11 Forwarding for User Interface
+For Windows and Mac only, there are some special tools that need to be installed in order to be able to use the user
+interface from Capella&#x27;s terraform installer. If using Linux, the machine must have a graphical user interface.</p>
+<p>1.1.1. Option 1: Microsoft Windows Tools</p>
+<ol>
+<li>
+<p>Download and install the X11 Forwarding Tool Xming:
+<a href="https://github.com/marchaesen/vcxsrv/releases/download/21.1.13/vcxsrv-64.21.1.13.0.installer.exe" target="_blank" rel="noopener noreferrer">https://github.com/marchaesen/vcxsrv/releases/download/21.1.13/vcxsrv-64.21.1.13.0.installer.exe</a></p>
+</li>
+<li>
+<p>Also, download and install PuTTY or similar tool that allows X11 Forwarding SSH:
+<a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html" target="_blank" rel="noopener noreferrer">https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html</a></p>
+</li>
+<li>
+<p>Open XLaunch and do the following:</p>
+</li>
+</ol>
+<p>a. Window 1: Choose Multiple windows and set Display number to 0
+b. Window 2: Choose to Start no client
+c. Window 3: Enable all checkboxes: Clipboard, Primary Selection, Native opengl, and Disable access</p>
+<p>control</p>
+<p>d. Window 4: Click on Save configuration and save this somewhere to reuse in the future</p>
+<p>1.1.2. Option 2: Apple MacOS Tools</p>
+<ol>
+<li>
+<p>Download and install the X11 Forwarding Tool XQuartz:
+<a href="https://github.com/XQuartz/XQuartz/releases/download/XQuartz-2.8.5/XQuartz-2.8.5.pkg" target="_blank" rel="noopener noreferrer">https://github.com/XQuartz/XQuartz/releases/download/XQuartz-2.8.5/XQuartz-2.8.5.pkg</a></p>
+</li>
+<li>
+<p>Prepare Deployment Server</p>
+</li>
+<li>
+<p>On the Akamai Dashboard, create a new Ubuntu Linode used for the terraform deployment. For best performance,
+choose an 8GB RAM or higher machine as X11 Forwarding uses a lot of memory on the Linode instance</p>
+</li>
+<li>
+<p>SSH into the new Linode and install general tools:</p>
+</li>
+</ol>
+<p>sudo apt update; sudo apt upgrade; sudo apt install curl unzip libice6 libsm6 dbus libgtk-3-0</p>
+<ol start="3">
+<li>Download the terraform package:</li>
+</ol>
+<p>curl -o terraform_LKE_CambriaCluster_1_0.zip -L
+&quot;<a href="https://www.dropbox.com/scl/fi/t8pgwr6otlg4lesgf3xbq/terraform%5C_LKE%5C_CambriaCluster%5C_1%5C_0.zip?rlkey=82rjt9l3at2" target="_blank" rel="noopener noreferrer">https://www.dropbox.com/scl/fi/t8pgwr6otlg4lesgf3xbq/terraform\_LKE\_CambriaCluster\_1\_0.zip?rlkey=82rjt9l3at2</a>
+gfcztt7sy0zsz1&amp;st=pwzmzhpb&amp;dl=1&quot;</p>
+<ol start="4">
+<li>Unzip the package and make the shell scripts executable:</li>
+</ol>
+<p>unzip terraform_LKE_CambriaCluster_1_0.zip; chmod +x *.sh; chmod +x ./TerraformVariableEditor</p>
+<ol start="5">
+<li>Install the tools needed for deployment:</li>
+</ol>
+<p>./setupTools.sh; ./installLogcli.sh</p>
+<ol start="6">
+<li>Verify the tools are installed:</li>
+</ol>
+<p>kubectl version --client; helm version; terraform -v; logcli --version</p>
+<ol start="7">
+<li>
+<p>Exit from the SSH session</p>
+</li>
+</ol>
+<p>3. Installation</p>
+<ol>
+<li>SSH into the instance created in section 2. Prepare Deployment Server using one of the following methods
+(depending on the OS being used as the SSH client):</li>
+</ol>
+<p>Option 1: Windows</p>
+<ol>
+<li>
+<p>Open PuTTY or similar tool. Enable X11 Forwarding in the configuration. On PuTTY, this can be found in
+Connection &gt; SSH &gt; X11 &gt; X11 forwarding</p>
+</li>
+<li>
+<p>SSH into the instance with the created user. Usually, the user is root</p>
+</li>
+</ol>
+<p>Option 2: Unix (Linux, MacOS)</p>
+<ol>
+<li>Open a terminal window and ssh into the Linode instance using -Y option and one of the created users. This
+is usually root.</li>
+</ol>
+<p>Example:</p>
+<p>ssh -Y -i &quot;mysshkey&quot; root@123.123.123.123</p>
+<p>2. Run the following script to set secrets as environment variables. These are important details such as credentials,
+license keys, etc. Reference the following table:</p>
+<p>source ./setEnvVariablesCambriaCluster.sh</p>
+<p>Environment Variable</p>
+<p>Explanation</p>
+<p>Linode API Token</p>
+<p>API token from Akamai Cloud&#x27;s Dashboard. See
+<a href="https://www.linode.com/docs/products/tools/api/guides/manage-api-tokens/" target="_blank" rel="noopener noreferrer">https://www.linode.com/docs/products/tools/api/guides/manage-api-tokens/</a></p>
+<p>PostgreSQL Password</p>
+<p>The password for the PostgreSQL database that Cambria Cluster uses. General
+password rules apply</p>
+<p>Cambria API Token</p>
+<p>Web UI Users</p>
+<p>A token needed for making calls to the Cambria FTC web server. General token
+rules apply (Eg. 1234-5678-90abcdefg)</p>
+<p>This is the login credentials for all of the Cambria WebUIs for the kubernetes
+cluster. Each user is listed in the form:</p>
+<p>role,username,password</p>
+<p>Allowed roles:</p>
+<ol>
+<li>admin - can view/create/edit/delete anything on the WebUI. Can also
+create/manage WebUI users.</li>
+<li>superuser - can view/create/edit/delete anything on the WebUI.</li>
+<li>user - can only view anything on the WebUI.</li>
+</ol>
+<p>For multiple users, separate each by a comma. Example:</p>
+<p>admin,admin,changethispassword1234,user,guest,password123</p>
+<p>Argo Events Webhook Token</p>
+<p>A token needed for making specific argo events calls. General token rules apply
+(Eg. 1234-5678-90abcdefg)</p>
+<p>Cambria FTC License Key</p>
+<p>This is the Cambria FTC license key that Capella should have provided. The
+license key should start with a &#x27;2&#x27; in this case. Only one license key is needed
+here (Eg. 2AB122-11123A-ABC890-DEF345-ABC321-543A21)</p>
+<p>Grafana Password</p>
+<p>The password for Grafana Dashboard. General password rules apply</p>
+<p>Access Key</p>
+<p>Secret Key</p>
+<p>The recommended log storage solution is AWS S3 or compatible S3 storage. If
+using this solution, this is the ACCESS_KEY or AWS_ACCESS_KEY_ID</p>
+<p>The recommended log storage solution is AWS S3 or compatible S3 storage. If
+using this solution, this is the SECRET_KEY or AWS_SECRET_ACCESS_KEY</p>
+<ol start="3">
+<li>Run the terraform editor UI:</li>
+</ol>
+<p>./TerraformVariableEditor</p>
+<ol start="4">
+<li>
+<p>Click on Open Terraform File and choose the CambriaCluster_LKE.tf file.</p>
+</li>
+</ol>
+<p>5. Using the UI, edit the fields accordingly. Reference the following table for values that should be changed:</p>
+<p>Blue: values in blue do not need to change unless the specific feature is needed / not needed
+Red: values in red are proprietary values that need to be changed based on your specific environment</p>
+<p>Terraform UI Editor</p>
+<p>Explanation</p>
+<p>lke_cluster_name = CambriaFTCCluster</p>
+<p>The name of the kubernetes cluster</p>
+<p>lk_region = us-mia</p>
+<p>The region code where the kubernetes cluster should be
+deployed</p>
+<p>lke_manager_pool_node_count = 3</p>
+<p>The number of Cambria Cluster nodes to create</p>
+<p>workers_can_use_manager_nodes = false</p>
+<p>Whether the Cambria Cluster nodes should also be able
+to handle encoding tasks</p>
+<p>workersUseGPU = false</p>
+<p>nbGPUs = 1</p>
+<p>manager_instance_type = g6-dedicated-4</p>
+<p>ftc_enable_auto_scaler = true</p>
+<p>ftc_instance_type = g6-dedicated-8</p>
+<p>max_ftc_instances = 5</p>
+<p>cambria_cluster_replicas = 3</p>
+<p>expose_capella_service_externally = true</p>
+<p>enable_ingress = true</p>
+<p>host_name = myhost.com</p>
+<p>acme_registration_email = <a href="mailto:test@example.com" target="_blank" rel="noopener noreferrer">test@example.com</a></p>
+<p>acme_server = <a href="https://acme-staging-v02.api.letsencrypt.org/directory" target="_blank" rel="noopener noreferrer">https://acme-staging-v02.api.letsencrypt.org/directory</a></p>
+<p>enable_eventing = true</p>
+<p>expose_grafana = true</p>
+<p>This must be set to true if planning to use NVENC
+capabilities on the encoding machines</p>
+<p>The max number of GPUs to use from the encoding
+machines if GPU functionality is enabled. This value
+should not exceed the amount of GPUs available</p>
+<p>The instance type of the Cambria Cluster nodes. See
+Akamai documentation for information on how to get
+the instance type name</p>
+<p>This option enables the use of Cambria FTC&#x27;s autoscaler
+feature. Set to false to disable it. If this is disabled, the
+encoder nodes will have to be manually created through
+the Akamai dashboard (or API).</p>
+<p>If using Cambria FTC&#x27;s autoscaler feature, change this
+to the instance type that the autoscaled encoders
+should be</p>
+<p>The maximum number of encoders that the kubernetes
+cluster can have up and running</p>
+<p>The maximum number of Cambria Cluster management</p>
+<ul>
+<li>replica machines to have up and running. This should
+match the lke_manager_pool_node_count or be
+greater if more manager replicas will be needed after
+installation</li>
+</ul>
+<p>This option tells the deployment to create load
+balancers to publicly expose the Capella application</p>
+<p>This option tells the deployment to create an ingress for
+the Capella applications that should be exposed.</p>
+<p>If enable_ingress is true, this is information needed to
+use a publicly registered domain name and TLS
+certificate for the Capella applications</p>
+<p>This option is for argo events where different
+event-based functionality can be used</p>
+<p>This option tells the deployment to make the Grafana
+dashboard accessible publicly via a load balancer</p>
+<p>loki_storage_type = s3_embedcred</p>
+<p>loki_local_storage_size_gi = 100</p>
+<p>loki_s3_bucket_name = &quot;&quot;</p>
+<p>loki_s3_region = &quot;&quot;</p>
+<p>loki_replicas = 2</p>
+<p>loki_max_unavailable = 3</p>
+<p>loki_log_retention_period = 7</p>
+<p>This is for deciding what type of storage to use for Loki
+logs. It is recommended to use an S3 compatible
+storage like AWS S3. For testing purposes only, there is
+a filesystem version of the Loki log storage deployment.
+For this, change this to local</p>
+<p>This option is only used for the local loki_storage_type.
+This is how many GB the Loki log volume should be.
+Volumes can fill up quickly so testing different volume
+sizes may be required.</p>
+<p>This option should be changed if using the
+s3_embedcred loki_storage_type. This is the name of
+the S3 compatible bucket to write logs to</p>
+<p>This option should be changed if using the
+s3_embedcred loki_storage_type. This is the region
+where the S3 bucket is located</p>
+<p>This option should be changed if using the
+s3_embedcred loki_storage_type. This is the number
+of Loki pod replicas to use for handling log requests. At
+least 2 replicas need to be active for Loki to work
+properly. Also, there should be at least the same
+amount of nodes running to cover the number of
+replicas specified here.</p>
+<p>This option should be changed if using the
+s3_embedcred loki_storage_type. This is how many
+Loki pods can be taken down when performing
+upgrades. For simplicity, this value should be
+loki_replicas + 1</p>
+<p>This is the number of days to retain Loki logs in the
+storage device. By default, this is set to 7 days.</p>
+<ol start="6">
+<li>
+<p>Once done, click on Save Changes and close the UI</p>
+</li>
+<li>
+<p>Run the following commands to create a terraform plan. Follow the prompts on the terminal window:</p>
+</li>
+</ol>
+<p>terraform init &amp;&amp; terraform plan -out lke-plan.tfplan</p>
+<ol start="8">
+<li>Run the following command to create the kubernetes cluster:</li>
+</ol>
+<p>terraform apply -auto-approve lke-plan.tfplan</p>
+<ol start="9">
+<li>Set the KUBECONFIG environment variable:</li>
+</ol>
+<pre> ```bash export KUBECONFIG=kubeconfig.yaml ``` </pre>
+<ol start="10">
+<li>
+<p>If everything goes well, save the terraform state file (.tfstate) that is created, the terraform plan
+(lke-plan.tfplan), and also the CambriaCluster_LKE.tf somewhere safe. This is needed for future deployments
+and to make changes to the created kubernetes cluster</p>
+</li>
+</ol>
+<p>4. Verification and Testing</p>
+<p>Follow the steps in section 5. Verify Cambria FTC / Cluster Installation of the main Cambria Cluster Kubernetes
+Installation Guide for verification and section 6. Testing Cambria FTC / Cluster for testing with Cambria FTC jobs:</p>
+<p><a href="https://www.dropbox.com/scl/fi/irkmp89qh17bo9w4459qw/Cambria%5C_Cluster%5C_and%5C_FTC%5C_5%5C_5%5C_0%5C_on%5C_Akamai%5C_Kubernete" target="_blank" rel="noopener noreferrer">https://www.dropbox.com/scl/fi/irkmp89qh17bo9w4459qw/Cambria\_Cluster\_and\_FTC\_5\_5\_0\_on\_Akamai\_Kubernete</a>
+s.pdf?rlkey=vmq8fcqdbv3dul5cqq9em4r91&amp;st=5gecxrgs&amp;dl=1</p>
+<ol start="5">
+<li>Upgrading</li>
+</ol>
+<p>5.1. Option 1: Normal Upgrade via Terraform Apply
+This upgrade method is best for when changing version numbers, secrets such as the license key, WebUI users,
+etc, and Cambria FTC | Cambria Cluster specific settings such as max number of pods, replicas, etc.</p>
+<p>!Warning! Known Issues</p>
+<p>● pgClusterPassword cannot currently be updated via this method
+● Changing postgres version also cannot be updated via this method
+● Cannot change the region of the cluster</p>
+<ol>
+<li>
+<p>Follow the steps in section 3. Installation</p>
+</li>
+<li>
+<p>Follow the verification steps in section 4. Verification and Testing to verify updates were applied</p>
+</li>
+</ol>
+<p>5.2. Option 2: Upgrade via Cambria Cluster Reinstallation
+For any upgrade cases for the Cambria Cluster | Cambria FTC environment, this is the most reliable option. This
+upgrade option basically uninstalls all of the Cambria FTC and Cluster components and then reinstall with the
+new Helm chart and values (.yaml) file. As a result, this will delete the database and delete all of your
+jobs in the Cambria Cluster UI.</p>
+<ol>
+<li>
+<p>Follow section 4.2. Creating and Editing Helm Configuration File to download and edit your new
+capellaClusterConfig.yaml file.</p>
+</li>
+<li>
+<p>In a command line / terminal window in your local server, run the following command:</p>
+</li>
+</ol>
+<p>helm uninstall capella-cluster --wait</p>
+<ol start="3">
+<li>Deploy the Helm configuration file with the following command</li>
+</ol>
+<p>helm upgrade --install capella-cluster capella-cluster.tgz --values cambriaClusterConfig.yaml</p>
+<ol start="4">
+<li>
+<p>Wait a few minutes for the kubernetes pods to install properly</p>
+</li>
+<li>
+<p>Follow the verification steps in section 4. Verification and Testing to verify updates were applied</p>
+</li>
+</ol>
+<p>6. Cleanup
+Many resources are created in a Kubernetes environment. It is important that each step is followed
+carefully: If using FTC&#x27;s autoscaler, make sure no leftover Cambria FTC nodes are running.</p>
+<ol>
+<li>Run the following commands to remove the Helm deployments:</li>
+</ol>
+<p>helm uninstall capella-cluster -n default --wait</p>
+<ol start="2">
+<li>If any volumes are remaining, run the following command:</li>
+</ol>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">kubectl get pv -o name | awk -F&#x27;/&#x27; &#x27;{print $2}&#x27; | xargs -I{} kubectl patch pv {} -p=&#x27;{&quot;spec&quot;: {&quot;persistentVolumeReclaimPolicy&quot;: &quot;Delete&quot;}}&#x27;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<pre> <code>{&quot;persistentVolumeReclaimPolicy&quot;: &quot;Delete&quot;}</code> </pre>
+<ol start="3">
+<li>Delete all of the contents from the monitoring namespace (Prometheus, Grafana, Loki, etc):</li>
+</ol>
+<p>kubectl delete namespace monitoring</p>
+<ol start="4">
+<li>Only if the ingress-nginx tool was deployed, do the following:</li>
+</ol>
+<p>kubectl delete namespace ingress-nginx</p>
+<ol start="5">
+<li>Run the following command to destroy the kubernetes cluster:</li>
+</ol>
+<p>terraform destroy -auto-approve</p>
+<ol start="6">
+<li>
+<p>In the NodeBalancers section, delete any leftover node balancers that were created by the Kubernetes
+cluster</p>
+</li>
+<li>
+<p>In the Volumes section, delete any leftover volumes that were created by the Kubernetes Cluster</p>
+</li>
+</ol></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Cambria FTC/01-Installation Guides/01-Kubernetes/01-AWS/index.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--next" href="/docs/Cambria FTC/Installation Guides/Kubernetes/Akamai/"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">index</div></a></nav></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Company</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://www.capellasystems.net/about-capella" target="_blank" rel="noopener noreferrer" class="footer__link-item">About<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.capellasystems.net/newsfeed" target="_blank" rel="noopener noreferrer" class="footer__link-item">Newsfeed<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.capellasystems.net/contact-us" target="_blank" rel="noopener noreferrer" class="footer__link-item">Contact Us<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://documents.capellasystems.net/docs/Cambria%20Stream/Installation%20Guides/Kubernetes/AWS/placeholder" target="_blank" rel="noopener noreferrer" class="footer__link-item">Cambria Stream<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://documents.capellasystems.net/docs/Cambria%20FTC/Installation%20Guides/Kubernetes/AWS/Akamai_Linode_Kubernetes_CambriaClusterFTC_Installation" target="_blank" rel="noopener noreferrer" class="footer__link-item">Cambria FTC<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">Other</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://www.capellasystems.net/terms-of-use" target="_blank" rel="noopener noreferrer" class="footer__link-item">Terms of Use<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.capellasystems.net/online-privacy-policy" target="_blank" rel="noopener noreferrer" class="footer__link-item">Privacy Policy<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 Capella Systems</div></div></div></footer></div>
+</body>
+</html>
