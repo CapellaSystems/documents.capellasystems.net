@@ -617,7 +617,7 @@ helm uninstall capella-cluster -n default --wait
 2. If any volumes are remaining, run the following command: 
 
 kubectl get pv -o name | awk -F'/' '{print $2}' | xargs -I{} kubectl patch pv {} -p='{"spec": 
-{"persistentVolumeReclaimPolicy": "Delete"}}' 
+<pre> ``` {"persistentVolumeReclaimPolicy": "Delete"} ``` </pre>
 
 3. Delete all of the contents from the monitoring namespace (Prometheus, Grafana, Loki, etc): 
 

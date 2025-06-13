@@ -139,9 +139,9 @@ kubectl get ingress -A
 
 Access UIs:
 
-- FTC: https://<host_name>  
-- Cluster UI: https://<host_name>:9443  
-- Grafana: https://<host_name>:3000  
+- FTC: `https://<host_name>`
+- Cluster UI: `https://<host_name>:9443`
+- Grafana: `https://<host_name>:3000`
 
 Verify successful encodes and log visibility via Grafana and Loki.
 
