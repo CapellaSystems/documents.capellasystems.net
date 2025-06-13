@@ -509,7 +509,7 @@ terraform apply -auto-approve lke-plan.tfplan
 
 9. Set the KUBECONFIG environment variable: 
 
-export KUBECONFIG=kubeconfig.yaml 
+<pre> \`\`\`bash export KUBECONFIG=kubeconfig.yaml \`\`\` </pre>
 
 10. If everything goes well, save the terraform state file (.tfstate) that is created, the terraform plan 
 (lke-plan.tfplan), and also the CambriaCluster\_LKE.tf somewhere safe. This is needed for future deployments 
