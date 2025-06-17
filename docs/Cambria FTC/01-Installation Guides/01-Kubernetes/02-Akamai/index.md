@@ -4,6 +4,8 @@
 
 # Cambria Cluster / FTC 5.5.0 — Akamai Cloud Kubernetes Help Documentation
 
+---
+
 ## Document History
 
 | Version | Date       | Description                             |
