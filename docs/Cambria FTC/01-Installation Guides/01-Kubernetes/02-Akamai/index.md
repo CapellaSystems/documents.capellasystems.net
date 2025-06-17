@@ -1,4 +1,3 @@
-
 ---
 
 ## title: Cambria Cluster and FTC 5.5.0 on Akamai Kubernetes
