@@ -663,11 +663,11 @@ a. Click on View and copy the contents shown on the pop up window
  
 b. Set the cluster name as an environment variable: 
  
-export CLUSTER_NAME=cambria-cluster 
+`export CLUSTER_NAME=cambria-cluster` 
  
 c. In the Linux deployment server, create a new file for the kubeconfig: 
  
-nano $CLUSTER_NAME-kubeconfig.yaml 
+`nano $CLUSTER_NAME-kubeconfig.yaml`
  
 d. Paste the contents from step 3a. If using nano, right-click to paste 
  
@@ -686,17 +686,19 @@ e. Save the file. If using nano, press CTRL/CMD + X, then type 'y', and then pre
 4. In the Linux deployment server, set the KUBECONFIG environment variable for terminal interaction with the 
 LKE cluster: 
  
-export KUBECONFIG=$CLUSTER_NAME-kubeconfig.yaml 
+`export KUBECONFIG=$CLUSTER_NAME-kubeconfig.yaml`
  
 5. Verify that kubectl works with the cluster 
  
-kubectl get nodes 
+`kubectl get nodes` 
  
 Example: 
  
-NAME                                            STATUS   ROLES    AGE   VERSION 
+```
+NAME                            STATUS   ROLES    AGE   VERSION 
 lke389119-595948-28c8a7980000   Ready    <none>   23m   v1.32.1 
-lke389119-595948-5e8b20d10000   Ready    <none>   23m   v1.32.1 
+lke389119-595948-5e8b20d10000   Ready    <none>   23m   v1.32.1
+```
  
 6. Back in the Akamai Dashboard in the LKE cluster, click on Copy Token. Then, open the Kubernetes 
 Dashboard and use the token to log in to the dashboard 
@@ -740,11 +742,11 @@ Steps:
  
 1. Find out which node(s) will be Cambria FTC restricted and note down the name: 
  
-kubectl get nodes 
+`kubectl get nodes` 
  
 2. Apply the following label to each of those nodes: 
  
-kubectl label node <node-name> no-capella-worker=true 
+`kubectl label node <node-name> no-capella-worker=true` 
  
 3. Follow this step only for each node pool that should apply the Cambria FTC exclusion tag to all of 
 its existing and new nodes. To apply the same restriction to all nodes in a node pool, add the same label to 
@@ -848,7 +850,7 @@ Wait at least 5 minutes for the GPU operator to install completely
  
 Run this command with 'kubectl' and make sure that all of the pods are in a Running or Completed state: 
  
-kubectl get pods -n gpu-operator 
+`kubectl get pods -n gpu-operator` 
  
 If any pod is still in an Init state or PodCreating state, wait another 5 minutes to see if the pods will complete 
 their install process. 
@@ -859,7 +861,7 @@ a. Check that at least one node is one of the supported Akamai Cloud GPU instanc
  
 b. Use the following command to check the state of a failing pod (check the Events section): 
  
-kubectl describe pod <your-pod-name> -n gpu-operator 
+`kubectl describe pod <your-pod-name> -n gpu-operator` 
  
 Either look up the error for a potential solution or send the entire Events section to the Capella support team for 
 investigation. 
@@ -870,8 +872,7 @@ applications.
  
 Follow the steps in the document below to install Prometheus, Grafana, Loki, and Promtail: 
  
-https://www.dropbox.com/scl/fi/rxshb6038wd9yg81kxagd/Prometheus_Grafana_Setup_for_Cambria_Cluster_5
-_5_0_on_Akamai_Kubernetes.pdf?rlkey=5l561e8x251y46gywx57k5svm&st=m58td12z&dl=1 
+`https://www.dropbox.com/scl/fi/rxshb6038wd9yg81kxagdPrometheus_Grafana_Setup_for_Cambria_Cluster_5_5_0_on_Akamai_Kubernetes.pdf?rlkey=5l561e8x251y46gywx57k5svm&st=m58td12z&dl=1` 
  
  
  
@@ -1205,7 +1206,7 @@ feature.
 Wait at least 5 minutes after installing prerequisites before moving on to this step. In a command line 
 / terminal window, run the following command: 
  
-helm upgrade --install capella-cluster capella-cluster.tgz --values cambriaClusterConfig.yaml 
+`helm upgrade --install capella-cluster capella-cluster.tgz --values cambriaClusterConfig.yaml` 
  
 The result of running the command should look something like this: 
  
@@ -1263,7 +1264,7 @@ considered as key to a proper deployment.
  
 1. Run the following command: 
  
-kubectl get all -n default 
+`kubectl get all -n default` 
  
 2. Verify the following information: 
  
@@ -1323,7 +1324,7 @@ considered as key to a proper deployment.
  
 1. Run the following command: 
  
-kubectl get all -n capella-worker 
+`kubectl get all -n capella-worker` 
  
 2. Verify the following information: 
  
@@ -1393,23 +1394,22 @@ Option 1: External Url if External Access is Enabled
  
 Run the following command: 
  
-kubectl get svc/cambriaclusterwebuiservice -n default 
--o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8161'}{'\n'}" 
+`kubectl get svc/cambriaclusterwebuiservice -n default -o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8161'}{'\n'}"`
  
 The response should look something like this: 
  
-https://192.122.45.33:8161 
+`https://192.122.45.33:8161` 
  
 Option 2: Non-External Url Access 
  
 Run the following command to temporarily expose the WebUI via port-forwarding: 
  
-kubectl port-forward -n default svc/cambriaclusterwebuiservice 8161:8161 --address=0.0.0.0 
+`kubectl port-forward -n default svc/cambriaclusterwebuiservice 8161:8161 --address=0.0.0.0` 
  
 The url depends on the location of the web browser. If the web browser and the port-forward are on the 
 same machine, use localhost. Otherwise, use the ip address of the machine with the port-forward: 
  
-https://<server>:8161 
+`https://<server>:8161` 
  
  
 2. In a web browser, enter the above url. This should trigger an "Unsafe" page similar to the one below: 
@@ -1437,12 +1437,11 @@ Option 1: External Url if External Access is Enabled
  
 Run the following command: 
  
-kubectl get svc/cambriaclusterservice -n default 
--o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8650'}{'\n'}" 
+`kubectl get svc/cambriaclusterservice -n default -o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8650'}{'\n'}"`
  
 The response should look something like this: 
  
-https://192.122.45.33:8650 
+`https://192.122.45.33:8650` 
  
 Option 2: Non-External Url Access 
  
@@ -1453,12 +1452,12 @@ kubectl port-forward -n default svc/cambriaclusterservice 8650:8650 --address=0.
 The url depends on the location of the port-forward. If the web browser and the port-forward are on the 
 same machine, use localhost. Otherwise, use the ip address of the machine with the port-forward: 
  
-https://<server>:8650 
+`https://<server>:8650` 
  
  
 2. Run the following API query to check if the REST API is active: 
  
-curl -k -X GET https://<server>:8650/CambriaFC/v1/SystemInfo 
+`curl -k -X GET https://<server>:8650/CambriaFC/v1/SystemInfo` 
  
  
  
@@ -1542,18 +1541,18 @@ Capella applications in this way.
 1. Test Cambria Cluster WebUI with the ingress that starts with webui. Run steps 2-3 of 5.3.1. Cambria Cluster 
 WebUI. Example: 
  
-https://webui.myhost.com 
+`https://webui.myhost.com` 
  
 2. Test Cambria REST API with the ingress that starts with api. Run step 2 of 5.3.2. Cambrai Cluster REST API. 
 Example: 
  
-https://api.myhost.com/CambriaFC/v1/SystemInfo 
+`https://api.myhost.com/CambriaFC/v1/SystemInfo` 
  
 3. Test Grafana Dashboard with the ingress that starts with monitoring. Run the verification steps for the 
 Grafana Dashboard section 1.4. Verify Grafana Deployment (steps 2-4) in the document in 3.7. Performance 
 Metrics and Logging. Example: 
  
-https://monitoring.myhost.com 
+`https://monitoring.myhost.com` 
  
 5.3.4. Cambria License 
 The Cambria license needs to be active in all entities where the Cambria application is deployed. Run the 
@@ -1565,12 +1564,11 @@ Option 1: External Url if External Access is Enabled
  
 Run the following command: 
  
-kubectl get svc/cambriaclusterwebuiservice -n default 
--o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8481'}{'\n'}" 
+`kubectl get svc/cambriaclusterwebuiservice -n default -o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8481'}{'\n'}"`
  
 The response should look something like this: 
  
-https://192.122.45.33:8481 
+`https://192.122.45.33:8481` 
  
 Option 2: Non-External Url Access 
  
@@ -1581,7 +1579,7 @@ kubectl port-forward -n default svc/cambriaclusterwebuiservice 8481:8481 --addre
 The url depends on the location of the port-forward. If the web browser and the port-forward are on the 
 same machine, use localhost. Otherwise, use the ip address of the machine with the port-forward: 
  
-https://<server>:8481 
+`https://<server>:8481` 
  
  
  
@@ -1636,8 +1634,7 @@ minutes to properly update. If still facing issues, contact the Capella support 
 6. Testing Cambria FTC / Cluster 
 The following guide provides information on how to get started testing the Cambria FTC / Cluster software: 
  
-https://www.dropbox.com/scl/fi/5vra6xff23vvng7aa4qyx/Cambria_Cluster_and_FTC_5_5_0_Kubernetes_User_
-Guide.pdf?rlkey=j3l9wjjo5ncbub9bh9bizrukr&st=tmmzm91q&dl=1 
+`https://www.dropbox.com/scl/fi/5vra6xff23vvng7aa4qyx/Cambria_Cluster_and_FTC_5_5_0_Kubernetes_User_Guide.pdf?rlkey=j3l9wjjo5ncbub9bh9bizrukr&st=tmmzm91q&dl=1`
  
 7. Updating / Upgrading Cambria Cluster / FTC 
 There are currently two ways to update / upgrade Cambria FTC / Cluster in the kubernetes environment.  
@@ -1657,12 +1654,11 @@ and edit the new file. See section 4.2. Creating and Editing Helm Configuration 
  
 2. Run the following command to apply the upgrade 
  
-helm upgrade capella-cluster capella-cluster.tgz --values cambriaClusterConfig.yaml 
+`helm upgrade capella-cluster capella-cluster.tgz --values cambriaClusterConfig.yaml` 
  
 3. Restart the deployments 
  
-kubectl rollout restart deployment cambriaclusterapp cambriaclusterwebui -n default; \ 
-kubectl rollout restart deployment cambriaftcapp -n capella-worker 
+`kubectl rollout restart deployment cambriaclusterapp cambriaclusterwebui -n default; \ kubectl rollout restart deployment cambriaftcapp -n capella-worker` 
  
 4. Wait a few minutes for the kubernetes pods to install properly 
  
@@ -1681,7 +1677,7 @@ helm uninstall capella-cluster --wait
  
 3. Deploy the Helm configuration file with the following command 
  
-helm upgrade --install capella-cluster capella-cluster.tgz --values cambriaClusterConfig.yaml 
+`helm upgrade --install capella-cluster capella-cluster.tgz --values cambriaClusterConfig.yaml` 
  
 7.3. Upgrade Verification 
 The best way to verify the upgrade is to use the steps in 5.0. Verify Cambria FTC / Cluster Installation. For any 
@@ -1699,16 +1695,15 @@ carefully: If using FTC's autoscaler, make sure no leftover Cambria FTC nodes ar
  
 1. Run the following commands to remove the Helm deployments: 
  
-helm uninstall capella-cluster -n default --wait 
+`helm uninstall capella-cluster -n default --wait` 
  
 2. If any volumes are remaining, run the following command: 
  
-kubectl get pv -o name | awk -F'/' '{print $2}' | xargs -I{} kubectl patch pv {} -p='{"spec": 
-{"persistentVolumeReclaimPolicy": "Delete"}}' 
+`kubectl get pv -o name | awk -F'/' '{print $2}' | xargs -I{} kubectl patch pv {} -p='{"spec"{"persistentVolumeReclaimPolicy": "Delete"}}'`
  
 3. Only if the ingress-nginx tool was deployed, do the following: 
  
-kubectl delete namespace ingress-nginx 
+`kubectl delete namespace ingress-nginx`
  
 4. Follow the delete steps from the document in section 3.5. Performance Metrics and Logging 
  
@@ -1759,8 +1754,7 @@ cluster
 9.1. Installation (Deploy from Linux to Akamai Cloud Kubernetes) 
 For quick installation, use the Terraform installation instructions: 
  
-https://www.dropbox.com/scl/fi/y4noltg67q489f39ewx4k/Cambria_Cluster_and_FTC_5_5_0_Terraform_on_Aka
-mai_Kubernetes.pdf?rlkey=m2it3z2q7p4sebfulilgd8vn4&st=vbn29kcl&dl=1 
+`https://www.dropbox.com/scl/fi/y4noltg67q489f39ewx4k/Cambria_Cluster_and_FTC_5_5_0_Terraform_on_Akamai_Kubernetes.pdf?rlkey=m2it3z2q7p4sebfulilgd8vn4&st=vbn29kcl&dl=1` 
  
 9.2. Upgrades and Teardown 
  
@@ -1768,12 +1762,12 @@ mai_Kubernetes.pdf?rlkey=m2it3z2q7p4sebfulilgd8vn4&st=vbn29kcl&dl=1
 Edit the capellaClusterConfig.yaml file and then run the following commands (See section 7. Updating / 
 Upgrading Kubernetes Cluster for more details and warnings): 
  
-./quickUpgradeCambriaCluster.sh 
+`./quickUpgradeCambriaCluster.sh` 
  
 9.2.2. Cambria FTC | Cambria Cluster Uninstall 
 If just wanting to uninstall Cambria Cluster and Cambria FTC, run the following command: 
  
-helm uninstall capella-cluster --wait 
+`helm uninstall capella-cluster --wait` 
  
 9.2.3. Kubernetes Cluster Teardown 
 As this involves several components, it is best to do the cluster teardown using the steps in section 8. Deleting 
@@ -1836,8 +1830,7 @@ Dashboard link.
 Cambria Cluster WebUI (via kubectl) 
 1. Run the following command to get the webui address: 
  
-kubectl get service/cambriaclusterwebuiservice -n default 
--o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8161'}" 
+`kubectl get service/cambriaclusterwebuiservice -n default -o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8161'}"`
  
 2. To log in to the WebUI, the credentials are located in the Helm values .yaml file that you configure (See 
 section 3.3. Creating and Editing Helm Configuration File) 
@@ -1853,13 +1846,11 @@ Configuration File)
 Cambria Cluster REST API (via kubectl) 
 1. Run the following command to get the base REST API Web Address: 
  
-kubectl get service/cambriaclusterservice -n default 
--o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8650'}" 
+`kubectl get service/cambriaclusterservice -n default -o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8650'}"` 
  
 The REST API url should look similar to this: 
  
-https://23-45-226-151.ip.linodeusercontent.com:8650/CambriaFC/v1/Jobs?usertoken=12345678-1234-43
-f8-b4fc-53afd3893d5f 
+`https://23-45-226-151.ip.linodeusercontent.com:8650/CambriaFC/v1/Jobs?usertoken=12345678-1234-43f8-b4fc-53afd3893d5f` 
  
 Cambria Cluster REST API (via Kubernetes Dashboard) 
 1. In the Akamai Kubernetes Dashboard for your cluster, go to Services and look for the 
@@ -1867,8 +1858,7 @@ cambriaclusterservice service. Copy the IP address of one of the External Endpoi
  
 The REST API should look similar to this: 
  
-https://23-45-226-151.ip.linodeusercontent.com:8650/CambriaFC/v1/Jobs?usertoken=12345678-1234-43
-f8-b4fc-53afd3893d5f 
+`https://23-45-226-151.ip.linodeusercontent.com:8650/CambriaFC/v1/Jobs?usertoken=12345678-1234-43f8-b4fc-53afd3893d5f` 
  
  
  
@@ -1880,27 +1870,27 @@ f8-b4fc-53afd3893d5f
 Cambria FTC Instance External IP 
 1. In the Cambria Cluster WebUI, go to the Machines tab and copy the name of the machine (pod) 
  
-2. Run the following commands with the name of the machine (aka. <pod-name>): 
+2. Run the following commands with the name of the machine (aka. `<pod-name>`): 
  
-# Replace <pod-name> with your pod name 
-kubectl get pod/<pod-name> -n capella-worker -o=jsonpath={.spec.nodeName} 
+# Replace `<pod-name>` with your pod name 
+`kubectl get pod/<pod-name> -n capella-worker -o=jsonpath={.spec.nodeName}` 
  
-# Replace <node-name> with the result from the above command 
-kubectl get node/<node-name> -n capella-worker -o=jsonpath={.status.addresses[1].address} 
+# Replace `<node-name>` with the result from the above command 
+`kubectl get node/<node-name> -n capella-worker -o=jsonpath={.status.addresses[1].address}` 
  
 Leader Cambria Cluster Pod 
 Run the following command to get the name of the Cambria Cluster leader pod: 
  
-kubectl get lease -o=jsonpath="{.items[0].spec.holderIdentity}" 
+`kubectl get lease -o=jsonpath="{.items[0].spec.holderIdentity}"` 
  
 Remote Access to Kubernetes Pod 
 The general command for remote accessing a pod is: 
  
-kubectl exec -it <pod-name> -n <namespace> -- /bin/bash 
+`kubectl exec -it <pod-name> -n <namespace> -- /bin/bash` 
  
 Example with Cambria FTC: 
  
-kubectl exec -it cambriaftcapp-5c79586784-wbfvf -n capella-worker -- /bin/bash 
+`kubectl exec -it cambriaftcapp-5c79586784-wbfvf -n capella-worker -- /bin/bash` 
  
 Extracting Cambria Cluster | Cambria FTC | Cambria License Logs 
 In a machine that has kubectl and the kubeconfig file for your Kubernetes cluster, open a terminal window and 
@@ -1908,23 +1898,23 @@ make sure to set the KUBECONFIG environment variable to the path of your kubecon
 more of the following commands depending on what types of logs you need (or that Capella needs). You will get 
 a folder full of logs. Compress these logs into one zip file and send it to Capella: 
  
-<pod-name>: the name of the pod to grab logs from (Eg. cambriaftcapp-5c79586784-wbfvf) 
+`<pod-name>`: the name of the pod to grab logs from (Eg. cambriaftcapp-5c79586784-wbfvf) 
  
 Cambria FTC: 
  
-kubectl cp <pod-name>:/opt/capella/Cambria/Logs ./CambriaFTCLogs -n capella-worker 
+`kubectl cp <pod-name>:/opt/capella/Cambria/Logs ./CambriaFTCLogs -n capella-worker` 
  
 Cambria Cluster: 
  
-kubectl cp <pod-name>:/opt/capella/CambriaCluster/Logs ./CambriaClusterLogs -n default 
+`kubectl cp <pod-name>:/opt/capella/CambriaCluster/Logs ./CambriaClusterLogs -n default` 
  
 Cambria License Manager (Cambria FTC): 
  
-kubectl cp <pod-name>:/opt/capella/CambriaLicenseManager/Logs ./CambriaFTCLicLogs -n capella-worker 
+`kubectl cp <pod-name>:/opt/capella/CambriaLicenseManager/Logs ./CambriaFTCLicLogs -n capella-worker` 
  
 Cambria License Manager (Cambria Cluster): 
  
-kubectl cp <pod-name>:/opt/capella/CambriaLicenseManager/Logs ./CambriaClusterLicLogs -n default 
+`kubectl cp <pod-name>:/opt/capella/CambriaLicenseManager/Logs ./CambriaClusterLicLogs -n default` 
  
  
  
@@ -1939,34 +1929,32 @@ In some cases, you might need to copy files to a Cambria FTC / Cluster pod. For 
 you want to use as a source directly from the encoding machine’s file system. In this case, to copy the file over 
 to the Cambria FTC / Cluster pod, do the following: 
  
-kubectl cp <host-file-path> <pod-name>:<path-inside-container> -n <namespace> 
+`kubectl cp <host-file-path> <pod-name>:<path-inside-container> -n <namespace>` 
  
 Example: 
  
 # Copy file to Cambria FTC pod 
-kubectl cp /mnt/n/MySource.mp4 cambriaftcapp-7c55887db9-t42v7:/var/media/MySource.mp4 -n 
-capella-worker 
+`kubectl cp /mnt/n/MySource.mp4 cambriaftcapp-7c55887db9-t42v7:/var/media/MySource.mp4 -n capella-worker` 
  
 # Copy file to Cambria Cluster pod 
-kubectl cp C:\MyKeys\MyKeyFile.key cambriaclusterapp-695dcc848f-vjpc7:/var/keys/MyKeyFile.key -n 
-default 
+`kubectl cp C:\MyKeys\MyKeyFile.key cambriaclusterapp-695dcc848f-vjpc7:/var/keys/MyKeyFile.key -n default` 
  
 # Copy directory to Cambria FTC container 
-kubectl cp /mnt/n/MyMediaFiles cambriaftcapp-7c55887db9-t42v7:/var/temp/mediafiles -n capella-worker 
+`kubectl cp /mnt/n/MyMediaFiles cambriaftcapp-7c55887db9-t42v7:/var/temp/mediafiles -n capella-worker`
  
 Restarting / Re-creating Pods 
 Kubectl does not currently have a way to restart pods. Instead, a pod will need to be “restarted” by deleting the 
 pod which causes a new pod to be created / existing pod to take over the containers. 
  
-kubectl delete pod <pod-name> -n <namespace> 
+`kubectl delete pod <pod-name> -n <namespace>`
  
 Example: 
  
 # Delete Cambria FTC Container 
-kubectl delete pod cambriaftcapp-7c55887db9-t42v7 -n capella-worker 
+`kubectl delete pod cambriaftcapp-7c55887db9-t42v7 -n capella-worker` 
  
 # Delete Cambria Cluster Container 
-kubectl delete pod cambriaclusterapp-695dcc848f-vjpc7 -n default 
+`kubectl delete pod cambriaclusterapp-695dcc848f-vjpc7 -n default` 
  
  
  
@@ -2001,7 +1989,7 @@ This glossary provides a brief definition / description of some of the more comm
 11.1. Kubernetes 
  
 For Kubernetes terms, please refer to the Kubernetes Glossary: 
-https://kubernetes.io/docs/reference/glossary/?fundamental=true 
+`https://kubernetes.io/docs/reference/glossary/?fundamental=true` 
  
 11.2. Third-Party Tools 
  
