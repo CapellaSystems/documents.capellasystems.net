@@ -4,34 +4,33 @@ import styles from './styles.module.css';
 
 const FeatureList = [
   {
-    title: 'VOD Transcoding Products',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: 'VOD Transcoding',
+    Svg: require('@site/static/img/ftc-flow.png').default,
     description: (
       <>
-        <p><strong>Cambria File Transcoder (FTC):</strong> A flexible and scalable transcoder built for integration and fine-tuned for efficiency. Cloud-native but equally functional on-prem or hybrid. The enterprise solution for industrial-strength transcoding.</p>
-        <p><strong>Cambria Cluster:</strong> A scalable transcoding network of multiple Cambria FTC machines for processing large volumes of video files, managed by the Cambria Cluster Manager.</p>
-        <p><strong>Cambria FTC Packager:</strong> Flexible and efficient VOD packager that imports various offline file formats and repackages them into multiple adaptive streaming formats including HLS, MPEG-Dash, and CMAF, with support for encryption and ad insertion.</p>
+        <p><strong>Cambria FTC:</strong> High-performance file transcoder with exceptional video quality and superior transcoding speed. Cloud-native or on-premises deployment options.</p>
+        <p><strong>Cambria Cluster:</strong> Scalable network of FTC machines for large-volume video processing, managed through Cluster Manager.</p>
+        <p><strong>Cambria FTC Packager:</strong> Flexible VOD packager supporting HLS, MPEG-Dash, and CMAF formats with encryption and ad insertion.</p>
       </>
     ),
   },
   {
-    title: 'Live Encoding On-Premise Products',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: 'Live Encoding (On-Premise)',
+    Svg: require('@site/static/img/live-flow.png').default,
     description: (
       <>
-        <p><strong>Cambria Live/Live Editor:</strong> Functions as a standalone, all-in-one live studio encoder or as part of a network of multiple Cambria Live workstations managed by Cambria Broadcast Manager.</p>
-        <p><strong>Cambria Broadcast Manager (BCM):</strong> Manages multiple Cambria Live workstations for a fully automated live streaming workflow, handling ad insertion, scheduled live streaming, and more.</p>
+        <p><strong>Cambria Live/Editor:</strong> Professional live studio encoder with robust ad insertion and reliable streaming output.</p>
+        <p><strong>Cambria Broadcast Manager (BCM):</strong> Centralized management for multiple Live workstations, enabling automated workflows and scheduled streaming.</p>
       </>
     ),
   },
   {
-    title: 'Live Encoding in the Cloud',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: 'Cloud Solutions',
+    Svg: require('@site/static/img/stream-flow.png').default,
     description: (
       <>
-        <p><strong>Cambria Stream/Stream Packager:</strong> A flexible and scalable live encoder and packager designed for cloud-based live streaming workflows. Easily deployable via Docker and scalable with Kubernetes.</p>
-        <p><strong>Cambria Stream Manager (CSM):</strong> Features an easy-to-use web UI to oversee cloud-based networks of Cambria Stream Encoders and Packagers, with monitoring, alerts, notifications, and automated failover switching.</p>
-        <p><strong>Flexibility:</strong> Highly customizable engine with a modern API for easy integration with existing systems. Compatible with various packagers, SSAI, DRM, and CDNs, making it easy to fit into complex media workflows.</p>
+        <p><strong>Cambria Stream/Packager:</strong> Cloud-native live encoder and packager, easily deployable via Docker and scalable with Kubernetes.</p>
+        <p><strong>Cambria Stream Manager:</strong> Web-based UI for managing cloud-based encoder networks with monitoring, alerts, and automated failover.</p>
       </>
     ),
   },

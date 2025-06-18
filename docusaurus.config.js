@@ -11,7 +11,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Capella Documents',
-  tagline: "Welcome to the Capella's Documentation",
+  tagline: "This website provides users with comprehensive documentation and guides for all Capella's products.",
   favicon: 'img/capellalogo.png',
 
   // Set the production url of your site here
