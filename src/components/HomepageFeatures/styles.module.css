@@ -8,14 +8,12 @@ html, body, #__docusaurus {
   flex-direction: column;
 }
 
-/* Center the main content with reduced spacing */
+/* Main content with minimal spacing */
 main {
-  flex: 1;
+  flex: 1 0 auto;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Changed from center to flex-start */
-  padding: 1rem 1rem; /* Reduced padding */
-  min-height: calc(100vh - var(--ifm-navbar-height) - var(--ifm-footer-height));
+  padding: 0.5rem 1rem;
 }
 
 /* Ensure features container takes full width and centers content */
