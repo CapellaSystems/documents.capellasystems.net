@@ -4,32 +4,34 @@ import styles from './styles.module.css';
 
 const FeatureList = [
   {
-    title: 'Easy to Use',
+    title: 'VOD Transcoding Products',
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        <p><strong>Cambria File Transcoder (FTC):</strong> A flexible and scalable transcoder built for integration and fine-tuned for efficiency. Cloud-native but equally functional on-prem or hybrid. The enterprise solution for industrial-strength transcoding.</p>
+        <p><strong>Cambria Cluster:</strong> A scalable transcoding network of multiple Cambria FTC machines for processing large volumes of video files, managed by the Cambria Cluster Manager.</p>
+        <p><strong>Cambria FTC Packager:</strong> Flexible and efficient VOD packager that imports various offline file formats and repackages them into multiple adaptive streaming formats including HLS, MPEG-Dash, and CMAF, with support for encryption and ad insertion.</p>
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
+    title: 'Live Encoding On-Premise Products',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        <p><strong>Cambria Live/Live Editor:</strong> Functions as a standalone, all-in-one live studio encoder or as part of a network of multiple Cambria Live workstations managed by Cambria Broadcast Manager.</p>
+        <p><strong>Cambria Broadcast Manager (BCM):</strong> Manages multiple Cambria Live workstations for a fully automated live streaming workflow, handling ad insertion, scheduled live streaming, and more.</p>
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: 'Live Encoding in the Cloud',
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        <p><strong>Cambria Stream/Stream Packager:</strong> A flexible and scalable live encoder and packager designed for cloud-based live streaming workflows. Easily deployable via Docker and scalable with Kubernetes.</p>
+        <p><strong>Cambria Stream Manager (CSM):</strong> Features an easy-to-use web UI to oversee cloud-based networks of Cambria Stream Encoders and Packagers, with monitoring, alerts, notifications, and automated failover switching.</p>
+        <p><strong>Flexibility:</strong> Highly customizable engine with a modern API for easy integration with existing systems. Compatible with various packagers, SSAI, DRM, and CDNs, making it easy to fit into complex media workflows.</p>
       </>
     ),
   },
