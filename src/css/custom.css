@@ -79,21 +79,35 @@ main {
 /* Footer styling */
 .footer {
   text-align: center;
-  padding: 0.5rem 0;
+  padding: 0.5rem 0 0;
   margin-top: auto;
   position: relative;
-  flex-shrink: 0;
-  width: 100vw;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+  width: 100%;
   background: var(--ifm-footer-background-color);
 }
 
+.footer__container {
+  max-width: var(--ifm-container-width);
+  margin: 0 auto;
+  padding: 0 1rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer__title {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
 .footer__links {
+  display: flex;
   justify-content: center;
-  padding: 0.5rem 0 1.5rem; /* Added bottom padding for the line */
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0.75rem 0;
   margin: 0;
   position: relative;
   width: 100%;
@@ -101,13 +115,22 @@ main {
 
 .footer__links::after {
   content: '';
-  display: block;
   position: absolute;
-  left: 0;
-  bottom: 0.5rem;
-  width: 100%;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
   height: 1px;
   background-color: rgba(255, 255, 255, 0.815);
+  z-index: 1;
+}
+
+.footer__links a {
+  position: relative;
+  z-index: 2;
+  background: var(--ifm-footer-background-color);
+  padding: 0 0.5rem;
+  display: inline-block;
 }
 
 .featureImg {
