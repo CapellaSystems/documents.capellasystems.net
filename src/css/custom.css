@@ -47,7 +47,7 @@ main {
   flex-direction: column;
   justify-content: flex-start; /* Changed from center to flex-start */
   padding: 1rem 1rem; /* Reduced padding */
-  min-height: auto; /* Changed from fixed height to auto */
+  min-height: calc(100vh - var(--ifm-navbar-height) - var(--ifm-footer-height));
 }
 
 /* Ensure features container takes full width and centers content */
