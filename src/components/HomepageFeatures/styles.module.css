@@ -1,8 +1,41 @@
-.features {
+/* Ensure full viewport height and proper layout */
+html, body, #__docusaurus {
+  height: 100%;
+}
+
+#__docusaurus {
   display: flex;
-  align-items: center;
-  padding: 2rem 0;
+  flex-direction: column;
+}
+
+/* Center the main content with reduced spacing */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Changed from center to flex-start */
+  padding: 1rem 1rem; /* Reduced padding */
+  min-height: calc(100vh - var(--ifm-navbar-height) - var(--ifm-footer-height));
+}
+
+/* Ensure features container takes full width and centers content */
+.features {
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+/* Style the feature cards */
+.feature {
+  flex: 1;
+  min-width: 300px;
+  max-width: 400px;
+  margin-bottom: 2rem;
 }
 
 .featureImg {

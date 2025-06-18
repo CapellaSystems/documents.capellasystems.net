@@ -30,46 +30,6 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-/* Ensure full viewport height and proper layout */
-html, body, #__docusaurus {
-  height: 100%;
-}
-
-#__docusaurus {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Center the main content with reduced spacing */
-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start; /* Changed from center to flex-start */
-  padding: 1rem 1rem; /* Reduced padding */
-  min-height: calc(100vh - var(--ifm-navbar-height) - var(--ifm-footer-height));
-}
-
-/* Ensure features container takes full width and centers content */
-.features {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-}
-
-/* Style the feature cards */
-.feature {
-  flex: 1;
-  min-width: 300px;
-  max-width: 400px;
-  margin-bottom: 2rem;
-}
-
 .featureImg {
   width: 100%;
   max-width: 370px;
@@ -95,7 +55,7 @@ main {
 .footer__links::after {
   content: '';
   display: block;
-  width: 100%;
+  width: absolute;
   height: 1px;
   margin: 1rem 0;
   background-color: rgba(255, 255, 255, 0.815);
