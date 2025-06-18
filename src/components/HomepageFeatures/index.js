@@ -5,18 +5,17 @@ import styles from './styles.module.css';
 const FeatureList = [
   {
     title: 'VOD Transcoding',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    image: '/img/ftc-flow.png',
     description: (
       <>
-        <p><strong>Cambria FTC:</strong> High-performance file transcoder with exceptional video quality and superior transcoding speed. Cloud-native or on-premises deployment options.</p>
+        <p><strong>Cambria FTC/FTC Packager:</strong> High-performance file transcoder with exceptional video quality and superior transcoding speed. Cloud-native or on-premises deployment options.</p>
         <p><strong>Cambria Cluster:</strong> Scalable network of FTC machines for large-volume video processing, managed through Cluster Manager.</p>
-        <p><strong>Cambria FTC Packager:</strong> Flexible VOD packager supporting HLS, MPEG-Dash, and CMAF formats with encryption and ad insertion.</p>
       </>
     ),
   },
   {
     title: 'Live Encoding (On-Premise)',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    image: '/img/live-flow.png',
     description: (
       <>
         <p><strong>Cambria Live/Editor:</strong> Professional live studio encoder with robust ad insertion and reliable streaming output.</p>
@@ -25,8 +24,8 @@ const FeatureList = [
     ),
   },
   {
-    title: 'Cloud Solutions',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: 'Live Encoding (In the Cloud)',
+    image: '/img/stream-flow.png',
     description: (
       <>
         <p><strong>Cambria Stream/Packager:</strong> Cloud-native live encoder and packager, easily deployable via Docker and scalable with Kubernetes.</p>
@@ -36,11 +35,11 @@ const FeatureList = [
   },
 ];
 
-function Feature({Svg, title, description}) {
+function Feature({image, title, description}) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
+        <img src={image} className={styles.featureImg} alt={title} />
       </div>
       <div className="text--center padding-horiz--md">
         <Heading as="h3">{title}</Heading>

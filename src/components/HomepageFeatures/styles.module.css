@@ -5,7 +5,51 @@
   width: 100%;
 }
 
-.featureSvg {
-  height: 200px;
-  width: 200px;
+.featureImg {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+/* Style for the feature card */
+.col {
+  padding: 1.5rem;
+  background-color: #f0f7ff; /* Light blue background */
+  border-radius: 8px;
+  margin: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for the card */
+.col:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the feature content */
+.text--center {
+  padding: 1rem;
+}
+
+/* Ensure text is readable on the blue background */
+.text--center h3 {
+  color: #1a365d; /* Dark blue for headings */
+  margin-bottom: 1rem;
+}
+
+.text--center p {
+  color: #2d3748; /* Dark gray for text */
+  margin-bottom: 0.75rem;
+  text-align: left;
+}
+
+/* Make sure links in the card are visible */
+.text--center a {
+  color: #2b6cb0;
+  text-decoration: none;
+}
+
+.text--center a:hover {
+  text-decoration: underline;
 }
