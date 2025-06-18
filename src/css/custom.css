@@ -36,13 +36,7 @@
 
 .footer__links {
   justify-content: center;
-  padding-bottom: 2rem;
-  margin-bottom: 2rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-[data-theme='light'] .footer__links {
-  border-bottom-color: rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(204, 204, 204, 0.815);
 }
 
 .footer__copyright {
