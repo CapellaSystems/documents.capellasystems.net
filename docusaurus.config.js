@@ -12,7 +12,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 const config = {
   title: 'Capella Documents',
   tagline: "Welcome to the Capella's Documentation",
-  favicon: 'img/capellalogo.png',
+  favicon: 'img/capellalogo.svg',
 
   // Set the production url of your site here
   url: 'https://documents.capellasystems.net',
