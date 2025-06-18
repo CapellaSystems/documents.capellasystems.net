@@ -29,15 +29,23 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-/* Center footer content */
+/* Footer styling */
 .footer {
   text-align: center;
 }
 
 .footer__links {
   justify-content: center;
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='light'] .footer__links {
+  border-bottom-color: rgba(0, 0, 0, 0.1);
 }
 
 .footer__copyright {
   text-align: center;
+  padding-top: 2rem;
 }
