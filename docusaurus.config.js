@@ -69,12 +69,12 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
-      image: 'img/capellalogo.svg',
+      image: 'img/capellalogo.png',
       navbar: {
         title: 'Capella Documentation',
         logo: {
           alt: 'My Site Logo',
-          src: 'img/capellalogo.svg',
+          src: 'img/capellalogo.png',
         },
         items: [
 		  {
