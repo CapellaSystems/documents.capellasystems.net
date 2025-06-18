@@ -6,6 +6,16 @@
 
 /* You can override the default Infima variables here. */
 :root {
+  /* Responsive layout variables */
+  --container-max-width: 100%;
+  --container-max-height: 100%;
+  --feature-min-width: 280px;
+  --feature-max-width: 400px;
+  --feature-max-height: 300px;
+  --container-padding: 1rem;
+  --gap-small: 0.5rem;
+  --gap-medium: 1rem;
+  --gap-large: 2rem;
   --ifm-color-primary: #469ece;
   --ifm-color-primary-dark: #5cacd6;
   --ifm-color-primary-darker: #50a7d3;
@@ -15,7 +25,7 @@
   --ifm-color-primary-lightest: #c6ddf0;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-  --ifm-footer-height: 100px; /* Define footer height for calculations */
+  --ifm-footer-height: 80px; /* Define footer height for calculations */
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -30,42 +40,173 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
+/* Responsive container */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  max-height: var(--container-max-height);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Ensure proper layout */
+html, body, #__docusaurus {
+  height: auto;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#__docusaurus {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Main content styles */
+main {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  min-height: 0;
+}
+
 /* Footer styling */
 .footer {
   text-align: center;
-  padding: 2rem 0;
+  padding: 0.5rem 0;
   margin-top: auto;
+  position: relative;
+  flex-shrink: 0;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  background: var(--ifm-footer-background-color);
 }
 
 .footer__links {
   justify-content: center;
-  padding: 0;
+  padding: 0.5rem 0 1.5rem; /* Added bottom padding for the line */
   margin: 0;
+  position: relative;
+  width: 100%;
 }
 
 .footer__links::after {
   content: '';
   display: block;
-  width: absolute;
+  position: absolute;
+  left: 0;
+  bottom: 0.5rem; /* Position at the bottom of the links container */
+  width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
   height: 1px;
-  margin: 1rem 0;
   background-color: rgba(255, 255, 255, 0.815);
 }
 
-/* Style the feature cards */
-.feature {
-  flex: 1;
-  min-width: 300px;
-  max-width: 400px;
+.featureImg {
+  width: 200px;
+  height: 370px;
+  margin: 0 auto;
 }
 
+/* Responsive adjustments */
+@media (max-width: 1920px) {
+  .feature {
+    flex: 1 1 calc(50% - 2rem);
+    max-width: calc(50% - 2rem);
+  }
+}
+
+
+@media (max-width: 768px) {
+  :root {
+    --container-padding: 0.75rem;
+  }
+  
+  .feature {
+    max-width: 100%;
+    margin-bottom: 0rem;
+  }
+  
+  .footer {
+    padding: 0.25rem 0;
+  }
+  
+  .footer__links::after {
+    margin: 0.25rem 0;
+  }
+}
+
+/* Large desktop screens */
+@media (min-width: 2000px) {
+  :root {
+    --container-max-width: 100%;
+    --container-max-height: 100%;
+    --feature-max-width: 240px;
+    --feature-max-height: 400px; /* Slightly taller on larger screens */
+  }
+}
+
+/* Feature cards container */
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+  padding: 2rem 0;
+}
+
+/* Individual feature card */
+.feature {
+  flex: 1 1 var(--feature-min-width);
+  max-width: var(--feature-max-width);
+  max-height: var(--feature-max-height);
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 1rem;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Ensure all cards are the same height */
+.feature > div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Image container */
+.feature .text--center {
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+}
+
+/* Feature image */
 .featureImg {
   width: 100%;
-  max-width: 370px;
-  height: auto;
+  max-width: 100%;
+  height: var(--feature-max-height);
   object-fit: contain;
   margin: 0 auto;
   display: block;
+}
+
+/* Content below image */
+.feature .text--center + div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .footer__copyright {
