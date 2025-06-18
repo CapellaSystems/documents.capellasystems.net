@@ -32,33 +32,39 @@
 /* Footer styling */
 .footer {
   text-align: center;
-  padding: 0;
-  margin: 0;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.footer > div {
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .footer__links {
   justify-content: center;
-  padding: 0;
-  margin: 0;
-}
-
-.footer__links > div {
-  max-width: 100%;
-  padding: 0;
-  margin: 0;
+  padding: 1rem 0 !important;
+  margin: 0 !important;
+  position: relative;
 }
 
 .footer__links::after {
   content: '';
-  display: block;
-  width: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
   height: 1px;
-  background-color: rgba(255, 255, 255, 0.815);
-  margin: 1rem 0;
+  background-color: rgba(204, 204, 204, 0.815);
+}
+
+[data-theme='dark'] .footer__links::after {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .footer__copyright {
   text-align: center;
-  padding: 0;
-  margin: 0;
+  padding: 1rem 0 !important;
+  margin: 0 !important;
 }
