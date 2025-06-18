@@ -12,7 +12,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 const config = {
   title: 'Capella Documents',
   tagline: "Welcome to the Capella's Documentation",
-  favicon: 'img/favicon.ico',
+  favicon: 'img/capellalogo.png',
 
   // Set the production url of your site here
   url: 'https://documents.capellasystems.net',
@@ -69,12 +69,12 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
-      image: 'img/docusaurus-social-card.jpg',
+      image: 'img/capellalogo.png',
       navbar: {
         title: 'Capella Documentation',
         logo: {
           alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          src: 'img/capellalogo.png',
         },
         items: [
 		  {
