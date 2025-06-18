@@ -15,6 +15,7 @@
   --ifm-color-primary-lightest: #c6ddf0;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-footer-height: 100px; /* Define footer height for calculations */
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -29,11 +30,60 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
+/* Ensure full viewport height and proper layout */
+html, body, #__docusaurus {
+  height: 100%;
+}
+
+#__docusaurus {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Center the main content and add spacing */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem 1rem;
+  min-height: calc(100vh - var(--ifm-navbar-height) - var(--ifm-footer-height));
+}
+
+/* Ensure features container takes full width and centers content */
+.features {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+/* Style the feature cards */
+.feature {
+  flex: 1;
+  min-width: 300px;
+  max-width: 400px;
+  margin-bottom: 2rem;
+}
+
+.featureImg {
+  width: 100%;
+  max-width: 370px;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto 1.5rem;
+  display: block;
+}
+
 /* Footer styling */
 .footer {
   text-align: center;
-  padding: 0;
-  margin: 0;
+  padding: 2rem 0;
+  margin-top: auto;
 }
 
 .footer__links {
@@ -45,12 +95,9 @@
 .footer__links::after {
   content: '';
   display: block;
-  width: ab
+  width: absolute;
   height: 1px;
   margin: 1rem 0;
-}
-
-.footer__links::after {
   background-color: rgba(255, 255, 255, 0.815);
 }
 
