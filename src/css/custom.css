@@ -45,7 +45,7 @@
 .footer__links::after {
   content: '';
   display: block;
-  width: 100%;
+  width: ab
   height: 1px;
   margin: 1rem 0;
 }
