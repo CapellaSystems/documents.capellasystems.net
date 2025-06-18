@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 const FeatureList = [
   {
     title: 'VOD Transcoding',
-    Svg: require('@site/static/img/ftc-flow.png').default,
+    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
         <p><strong>Cambria FTC:</strong> High-performance file transcoder with exceptional video quality and superior transcoding speed. Cloud-native or on-premises deployment options.</p>
@@ -16,7 +16,7 @@ const FeatureList = [
   },
   {
     title: 'Live Encoding (On-Premise)',
-    Svg: require('@site/static/img/live-flow.png').default,
+    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
         <p><strong>Cambria Live/Editor:</strong> Professional live studio encoder with robust ad insertion and reliable streaming output.</p>
@@ -26,7 +26,7 @@ const FeatureList = [
   },
   {
     title: 'Cloud Solutions',
-    Svg: require('@site/static/img/stream-flow.png').default,
+    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
         <p><strong>Cambria Stream/Packager:</strong> Cloud-native live encoder and packager, easily deployable via Docker and scalable with Kubernetes.</p>
