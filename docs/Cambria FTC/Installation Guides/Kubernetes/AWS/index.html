@@ -5,7 +5,7 @@
 <meta name="generator" content="Docusaurus v3.7.0">
 <title data-rh="true">Cambria Cluster / FTC 5.5.0 - AWS Kubernetes | Capella Documents</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://documents.capellasystems.net/img/capellalogo.png"><meta data-rh="true" name="twitter:image" content="https://documents.capellasystems.net/img/capellalogo.png"><meta data-rh="true" property="og:url" content="https://documents.capellasystems.net/docs/Cambria FTC/Installation Guides/Kubernetes/AWS/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Cambria Cluster / FTC 5.5.0 - AWS Kubernetes | Capella Documents"><meta data-rh="true" name="description" content="Document History"><meta data-rh="true" property="og:description" content="Document History"><link data-rh="true" rel="icon" href="/img/capellalogo.png"><link data-rh="true" rel="canonical" href="https://documents.capellasystems.net/docs/Cambria FTC/Installation Guides/Kubernetes/AWS/"><link data-rh="true" rel="alternate" href="https://documents.capellasystems.net/docs/Cambria FTC/Installation Guides/Kubernetes/AWS/" hreflang="en"><link data-rh="true" rel="alternate" href="https://documents.capellasystems.net/docs/Cambria FTC/Installation Guides/Kubernetes/AWS/" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Capella Documents RSS Feed">
 <link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="Capella Documents Atom Feed"><link rel="stylesheet" href="/assets/css/styles.092a059b.css">
-<script src="/assets/js/runtime~main.c7583291.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.216ed35d.js" defer="defer"></script>
 <script src="/assets/js/main.01ae17cc.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -72,6 +72,152 @@
 <!-- -->● Not all AWS regions support the same resources (e.g., GPU availability varies by region).<br>
 <!-- -->● Consult AWS documentation to confirm available resources in your desired region.</p>
 </li>
-</ol></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--next" href="/docs/Cambria FTC/Installation Guides/Kubernetes/Akamai/"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Cambria Cluster / FTC 5.5.0 - Terraform on Akamai Kubernetes</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#document-history" class="table-of-contents__link toc-highlight">Document History</a><ul><li><a href="#limitations-and-security-information" class="table-of-contents__link toc-highlight">Limitations and Security Information</a></li></ul></li><li><a href="#️-important-before-you-begin" class="table-of-contents__link toc-highlight">⚠️ Important: Before You Begin</a></li><li><a href="#️-critical-information-read-before-proceeding-with-installation" class="table-of-contents__link toc-highlight">⚠️ Critical Information: Read Before Proceeding with Installation</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Company</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://www.capellasystems.net/about-capella" target="_blank" rel="noopener noreferrer" class="footer__link-item">About<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.capellasystems.net/newsfeed" target="_blank" rel="noopener noreferrer" class="footer__link-item">Newsfeed<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.capellasystems.net/contact-us" target="_blank" rel="noopener noreferrer" class="footer__link-item">Contact Us<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://documents.capellasystems.net/docs/Cambria%20Stream/Installation%20Guides/Kubernetes/AWS/placeholder" target="_blank" rel="noopener noreferrer" class="footer__link-item">Cambria Stream<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://documents.capellasystems.net/docs/Cambria%20FTC/Installation%20Guides/Kubernetes/AWS/Akamai_Linode_Kubernetes_CambriaClusterFTC_Installation" target="_blank" rel="noopener noreferrer" class="footer__link-item">Cambria FTC<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">Other</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://www.capellasystems.net/terms-of-use" target="_blank" rel="noopener noreferrer" class="footer__link-item">Terms of Use<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.capellasystems.net/online-privacy-policy" target="_blank" rel="noopener noreferrer" class="footer__link-item">Privacy Policy<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 Capella Systems</div></div></div></footer></div>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="document-overview">Document Overview<a href="#document-overview" class="hash-link" aria-label="Direct link to Document Overview" title="Direct link to Document Overview">​</a></h2>
+<p>The purpose of this document is to provide a walkthrough of the installation and initial testing process of the <strong>Cambria Cluster</strong> and <strong>Cambria FTC</strong> applications in a Kubernetes environment.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="document-structure">Document Structure<a href="#document-structure" class="hash-link" aria-label="Direct link to Document Structure" title="Direct link to Document Structure">​</a></h3>
+<ol>
+<li>Overview of the Cambria Cluster / FTC Environment in a Kubernetes Environment</li>
+<li>Preparation for the installation (Prerequisites)</li>
+<li>Create and configure the Kubernetes Cluster</li>
+<li>Install Cambria Cluster and Cambria FTC on the Kubernetes Cluster</li>
+<li>Verify the installation is working properly</li>
+<li>Test the Cambria Cluster / FTC applications</li>
+<li>Update the Cambria Cluster / FTC applications on Kubernetes Cluster</li>
+<li>Delete a Kubernetes Cluster</li>
+<li>Quick Reference of Kubernetes Installation</li>
+<li>Quick Reference of Important Kubernetes Components (URLs, template projects, test player, etc.)</li>
+<li>Glossary of important terms</li>
+</ol>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="1-overview">1. Overview<a href="#1-overview" class="hash-link" aria-label="Direct link to 1. Overview" title="Direct link to 1. Overview">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="11-cambria-cluster--ftc-kubernetes-deployment">1.1 Cambria Cluster / FTC Kubernetes Deployment<a href="#11-cambria-cluster--ftc-kubernetes-deployment" class="hash-link" aria-label="Direct link to 1.1 Cambria Cluster / FTC Kubernetes Deployment" title="Direct link to 1.1 Cambria Cluster / FTC Kubernetes Deployment">​</a></h3>
+<p>There are two major applications involved in this Kubernetes installation:</p>
+<ul>
+<li><strong>Cambria Cluster</strong></li>
+<li><strong>Cambria FTC</strong></li>
+</ul>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="cambria-cluster">Cambria Cluster<a href="#cambria-cluster" class="hash-link" aria-label="Direct link to Cambria Cluster" title="Direct link to Cambria Cluster">​</a></h3>
+<p>This deployment is recommended to run on <strong>at least 3 nodes</strong> (<code>replica = 3</code>) with a <strong>LoadBalancer service</strong> that exposes the application externally.</p>
+<ul>
+<li>Each Cambria Cluster pod is installed on its own node.</li>
+<li>One pod acts as the <strong>leader</strong>, and the other two serve as <strong>replicas</strong>, allowing automatic failover.</li>
+</ul>
+<p>Each <strong>Cambria Cluster pod</strong> includes:</p>
+<ol>
+<li><code>Cambria Cluster</code> (application container)</li>
+<li><code>Leader Elector</code> tool – designates the pod leader</li>
+<li><code>Cambria FTC Autoscaler</code> tool – auto-deploys FTC workers based on job load:</li>
+</ol>
+<blockquote>
+<p><strong>Scaling Formula:</strong><br>
+<!-- -->Number of Nodes to Deploy = <code>(Number of Queued Jobs + 2) / 3</code></p>
+</blockquote>
+<p>Additionally:</p>
+<ul>
+<li>A <strong>PostgreSQL database</strong> pod is deployed per active Cambria Cluster pod.</li>
+<li>Databases are <strong>replicated</strong> for fault tolerance and data integrity.</li>
+</ul>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="cambria-ftc">Cambria FTC<a href="#cambria-ftc" class="hash-link" aria-label="Direct link to Cambria FTC" title="Direct link to Cambria FTC">​</a></h3>
+<p>Capella’s <strong>Cambria FTC</strong> deployment consists of <strong>one or more nodes</strong>, often using different instance types than the Cluster nodes.</p>
+<ul>
+<li>FTC pods are responsible for executing encoding jobs.</li>
+<li>Each pod is assigned its <strong>own node</strong>.</li>
+</ul>
+<p>Each <strong>Cambria FTC pod</strong> includes:</p>
+<ol>
+<li><code>Cambria FTC</code> (application container)</li>
+<li><code>Auto-Connect FTC</code> (dotnet tool) – performs:<!-- -->
+<ul>
+<li>Pod discovery</li>
+<li>Cluster identification</li>
+<li>FTC-Cluster auto-connect logic</li>
+<li>If no Cluster is found within ~20 minutes, the node is recycled</li>
+</ul>
+</li>
+<li><code>Pgcluster</code> – PostgreSQL container for job and state persistence (pod lifetime only)</li>
+</ol>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="deployment-note">Deployment Note<a href="#deployment-note" class="hash-link" aria-label="Direct link to Deployment Note" title="Direct link to Deployment Note">​</a></h3>
+<p>Each node in the Kubernetes Cluster will either be running the <strong>Cambria Cluster deployment</strong> or the <strong>Cambria FTC deployment</strong>, but not both.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="12-resource-usage">1.2 Resource Usage<a href="#12-resource-usage" class="hash-link" aria-label="Direct link to 1.2 Resource Usage" title="Direct link to 1.2 Resource Usage">​</a></h3>
+<p>The resources used and their quantities will vary depending on requirements and environments.<br>
+<!-- -->Below is general information about major resource usage. Other resources may also be required.<br>
+<!-- -->Please consult AWS and <code>eksctl</code> documentation for more details.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="reference-documentation">Reference Documentation:<a href="#reference-documentation" class="hash-link" aria-label="Direct link to Reference Documentation:" title="Direct link to Reference Documentation:">​</a></h4>
+<ul>
+<li><a href="https://docs.aws.amazon.com/eks/latest/userguide/eks-deployment-options.html" target="_blank" rel="noopener noreferrer">EKS Deployment Options</a></li>
+<li><a href="https://eksctl.io/usage/creating-and-managing-clusters/" target="_blank" rel="noopener noreferrer">eksctl: Creating and Managing Clusters</a></li>
+<li><a href="https://eksctl.io/usage/vpc-networking/" target="_blank" rel="noopener noreferrer">eksctl: VPC Networking</a></li>
+<li><a href="https://docs.aws.amazon.com/eks/latest/best-practices/subnets.html" target="_blank" rel="noopener noreferrer">EKS Subnet Best Practices</a></li>
+<li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AvailableIpPerENI.html" target="_blank" rel="noopener noreferrer">AWS EC2: Available IPs per ENI</a></li>
+<li><a href="https://docs.aws.amazon.com/eks/latest/best-practices/network-security.html" target="_blank" rel="noopener noreferrer">EKS Network Security Best Practices</a></li>
+</ul>
+<hr>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="resource-overview">Resource Overview<a href="#resource-overview" class="hash-link" aria-label="Direct link to Resource Overview" title="Direct link to Resource Overview">​</a></h4>
+<table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody><tr><td><strong>Load Balancers</strong></td><td>- 0–3 Classic Load Balancers (Manager WebUI, Manager Web Server, Grafana)</td></tr></tbody></table>
+<ul>
+<li>0–1 Network Load Balancer (Ingress)                                    |
+| <strong>Nodes</strong>          | - <code>X</code> Cambria Manager Instances (Default: 3)</li>
+<li><code>Y</code> Cambria FTC Instances (Default max: 20)                            |
+| <strong>Networking</strong>     | - 1 VPC (default)</li>
+<li>3 public subnets and 3 private subnets (2 subnets reserved)</li>
+<li>Default <code>/16</code> CIDR</li>
+<li>Each subnet: <code>/19</code> CIDR                                                 |</li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> For CIDR planning, refer to<br>
+<a href="https://docs.aws.amazon.com/eks/latest/best-practices/networking.html" target="_blank" rel="noopener noreferrer">EKS Best Practices: Networking</a></p>
+</blockquote>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="security-groups">Security Groups<a href="#security-groups" class="hash-link" aria-label="Direct link to Security Groups" title="Direct link to Security Groups">​</a></h4>
+<ul>
+<li>Default: 1 security group for the <strong>control plane</strong></li>
+<li>Default: <code>X</code> security groups — one per <strong>node group</strong></li>
+</ul>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="13-aws-machine-information-and-benchmark">1.3 AWS Machine Information and Benchmark<a href="#13-aws-machine-information-and-benchmark" class="hash-link" aria-label="Direct link to 1.3 AWS Machine Information and Benchmark" title="Direct link to 1.3 AWS Machine Information and Benchmark">​</a></h3>
+<p>The following benchmark compares two AWS EC2 instance types.<br>
+<!-- -->This information is current as of <strong>September 2023</strong>.</p>
+<blockquote>
+<p>⚠️ Benchmark results reflect workloads that involve read/write access to <strong>AWS S3</strong>, which affects transcoding speed.</p>
+</blockquote>
+<hr>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="benchmark-job-configuration">Benchmark Job Configuration<a href="#benchmark-job-configuration" class="hash-link" aria-label="Direct link to Benchmark Job Configuration" title="Direct link to Benchmark Job Configuration">​</a></h4>
+<table><thead><tr><th>Type</th><th>Codec</th><th>Frame Rate</th><th>Resolution</th></tr></thead><tbody><tr><td><strong>Source</strong></td><td>TS</td><td>H.264</td><td>30 fps, 1920×1080 @ 8 Mbps</td></tr><tr><td><strong>Output</strong></td><td>HLS/TS</td><td>H.264</td><td>29.97 fps</td></tr></tbody></table>
+<ul>
+<li>1920×1080 @ 4 Mbps</li>
+<li>1280×720 @ 2.4 Mbps</li>
+<li>640×480 @ 0.8 Mbps</li>
+<li>320×240 @ 0.3 Mbps |</li>
+</ul>
+<hr>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="a-c6a4xlarge-amd-epyc-7r13">a. <code>c6a.4xlarge</code> [AMD EPYC 7R13]<a href="#a-c6a4xlarge-amd-epyc-7r13" class="hash-link" aria-label="Direct link to a-c6a4xlarge-amd-epyc-7r13" title="Direct link to a-c6a4xlarge-amd-epyc-7r13">​</a></h4>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="machine-info">Machine Info<a href="#machine-info" class="hash-link" aria-label="Direct link to Machine Info" title="Direct link to Machine Info">​</a></h5>
+<table><thead><tr><th>Name</th><th>RAM</th><th>CPUs</th><th>Storage</th><th>Network Performance</th><th>Cost/Hour</th></tr></thead><tbody><tr><td>c6a.4xlarge</td><td>32 GB</td><td>16</td><td>Any</td><td>12.5 Gbps</td><td>$0.612</td></tr></tbody></table>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="benchmark-results">Benchmark Results<a href="#benchmark-results" class="hash-link" aria-label="Direct link to Benchmark Results" title="Direct link to Benchmark Results">​</a></h5>
+<table><thead><tr><th>Concurrent Jobs</th><th>Real-Time Speed</th><th>CPU Usage</th></tr></thead><tbody><tr><td>2</td><td>- 0.73x RT per job (slower than real-time)</td><td></td></tr></tbody></table>
+<ul>
+<li>Total throughput: 1.46x RT<br>
+<!-- -->(≈ 42 sec to transcode 1 min)          | 100%      |</li>
+</ul>
+<hr>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="b-c6a16xlarge-amd-epyc-7r13">b. <code>c6a.16xlarge</code> [AMD EPYC 7R13]<a href="#b-c6a16xlarge-amd-epyc-7r13" class="hash-link" aria-label="Direct link to b-c6a16xlarge-amd-epyc-7r13" title="Direct link to b-c6a16xlarge-amd-epyc-7r13">​</a></h4>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="machine-info-1">Machine Info<a href="#machine-info-1" class="hash-link" aria-label="Direct link to Machine Info" title="Direct link to Machine Info">​</a></h5>
+<table><thead><tr><th>Name</th><th>RAM</th><th>CPUs</th><th>Storage</th><th>Network Performance</th><th>Cost/Hour</th></tr></thead><tbody><tr><td>c6a.16xlarge</td><td>128 GB</td><td>64</td><td>Any</td><td>25 Gbps</td><td>$2.448</td></tr></tbody></table>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="benchmark-results-1">Benchmark Results<a href="#benchmark-results-1" class="hash-link" aria-label="Direct link to Benchmark Results" title="Direct link to Benchmark Results">​</a></h5>
+<table><thead><tr><th>Concurrent Jobs</th><th>Real-Time Speed</th><th>CPU Usage</th></tr></thead><tbody><tr><td>2</td><td>- 2.17x RT per job (faster than real-time)</td><td></td></tr></tbody></table>
+<ul>
+<li>Total throughput: 4.34x RT<br>
+<!-- -->(≈ 21 sec to transcode 1 min)           | ~84%       |</li>
+</ul>
+<hr>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="benchmark-summary">Benchmark Summary<a href="#benchmark-summary" class="hash-link" aria-label="Direct link to Benchmark Summary" title="Direct link to Benchmark Summary">​</a></h4>
+<ul>
+<li>The <strong>c6a.16xlarge</strong> instance provides significantly higher throughput due to increased compute resources.</li>
+<li>However, the <strong>c6a.4xlarge</strong> instance is <strong>more cost-effective per hour</strong>.</li>
+<li>The choice between the two should consider both budget and throughput requirements.</li>
+</ul></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--next" href="/docs/Cambria FTC/Installation Guides/Kubernetes/Akamai/"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Cambria Cluster / FTC 5.5.0 - Terraform on Akamai Kubernetes</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#document-history" class="table-of-contents__link toc-highlight">Document History</a><ul><li><a href="#limitations-and-security-information" class="table-of-contents__link toc-highlight">Limitations and Security Information</a></li></ul></li><li><a href="#️-important-before-you-begin" class="table-of-contents__link toc-highlight">⚠️ Important: Before You Begin</a></li><li><a href="#️-critical-information-read-before-proceeding-with-installation" class="table-of-contents__link toc-highlight">⚠️ Critical Information: Read Before Proceeding with Installation</a></li><li><a href="#document-overview" class="table-of-contents__link toc-highlight">Document Overview</a><ul><li><a href="#document-structure" class="table-of-contents__link toc-highlight">Document Structure</a></li></ul></li><li><a href="#1-overview" class="table-of-contents__link toc-highlight">1. Overview</a><ul><li><a href="#11-cambria-cluster--ftc-kubernetes-deployment" class="table-of-contents__link toc-highlight">1.1 Cambria Cluster / FTC Kubernetes Deployment</a></li><li><a href="#cambria-cluster" class="table-of-contents__link toc-highlight">Cambria Cluster</a></li><li><a href="#cambria-ftc" class="table-of-contents__link toc-highlight">Cambria FTC</a></li><li><a href="#deployment-note" class="table-of-contents__link toc-highlight">Deployment Note</a></li><li><a href="#12-resource-usage" class="table-of-contents__link toc-highlight">1.2 Resource Usage</a></li><li><a href="#13-aws-machine-information-and-benchmark" class="table-of-contents__link toc-highlight">1.3 AWS Machine Information and Benchmark</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Company</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://www.capellasystems.net/about-capella" target="_blank" rel="noopener noreferrer" class="footer__link-item">About<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.capellasystems.net/newsfeed" target="_blank" rel="noopener noreferrer" class="footer__link-item">Newsfeed<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.capellasystems.net/contact-us" target="_blank" rel="noopener noreferrer" class="footer__link-item">Contact Us<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://documents.capellasystems.net/docs/Cambria%20Stream/Installation%20Guides/Kubernetes/AWS/placeholder" target="_blank" rel="noopener noreferrer" class="footer__link-item">Cambria Stream<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://documents.capellasystems.net/docs/Cambria%20FTC/Installation%20Guides/Kubernetes/AWS/Akamai_Linode_Kubernetes_CambriaClusterFTC_Installation" target="_blank" rel="noopener noreferrer" class="footer__link-item">Cambria FTC<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">Other</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://www.capellasystems.net/terms-of-use" target="_blank" rel="noopener noreferrer" class="footer__link-item">Terms of Use<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.capellasystems.net/online-privacy-policy" target="_blank" rel="noopener noreferrer" class="footer__link-item">Privacy Policy<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 Capella Systems</div></div></div></footer></div>
 </body>
 </html>
