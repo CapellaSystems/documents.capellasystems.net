@@ -256,4 +256,223 @@ This information is current as of **September 2023**.
 - However, the **c6a.4xlarge** instance is **more cost-effective per hour**.
 - The choice between the two should consider both budget and throughput requirements.
 
+### 1.4 Cambria Application Access
 
+The Cambria applications can be accessed using the following methods:
+
+---
+
+#### 1.4.1 External Access via TCP Load Balancer
+
+By default, Cambria installs with one TCP Load Balancer for:
+
+- **Manager WebUI + License Manager**
+- **Web / REST API Server**
+
+These load balancers are publicly reachable by IP or domain name with their configured ports.
+
+**Examples**:
+
+- **Cambria Manager WebUI:** `https://44.33.212.155:8161`
+- **Cambria REST API:** `https://121.121.121.121:8650/CambriaFC/v1/SystemInfo`
+
+> 🔄 You can enable or disable external access via TCP Load Balancer by editing the Helm configuration (see section 4.2).  
+> If disabled, you'll need to configure another access method below.
+
+---
+
+#### 1.4.2 HTTP Ingress via Reverse Proxy
+
+If you’d rather use a purchased domain (e.g., from GoDaddy) or disable public IP access, you can expose services through an HTTP Ingress.
+
+- Only **one IP/domain name** is needed.
+- Traffic is routed by subdomain:
+
+  - `webui.mydomain.com` → Cambria WebUI  
+  - `api.mydomain.com` → Cambria Web Server / REST API  
+  - `monitoring.mydomain.com` → Grafana Dashboard
+
+> ⚠️ Capella provides a default ingress hostname for testing. In production, you must configure your own hostname, SSL certificate, and domain settings (detailed later in this guide).
+
+---
+
+### 1.5 Firewall Information
+
+Default Kubernetes cluster setup includes basic virtual network firewalling. If using custom or more restrictive firewall rules, ensure the following ports are open:
+
+| Port  | Protocol | Traffic Direction | Description                                 |
+|-------|----------|------------------|---------------------------------------------|
+| 8650  | TCP      | Inbound          | Cambria Cluster REST API                    |
+| 8161  | TCP      | Inbound          | Cambria Cluster WebUI                       |
+| 8678  | TCP      | Inbound          | Cambria License Manager Web Server          |
+| 8481  | TCP      | Inbound          | Cambria License Manager WebUI               |
+| 9100  | TCP      | Inbound          | Prometheus Exporter for Cambria Cluster     |
+| 8648  | TCP      | Inbound          | Cambria FTC REST API                        |
+| 3100  | TCP      | Inbound          | Loki Logging Service                        |
+| 3000  | TCP      | Inbound          | Grafana Dashboard                           |
+| 443   | TCP      | Inbound          | Capella Ingress                             |
+| —     | TCP/UDP  | Outbound         | All outbound traffic                        |
+
+Additionally, ensure outbound/inbound access for Cambria licensing domains:
+
+| Domain                                      | Port | Protocol | Description                     |
+|--------------------------------------------|------|----------|---------------------------------|
+| `api.cryptlex.com`                         | 443  | TCP      | License Server                  |
+| `cryptlexapi.capellasystems.net`           | 8485 | TCP      | License Cache Server            |
+| `cpfs.capellasystems.net`                  | 8483 | TCP      | License Backup Server           |
+
+### 2. Prerequisites
+
+The following steps must be completed before starting the deployment process.
+
+---
+
+#### 2.1 Tools: Kubectl, Helm, Eksctl, and AWS CLI
+
+This guide uses `curl` and `unzip` to run commands and download required applications.
+
+Install dependencies on Ubuntu:
+
+```bash
+sudo apt update; sudo apt upgrade; sudo apt install curl unzip
+```
+
+Then download and prepare the deployment package:
+
+```bash
+curl -o CambriaClusterKubernetesAWS_5_5_0.zip -L "https://www.dropbox.com/scl/fi/4dg2024wbbq0lx1qbnk8e/CambriaClusterKubernetesAWS_5_5_0.zip?rlkey=j0q7xgxv2v60x4bcwfoesd8nv&st=zfnff3f2&dl=1"
+unzip CambriaClusterKubernetesAWS_5_5_0.zip
+chmod +x *.sh
+```
+
+> **Note:** Scripts are tested on **Ubuntu**. Other Linux distributions may work but are untested.
+
+---
+
+##### 2.1.1 Installation
+
+There are two options to install Kubernetes tools:
+
+**Option 1: Use Provided Scripts**
+
+```bash
+./installKubeTools.sh
+./installKubeToolsAws.sh
+```
+
+**Option 2: Manual Installation**
+
+- [Kubectl](https://kubernetes.io/docs/tasks/tools/)
+- [Helm](https://helm.sh/docs/intro/install/)
+- [Eksctl](https://eksctl.io/installation/)
+- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+
+---
+
+##### 2.1.2 Verification
+
+Run the following to verify installations:
+
+```bash
+kubectl version --client
+helm version
+eksctl version
+aws --version
+```
+
+---
+
+#### 2.2 Create and Configure AWS Permissions
+
+To create Kubernetes resources, IAM permissions must be configured.
+
+Run this to set your AWS account ID:
+
+```bash
+export AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query "Account" --output text)
+```
+
+---
+
+##### 2.2.1 Create Custom Policies
+
+Eksctl requires specific IAM policies. To create them:
+
+```bash
+./createEksctlCustomAwsPolicies.sh
+```
+
+If creation fails, verify the script and existing policies. Delete old ones if necessary.
+
+For more details: [Minimum eksctl IAM Policies](https://eksctl.io/usage/minimum-iam-policies/)
+
+---
+
+##### 2.2.2 Create and Assign Eksctl AWS Role
+
+1. Create a role `eksctl-user` with the following policies:
+
+- AmazonEC2FullAccess
+- AWSCloudFormationFullAccess
+- EksAllAccess
+- IamLimitedAccess
+
+2. Create the role via:
+
+```bash
+./createEksctlClusterUserRole.sh eksctl-user
+```
+
+> Must have permissions to create roles and instance profiles.
+
+3. On EC2, attach the new IAM role:
+Go to **Actions > Security > Modify IAM role** and choose `eksctl-user-instance-profile`.
+
+---
+
+### 3. Create Kubernetes Cluster
+
+This section describes how to create an EKS cluster and Cambria Cluster node group.
+
+---
+
+#### 3.1 Create AWS EKS Cluster and Node Group
+
+Recommendations:
+
+- **Cambria Cluster** handles encoding job scheduling.
+- Use at least **c7i.xlarge** for each node.
+- Set node count to **3** for redundancy.
+- One node is active; the other two serve as failover.
+
+---
+
+**Step 1: Set environment variables**
+
+```bash
+export CLUSTER_NAME=cambria-cluster
+export REGION=us-west-2
+export KUBEVERSION=1.32
+```
+
+---
+
+**Step 2: Create the cluster**
+
+```bash
+eksctl create cluster \
+--name=$CLUSTER_NAME \
+--region=$REGION \
+--version=$KUBEVERSION \
+--kubeconfig=./$CLUSTER_NAME-kubeconfig.yaml \
+--node-private-networking \
+--nodegroup-name=manager-nodes \
+--with-oidc \
+--node-ami-family=Ubuntu2204 \
+--nodes=3 \
+--instance-types=c7i.xlarge \
+--vpc-cidr=10.0.0.0/16
+```
+
+> Capella has also tested AmazonLinux2, but it does not support GPU workloads.
+> The lowest CIDR tested by Capella is `/19`.
