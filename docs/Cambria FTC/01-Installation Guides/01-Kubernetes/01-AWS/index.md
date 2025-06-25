@@ -476,3 +476,80 @@ eksctl create cluster \
 
 > Capella has also tested AmazonLinux2, but it does not support GPU workloads.
 > The lowest CIDR tested by Capella is `/19`.
+
+
+Run the following command to create the Kubernetes cluster using `eksctl`:
+
+```bash
+eksctl create cluster \
+  --name=$CLUSTER_NAME \
+  --region=$REGION \
+  --version=$KUBEVERSION \
+  --kubeconfig=./$CLUSTER_NAME-kubeconfig.yaml \
+  --node-private-networking \
+  --nodegroup-name=manager-nodes \
+  --with-oidc \
+  --node-ami-family=Ubuntu2204 \
+  --nodes=3 \
+  --instance-types=c7i.xlarge \
+  --vpc-cidr=10.0.0.0/16
+3. Set kubeconfig as an Environment Variable
+
+export KUBECONFIG=$CLUSTER_NAME-kubeconfig.yaml
+
+4. Verify Cluster Access
+
+kubectl get nodes
+Expected output should resemble:
+
+pgsql
+Copy
+Edit
+NAME                                         STATUS   ROLES    AGE     VERSION
+ip-10-0-12-44.us-west-2.compute.internal     Ready    <none>   118m    v1.32.0
+ip-10-0-16-207.us-west-2.compute.internal    Ready    <none>   118m    v1.32.0
+ip-10-0-22-84.us-west-2.compute.internal     Ready    <none>   118m    v1.32.0
+⚠️ If the output is different or an error occurs, verify deployment information, credentials, and permissions.
+
+3.2 Create EBS CSI Driver
+Step 1: Create IAM Role for CSI Plugin
+This IAM role is required to allow the CSI plugin to manage EBS volumes.
+
+eksctl create iamserviceaccount \
+  --name=ebs-csi-controller-sa \
+  --namespace=kube-system \
+  --cluster=$CLUSTER_NAME \
+  --region=$REGION \
+  --role-only \
+  --attach-policy-arn=arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy \
+  --approve \
+  --role-name=eksctl-ebs-csi-driver-role
+🔧 The role name (--role-name) must:
+
+Start with eksctl-
+
+Be unique to the cluster
+
+Be ≤ 64 characters
+
+Step 2: Install AWS EBS CSI Driver Addon
+bash
+Copy
+Edit
+eksctl create addon \
+  --name aws-ebs-csi-driver \
+  --cluster=$CLUSTER_NAME \
+  --region=$REGION \
+  --force \
+  --service-account-role-arn=arn:aws:iam::$AWS_ACCOUNT_ID:role/eksctl-ebs-csi-driver-role
+⚠️ This step installs the AWS EBS CSI plugin.
+It must be in Active status before continuing.
+If this fails, consider re-creating the cluster as the safest option.
+
+eksctl-ebs-csi-driver-role: the role name from the command in step 1
+eksctl create addon \
+--name aws-ebs-csi-driver \
+--cluster=$CLUSTER_NAME \
+--region=$REGION \
+--force \
+--service-account-role-arn=arn:aws:iam::$AWS_ACCOUNT_ID:role/eksctl-ebs-csi-driver-role
