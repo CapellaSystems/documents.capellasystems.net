@@ -68,3 +68,192 @@ Before starting the installation, carefully review the following considerations.
 7. **Verify Region-Specific Resource Availability**  
    ● Not all AWS regions support the same resources (e.g., GPU availability varies by region).  
    ● Consult AWS documentation to confirm available resources in your desired region.
+
+
+
+## Document Overview
+
+The purpose of this document is to provide a walkthrough of the installation and initial testing process of the **Cambria Cluster** and **Cambria FTC** applications in a Kubernetes environment.
+
+### Document Structure
+
+1. Overview of the Cambria Cluster / FTC Environment in a Kubernetes Environment  
+2. Preparation for the installation (Prerequisites)  
+3. Create and configure the Kubernetes Cluster  
+4. Install Cambria Cluster and Cambria FTC on the Kubernetes Cluster  
+5. Verify the installation is working properly  
+6. Test the Cambria Cluster / FTC applications  
+7. Update the Cambria Cluster / FTC applications on Kubernetes Cluster  
+8. Delete a Kubernetes Cluster  
+9. Quick Reference of Kubernetes Installation  
+10. Quick Reference of Important Kubernetes Components (URLs, template projects, test player, etc.)  
+11. Glossary of important terms  
+
+---
+
+## 1. Overview
+
+### 1.1 Cambria Cluster / FTC Kubernetes Deployment
+
+There are two major applications involved in this Kubernetes installation:
+
+- **Cambria Cluster**
+- **Cambria FTC**
+
+---
+
+### Cambria Cluster
+
+This deployment is recommended to run on **at least 3 nodes** (`replica = 3`) with a **LoadBalancer service** that exposes the application externally.
+
+- Each Cambria Cluster pod is installed on its own node.
+- One pod acts as the **leader**, and the other two serve as **replicas**, allowing automatic failover.
+
+Each **Cambria Cluster pod** includes:
+
+1. `Cambria Cluster` (application container)  
+2. `Leader Elector` tool – designates the pod leader  
+3. `Cambria FTC Autoscaler` tool – auto-deploys FTC workers based on job load:
+
+> **Scaling Formula:**  
+> Number of Nodes to Deploy = `(Number of Queued Jobs + 2) / 3`
+
+Additionally:
+
+- A **PostgreSQL database** pod is deployed per active Cambria Cluster pod.
+- Databases are **replicated** for fault tolerance and data integrity.
+
+---
+
+### Cambria FTC
+
+Capella’s **Cambria FTC** deployment consists of **one or more nodes**, often using different instance types than the Cluster nodes.
+
+- FTC pods are responsible for executing encoding jobs.
+- Each pod is assigned its **own node**.
+
+Each **Cambria FTC pod** includes:
+
+1. `Cambria FTC` (application container)  
+2. `Auto-Connect FTC` (dotnet tool) – performs:
+   - Pod discovery
+   - Cluster identification
+   - FTC-Cluster auto-connect logic  
+   - If no Cluster is found within ~20 minutes, the node is recycled
+3. `Pgcluster` – PostgreSQL container for job and state persistence (pod lifetime only)
+
+---
+
+### Deployment Note
+
+Each node in the Kubernetes Cluster will either be running the **Cambria Cluster deployment** or the **Cambria FTC deployment**, but not both.
+
+
+### 1.2 Resource Usage
+
+The resources used and their quantities will vary depending on requirements and environments.  
+Below is general information about major resource usage. Other resources may also be required.  
+Please consult AWS and `eksctl` documentation for more details.
+
+#### Reference Documentation:
+
+- [EKS Deployment Options](https://docs.aws.amazon.com/eks/latest/userguide/eks-deployment-options.html)  
+- [eksctl: Creating and Managing Clusters](https://eksctl.io/usage/creating-and-managing-clusters/)  
+- [eksctl: VPC Networking](https://eksctl.io/usage/vpc-networking/)  
+- [EKS Subnet Best Practices](https://docs.aws.amazon.com/eks/latest/best-practices/subnets.html)  
+- [AWS EC2: Available IPs per ENI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AvailableIpPerENI.html)  
+- [EKS Network Security Best Practices](https://docs.aws.amazon.com/eks/latest/best-practices/network-security.html)
+
+---
+
+#### Resource Overview
+
+| Component      | Description                                                                 |
+|----------------|-----------------------------------------------------------------------------|
+| **Load Balancers** | - 0–3 Classic Load Balancers (Manager WebUI, Manager Web Server, Grafana)  
+                      - 0–1 Network Load Balancer (Ingress)                                    |
+| **Nodes**          | - `X` Cambria Manager Instances (Default: 3)  
+                      - `Y` Cambria FTC Instances (Default max: 20)                            |
+| **Networking**     | - 1 VPC (default)  
+                      - 3 public subnets and 3 private subnets (2 subnets reserved)  
+                      - Default `/16` CIDR  
+                      - Each subnet: `/19` CIDR                                                 |
+
+> **Note:** For CIDR planning, refer to  
+> [EKS Best Practices: Networking](https://docs.aws.amazon.com/eks/latest/best-practices/networking.html)
+
+#### Security Groups
+
+- Default: 1 security group for the **control plane**
+- Default: `X` security groups — one per **node group**
+
+---
+
+<!-- Add image below once graph is provided -->
+<!-- ![Resource Usage Graph](./path_to_graph_image.png) -->
+
+### 1.3 AWS Machine Information and Benchmark
+
+The following benchmark compares two AWS EC2 instance types.  
+This information is current as of **September 2023**.
+
+> ⚠️ Benchmark results reflect workloads that involve read/write access to **AWS S3**, which affects transcoding speed.
+
+---
+
+#### Benchmark Job Configuration
+
+| Type     | Codec | Frame Rate | Resolution                   |
+|----------|--------|-------------|-------------------------------|
+| **Source** | TS     | H.264       | 30 fps, 1920×1080 @ 8 Mbps     |
+| **Output** | HLS/TS | H.264       | 29.97 fps  
+                                   - 1920×1080 @ 4 Mbps  
+                                   - 1280×720 @ 2.4 Mbps  
+                                   - 640×480 @ 0.8 Mbps  
+                                   - 320×240 @ 0.3 Mbps |
+
+---
+
+#### a. `c6a.4xlarge` [AMD EPYC 7R13]
+
+##### Machine Info
+
+| Name         | RAM     | CPUs | Storage | Network Performance | Cost/Hour |
+|--------------|---------|------|---------|----------------------|-----------|
+| c6a.4xlarge  | 32 GB   | 16   | Any     | 12.5 Gbps            | $0.612    |
+
+##### Benchmark Results
+
+| Concurrent Jobs | Real-Time Speed                        | CPU Usage |
+|-----------------|----------------------------------------|-----------|
+| 2               | - 0.73x RT per job (slower than real-time)  
+                 - Total throughput: 1.46x RT  
+                 (≈ 42 sec to transcode 1 min)          | 100%      |
+
+---
+
+#### b. `c6a.16xlarge` [AMD EPYC 7R13]
+
+##### Machine Info
+
+| Name           | RAM     | CPUs | Storage | Network Performance | Cost/Hour |
+|----------------|---------|------|---------|----------------------|-----------|
+| c6a.16xlarge   | 128 GB  | 64   | Any     | 25 Gbps              | $2.448    |
+
+##### Benchmark Results
+
+| Concurrent Jobs | Real-Time Speed                         | CPU Usage |
+|-----------------|------------------------------------------|-----------|
+| 2               | - 2.17x RT per job (faster than real-time)  
+                 - Total throughput: 4.34x RT  
+                 (≈ 21 sec to transcode 1 min)           | ~84%       |
+
+---
+
+#### Benchmark Summary
+
+- The **c6a.16xlarge** instance provides significantly higher throughput due to increased compute resources.
+- However, the **c6a.4xlarge** instance is **more cost-effective per hour**.
+- The choice between the two should consider both budget and throughput requirements.
+
+
