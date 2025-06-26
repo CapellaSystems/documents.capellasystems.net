@@ -68,3 +68,52 @@ Before starting the installation, carefully review the following considerations.
 7. **Verify Region-Specific Resource Availability**  
    ● Not all Oracle Cloud regions support the same resources (e.g., GPU availability varies by region).  
    ● Consult Oracle Cloud documentation to confirm available resources in your desired region.
+
+# Document Overview
+
+The purpose of this document is to provide a walkthrough of the installation and initial testing process of the Cambria Cluster and Cambria FTC applications in the Kubernetes environment. The basic view of the document is the following:
+
+1. Overview of the Cambria Cluster / FTC Environment in a Kubernetes Environment  
+2. Preparation for installation (Prerequisites)  
+3. Create and configure the Kubernetes Cluster, Logging, and Metrics  
+4. Install Cambria Cluster and Cambria FTC on the Kubernetes Cluster  
+5. Verify the installation is working properly  
+6. Test the Cambria Cluster / FTC applications  
+7. Update the Cambria Cluster / FTC applications on Kubernetes Cluster  
+8. Delete a Kubernetes Cluster  
+9. Quick Reference of Kubernetes Installation  
+10. Quick Reference of Important Kubernetes Components (urls, template projects, test player, etc)  
+11. Glossary of important terms  
+
+## 1. Overview
+
+### 1.1. Cambria Cluster / FTC Kubernetes Deployment
+
+There are two major applications involved in this Kubernetes installation: **Cambria Cluster** and **Cambria FTC**.
+
+**Cambria Cluster:**  
+This deployment is recommended to run on at least 3 nodes (`replica = 3`) with a service (Load Balancer) that exposes the application externally. For each of these nodes, Cambria Cluster will be installed on its own pod and designated to its own node. One node acts as the leader and the other two are replicas for the purpose of replacing the leader in the case it becomes inactive, corrupted, etc.
+
+Each Cambria Cluster pod has three containers:
+1. Cambria Cluster (application)  
+2. Leader Elector tool that chooses which of the Cambria Cluster node / pod will be the leader  
+3. Cambria FTC Autoscaler tool that, when the FTC autoscaler is enabled, will automatically deploy worker nodes for encoding purposes based on the number of encoding jobs queued to the system.
+
+This is based on the calculation (rounded down):  
+**Number of Nodes to Deploy = (Number of Queued Jobs + 2) / 3**
+
+Also for the Cluster deployment, there is a corresponding PostgreSQL database installed on a separate pod for each active Cambria Cluster pod. The data is replicated between the different database pods in order to preserve data in case of issues with the database and/or Cluster.
+
+**Cambria FTC:**  
+Capella’s Cambria FTC deployment consists of one or more nodes that (by default) are of different instance types than the Cambria Cluster nodes. These nodes focus specifically on running encoding tasks. Similar to Cambria Cluster, the Cambria FTC application is installed on its own pod and designated to its own node.
+
+Each Cambria FTC pod has three containers:
+1. Cambria FTC (application)  
+2. Auto-Connect FTC dotnet tool that does the following:  
+   - lists pods  
+   - attempts to find Cambria Cluster  
+   - connects the Cambria FTC application running in the pod to the Cambria Cluster that it found.  
+   This container also deletes its own node pool or recycles its node if no Cambria Cluster is found within a specific time (~20 minutes).  
+3. Pgcluster database for storing its encoder's own job contents and other such information for as long as the pod is running.
+
+Each node in the Kubernetes Cluster will either be running the Cluster deployment or the FTC deployment.
