@@ -89,10 +89,10 @@ If using Linux, the machine must have a graphical user interface.
 
 ---
 
-### Step 2: Prepare Deployment Server
+## 2. Prepare Deployment Server
 
-1. On the Akamai Dashboard, create a new Ubuntu Linode used for the Terraform deployment.
-   - For best performance, choose an instance with **8GB RAM or higher**, since X11 Forwarding requires significant memory.
+1. On the Akamai Dashboard, create a new **Ubuntu Linode** used for the Terraform deployment.  
+   For best performance, choose an **8GB RAM or higher** machine as X11 Forwarding uses a lot of memory on the Linode instance.
 
 2. SSH into the new Linode and install general tools:
 
@@ -134,52 +134,191 @@ If using Linux, the machine must have a graphical user interface.
 
 7. Exit from the SSH session.
 
----
 
-### Step 3: SSH into the Deployment Server
+## 3. Installation
 
-SSH into the instance created in Step 2 using one of the following methods:
+1. SSH into the instance created in section 2. **Prepare Deployment Server** using one of the following methods (depending on the OS being used as the SSH client):
 
-#### Option 1: Windows
+### Option 1: Windows
+1. Open **PuTTY** or similar tool. Enable **X11 Forwarding** in the configuration. On PuTTY, this can be found under:
+   - `Connection > SSH > X11 > X11 forwarding`
+2. SSH into the instance with the created user. Usually, the user is `root`.
 
-1. Open **PuTTY** or a similar SSH client.
-2. Enable **X11 Forwarding** under:
-   `Connection > SSH > X11 > Enable X11 forwarding`
-3. SSH into the instance using the created user (usually `root`).
-
-#### Option 2: Unix (Linux, macOS)
-
-1. Open a terminal window.
-2. SSH into the Linode instance with the `-Y` option and one of the created users (usually `root`):
-
+### Option 2: Unix (Linux, macOS)
+1. Open a terminal window and SSH into the Linode instance using the `-Y` option and one of the created users. This is usually `root`.  
+   **Example:**  
    ```bash
    ssh -Y -i "mysshkey" root@123.123.123.123
    ```
-
-1. Run the following script to set secrets as environment variables:
+2. Run the following script to set secrets as environment variables. These are important details such as credentials,
+license keys, etc. Reference the following table:
 
 ```bash
 source ./setEnvVariablesCambriaCluster.sh
 ```
 
-These include critical information such as credentials, license keys, and tokens.
+### Environment Variable Explanation
 
-| Environment Variable              | Explanation |
-|----------------------------------|-------------|
-| **Linode API Token**             | API token from Akamai Cloud's Dashboard. See [API Guide](https://www.linode.com/docs/products/tools/api/guides/manage-api-tokens/) |
-| **PostgreSQL Password**          | Password for the PostgreSQL database used by Cambria Cluster. General password rules apply. |
-| **Cambria API Token**            | Token for making calls to the Cambria FTC web server. Example: `1234-5678-90abcdefg` |
-| **Web UI Users**                 | Login credentials for Cambria WebUIs in format: `role,username,password`. Multiple users are comma-separated.<br/>Allowed roles:<br/>1. **admin** – Full access including user management<br/>2. **superuser** – Full access<br/>3. **user** – View-only access<br/>Example: `admin,admin,changethispassword1234,user,guest,password123` |
-| **Argo Events Webhook Token**    | Token for calling Argo Events. Example: `1234-5678-90abcdefg` |
-| **Cambria FTC License Key**      | License key provided by Capella. Should start with `2`. Example: `2AB122-11123A-ABC890-DEF345-ABC321-543A21` |
-| **Grafana Password**             | Password for accessing the Grafana dashboard |
-| **Access Key**                   | AWS_ACCESS_KEY_ID or S3-compatible equivalent |
-| **Secret Key**                   | AWS_SECRET_ACCESS_KEY or S3-compatible equivalent |
+| Variable | Explanation |
+|----------|-------------|
+| **Linode API Token** | API token from Akamai Cloud's Dashboard. [See guide](https://www.linode.com/docs/products/tools/api/guides/manage-api-tokens/) |
+| **PostgreSQL Password** | The password for the PostgreSQL database that Cambria Cluster uses. General password rules apply. |
+| **Cambria API Token** | A token needed for making calls to the Cambria FTC web server. General token rules apply (e.g., `1234-5678-90abcdefg`). |
+| **Web UI Users** | Login credentials for the Cambria WebUIs for the Kubernetes cluster. Format: `role,username,password`.<br>Allowed roles:<br>1. **admin** – Full access and user management<br>2. **superuser** – Full access<br>3. **user** – View-only<br>Example: `admin,admin,changethispassword1234,user,guest,password123` |
+| **Argo Events Webhook Token** | Token for specific Argo Events calls. General token rules apply (e.g., `1234-5678-90abcdefg`). |
+| **Cambria FTC License Key** | Provided by Capella. Starts with a '2' (e.g., `2AB122-11123A-ABC890-DEF345-ABC321-543A21`). |
+| **Grafana Password** | Password for the Grafana Dashboard. |
+| **Access Key** | S3-compatible log storage access key (e.g., `AWS_ACCESS_KEY_ID`). |
+| **Secret Key** | S3-compatible log storage secret key (e.g., `AWS_SECRET_ACCESS_KEY`). |
 
-2. Run the Terraform editor UI:
+3. Run the terraform editor UI:
 
 ```bash
 ./TerraformVariableEditor
 ```
 
-3. Click on **"Open Terraform File"** and choose the `CambriaCluster_LKE.tf` file.
+4. Click on **Open Terraform File** and choose the `CambriaCluster_LKE.tf` file.
+
+## 5. Terraform UI Editor Configuration
+
+Using the UI, edit the fields accordingly. Reference the following table for values that should be changed:
+
+- **Blue**: values in blue do not need to change unless the specific feature is needed / not needed  
+- **Red**: values in red are proprietary values that need to be changed based on your specific environment
+
+| Variable | Explanation |
+|----------|-------------|
+| `lke_cluster_name = CambriaFTCCluster` | The name of the Kubernetes cluster |
+| `lk_region = us-mia` | The region code where the Kubernetes cluster should be deployed |
+| `lke_manager_pool_node_count = 3` | The number of Cambria Cluster nodes to create |
+| `workers_can_use_manager_nodes = false` | Whether the Cambria Cluster nodes should also handle encoding tasks |
+| `workersUseGPU = false` | Set to `true` to enable NVENC capabilities |
+| `nbGPUs = 1` | Max number of GPUs to use from encoding machines |
+| `manager_instance_type = g6-dedicated-4` | Instance type of the Cambria Cluster nodes |
+| `ftc_enable_auto_scaler = true` | Enable Cambria FTC's autoscaler |
+| `ftc_instance_type = g6-dedicated-8` | Instance type for autoscaled encoders |
+| `max_ftc_instances = 5` | Max number of encoder instances |
+| `cambria_cluster_replicas = 3` | Max number of management and replica nodes |
+| `expose_capella_service_externally = true` | Create load balancers to expose Capella |
+| `enable_ingress = true` | Create ingress for Capella applications |
+| `host_name = myhost.com` | Public domain name |
+| `acme_registration_email = test@example.com` | Email for Let's Encrypt registration |
+| `acme_server = https://acme-staging-v02.api.letsencrypt.org/directory` | ACME server URL |
+| `enable_eventing = true` | Enable Argo eventing features |
+| `expose_grafana = true` | Publicly expose Grafana dashboard |
+| `loki_storage_type = s3_embedcred` | Storage type for Loki logs |
+| `loki_local_storage_size_gi = 100` | Size of local storage in Gi for Loki |
+| `loki_s3_bucket_name = ""` | S3 bucket name for Loki |
+| `loki_s3_region = ""` | S3 bucket region for Loki |
+| `loki_replicas = 2` | Number of Loki replicas |
+| `loki_max_unavailable = 3` | Max unavailable Loki pods during upgrades |
+| `loki_log_retention_period = 7` | Days to retain logs |
+
+
+6. Once done click on **Save Changes** and close the UI.
+7. Run the following commands to create a Terraform plan:
+
+```bash
+terraform init && terraform plan -out lke-plan.tfplan
+```
+
+8. Apply the Terraform plan to create the Kubernetes cluster:
+
+```bash
+terraform apply -auto-approve lke-plan.tfplan
+```
+
+9. Set the `KUBECONFIG` environment variable:
+
+```bash
+export KUBECONFIG=kubeconfig.yaml
+```
+
+10. Save the following files securely for future changes or redeployment:
+   - `.tfstate` file
+   - `lke-plan.tfplan`
+   - `CambriaCluster_LKE.tf`
+   
+   ## 4. Verification and Testing
+
+Follow the steps in section 5. **Verify Cambria FTC / Cluster Installation** of the main Cambria Cluster Kubernetes Installation Guide for verification and section 6. **Testing Cambria FTC / Cluster** for testing with Cambria FTC jobs:
+
+[Cambria Cluster and FTC 5.5.0 on Akamai Kubernetes (PDF)](https://www.dropbox.com/scl/fi/irkmp89qh17bo9w4459qw/Cambria_Cluster_and_FTC_5_5_0_on_Akamai_Kubernetes.pdf?rlkey=vmq8fcqdbv3dul5cqq9em4r91&st=5gecxrgs&dl=1)
+
+---
+
+## 5. Upgrading
+
+### 5.1. Option 1: Normal Upgrade via Terraform Apply
+
+This upgrade method is best for when changing version numbers, secrets such as the license key, WebUI users, etc., and Cambria FTC / Cluster-specific settings such as max number of pods, replicas, etc.
+
+> ⚠️ **Warning – Known Issues:**  
+> - `pgClusterPassword` cannot currently be updated via this method.  
+> - Changing the PostgreSQL version is not supported via this method.  
+> - The region of the cluster cannot be changed.
+
+**Steps:**
+1. Follow the steps in section 3: _Installation_.
+2. Follow the verification steps in section 4: _Verification and Testing_ to ensure the updates were applied.
+
+### 5.2. Option 2: Upgrade via Cambria Cluster Reinstallation
+
+This is the most reliable upgrade option. It uninstalls all Cambria FTC and Cluster components and reinstalls them using a new Helm chart and values file. This will delete the database and remove all jobs from the Cambria Cluster UI.
+
+**Steps:**
+1. Follow section 4.2: _Creating and Editing Helm Configuration File_ to prepare your new `capellaClusterConfig.yaml`.
+2. Uninstall the current deployment:
+
+    ```bash
+    helm uninstall capella-cluster --wait
+    ```
+
+3. Reinstall using the updated values file:
+
+    ```bash
+    helm upgrade --install capella-cluster capella-cluster.tgz --values cambriaClusterConfig.yaml
+    ```
+
+4. Wait a few minutes for the Kubernetes pods to install.
+5. Verify the installation using section 4: _Verification and Testing_.
+
+---
+
+## 6. Cleanup
+
+To clean up the environment, ensure the following steps are followed in order. If using FTC's autoscaler, verify that no leftover Cambria FTC nodes remain running.
+
+**Steps:**
+1. Remove Helm deployments:
+
+    ```bash
+    helm uninstall capella-cluster -n default --wait
+    ```
+
+2. If persistent volumes remain, patch them for deletion:
+
+    ```bash
+    kubectl get pv -o name | awk -F'/' '{print $2}' | xargs -I{} kubectl patch pv {} -p='{"spec": {"persistentVolumeReclaimPolicy": "Delete"}}'
+    ```
+
+3. Delete all contents from the monitoring namespace (Prometheus, Grafana, Loki, etc):
+
+    ```bash
+    kubectl delete namespace monitoring
+    ```
+
+4. If `ingress-nginx` was deployed:
+
+    ```bash
+    kubectl delete namespace ingress-nginx
+    ```
+
+5. Destroy the Kubernetes cluster:
+
+    ```bash
+    terraform destroy -auto-approve
+    ```
+
+6. In the **NodeBalancers** section of the cloud dashboard, delete any leftover balancers created by the Kubernetes cluster.
+7. In the **Volumes** section, delete any remaining volumes created by the Kubernetes cluster.
