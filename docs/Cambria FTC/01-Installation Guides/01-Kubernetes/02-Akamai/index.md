@@ -89,12 +89,97 @@ If using Linux, the machine must have a graphical user interface.
 
 ---
 
-## 2. Prepare Deployment Server
+### Step 2: Prepare Deployment Server
 
-1. On the Akamai Dashboard, create a new Ubuntu Linode used for the Terraform deployment.  
-   For best performance, choose an 8GB RAM or higher machine as X11 Forwarding uses a lot of memory on the Linode instance.
+1. On the Akamai Dashboard, create a new Ubuntu Linode used for the Terraform deployment.
+   - For best performance, choose an instance with **8GB RAM or higher**, since X11 Forwarding requires significant memory.
 
 2. SSH into the new Linode and install general tools:
 
    ```bash
-   sudo apt update; sudo apt upgrade; sudo apt install curl unzip libice6 libsm6 dbus libgtk-3-0
+   sudo apt update
+   sudo apt upgrade
+   sudo apt install curl unzip libice6 libsm6 dbus libgtk-3-0
+   ```
+
+3. Download the Terraform package:
+
+   ```bash
+   curl -o terraform_LKE_CambriaCluster_1_0.zip -L "https://www.dropbox.com/scl/fi/t8pgwr6otlg4lesgf3xbq/terraform_LKE_CambriaCluster_1_0.zip?rlkey=82rjt9l3at2gfcztt7sy0zsz1&st=pwzmzhpb&dl=1"
+   ```
+
+4. Unzip the package and make the shell scripts executable:
+
+   ```bash
+   unzip terraform_LKE_CambriaCluster_1_0.zip
+   chmod +x *.sh
+   chmod +x ./TerraformVariableEditor
+   ```
+
+5. Install the tools needed for deployment:
+
+   ```bash
+   ./setupTools.sh
+   ./installLogcli.sh
+   ```
+
+6. Verify the tools are installed:
+
+   ```bash
+   kubectl version --client
+   helm version
+   terraform -v
+   logcli --version
+   ```
+
+7. Exit from the SSH session.
+
+---
+
+### Step 3: SSH into the Deployment Server
+
+SSH into the instance created in Step 2 using one of the following methods:
+
+#### Option 1: Windows
+
+1. Open **PuTTY** or a similar SSH client.
+2. Enable **X11 Forwarding** under:
+   `Connection > SSH > X11 > Enable X11 forwarding`
+3. SSH into the instance using the created user (usually `root`).
+
+#### Option 2: Unix (Linux, macOS)
+
+1. Open a terminal window.
+2. SSH into the Linode instance with the `-Y` option and one of the created users (usually `root`):
+
+   ```bash
+   ssh -Y -i "mysshkey" root@123.123.123.123
+   ```
+
+1. Run the following script to set secrets as environment variables:
+
+```bash
+source ./setEnvVariablesCambriaCluster.sh
+```
+
+These include critical information such as credentials, license keys, and tokens.
+
+| Environment Variable              | Explanation |
+|----------------------------------|-------------|
+| **Linode API Token**             | API token from Akamai Cloud's Dashboard. See [API Guide](https://www.linode.com/docs/products/tools/api/guides/manage-api-tokens/) |
+| **PostgreSQL Password**          | Password for the PostgreSQL database used by Cambria Cluster. General password rules apply. |
+| **Cambria API Token**            | Token for making calls to the Cambria FTC web server. Example: `1234-5678-90abcdefg` |
+| **Web UI Users**                 | Login credentials for Cambria WebUIs in format: `role,username,password`. Multiple users are comma-separated.<br/>Allowed roles:<br/>1. **admin** – Full access including user management<br/>2. **superuser** – Full access<br/>3. **user** – View-only access<br/>Example: `admin,admin,changethispassword1234,user,guest,password123` |
+| **Argo Events Webhook Token**    | Token for calling Argo Events. Example: `1234-5678-90abcdefg` |
+| **Cambria FTC License Key**      | License key provided by Capella. Should start with `2`. Example: `2AB122-11123A-ABC890-DEF345-ABC321-543A21` |
+| **Grafana Password**             | Password for accessing the Grafana dashboard |
+| **Access Key**                   | AWS_ACCESS_KEY_ID or S3-compatible equivalent |
+| **Secret Key**                   | AWS_SECRET_ACCESS_KEY or S3-compatible equivalent |
+
+2. Run the Terraform editor UI:
+
+```bash
+./TerraformVariableEditor
+```
+
+3. Click on **"Open Terraform File"** and choose the `CambriaCluster_LKE.tf` file.
