@@ -125,7 +125,7 @@ Below is general information about some of the major resource usage (other resou
 Consult Oracle Cloud documentation for other resources created, usage limits, etc.
 
 **Oracle Documentation**  
-<https://docs.public.oneportal.content.oci.oraclecloud.com/en-us/iaas/Content/ContEng/Concepts/contengprerequisites.htm>
+https://docs.public.oneportal.content.oci.oraclecloud.com/en-us/iaas/Content/ContEng/Concepts/contengprerequisites.htm
 
 | Resource Type   | Details                                                                 |
 |-----------------|-------------------------------------------------------------------------|
