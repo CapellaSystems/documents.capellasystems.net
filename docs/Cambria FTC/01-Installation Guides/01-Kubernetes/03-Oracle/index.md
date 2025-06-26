@@ -117,3 +117,133 @@ Each Cambria FTC pod has three containers:
 3. Pgcluster database for storing its encoder's own job contents and other such information for as long as the pod is running.
 
 Each node in the Kubernetes Cluster will either be running the Cluster deployment or the FTC deployment.
+
+### 1.2. Resource Usage
+
+The resources used and their quantities will vary depending on requirements and different environments.  
+Below is general information about some of the major resource usage (other resources may be used).  
+Consult Oracle Cloud documentation for other resources created, usage limits, etc.
+
+**Oracle Documentation**  
+<https://docs.public.oneportal.content.oci.oraclecloud.com/en-us/iaas/Content/ContEng/Concepts/contengprerequisites.htm>
+
+| Resource Type   | Details                                                                 |
+|-----------------|-------------------------------------------------------------------------|
+| Load Balancers  | 0–4 (Manager WebUI, Manager Web Server, Ingress, Grafana)               |
+| Nodes           | X Cambria Manager Instances (Default is 3)                              |
+|                 | Y Cambria FTC Instances (Default is 20, based on max FTC configuration) |
+| Networking      | Default is 1 VCN-native, IG, NAT, SGW                                   |
+|                 | Default is 3 subnets (1 for kube plane, 1 for load balancers, 1 for nodes) |
+|                 | Default is /16 CIDR (tested with /19 in default setup)                  |
+| Security        | Default is to use security lists (No NSGs are used)                     |
+
+### 1.3. Oracle Cloud Machine Information and Benchmark
+
+The following is a benchmark of two Oracle Cloud machines. The information below is as of **October 2024**.  
+Note that the benchmark involves read from / write to an ObjectStorage location which influences the real-time speed of transcoding jobs.
+
+#### Benchmark Job Information
+
+| Type     | Codec  | Frame Rate | Resolution               | Bitrate     |
+|----------|--------|------------|---------------------------|-------------|
+| Source   | TS H.264 | 30       | 1920 x 1080              | 8 Mbps      |
+| Output   | HLS/TS H.264 | 29.97 | 1920 x 1080, 1280 x 720, 640 x 480, 320 x 240 | 4 Mbps, 2.4 Mbps, 0.8 Mbps, 0.3 Mbps |
+
+---
+
+**Machine Used:** `VM.Standard.E4.Flex` – 8 OCPUs + 32 GB RAM (AMD EPYC 7J13)
+
+#### Machine Info
+
+| Name                | RAM   | OCPUs | Storage | Network         | Cost per Hour |
+|---------------------|--------|--------|---------|------------------|----------------|
+| VM.Standard.E4.Flex | 32 GB  | 16     | Any     | 2.5 – 3.5 GHz    | $0.448         |
+
+#### Benchmark Results
+
+| # of Concurrent Jobs | Real Time Speed              | CPU Usage |
+|----------------------|------------------------------|-----------|
+| 2                    | 1.18x RT per job (faster than real-time) <br> Total Throughput: 2.36x RT <br> (~26 seconds to transcode 1 minute) | 100%      |
+
+### 1.4. Cambria Application Access
+
+The Cambria applications are accessible via the following methods:
+
+#### 1.4.1. External Access via TCP Load Balancer
+
+The default Cambria installation configures the Cambria applications to be exposed through load balancers.  
+There is one for the **Cambria Manager WebUI + License Manager**, and one for the **web / REST API server**.  
+The load balancers are publicly available and can be accessed either through their public IP address or domain name and the application's TCP port.
+
+**Example:**
+
+- **Cambria Manager WebUI**  
+  `https://44.33.212.155:8161`
+
+- **Cambria REST API**  
+  `https://121.121.121.121:8650/CambriaFC/v1/SystemInfo`
+
+> External access in this way can be turned on/off via a configuration variable.  
+> See section **4.2. Creating and Editing Helm Configuration File**.  
+> If this feature is disabled, another method of access will need to be configured.
+
+---
+
+#### 1.4.2. HTTP Ingress via Reverse Proxy
+
+In cases where external access via TCP load balancer is not acceptable, or for using a purchased domain name from providers like GoDaddy,  
+the Cambria installation provides the option to expose an ingress.
+
+Similar to the external access load balancers, the **Cambria Manager WebUI** and **web / REST API server** are exposed.  
+However, only **one IP address or domain name** is needed in this case.
+
+How it works:
+- The **Cambria WebUI** is exposed through the subdomain `webui`
+- The **Cambria web server** is exposed through the subdomain `api`
+- The **Grafana dashboard** is exposed through the subdomain `monitoring`
+
+**Example with the domain `mydomain.com`:**
+
+- **Cambria Manager WebUI**  
+  `https://webui.mydomain.com`
+
+- **Cambria REST API**  
+  `https://api.mydomain.com`
+
+- **Grafana Dashboard**  
+  `https://monitoring.mydomain.com`
+
+> Capella provides a default ingress hostname for **testing purposes only**.  
+> In production, the default hostname, SSL certificate, and other such information needs to be configured.  
+> More information about ingress configuration is explained later in this guide.
+
+### 1.5. Firewall Information
+
+By default, this guide creates a Kubernetes cluster with default settings, including the default network firewall configurations.  
+A virtual network is created alongside the Kubernetes cluster.
+
+For custom or non-default configurations, or to restrict the network beyond the default setup,  
+refer to the following list of known ports that the Cambria applications use:
+
+| Port(s) | Protocol | Direction | Description |
+|---------|----------|-----------|-------------|
+| 8650    | TCP      | Inbound   | Cambria Cluster REST API |
+| 8161    | TCP      | Inbound   | Cambria Cluster WebUI |
+| 8678    | TCP      | Inbound   | Cambria License Manager Web Server |
+| 8481    | TCP      | Inbound   | Cambria License Manager WebUI |
+| 9100    | TCP      | Inbound   | Prometheus System Exporter for Cambria Cluster |
+| 8648    | TCP      | Inbound   | Cambria FTC REST API |
+| 3100    | TCP      | Inbound   | Loki Logging Service |
+| 3000    | TCP      | Inbound   | Grafana Dashboard |
+| 443     | TCP      | Inbound   | Capella Ingress |
+| ALL     | TCP/UDP  | Outbound  | Expose all outbound traffic |
+
+---
+
+For **Cambria licensing**, ensure that both **inbound and outbound** access is available for the following domains:
+
+| Domain                         | Port(s) | Protocol | Direction | Description              |
+|--------------------------------|---------|----------|-----------|--------------------------|
+| api.cryptlex.com               | 443     | TCP      | In/Out    | License Server           |
+| cryptlexapi.capellasystems.net| 8485    | TCP      | In/Out    | License Cache Server     |
+| cpfs.capellasystems.net       | 8483    | TCP      | In/Out    | License Backup Server    |
