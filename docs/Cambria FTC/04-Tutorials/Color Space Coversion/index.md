@@ -55,6 +55,8 @@ Converting between **SDR and HDR** involves multiple steps:
 
 [X265 CLI Documentation](https://x265.readthedocs.io/en/default/cli.html#vui-video-usability-information-options)
 
+**Actual workflow examples are described in below sections
+
 ## Case Study 1: SD/HD Conversions (BT.601/BT.709)
 
 1. In **Preset Editor**, add the **601/709 Correction** video filter.
@@ -66,7 +68,7 @@ Converting between **SDR and HDR** involves multiple steps:
    
 
 2. The filter can be applied as a **source or target filter**, but applying it as a **source filter** is more efficient.
-3. In **Video Settings** (Encoding Tab), select **Color Primaries, Transfer Coefficients, and Matrix Coefficients**.
+3. In **Video Settings** (Encoding Tab), select **Color Primaries, Transfer Coefficients, and Matrix Coefficients**  in Video Settings in the Encoding Tab of the Preset Editor Window:
 
 
 ![Screenshot](02_screenshot.png)
@@ -82,7 +84,7 @@ This case is about converting between HLG and PQ. This conversion is reversible.
 ![Screenshot](03_screenshot.png)
 
 
-The filter can be added as a source or target filter. However, this is more efficient and accurate as a source filter.
+The filter can be added as a source or target filter. However, this is more efficient and accurate as a source filter..
 
 
 Then, select proper Color Primaries, Transfer Coefficients and Matrix Coefficients in Video Settings in the Encoding Tab of the Preset Editor Window:
