@@ -68,3 +68,71 @@ Before starting the installation, carefully review the following considerations.
 7. **Verify Region-Specific Resource Availability**  
    ● Not all Akamai Cloud regions support the same resources (e.g., GPU availability varies by region).  
    ● Consult Akamai Cloud documentation to confirm available resources in your desired region.
+
+# Document Overview
+
+The purpose of this document is to provide a walkthrough of the installation and initial testing process of the Cambria Cluster and Cambria FTC applications in the Kubernetes environment. The basic view of the document is the following:
+
+1. Overview of the Cambria Cluster / FTC Environment in a Kubernetes Environment  
+2. Preparation for the installation (Prerequisites)  
+3. Create and configure the Kubernetes Cluster  
+4. Install Cambria Cluster and Cambria FTC on the Kubernetes Cluster  
+5. Verify the installation is working properly  
+6. Test the Cambria Cluster / FTC applications  
+7. Update the Cambria Cluster / FTC applications on Kubernetes Cluster  
+8. Delete a Kubernetes Cluster  
+9. Quick Reference of Kubernetes Installation  
+10. Quick Reference of Important Kubernetes Components (urls, template projects, test player, etc)  
+11. Glossary of important terms  
+
+---
+
+## 1. Overview
+
+### 1.1. Cambria Cluster / FTC Kubernetes Deployment
+
+There are two major applications involved in this Kubernetes installation: Cambria Cluster and Cambria FTC.
+
+#### Cambria Cluster:
+
+This deployment is recommended to run on at least 3 nodes (replica = 3) with a service (Load Balancer) that exposes the application externally. For each of these nodes, Cambria Cluster will be installed on its own pod and designated to its own node. One node acts as the leader and the other two are replicas for the purpose of replacing the leader in the case it becomes inactive, corrupted, etc. Each Cambria Cluster pod has three containers:
+
+1. Cambria Cluster (application)  
+2. Leader Elector tool that chooses which of the Cambria Cluster node/pod will be the leader  
+3. Cambria FTC Autoscaler tool that, when enabled, automatically deploys worker nodes for encoding purposes based on the number of encoding jobs queued to the system:  
+   ```
+   Number of Nodes to Deploy = (Number of Queued Jobs + 2) / 3
+   ```
+
+Each Cluster deployment has a corresponding PostgreSQL database installed on a separate pod. The data is replicated across the database pods to preserve state.
+
+#### Cambria FTC:
+
+Capella’s Cambria FTC deployment consists of one or more nodes that are (by default) of different instance types than the Cambria Cluster nodes. These focus specifically on running encoding tasks. Each Cambria FTC pod has three containers:
+
+1. Cambria FTC (application)  
+2. Auto-Connect FTC dotnet tool:  
+   - Lists pods  
+   - Attempts to find Cambria Cluster  
+   - Connects the Cambria FTC application to the Cambria Cluster  
+   - Deletes its own node pool if no Cambria Cluster is found (~20 min timeout)  
+3. Pgcluster database: Stores encoding job content and runtime data
+
+Each node in the Kubernetes Cluster is assigned either a Cluster or FTC role.
+
+---
+
+### 1.2. Resource Usage
+
+Resources used and their quantities vary by requirement and environment. Below is a general overview (refer to Akamai Cloud documentation for full details):
+
+- **NodeBalancers**: 0-3 (Manager WebUI, Manager Web Server, Grafana); 0-1 (Ingress)  
+- **Nodes**:  
+  - X Cambria Manager Instances (default: 3)  
+  - Y Cambria FTC Instances (default: 20; based on config)  
+- **Networking**: No VPCs are created  
+- **Security**: No firewalls by default, but can be configured for LKE nodes
+
+**Akamai Cloud Documentation**:  
+[Getting Started with LKE - Linode Kubernetes Engine](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-lke-linode-kubernetes-engine)
+
