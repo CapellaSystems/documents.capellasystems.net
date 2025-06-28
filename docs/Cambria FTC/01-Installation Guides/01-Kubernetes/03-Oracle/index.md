@@ -163,8 +163,7 @@ Note that the benchmark involves read from / write to an ObjectStorage location 
 
 | # of Concurrent Jobs | Real Time Speed              | CPU Usage |
 |----------------------|------------------------------|-----------|
-| 2                    | 1.18x RT per job (faster than real-time) <br> Total Throughput: 2.36x RT ...<br />...
- (~26 seconds to transcode 1 minute) | 100%      |
+| 2                    | 1.18x RT per job (faster than real-time) <br> Total Throughput: 2.36x RT ...<br />
 
 ### 1.4. Cambria Application Access
 
