@@ -664,9 +664,9 @@ kubectl get all -n default
 
 | Resources  | Content |
 |------------|---------|
-| Deployments | - 1 `cambriaclusterapp` deployment with all items active<br>- 1 `cambriaclusterwebui` deployment with all items active |
-| Pods        | - X pods with `cambriaclusterapp` in the name (X = # of replicas specified in config file) with all items active / Running<br>- X pods with `pgcluster` in the name (X = # of replicas specified in config file) with all items active / Running<br>- 1 pod with `cambriaclusterwebui` in the name |
-| Services    | - 3 services with `pgcluster` in the name with a `CLUSTER-IP` assigned<br>- 1 service named `cambriaclusterservice`. If `exposeStreamServiceExternally` is true, this should have an `EXTERNAL-IP`<br>- 1 service named `cambriaclusterwebuiservice`. If `exposeStreamServiceExternally` is true, this should have an `EXTERNAL-IP` |
+| Deployments | - 1 `cambriaclusterapp` deployment with all items active<br />- 1 `cambriaclusterwebui` deployment with all items active |
+| Pods        | - X pods with `cambriaclusterapp` in the name (X = # of replicas specified in config file) with all items active / Running<br />- X pods with `pgcluster` in the name (X = # of replicas specified in config file) with all items active / Running<br />- 1 pod with `cambriaclusterwebui` in the name |
+| Services    | - 3 services with `pgcluster` in the name with a `CLUSTER-IP` assigned<br />- 1 service named `cambriaclusterservice`. If `exposeStreamServiceExternally` is true, this should have an `EXTERNAL-IP`<br />- 1 service named `cambriaclusterwebuiservice`. If `exposeStreamServiceExternally` is true, this should have an `EXTERNAL-IP` |
 
 3. If any of the above are not in an expected state, wait a few more minutes in case some resources take longer than expected to complete. If after a few minutes there are still resources in an unexpected state, contact the Capella support team.
 
@@ -686,7 +686,7 @@ kubectl get all -n capella-worker
 
 | Resources  | Content |
 |------------|---------|
-| Pods        | - X pods with `cambriaftcapp` in the name (X = Max # of FTCs specified in the config file)<br>**Notes:**<br>1. If using Cambria FTC autoscaler, all of these pods should be in a pending state. Every time the autoscaler deploys a Cambria FTC node, one pod will be assigned to it.<br>2. If not using Cambria FTC autoscaler, Y of the pods should be in an active / running state and all containers running (Y = # of Cambria FTC nodes active) |
+| Pods        | - X pods with `cambriaftcapp` in the name (X = Max # of FTCs specified in the config file)<br />**Notes:**<br />1. If using Cambria FTC autoscaler, all of these pods should be in a pending state. Every time the autoscaler deploys a Cambria FTC node, one pod will be assigned to it.<br />2. If not using Cambria FTC autoscaler, Y of the pods should be in an active / running state and all containers running (Y = # of Cambria FTC nodes active) |
 | Deployments | - 1 `cambriaftcapp` deployment. |
 
 3. If any of the above are not in an expected state, wait a few more minutes in case some resources take longer than expected to complete. If after a few minutes there are still resources in an unexpected state, contact the Capella support team.
