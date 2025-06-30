@@ -164,7 +164,7 @@ source ./setEnvVariablesCambriaCluster.sh
 | **Linode API Token** | API token from Akamai Cloud's Dashboard. [See guide](https://www.linode.com/docs/products/tools/api/guides/manage-api-tokens/) |
 | **PostgreSQL Password** | The password for the PostgreSQL database that Cambria Cluster uses. General password rules apply. |
 | **Cambria API Token** | A token needed for making calls to the Cambria FTC web server. General token rules apply (e.g., `1234-5678-90abcdefg`). |
-| **Web UI Users** | Login credentials for the Cambria WebUIs for the Kubernetes cluster. Format: `role,username,password`.<br>Allowed roles:<br>1. **admin** – Full access and user management<br>2. **superuser** – Full access<br>3. **user** – View-only<br>Example: `admin,admin,changethispassword1234,user,guest,password123` |
+| **Web UI Users** | Login credentials for the Cambria WebUIs for the Kubernetes cluster. Format: `role,username,password`.<br />Allowed roles:<br />1. **admin** – Full access and user management<br />2. **superuser** – Full access<br />3. **user** – View-only<br />Example: `admin,admin,changethispassword1234,user,guest,password123` |
 | **Argo Events Webhook Token** | Token for specific Argo Events calls. General token rules apply (e.g., `1234-5678-90abcdefg`). |
 | **Cambria FTC License Key** | Provided by Capella. Starts with a '2' (e.g., `2AB122-11123A-ABC890-DEF345-ABC321-543A21`). |
 | **Grafana Password** | Password for the Grafana Dashboard. |
