@@ -163,7 +163,7 @@ Note that the benchmark involves read from / write to an ObjectStorage location 
 
 | # of Concurrent Jobs | Real Time Speed              | CPU Usage |
 |----------------------|------------------------------|-----------|
-| 2                    | 1.18x RT per job (faster than real-time) <br> Total Throughput: 2.36x RT ...<br />
+| 2                    | 1.18x RT per job (faster than real-time) <br /> Total Throughput: 2.36x RT ...<br />
 
 ### 1.4. Cambria Application Access
 
@@ -447,7 +447,7 @@ The following is a benchmark of two Oracle Cloud machines. The information below
 | Type   | Codec | Frame Rate | Resolution                |
 |--------|--------|-------------|----------------------------|
 | Source | TS H.264 | 30        | 1920 x 1080 @ 8 Mbps       |
-| Output | HLS/TS H.264 | 29.97 | 1920 x 1080 @ 4 Mbps<br>1280 x 720 @ 2.4 Mbps<br>640 x 480 @ 0.8 Mbps<br>320 x 240 @ 0.3 Mbps |
+| Output | HLS/TS H.264 | 29.97 | 1920 x 1080 @ 4 Mbps<br />1280 x 720 @ 2.4 Mbps<br />640 x 480 @ 0.8 Mbps<br />320 x 240 @ 0.3 Mbps |
 
 ### VM: VM.Standard.E4.Flex - 8 OCPUs + 32 GB RAM [AMD EPYC 7J13]
 
@@ -461,7 +461,7 @@ The following is a benchmark of two Oracle Cloud machines. The information below
 
 | # of Concurrent Jobs | Real Time Speed                              | CPU Usage |
 |----------------------|-----------------------------------------------|-----------|
-| 2                    | For Each job: 1.18x RT (faster than real-time)<br>Throughput: 2.36x RT (it takes around 26 seconds to transcode 1 minute of source) | 100% |
+| 2                    | For Each job: 1.18x RT (faster than real-time)<br />Throughput: 2.36x RT (it takes around 26 seconds to transcode 1 minute of source) | 100% |
 
 # 1.4. Cambria Application Access
 
