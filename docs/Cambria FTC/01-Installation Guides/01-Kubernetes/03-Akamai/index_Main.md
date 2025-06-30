@@ -341,31 +341,7 @@ Depending on your workflow(s), think about how many backup nodes may be needed.
 
 ![Screenshot](02_add_logo.png)
 
-2. Create the cluster. It may take several minutes for the initial Kubernetes system to load. Make sure that all of
-the nodes that you configured are up and running (State should be Running).
-
-3. Once the kubernetes environment setup is complete, copy the contents of the Kubeconfig file:
-a. Click on View and copy the contents shown on the pop up window
-b. Set the cluster name as an environment variable:
-export CLUSTER_NAME=cambria-cluster
-c. In the Linux deployment server, create a new file for the kubeconfig:
-nano $CLUSTER_NAME-kubeconfig.yaml
-d. Paste the contents from step 3a. If using nano, right-click to paste
-e. Save the file. If using nano, press CTRL/CMD + X, then type 'y', and then press the Enter/Return key
-
-4. In the Linux deployment server, set the KUBECONFIG environment variable for terminal interaction with the
-LKE cluster:
-export KUBECONFIG=$CLUSTER_NAME-kubeconfig.yaml
-
-5. Verify that kubectl works with the cluster
-kubectl get nodes
-Example:
-NAME STATUS ROLES AGE VERSION
-lke389119-595948-28c8a7980000 Ready <none> 23m v1.32.1
-lke389119-595948-5e8b20d10000 Ready <none> 23m v1.32.1
-
-6. Back in the Akamai Dashboard in the LKE cluster, click on Copy Token. Then, open the Kubernetes
-Dashboard and use the token to log in to the dashboard
+placeholder
 
 ![Screenshot](03_add_logo.png)
 
