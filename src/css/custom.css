@@ -239,15 +239,17 @@ main {
 }
 
 @media (prefers-color-scheme: dark) {
-  /* Banner background in dark mode */
-  .heroBanner_qdFl {
-    background-color: #3399cc;
+  /* Banner background and text color in dark mode */
+  .heroBanner_qdFl,
+  .heroBanner_qdFl h1,
+  .heroBanner_qdFl p {
+    background-color: #60a8d
+    color: #e3e3e3;
   }
 
   /* Footer colors in dark mode */
   :root {
-    --ifm-footer-background-color: #444950;
-	--ifm-footer-color: #cccccc;  /* lighter text */
+    --ifm-footer-background-color: #e3e3e3;
   }
 }
 
