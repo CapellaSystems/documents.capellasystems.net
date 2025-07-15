@@ -240,13 +240,14 @@ main {
 
 @media (prefers-color-scheme: dark) {
   /* Banner background in dark mode */
-  .banner {
+  .heroBanner_qdFl {
     background-color: #3399cc;
   }
 
   /* Footer colors in dark mode */
   :root {
-    --ifm-footer-background-color: #1b1b1d;
+    --ifm-footer-background-color: #444950;
+	--ifm-footer-color: #cccccc;  /* lighter text *
   }
 }
 
