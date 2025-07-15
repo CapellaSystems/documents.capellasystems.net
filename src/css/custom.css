@@ -243,13 +243,14 @@ main {
   .heroBanner_qdFl,
   .heroBanner_qdFl h1,
   .heroBanner_qdFl p {
-    background-color: #60a8d
+    background-color: #60a8dd;
     color: #e3e3e3;
   }
 
   /* Footer colors in dark mode */
   :root {
     --ifm-footer-background-color: #e3e3e3;
+    --ifm-footer-color: #1b1b1d;
   }
 }
 
