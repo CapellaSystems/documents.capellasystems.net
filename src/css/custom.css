@@ -247,7 +247,7 @@ main {
   /* Footer colors in dark mode */
   :root {
     --ifm-footer-background-color: #444950;
-	--ifm-footer-color: #cccccc;  /* lighter text *
+	--ifm-footer-color: #cccccc;  /* lighter text */
   }
 }
 
