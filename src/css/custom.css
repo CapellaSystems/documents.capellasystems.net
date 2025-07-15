@@ -238,6 +238,20 @@ main {
   }
 }
 
+@media (prefers-color-scheme: dark), html.theme-dark {
+  .heroBanner_qdFl,
+  .heroBanner_qdFl h1,
+  .heroBanner_qdFl p {
+    background-color: #60a8dd !important;
+    color: #e3e3e3 !important;
+  }
+
+  :root {
+    --ifm-footer-background-color: #e3e3e3;
+    --ifm-footer-color: #1b1b1d;
+  }
+}
+
 /* Feature cards container */
 .features {
   display: flex;
