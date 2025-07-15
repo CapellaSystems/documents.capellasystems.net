@@ -68,6 +68,12 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      // Color mode configuration
+      colorMode: {
+        defaultMode: 'light',
+        disableSwitch: false,
+        respectPrefersColorScheme: false,
+      },
       // Replace with your project's social card
       image: 'img/capellalogo.png',
       navbar: {
@@ -80,13 +86,11 @@ const config = {
 		  {
             type: 'docSidebar',
             sidebarId: 'StreamSidebar',
-            position: 'left',
             label: 'Cambria Stream',
           },
           {
             type: 'docSidebar',
             sidebarId: 'FTCSidebar',
-            position: 'left',
             label: 'Cambria FTC',
           },
           /*{
@@ -104,7 +108,6 @@ const config = {
         ],
       },
       footer: {
-        style: 'dark',
         links: [
           {
             title: 'Company',
@@ -152,10 +155,7 @@ const config = {
         ],
         copyright: `Copyright © ${new Date().getFullYear()} Capella Systems`,
       },
-      prism: {
-        theme: prismThemes.github,
-        darkTheme: prismThemes.dracula,
-      },
+
     }),
 };
 
