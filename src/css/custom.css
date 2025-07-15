@@ -238,6 +238,13 @@ main {
   }
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ifm-footer-background-color: #222222; /* dark gray background */
+    --ifm-footer-color: #cccccc;            /* lighter text */
+  }
+}
+
 /* Feature cards container */
 .features {
   display: flex;
