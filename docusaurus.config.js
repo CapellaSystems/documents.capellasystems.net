@@ -87,24 +87,20 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'StreamSidebar',
             label: 'Cambria Stream',
+            position: 'right',
           },
           {
             type: 'docSidebar',
             sidebarId: 'FTCSidebar',
             label: 'Cambria FTC',
-          },
-          /*{
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
-            position: 'left',
-            label: 'Tutorial',
-          },
-          {to: '/blog', label: 'Blog', position: 'left'},
-          {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
             position: 'right',
-          },*/
+          },
+          {
+            href: 'https://www.capellasystems.net',
+            label: 'Capella Website',
+            position: 'right',
+          },
+
         ],
       },
       footer: {
