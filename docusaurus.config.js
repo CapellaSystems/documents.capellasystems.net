@@ -4,8 +4,6 @@
 // There are various equivalent ways to declare your Docusaurus config.
 // See: https://docusaurus.io/docs/api/docusaurus-config
 
-import {themes as prismThemes} from 'prism-react-renderer';
-
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 /** @type {import('@docusaurus/types').Config} */
@@ -76,6 +74,19 @@ const config = {
       },
       // Replace with your project's social card
       image: 'img/capellalogo.png',
+                     // Algolia search configuration
+        algolia: {
+          appId: process.env.ALGOLIA_APP_ID,
+          apiKey: process.env.ALGOLIA_API_KEY,
+          indexName: 'Capella Documentation',
+          contextualSearch: true,
+          searchParameters: {},
+          externalUrlRegex: 'external\\.com|domain\\.com',
+          replaceSearchResultPathname: {
+            from: '/docs/',
+            to: '/',
+          },
+        },
       navbar: {
         title: 'Capella Documentation',
         logo: {
@@ -98,6 +109,10 @@ const config = {
           {
             href: 'https://www.capellasystems.net',
             label: 'Capella Website',
+            position: 'right',
+          },
+          {
+            type: 'search',
             position: 'right',
           },
 
