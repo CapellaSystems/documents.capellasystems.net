@@ -177,8 +177,7 @@ main {
     --feature-max-height: 400px; 
   }
   .features {
-    gap: 2rem;
-    padding-top: 4.5rem;
+    padding-top: 1rem;
   }
   .footer {
     padding: 0.5rem 0;
@@ -258,9 +257,3 @@ main {
   flex: 1;
 }
 
-/* Responsive container */
-.container {
-  max-width: var(--container-max-width);
-  max-height: var(--container-max-height);
-  overflow: hidden;
-}
