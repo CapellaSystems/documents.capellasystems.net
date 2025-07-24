@@ -3,19 +3,27 @@
  * and scoped locally.
  */
 
-.heroBanner {
+ .heroBanner {
   padding: 2rem 0;
   text-align: center;
   position: relative;
   overflow: hidden;
-  margin-bottom: 2rem;
+  margin-top: 0.5rem;
 }
 
-@media screen and (max-width: 996px) {
+/* Mobile phones */
+@media (min-width: 320px) and (max-width: 480px) {
   .heroBanner {
-    padding: 1rem;
+    margin-bottom: 0.5rem;
   }
 }
+/* Tablets */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .heroBanner {
+    margin-bottom: 1rem;
+  }
+}
+
 
 .buttons {
   display: flex;
