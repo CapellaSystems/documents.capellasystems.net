@@ -20,7 +20,7 @@
 /* Tablets */
 @media (min-width: 1024px) and (max-width: 1439px) {
   .heroBanner {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
 }
 
