@@ -81,11 +81,7 @@ const config = {
           indexName: 'Capella Documentation',
           contextualSearch: true,
           searchParameters: {},
-          externalUrlRegex: 'external\\.com|domain\\.com',
-          replaceSearchResultPathname: {
-            from: '/docs/',
-            to: '/',
-          },
+          externalUrlRegex: 'external\\.com|domain\\.com'
         },
       navbar: {
         title: 'Capella Documentation',
