@@ -1,20 +1,19 @@
-# LiveControlAPI
+# AddEvent
 
 **Broadcast Manager Endpoint:**  
-`http://machineName:8753/CambriaBM/v1/LiveControl`
+`http://machineName:8753/CambriaBM/v1/Events`
 
 **Stream Manager Endpoint:**  
-`http://machineName:8757/CambriaLM/v1/LiveControl`
+`http://machineName:8757/CambriaLM/v1/Events`
 
 ## Description
-Control live event streams by starting, stopping, or switching inputs and outputs.
+Add an event using given event xml information.
 
 ## Arguments
 
 | Name      | Type   | Description                                          |
 |-----------|--------|------------------------------------------------------|
-| Command   | String | The control command to execute (e.g., `Start`, `Stop`, `SwitchInput`). |
-| EventID   | String | The ID of the event to control.                     |
+| AllowWarning   | Boolean | Allow adding new event which would result in new Conflict Detection or any other warning |
 
 ## HTTP Method
 **POST**
@@ -25,12 +24,14 @@ Control live event streams by starting, stopping, or switching inputs and output
 |---------------|----------|------------------------------------------------|
 | `Content`     | None     | Container of the response                     |
 | `Status`      | Content  | Logs of the API call                          |
+| `ServerRequest`     | Status     | Information about the request                    |
+| `Status`      | Status  | Information about errors, only exists when there is any                          |
 
 ## HTTP Status Codes
 
 | Value | Description                                            |
 |-------|--------------------------------------------------------|
 | 200   | Successfully processed                                 |
-| 400   | Invalid parameters                                     |
-| 404   | Event not found                                        |
-| 5xx   | Server error while executing control command           |
+| 400   | Required XML was not given, or invalid parameters                                     |
+| 409   | The Event cannot be added due to conflict                                    |
+| 5xx   | Unable to add Event due to server error, please check the corresponding errors returned           |
