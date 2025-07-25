@@ -3113,7 +3113,7 @@ caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001702, caniuse-lite@^1.0.30001726:
     "@docusaurus/core" "3.7.0"
     "@docusaurus/preset-classic" "3.7.0"
     "@mdx-js/react" "^3.0.0"
-    capella-documentation "file:C:/Users/build/AppData/Local/Yarn/Cache/v6/npm-capella-documentation-0.0.0-a7859263-a267-4210-9c76-9f43b4014c0f-1753397565551/node_modules/capella-documentation"
+    capella-documentation "file:C:/Users/build/AppData/Local/Yarn/Cache/v6/npm-capella-documentation-0.0.0-b49a9fa6-7f2f-4212-a868-301578389e6c-1753475260837/node_modules/capella-documentation"
     clsx "^2.0.0"
     prism-react-renderer "^2.3.0"
     react "^19.0.0"
@@ -5505,6 +5505,11 @@ lru-cache@^5.1.1:
   integrity sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==
   dependencies:
     yallist "^3.0.2"
+
+lucide-react@^0.525.0:
+  version "0.525.0"
+  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.525.0.tgz#5f7bcecd65e4f9b2b5b6b5d295e3376df032d5e3"
+  integrity sha512-Tm1txJ2OkymCGkvwoHt33Y2JpN5xucVq1slHcgE6Lk0WjDfjgKWor5CdVER8U6DvcfMwh4M8XxmpTiyzfmfDYQ==
 
 markdown-extensions@^2.0.0:
   version "2.0.0"
