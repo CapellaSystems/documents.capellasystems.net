@@ -324,7 +324,7 @@ main {
   transform: translateY(-20px);
   text-decoration: none;
   color: inherit;
-  border: 2px solid var(--ifm-color-emphasis-300)
+  border: 2px solid var(--ifm-color-primary-lightest)
 }
 
 [data-theme='light'] .feature-link {
@@ -338,6 +338,11 @@ main {
 [data-theme='dark'] .feature-link {
   background: var(--ifm-background-color);
 }
+
+[data-theme='dark'] .feature-link:hover {
+  border: 2px solid var(--ifm-color-primary-darkest)
+}
+
 
 [data-theme='dark'] {
   --ifm-footer-background-color: var(--ifm-color-primary);
