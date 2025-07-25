@@ -2,19 +2,25 @@ import React, { useState } from 'react';
 import DocSidebar from '@theme-original/DocSidebar';
 
 function sortItems(items, order) {
-  if (order === 'default') return items;
-  const sorted = [...items].sort((a, b) => {
+  if (order === 'asc') return [...items].sort((a, b) => {
     const labelA = (a.label || a.id || '').toLowerCase();
     const labelB = (b.label || b.id || '').toLowerCase();
     if (labelA < labelB) return -1;
     if (labelA > labelB) return 1;
     return 0;
   });
-  return sorted;
+  if (order === 'desc') return [...items].sort((a, b) => {
+    const labelA = (a.label || a.id || '').toLowerCase();
+    const labelB = (b.label || b.id || '').toLowerCase();
+    if (labelA > labelB) return -1;
+    if (labelA < labelB) return 1;
+    return 0;
+  });
+  return items;
 }
 
 function CustomSidebar({sidebar, ...props}) {
-  const [sortOrder, setSortOrder] = useState('default'); // 'default', 'asc'
+  const [sortOrder, setSortOrder] = useState('asc'); // Default to A-Z
 
   // Find the Tutorials category and wrap it with sorting logic
   const customSidebar = sidebar.map(item => {
@@ -36,22 +42,22 @@ function CustomSidebar({sidebar, ...props}) {
                 borderRadius: 4,
                 border: '1px solid #469ece',
                 cursor: 'pointer',
-                marginBottom: -2,
+                marginBottom: -1,
                 height: 15,
                 lineHeight: '10px',
                 zIndex: 1000,
               }}
               onClick={e => {   
                 e.preventDefault();
-                setSortOrder(prev => prev === 'default' ? 'asc' : 'default');
+                setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc');
               }}
               title={
-                sortOrder === 'default'
-                  ? 'Sort A-Z'
-                  : 'Show original order'
+                sortOrder === 'asc'
+                  ? 'Sort Z-A'
+                  : 'Sort A-Z'
               }
             >
-              {sortOrder === 'asc' ? 'A-Z' : 'Default'}
+              {sortOrder === 'asc' ? 'A-Z' : 'Z-A'}
             </button>
           ),
         },

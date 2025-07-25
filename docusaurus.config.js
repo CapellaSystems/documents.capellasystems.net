@@ -162,7 +162,6 @@ const config = {
         ],
         copyright: `Copyright © ${new Date().getFullYear()} Capella Systems`,
       },
-
     }),
 };
 
