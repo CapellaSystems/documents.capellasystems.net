@@ -370,3 +370,11 @@ main {
   cursor: not-allowed !important;
   opacity: 0.6;
 }
+
+.tutorial-sort-btn .tutorial-sort-icon {
+  color: #469ece;
+  transition: color 0.2s;
+}
+.tutorial-sort-btn:hover .tutorial-sort-icon {
+  color: #1976d2;
+}

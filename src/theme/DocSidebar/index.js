@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import DocSidebar from '@theme-original/DocSidebar';
+import { ArrowUpAZ, ArrowDownAZ } from 'lucide-react';
 
 function sortItems(items, order) {
   if (order === 'asc') return [...items].sort((a, b) => {
@@ -35,17 +36,17 @@ function CustomSidebar({sidebar, ...props}) {
           sortButton: (
             <button
               style={{
-                marginLeft: 8,
-                verticalAlign: 'middle',
-                horizontalAlign: 'middle',
-                fontSize: '0.7em',
-                borderRadius: 4,
-                border: '1px solid #469ece',
+                marginLeft: 5,
                 cursor: 'pointer',
-                marginBottom: -1,
-                height: 15,
-                lineHeight: '10px',
+                marginBottom: -2,
                 zIndex: 1000,
+                background: 'transparent',
+                padding: 0,
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                border: 'none',
+                color: 'var(--ifm-color-primary)',
               }}
               onClick={e => {   
                 e.preventDefault();
@@ -53,12 +54,12 @@ function CustomSidebar({sidebar, ...props}) {
               }}
               title={
                 sortOrder === 'asc'
-                  ? 'Sort Z-A'
-                  : 'Sort A-Z'
+                  ? 'Sort A-Z'
+                  : 'Sort Z-A'
               }
             >
-              {sortOrder === 'asc' ? 'A-Z' : 'Z-A'}
-            </button>
+              {sortOrder === 'asc' ? <ArrowDownAZ className="tutorial-sort-icon" size={18} /> : <ArrowUpAZ className="tutorial-sort-icon" size={18} />}
+              </button>
           ),
         },
       };
