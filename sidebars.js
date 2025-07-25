@@ -29,9 +29,9 @@ const sidebars = {
               type: 'category',
               label: 'AWS',
               items: [
-                'Cambria Stream/Installation Guides/Kubernetes/AWS/placeholder',
                 'Cambria Stream/Installation Guides/Kubernetes/AWS/cambria_stream_aws_kubernetes/index',
                 'Cambria Stream/Installation Guides/Kubernetes/AWS/linux_cambria_stream_5_4_0_guide/index',
+                'Cambria Stream/Installation Guides/Kubernetes/AWS/placeholder',
               ],
             },
             {
