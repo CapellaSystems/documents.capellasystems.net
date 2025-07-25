@@ -90,16 +90,16 @@ const config = {
           src: 'img/capellalogo.png',
         },
         items: [
-		  {
-            type: 'docSidebar',
-            sidebarId: 'StreamSidebar',
-            label: 'Cambria Stream',
-            position: 'right',
-          },
           {
             type: 'docSidebar',
             sidebarId: 'FTCSidebar',
             label: 'Cambria FTC',
+            position: 'right',
+          },
+		      {
+            type: 'docSidebar',
+            sidebarId: 'StreamSidebar',
+            label: 'Cambria Stream',
             position: 'right',
           },
           {
