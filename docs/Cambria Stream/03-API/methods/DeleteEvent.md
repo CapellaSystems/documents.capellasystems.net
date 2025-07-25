@@ -1,4 +1,4 @@
-# GetEventsConflict
+# DeleteEvent
 
 **Broadcast Manager Endpoint:**  
 `http://machineName:8753/CambriaBM/v1/EventsConflict`

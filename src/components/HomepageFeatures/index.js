@@ -18,7 +18,6 @@ const FeatureList = [
   {
     title: 'Live Encoding (On-Premise)',
     image: '/img/live-flow.png',
-    link: 'https://www.capellasystems.net/workflows?tab=live-op-tablink',
     description: (
       <>
         <p><strong>Cambria Live/Editor:</strong> Professional live studio encoder with robust ad insertion and reliable streaming output.</p>
@@ -62,9 +61,12 @@ function Feature({image, title, description, link}) {
     );
   }
 
+  // Render a div with feature-link class for non-link cards
   return (
     <div className={clsx('col col--4')}>
-      {content}
+      <div className="feature-link">
+        {content}
+      </div>
     </div>
   );
 }
