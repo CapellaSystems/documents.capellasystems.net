@@ -1,7 +1,8 @@
 ---
 
-## title: Scriptable Workflow Guide
+title: Scriptable Workflow Guide
 
+---
 # Capella Cambria FTC and Cluster — Scriptable Workflow Guide
 
 ## 1. Overview
