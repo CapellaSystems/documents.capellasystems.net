@@ -234,7 +234,7 @@ necessary
 license, such feature is not available.
 
 - Database can be corrupted or become unable to handle any request, when database
-configuration or initial backup phase is interrupted.
+configuration or initial backup phase is interrupted..
 
 -Database can be in “read-only” state as configured by Cluster Redundancy
 
