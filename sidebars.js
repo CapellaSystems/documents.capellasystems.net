@@ -223,7 +223,7 @@ const sidebars = {
         'Cambria FTC/Tutorials/scriptable_workflow_guide/scriptable-workflow',
         'Cambria FTC/Tutorials/Subtitle Burn-In/subtitle-burnin',
         'Cambria FTC/Tutorials/scte-35-insertion',
-        'Cambria FTC/Tutorials/Snmp Guide/snmp-guide',
+        'Cambria FTC/Tutorials/Snmp_Setup_and_testing/snmp-guide',
         'Cambria FTC/Tutorials/Using the Teletrax Watermarking Filter/teletrax-watermarking',
         'Cambria FTC/Tutorials/Video Segments/video-segments',
         'Cambria FTC/Tutorials/XML Titler with Carbon Subtitle Workflow/carbon-subtitle-xml',
