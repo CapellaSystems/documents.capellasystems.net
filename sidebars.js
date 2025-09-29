@@ -221,7 +221,7 @@ const sidebars = {
         'Cambria FTC/Tutorials/payg-licensing',
         'Cambria FTC/Tutorials/postgres_migration/database-migration',
         'Cambria FTC/Tutorials/scriptable_workflow_guide/scriptable-workflow',
-        'Cambria FTC/Tutorials/subtitle-burnin',
+        'Cambria FTC/Tutorials/Subtitle Burn-In/subtitle-burnin',
         'Cambria FTC/Tutorials/Snmp Guide/snmp-guide',
         'Cambria FTC/Tutorials/Subtitle Burn-In/subtitle-burnin',
         'Cambria FTC/Tutorials/Using the Teletrax Watermarking Filter/teletrax-watermarking',
