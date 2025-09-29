@@ -206,7 +206,7 @@ const sidebars = {
       type: 'category',
       label: 'Tutorials',
       items: [
-        //'Cambria FTC/Tutorials/Arib-stdb3/index',
+        'Cambria FTC/Tutorials/Arib-stdb37/index',
         'Cambria FTC/Tutorials/Audio watermarking integration with \'Kantar\' guide',
         'Cambria FTC/Tutorials/aws_ami_creation_editing/index',
         'Cambria FTC/Tutorials/cambria-ftc-stt',
@@ -222,6 +222,7 @@ const sidebars = {
         'Cambria FTC/Tutorials/postgres_migration/database-migration',
         'Cambria FTC/Tutorials/scriptable_workflow_guide/scriptable-workflow',
         'Cambria FTC/Tutorials/Subtitle Burn-In/subtitle-burnin',
+        'Cambria FTC/Tutorials/scte-35-insertion',
         'Cambria FTC/Tutorials/Snmp Guide/snmp-guide',
         'Cambria FTC/Tutorials/Using the Teletrax Watermarking Filter/teletrax-watermarking',
         'Cambria FTC/Tutorials/Video Segments/video-segments',
