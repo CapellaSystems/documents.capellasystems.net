@@ -3,7 +3,7 @@ id: video-segments
 title: Video Segment
 ---
 
-# Video Segments in Cambria Jordan!
+# Video Segments in Cambria FTC
 
 ## Feature Overview
 
