@@ -1,7 +1,6 @@
 ---
 id: scte-35-insertion
 title: SCTE-35 Insertion
-slug: /tutorials/scte-35-insertion
 ---
 
 # SCTE-35 Insertion in Cambria FTC
