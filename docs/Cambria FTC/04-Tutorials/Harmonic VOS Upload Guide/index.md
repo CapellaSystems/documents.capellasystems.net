@@ -19,22 +19,24 @@ title: Harmonic VOS Upload Guide
 
 ### 5. In the **Preset Editor**, set the **Output Folder** based on the type of VOS upload:
 
-- **For VOS 360:** Set to an **Apache web server location** (e.g., using XAMPP internally).  
-  Example:  
+- **For VOS 360:** Configure the output to point to a location that is accessible via HTTP/HTTPS. This is typically a web server directory (e.g., Apache, Nginx, IIS) or another HTTP-accessible path that VOS360 can reach.
+  Example (local Apache with XAMPP):  
   ```
   C:\xampp\htdocs\Output
   ```
-- **For VOS CNS:** Set to a **shared folder** as seen from FTC.  
-  Example:  
+  **Note:** Any properly configured web server can be used, not just Apache. Make sure VOS360 can reach the output via the correct hostname, port, and firewall/router settings.
+  
+- **For VOS CNS (on-prem):** Configure the output to a shared folder that FTC can write to and that the VOS CNS server can also access.
+  Example (Windows):  
   ```
   \\server\location
-  ```  
-  The VOS CNS side will show something like:  
+  ```
+  Example (Linux):
   ```
   /mnt/shared/location
   ```
 
-> **NOTE:** This will vary depending on your setup. Ensure to specify the correct server location.
+> **NOTE:** ⚠️ Ensure the correct server location and access permissions are used. Content may need to be exposed through the proper port-forwarding, firewall rules, or CDN setup, depending on your environment.
 
 ### 6. Select the **MPEG-2 TS** container in encoding settings.
 
@@ -43,18 +45,15 @@ title: Harmonic VOS Upload Guide
 - Set the **Bitrate**.
 - **Enable** the **"Use fixed length GOP"** checkbox.
 
-   
-   
-   ![Screenshot](02_screenshot.png)
-   
-   
 
 ### 8. Configure **Post Task**:
 - In the **Preset Editor**, go to the **Post Task** tab.
 - **Enable** the **"Use Upload"** checkbox.
 - Click the **"Add Harmonic VOS"** button.
+- Make sure that **EVERY** field is filled. The only field that does not need to be filled is Asset ID as it can also be automatically generated if not set manually.
 
-   
+   ![Screenshot](03_screenshot.png)
+
    
 
 ### 9. Specify your **Harmonic VOS credentials**.
@@ -83,27 +82,7 @@ Once all target layers are created, click **Convert/Queue**.
    
 
 ### 13. **Verify the VOS Upload**  
-Use the following **CMD commands** to generate an **access token** and check the **VOS Decision Queue JSON Response**:
-
-#### Generate a Base64 String:
-```sh
-echo -n "YourClientAPIKey:YourClientSecretKey" | base64
-```
-(This generates **YourBase64String**)
-
-#### Request an Access Token:
-```sh
-curl -s -X POST -H "Authorization: Basic YourBase64String" "https://vos360-apac-01.vos360.video/oauth/token?grant_type=client_credentials"
-```
-(This generates **YourAccessToken**)
-
-#### Check the Decision Queue:
-```sh
-curl -X GET "https://vos360-apac-01.vos360.video/vos-api/asset-acquisition/v1/assets/need_decision" -H "accept: */*" -H "Authorization: Bearer YourGeneratedAccessToken"
-```
-
-> **Example API Endpoint:**  
-> [Harmonic VOS API](https://vos360-apac-01.vos360.video/oauth/token?grant_type=client_credentials)
+Please log into your VOS system to check if everything is working.
 
 ---
 
