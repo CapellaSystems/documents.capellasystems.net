@@ -207,7 +207,7 @@ const sidebars = {
       label: 'Tutorials',
       items: [
         'Cambria FTC/Tutorials/Arib-stdb37/index',
-        'Cambria FTC/Tutorials/Audio watermarking integration with \'Kantar\' guide',
+        'Cambria FTC/Tutorials/Audio-watermarking-integration-with-\'Kantar\'-guide',
         'Cambria FTC/Tutorials/aws_ami_creation_editing/index',
         'Cambria FTC/Tutorials/cambria-ftc-stt',
         'Cambria FTC/Tutorials/cluster-redundancy',
