@@ -52,7 +52,7 @@ title: Harmonic VOS Upload Guide
 - Click the **"Add Harmonic VOS"** button.
 - Make sure that **EVERY** field is filled. The only field that does not need to be filled is Asset ID as it can also be automatically generated if not set manually.
 
-   ![Screenshot](03_screenshot.png)
+   <img src="./03_screenshot.png" alt="Screenshot" width="555" height="366" />
 
    
 
