@@ -54,11 +54,11 @@ title: Harmonic VOS Upload Guide
 - Click the **"Add Harmonic VOS"** button.
 - Make sure that **EVERY** field is filled. The only field that does not need to be filled is **Server Username** and **Server Password** for VOS 360. As well as **Asset ID** For VOS CNS as it can also be automatically generated if not set manually.
 
-	Example (VOS 360):
+	**Example (VOS 360):**
 	
    ![VOS360](05_VOS360.png)
 
-	Example (VOS CNS):
+	**Example (VOS CNS):**
 	
    ![VOSCNS](06_VOSCNS.png)
 
