@@ -1,5 +1,5 @@
 ---
-id: carbon-subtitle-xml
+id: carbon_subtitle_xml
 title: Carbon Subtitle XML Workflow
 ---
 
