@@ -5,7 +5,7 @@ title: Harmonic VOS Upload Guide
 
 # FTC Harmonic VOS Upload Guide
 
-> **NOTE:** This will require a local web server that needs to be open to the public.
+> **NOTE:** Some configurations may require a local web server that needs to be open to the public.
 
 ## Steps to Upload to Harmonic VOS
 
@@ -25,7 +25,7 @@ title: Harmonic VOS Upload Guide
   ```
   C:\xampp\htdocs\Output
   ```
-  **Note:** Any properly configured web server can be used, not just Apache. Make sure VOS360 can reach the output via the correct hostname, port, and firewall/router settings.
+>  **Note:** Any properly configured web server can be used, not just Apache. Make sure VOS360 can reach the output via the correct hostname, port, and firewall/router settings.
   
 - **For VOS CNS (on-prem):** Configure the output to a shared folder that FTC can write to and that the VOS CNS server can also access.
   
