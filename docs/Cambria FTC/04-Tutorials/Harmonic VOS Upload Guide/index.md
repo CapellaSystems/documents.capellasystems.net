@@ -52,9 +52,13 @@ title: Harmonic VOS Upload Guide
 - In the **Preset Editor**, go to the **Post Task** tab.
 - **Enable** the **"Use Upload"** checkbox.
 - Click the **"Add Harmonic VOS"** button.
-- Make sure that **EVERY** field is filled. The only field that does not need to be filled is Asset ID as it can also be automatically generated if not set manually.
+- Make sure that **EVERY** field is filled. The only field that does not need to be filled is **Server Username** and **Server Password** for VOS 360. As well as **Asset ID** For VOS CNS as it can also be automatically generated if not set manually.
 
-   ![Screenshot](04_screenshot.png)
+	Example (VOS 360):
+   ![VOS360](05_VOS360.png)
+
+	Example (VOS CNS):
+   ![VOSCNS](06_VOSCNS.png)
 
    
 
