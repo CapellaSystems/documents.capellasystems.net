@@ -19,7 +19,8 @@ title: Harmonic VOS Upload Guide
 
 ### 5. In the **Preset Editor**, set the **Output Folder** based on the type of VOS upload:
 
-- **For VOS 360:** Configure the output to point to a location that is accessible via HTTP/HTTPS. This is typically a web server directory (e.g., Apache, Nginx, IIS) or another HTTP-accessible path that VOS360 can reach.
+- **For VOS 360:** Configure the output to point to a location that is accessible via HTTP/HTTPS. This is typically a web server directory (e.g., Apache, Nginx, IIS) or another HTTP accessible path that VOS360 can reach.
+  
   Example (local Apache with XAMPP):  
   ```
   C:\xampp\htdocs\Output
@@ -27,6 +28,7 @@ title: Harmonic VOS Upload Guide
   **Note:** Any properly configured web server can be used, not just Apache. Make sure VOS360 can reach the output via the correct hostname, port, and firewall/router settings.
   
 - **For VOS CNS (on-prem):** Configure the output to a shared folder that FTC can write to and that the VOS CNS server can also access.
+  
   Example (Windows):  
   ```
   \\server\location
@@ -52,17 +54,16 @@ title: Harmonic VOS Upload Guide
 - Click the **"Add Harmonic VOS"** button.
 - Make sure that **EVERY** field is filled. The only field that does not need to be filled is Asset ID as it can also be automatically generated if not set manually.
 
-   <img src="./03_screenshot.png" alt="Screenshot" width="555" height="366" />
+   ![Screenshot](04_screenshot.png)
 
    
 
 ### 9. Specify your **Harmonic VOS credentials**.
 
-> **NOTE:** You must have a **Cambria FTC License with Harmonic VOS Upload Enabled**.
+ You must **HAVE** a **Cambria FTC License with Harmonic VOS Upload Enabled**.
 
-   
-
-> **String Replacement:** You can specify values like **%sourceName%**, **%sourcePath#%** as shown in the tooltip.
+ 
+ **String Replacement:** You can specify values like **%sourceName%**, **%sourcePath#%** as shown in the tooltip.
 
 ### 10. After adding the **Harmonic VOS Upload Task**, click **OK** to exit the Preset Editor.
 
@@ -70,9 +71,9 @@ title: Harmonic VOS Upload Guide
 - Adjust the **Frame Size and Bitrate** for each layer.
 - **Remove the upload task** from duplicated presets.
 
-> **IMPORTANT:**  
-> The upload task should only be applied to the **first target**.  
-> If you **don't remove the upload task** for additional layers, **multiple individual files** will be uploaded instead of an ABR encode.
+ **IMPORTANT:**  
+ The upload task should only be applied to the **first target**.  
+ If you **don't remove the upload task** for additional layers, **multiple individual files** will be uploaded instead of an ABR encode.
 
 ### 12. **Enable "Encode Targets as a Single Job"**  
 This ensures that files are uploaded as a **pair**.  
