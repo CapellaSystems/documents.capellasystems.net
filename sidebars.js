@@ -215,7 +215,7 @@ const sidebars = {
         'Cambria FTC/Tutorials/delete_source/index',
         'Cambria FTC/Tutorials/FTC_Avid_Ingest_Guide/index',
         'Cambria FTC/Tutorials/ftc-and-cluster-trusted-executables',
-        'Cambria FTC/Tutorials/Harmonic VOS Upload Guide/harmonic-vos-upload-guide',
+        'Cambria FTC/Tutorials/Harmonic_VOS_Upload_Guide/harmonic-vos-upload-guide',
         'Cambria FTC/Tutorials/Logo filter/logo-filter',
         'Cambria FTC/Tutorials/NexGuardFTC_Guide/nexguard-ftc-guide',
         'Cambria FTC/Tutorials/postgres_migration/database-migration',
