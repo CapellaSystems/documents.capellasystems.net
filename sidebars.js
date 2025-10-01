@@ -218,7 +218,6 @@ const sidebars = {
         'Cambria FTC/Tutorials/Harmonic VOS Upload Guide/harmonic-vos-upload-guide',
         'Cambria FTC/Tutorials/Logo filter/logo-filter',
         'Cambria FTC/Tutorials/NexGuardFTC_Guide/nexguard-ftc-guide',
-        'Cambria FTC/Tutorials/payg-licensing',
         'Cambria FTC/Tutorials/postgres_migration/database-migration',
         'Cambria FTC/Tutorials/scriptable_workflow_guide/scriptable-workflow',
         'Cambria FTC/Tutorials/Subtitle Burn-In/subtitle-burnin',
