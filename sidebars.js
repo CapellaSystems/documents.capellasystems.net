@@ -210,7 +210,7 @@ const sidebars = {
         'Cambria FTC/Tutorials/Audio_watermarking_integration_with_Kantar_guide',
         'Cambria FTC/Tutorials/aws_ami_creation_editing/index',
         'Cambria FTC/Tutorials/cambria-ftc-stt',
-        'Cambria FTC/Tutorials/cluster-redundancy',
+        'Cambria FTC/Tutorials/cluster_redundancy',
         'Cambria FTC/Tutorials/Color_Space_Coversion/color-space-conversion',
         'Cambria FTC/Tutorials/delete_source/index',
         'Cambria FTC/Tutorials/FTC_Avid_Ingest_Guide/index',
