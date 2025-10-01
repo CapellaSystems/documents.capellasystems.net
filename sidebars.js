@@ -211,7 +211,7 @@ const sidebars = {
         'Cambria FTC/Tutorials/aws_ami_creation_editing/index',
         'Cambria FTC/Tutorials/cambria-ftc-stt',
         'Cambria FTC/Tutorials/cluster-redundancy',
-        'Cambria FTC/Tutorials/Color Space Coversion/color-space-conversion',
+        'Cambria FTC/Tutorials/Color_Space_Coversion/color-space-conversion',
         'Cambria FTC/Tutorials/delete_source/index',
         'Cambria FTC/Tutorials/FTC_Avid_Ingest_Guide/index',
         'Cambria FTC/Tutorials/ftc-and-cluster-trusted-executables',
