@@ -1,5 +1,3 @@
-## Audio-watermarking-integration-with-'Kantar'-guide
-
 **Document Version:**
 
 *   
