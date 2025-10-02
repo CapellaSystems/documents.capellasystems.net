@@ -212,7 +212,7 @@ const sidebars = {
         'Cambria FTC/Tutorials/Speech_To_Text_Filter',
         'Cambria FTC/Tutorials/cluster_redundancy_feature',
         'Cambria FTC/Tutorials/Color_Space_Coversion/color-space-conversion',
-        'Cambria FTC/Tutorials/delete_source_after_transcoding/index',
+        'Cambria FTC/Tutorials/Delete_Source_After_Transcoding/index',
         'Cambria FTC/Tutorials/Avid_Interplay/index',
         'Cambria FTC/Tutorials/Trusted_Executables_and_Scripts',
         'Cambria FTC/Tutorials/Harmonic_VOS_Upload_Guide/harmonic-vos-upload-guide',
