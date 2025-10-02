@@ -1,5 +1,6 @@
 ---
-title: Speech_To_Text_Filter
+id: Speech-To-Text_Filter
+title: Speech-To-Text_Filter
 description: "Steps to use Cambria FTC/Cluster Speech-To-Text Filter and troubleshooting tips."
 slug: "/cambria-ftc-stt"
 ---
