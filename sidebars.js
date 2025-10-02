@@ -225,7 +225,7 @@ const sidebars = {
         'Cambria FTC/Tutorials/Snmp_Setup_and_testing/snmp-guide',
         'Cambria FTC/Tutorials/Using_the_Teletrax_Watermarking_Filter/teletrax-watermarking',
         'Cambria FTC/Tutorials/Video_Segments/video-segments',
-        'Cambria FTC/Tutorials/XML_Titler_with_Carbon_Subtitle_Workflow/carbon-subtitle-xml'
+        'Cambria FTC/Tutorials/Carbon_Subtitle_XML_Workflow/carbon-subtitle-xml'
       ],
     },
     {
