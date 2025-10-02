@@ -1,5 +1,5 @@
 ---
-id: scte-35-insertion
+id: scte-35_insertion
 title: SCTE-35 Insertion
 ---
 
