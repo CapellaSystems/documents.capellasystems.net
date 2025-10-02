@@ -206,7 +206,7 @@ const sidebars = {
       type: 'category',
       label: 'Tutorials',
       items: [
-        'Cambria FTC/Tutorials/Arib-stdb37/index',
+        'Cambria FTC/Tutorials/Arib-std_b37_Captions_Extraction_and_Conversion/index',
         'Cambria FTC/Tutorials/Audio_watermarking_integration_with_Kantar_guide',
         'Cambria FTC/Tutorials/Ami_creation_editing/index',
         'Cambria FTC/Tutorials/cambria-ftc-stt',
