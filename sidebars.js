@@ -209,7 +209,7 @@ const sidebars = {
         'Cambria FTC/Tutorials/Arib-std_b37_Captions_Extraction_and_Conversion/index',
         'Cambria FTC/Tutorials/Audio_watermarking_integration_with_Kantar_guide',
         'Cambria FTC/Tutorials/Ami_creation_and_editing/index',
-        'Cambria FTC/Tutorials/Speech_To_Text_Filter',
+        'Cambria FTC/Tutorials/Speech-To-Text_Filter',
         'Cambria FTC/Tutorials/cluster_redundancy_feature',
         'Cambria FTC/Tutorials/Color_Space_Coversion/color-space-conversion',
         'Cambria FTC/Tutorials/Delete_Source_after_transcoding/index',
