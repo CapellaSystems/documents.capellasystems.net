@@ -1,5 +1,5 @@
 ---
-id: cluster_redundancy
+id: cluster_redundancy_feature
 title: Cluster Redundancy Feature
 ---
 
