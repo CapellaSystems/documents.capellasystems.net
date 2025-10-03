@@ -1,5 +1,5 @@
 ---
-id: snmp-guide
+id: Snmp_Setup_and_Testing
 title: SNMP Setup and Testing
 ---
 
