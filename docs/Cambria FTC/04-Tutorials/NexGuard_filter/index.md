@@ -1,5 +1,5 @@
 ---
-id: nexguard-ftc-guide
+id: nexguard-ftc-filter
 title: NexGuard Filter
 ---
 

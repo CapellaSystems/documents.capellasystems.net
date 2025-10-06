@@ -1,9 +1,10 @@
-## Audio watermarking integration with 'Kantar' guide
+id: Audio_Watermarking_Integration_With_Kantar_Guide
+
+# Audio Watermarking Integration with Kantar Guide
 
 **Document Version:**
 
-*   
-  1.0: Initial release. This is matched to 4.2.0.45153.
+* 1.0: Initial release. This is matched to 4.2.0.45153.
 
 
 **Requirements:**
