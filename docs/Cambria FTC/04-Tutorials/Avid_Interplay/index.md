@@ -1,3 +1,8 @@
+--- 
+id: AVID_Interplay
+title: AVID Interplay
+---
+
 # AVID Interplay
 
 ## Objective
