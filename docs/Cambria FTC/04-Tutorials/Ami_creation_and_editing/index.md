@@ -29,7 +29,7 @@ Please follow the steps below:
     - Click **Create key pair** and save the `.pem` file in a secure location. This key will be used to connect to your Windows instance later.
     - For **Network Settings**, configure **Security Groups** to allow Cambria FTC and Cambria Cluster to communicate:
         - Click **Edit** and then **Add security group rule**
-        - Add following rule: **Type Info:** Custom TCP, **Port Range:** 8090-8119, **Source Type:** Anywhere              
+        - Add the following rule: **Type Info:** Custom TCP, **Port Range:** 8090-8119, **Source Type:** Anywhere              
        - Click **Add security group rule** again and add the following rule: **Type Info:** Custom TCP, **Port Range:** 8647-8650, **Source Type:** Anywhere 
 
  
