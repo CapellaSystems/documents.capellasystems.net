@@ -1,3 +1,8 @@
+---
+id: Instance
+title: Instance
+---
+
 # Instance
 
 ## XML Element

@@ -1,3 +1,8 @@
+--- 
+id: API_Methods
+title: API Methods
+---
+
 # API Methods
 
 This chapter describes the different methods of the API, including their parameters and expected responses.  

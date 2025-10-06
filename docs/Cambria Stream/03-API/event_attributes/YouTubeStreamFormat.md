@@ -1,3 +1,8 @@
+---
+id: YouTubeStreamFormat
+title: YouTubeStreamFormat
+---
+
 # YouTubeStreamFormat
 
 ## XML Element

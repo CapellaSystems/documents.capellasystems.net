@@ -1,3 +1,8 @@
+---
+id: Event_Attributes
+title: Event Attributes
+---
+
 # Event Attributes
 
 ## XML Element: Event

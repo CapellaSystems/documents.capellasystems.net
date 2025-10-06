@@ -1,3 +1,8 @@
+---
+id: Event_Description
+title: Event Description
+---
+
 # Event Description
 
 ## Basic Event Description

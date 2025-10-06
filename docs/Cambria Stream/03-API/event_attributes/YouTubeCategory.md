@@ -1,3 +1,8 @@
+---
+id: YouTubeCategory
+title: YouTubeCategory
+---
+
 # YouTubeCategory
 
 ## XML Element

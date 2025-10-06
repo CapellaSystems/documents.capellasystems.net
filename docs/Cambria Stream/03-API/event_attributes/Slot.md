@@ -1,3 +1,8 @@
+---
+id: Slot
+title: Slot
+---
+
 # Slot
 
 ## XML Element

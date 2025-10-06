@@ -1,3 +1,8 @@
+---
+id: SettingData
+title: Setting Data
+---
+
 # SettingData
 
 ## XML Element
