@@ -54,7 +54,7 @@ In the **Preset Editor** window:
 
 ---
 
-SCTE-35 insertion is now properly configured in your output file.
+SCTE-35 insertion is now properly configured in your output file..
 
 ---
 
