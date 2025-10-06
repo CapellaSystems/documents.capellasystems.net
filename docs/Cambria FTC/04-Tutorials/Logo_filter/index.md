@@ -1,5 +1,5 @@
 ---
-id: logo-filter
+id: Logo_Filter
 title: Logo Filter
 ---
 

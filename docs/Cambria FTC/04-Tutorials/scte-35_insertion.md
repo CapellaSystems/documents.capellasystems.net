@@ -1,5 +1,5 @@
 ---
-id: scte-35_insertion
+id: SCTE-35_Insertion
 title: SCTE-35 Insertion
 ---
 
@@ -54,7 +54,7 @@ In the **Preset Editor** window:
 
 ---
 
-SCTE-35 insertion is now properly configured in your output file..
+SCTE-35 insertion is now properly configured in your output file.
 
 ---
 

@@ -1,3 +1,8 @@
+---
+id: Delete_Source_after_Tanscoding
+title: Delete Source after Transcoding
+---
+
 # Delete Source after Transcoding
 
 ## Table of Contents

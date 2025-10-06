@@ -1,3 +1,8 @@
+---
+id: Cambria_Stream_Primary_and_Backup
+title: Cambria Stream Primary and Backup
+---
+
 # Cambria Stream Primary and Backup Program 
 
  To see how to set up a Kubernetes Cluster with Stream Manager and Stream please follow this guide  [CONNECT TO DOCUSAURUS DOC] **Linode_Kubernetes_Help_Document**. In order to use a Primary and Backup make sure you have two worker instances specified in your YAML. If you are just testing Primary and Backup we recommend that you only have two worker instances deployed to make testing easier. You will know if you have two worker instances if you go to the **Machine** tab in the webui and it displays two cambriastreamapp machines.

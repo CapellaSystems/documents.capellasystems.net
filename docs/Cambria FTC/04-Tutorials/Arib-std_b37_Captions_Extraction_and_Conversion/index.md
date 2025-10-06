@@ -1,5 +1,6 @@
 ---
-title: ARIB STD B37 Captions Extraction and Conversion
+id: Arib-std_b37_Captions_Extraction_and_Conversion
+title: Arib-std b37 Captions Extraction and Conversion
 ---
 
 # Cambria FTC: ARIB STD B37 Captions Extraction in MXF and Conversion to WebVTT and Burning the Captions in Video

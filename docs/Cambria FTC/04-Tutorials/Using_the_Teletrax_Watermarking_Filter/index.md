@@ -1,6 +1,6 @@
 ---
-id: teletrax-watermarking
-title: Using the Teletrax Watermarking Filter 
+id: Using_the_Teletrax_Watermarking_Filter
+title: Using the Teletrax Watermarking Filter
 ---
 
 # Using the Teletrax Watermarking Filter

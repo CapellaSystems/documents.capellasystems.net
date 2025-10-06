@@ -1,5 +1,5 @@
 ---
-id: scriptable-workflow
+id: Scriptable_Workflow
 title: Scriptable Workflow
 ---
 
