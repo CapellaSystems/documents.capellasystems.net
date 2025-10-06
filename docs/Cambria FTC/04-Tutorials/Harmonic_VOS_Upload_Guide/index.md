@@ -1,5 +1,5 @@
 ---
-id: harmonic-vos-upload-guide
+id: Harmonic_VOS_Upload_Guide
 title: Harmonic VOS Upload Guide
 ---
 
