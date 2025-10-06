@@ -1,4 +1,7 @@
-id: Audio_Watermarking_Integration_With_Kantar_Guide
+---
+id: Audio_Watermarking_Integration_with_Kantar_Guide
+title: Audio Watermarking Integration with Kantar Guide
+---
 
 # Audio Watermarking Integration with Kantar Guide
 
