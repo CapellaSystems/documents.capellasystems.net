@@ -1,5 +1,5 @@
 ---
-id: cambria-cluster-ftc-akamai
+id: Cambria_Cluster_Akamai_Kubernetes
 title: Cambria Cluster / FTC 5.5.0 - Akamai Kubernetes
 ---
 

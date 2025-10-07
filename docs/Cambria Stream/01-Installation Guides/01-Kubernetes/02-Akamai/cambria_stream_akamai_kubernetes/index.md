@@ -1,3 +1,7 @@
+---
+id: Stream_Akamai_Cloud_Kubernetes_Documentation
+title: Akamai Cloud Kubernetes Documentation
+---
 # Akamai Cloud Kubernetes Documentation
 **Cambria Stream / Stream Manager 5.4.0**
 

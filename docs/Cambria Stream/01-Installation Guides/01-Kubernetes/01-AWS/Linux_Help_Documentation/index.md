@@ -1,5 +1,10 @@
-# Cambria Stream 5.4
-**Linux Help Documentation**
+---
+id: Linux_Help_Documentation
+title: Linux Help Documentation
+---
+
+# Linux Help Documentation
+**Cambria Stream 5.4**
 
 
 ## Document History

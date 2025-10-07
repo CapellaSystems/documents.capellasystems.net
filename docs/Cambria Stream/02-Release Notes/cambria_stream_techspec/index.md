@@ -1,3 +1,8 @@
+---
+id: Cambria_Stream_Technical_Specifications
+title: Cambria Stream Technical Specifications
+---
+
 # Cambria Stream Technical Specifications
 
 Version: 5.3.0, Published: 9/9/2024

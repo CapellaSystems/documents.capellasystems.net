@@ -1,5 +1,5 @@
 ---
-id: cambria-cluster-ftc-aws
+id: Cambria_Cluster_AWS_Kubernetes
 title: Cambria Cluster / FTC 5.5.0 - AWS Kubernetes
 ---
 

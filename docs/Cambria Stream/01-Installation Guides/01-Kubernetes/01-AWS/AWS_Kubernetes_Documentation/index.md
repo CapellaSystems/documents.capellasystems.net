@@ -1,3 +1,7 @@
+---
+id: Stream_AWS_Kubernetes_Documentation
+title: AWS Kubernetes Documentation
+---
 # AWS Kubernetes Documentation
 **Cambria Stream / Stream Manager 5.4.0**
 

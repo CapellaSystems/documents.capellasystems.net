@@ -1,5 +1,5 @@
 ---
-id: cambria-cluster-ftc-oracle
+id: Cambria_Cluster_Oracle_Kubernetes
 title: Cambria Cluster / FTC 5.5.0 - Oracle Kubernetes
 ---
 
