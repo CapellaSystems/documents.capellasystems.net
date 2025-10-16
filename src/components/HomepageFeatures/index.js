@@ -7,7 +7,7 @@ const FeatureList = [
   {
     title: 'VOD Transcoding',
     image: '/img/ftc-flow.png',
-    link: 'https://documents.capellasystems.net/docs/Cambria%20FTC/Installation%20Guides/Kubernetes/AWS/',
+    link: 'https://documents.capellasystems.net/docs/Cambria_FTC/Installation%20Guides/Kubernetes/AWS/',
     description: (
       <>
         <p><strong>Cambria FTC/FTC Packager:</strong> High-performance file transcoder with exceptional video quality and superior transcoding speed. Cloud-native or on-premises deployment options.</p>
@@ -28,7 +28,7 @@ const FeatureList = [
   {
     title: 'Live Encoding (In the Cloud)',
     image: '/img/stream-flow.png',
-    link: 'https://documents.capellasystems.net/docs/Cambria%20Stream/Installation%20Guides/Kubernetes/AWS/cambria_stream_aws_kubernetes/',
+    link: 'https://documents.capellasystems.net/docs/Cambria%20Stream/Installation%20Guides/Kubernetes/AWS/AWS_Kubernetes_Documentation',
     description: (
       <>
         <p><strong>Cambria Stream/Packager:</strong> Cloud-native live encoder and packager, easily deployable via Docker and scalable with Kubernetes.</p>
