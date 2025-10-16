@@ -138,11 +138,11 @@ const config = {
             items: [
               {
                 label: 'Cambria Stream',
-                href: 'https://documents.capellasystems.net/docs/Cambria%20Stream/Installation%20Guides/Kubernetes/AWS/placeholder',
+                href: 'https://documents.capellasystems.net/docs/Cambria%20Stream/Installation%20Guides/Kubernetes/AWS/AWS_Kubernetes_Documentation',
               },
               {
                 label: 'Cambria FTC',
-                href: 'https://documents.capellasystems.net/docs/Cambria%20FTC/Installation%20Guides/Kubernetes/AWS/Akamai_Linode_Kubernetes_CambriaClusterFTC_Installation',
+                href: 'https://documents.capellasystems.net/docs/Cambria_FTC/Installation%20Guides/Kubernetes/AWS/',
               },
             ],
           },
