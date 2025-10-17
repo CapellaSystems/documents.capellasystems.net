@@ -95,7 +95,7 @@ To prevent some memory allocation errors that can occur, we recommend changing a
 4. Uncheck “Automatically manage paging file size for all drives”, select “System managed size” 
 
  
-### Dolby Licensee Notice
+### Dolby License Notice
 
 Cambria FTC contains products licensed from Dolby Laboratories, including:  
  - Dolby Digital Professional Decoder  
