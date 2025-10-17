@@ -76,8 +76,9 @@ const config = {
       image: 'img/capellalogo.png',
                      // Algolia search configuration
         algolia: {
-          appId: process.env.ALGOLIA_APP_ID,
-          apiKey: process.env.ALGOLIA_API_KEY,
+          // safe api to put in the code
+          appId: 'FG2ZSI8I7W',
+          apiKey: 'd12af8e4130d8cc8c0337ee47938bfca',
           indexName: 'Capella Documentation',
           contextualSearch: true,
           searchParameters: {},
