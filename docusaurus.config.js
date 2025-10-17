@@ -74,7 +74,7 @@ const config = {
       },
       // Replace with your project's social card
       image: 'img/capellalogo.png',
-                     // Algolia search configuration
+        // Algolia search configuration
         algolia: {
           // safe api to put in the code
           appId: 'FG2ZSI8I7W',
