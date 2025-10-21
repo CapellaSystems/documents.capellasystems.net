@@ -46,7 +46,7 @@ function Feature({image, title, description, link}) {
       </div>
       <div className="text--center padding-horiz--md">
         <Heading as="h3">{title}</Heading>
-        <p>{description}</p>
+        <div>{description}</div>
       </div>
     </>
   );

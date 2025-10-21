@@ -377,3 +377,12 @@ main {
   opacity: 0.6;
 }
 
+/* Search highlighting styles */
+mark {
+  background-color: #ffeb3b;
+  color: #000;
+  border-radius: 3px;
+  font-weight: 500;
+}
+
+

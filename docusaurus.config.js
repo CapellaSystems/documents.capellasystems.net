@@ -23,7 +23,7 @@ const config = {
   organizationName: 'CapellaSystems', // Usually your GitHub org/user name.
   projectName: 'documents.capellasystems.net', // Usually your repo name.
   deploymentBranch: 'gh-pages',
-  
+
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
@@ -42,8 +42,6 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
         },
         blog: {
           showReadingTime: true,
@@ -63,7 +61,7 @@ const config = {
     ],
   ],
 
-  themeConfig:
+  themeConfig: 
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Color mode configuration
@@ -74,16 +72,18 @@ const config = {
       },
       // Replace with your project's social card
       image: 'img/capellalogo.png',
-        // Algolia search configuration
-        algolia: {
-          // safe api to put in the code
-          appId: 'FG2ZSI8I7W',
-          apiKey: 'd12af8e4130d8cc8c0337ee47938bfca',
-          indexName: 'Capella Documentation',
-          contextualSearch: true,
-          searchParameters: {},
-          externalUrlRegex: 'external\\.com|domain\\.com'
-        },
+      // Algolia search configuration
+      algolia: {
+        // safe api to put in the code
+        appId: 'FG2ZSI8I7W',
+        apiKey: 'd12af8e4130d8cc8c0337ee47938bfca',
+        indexName: 'Capella Documentation',
+        contextualSearch: true,
+        searchParameters: {},
+        externalUrlRegex: 'external\\.com|domain\\.com',
+        navigate: true,
+        clickAnalytics: true
+      },
       navbar: {
         title: 'Capella Documentation',
         logo: {
@@ -97,7 +97,7 @@ const config = {
             label: 'Cambria FTC',
             position: 'right',
           },
-		      {
+          {
             type: 'docSidebar',
             sidebarId: 'StreamSidebar',
             label: 'Cambria Stream',
