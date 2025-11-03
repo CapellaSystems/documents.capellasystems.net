@@ -172,6 +172,7 @@ export default function SearchBarWrapper(props) {
     }
   }, []);
 
+  // Test  
   // Handle highlighting when route changes
   useEffect(() => {
     const handleRouteChange = () => {
