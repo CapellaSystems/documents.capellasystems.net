@@ -15,7 +15,7 @@ Cambria FTC provides a **Logo Filter** that allows users to overlay images or vi
 
 ### First Way
 
-1. Upload a video file to FTC.
+1. Upload a video file to FTC..
 2. Click on the **Filter** icon.
 
 ![Screenshot](01_filter_icon.png)
