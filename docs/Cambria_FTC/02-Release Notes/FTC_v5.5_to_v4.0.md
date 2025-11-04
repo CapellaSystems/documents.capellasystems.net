@@ -3,7 +3,7 @@ id: FTC_v5.6_to_v4.0
 title: FTC v5.56 to v4.0
 ---
 
-Release notes cover Cluster, FTC, FTC API Packager, Cluster/FTC Linux & 
+Release notes cover Cluster, FTC, FTC API Packager, Cluster/FTC Linux & Kubernetes
 
 **Notice: Removal of Cloud Extend Storage**
 
