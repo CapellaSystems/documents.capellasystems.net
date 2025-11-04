@@ -1,13 +1,13 @@
 ---
 id: FTC_v5.6_to_v4.0
-title: FTC v5.56 to v4.0
+title: FTC v5.6 to v4.0
 ---
 
 Release notes cover Cluster, FTC, FTC API Packager, Cluster/FTC Linux & Kubernetes
 
 **Notice: Removal of Cloud Extend Storage**
 
-*As MinIO has discontinued support for the filesystem backend functionality leveraged by Cluster’s CloudExtend 
+As MinIO has discontinued support for the filesystem backend functionality leveraged by Cluster’s CloudExtend 
 *features, the CloudExtend Storage feature (used for simplified on-premise storage mapping) will be removed from 
 *Cluster. Version 5.6 will be the last release to support this functionality
 
@@ -117,6 +117,16 @@ Cambria FTC contains products licensed from Dolby Laboratories, including:
  - Dolby Vision Live Distribution Processing  
 Manufactured under license from Dolby Laboratories. Dolby and the double-D symbol are trademarks of Dolby Laboratories.
 
+
+## Version 5.6
+
+| Module | Feature | Description | Capella Ref # |
+|---------|----------|--------------|----------------|
+| **Filter – Subtitle Inject Filter** | Added a new DVB Subtitle Inject filter | Allows DVB subtitle streams to be injected into the output from subtitle files. | 19954 |
+| **Target (H.264 – VPU)** | NETINT VPU Test Module (Akamai Cloud) | If you’d like to test the new VPU module, please contact [Capella Systems](https://www.capellasystems.net/contact-us).<br/><br/>In FTC the VPU is used for hardware acceleration of H.264 video encoding. Testing may require a new build of the software. | 20998 |
+| **Target (AV1)** | Film Grain Denoise | Added support for Film Grain Denoise in MP4 AV1 encoding with two new settings that reduce film grain and allow adjustment of levels. | 21092 |
+| **Linux / Kubernetes** | On-prem Kubernetes Support | Canonical Kubernetes for on-premise is now supported for Cambria FTC.<br/><br/>All machines that are part of an on-prem Kubernetes deployment must use **Ubuntu** as the Linux distribution (verified with Ubuntu 24.04). <br/>For high availability at least three machines are required and must be designated as control-plane nodes. <br/>For Cambria Cluster manager redundancy, it is recommended to have at least three dedicated worker machines separate from the control plane nodes.<br/><br/>**Currently unsupported features:** FTC Autoscaler, GPU and VPU support.<br/><br/>**Documentation:** [Cambria Cluster and FTC 5.6 on On-Prem Kubernetes (PDF)](https://www.dropbox.com/scl/fi/b4hofqgc8r3yp1plftmwo/Cambria_Cluster_and_FTC_5_6_0_on_On_Premise_Kubernetes.pdf?rlkey=raeaiu9tnpmwlh942kfa3kz14&st=prmaws1c&dl=0) | 20593 |
+| **Windows** | Use External PostgreSQL 14 Installation Method | Please email [support@capellasystems.net](mailto:support@capellasystems.net) if you would like instructions for this method. | 21239 |
 
 ## Version 5.5
 
