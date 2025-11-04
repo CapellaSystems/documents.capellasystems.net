@@ -5,26 +5,26 @@ title: FTC v5.6 to v4.0
 
 Release notes cover Cluster, FTC, FTC API Packager, Cluster/FTC Linux & Kubernetes
 
-**Notice: Removal of Cloud Extend Storage**
+**Notice: Removal of Cloud Extend Storage (FTC v5.6)**
 
 As MinIO has discontinued support for the filesystem backend functionality leveraged by Cluster’s CloudExtend 
 *features, the CloudExtend Storage feature (used for simplified on-premise storage mapping) will be removed from 
 *Cluster. Version 5.6 will be the last release to support this functionality
 
-**EZTitles plugin has reached the end of its life-cycle**
+**Notice: EZTitles plugin has reached the end of its life-cycle (FTC v5.6)**
 
 * The Capella EZTitles plug-in will no longer be in active development because the plug-in product has come to the end of its life-cycle.  
 * EZTitles will no longer provide customer support for the plug-in, although existing installations are expected to continue to work at this time.
 * Please contact Capella with your caption/subtitle requests.   
 
 
-**Removal of non-HTTPS APIs**
+**Notice: Removal of non-HTTPS APIs (FTC v5.6)**
 
 * The methods of the API must be executed using HTTPS.  HTTP has been removed and will no longer work.  To use HTTPS, simply use the “https://” prefix instead of the “http://” prefix for the URIs.  For FTC the port number used for HTTPS methods is 8648.  For Cluster the port number used for HTTPS is 8650.   
 * SNMP support for Cluster/FTC was using non-HTTPS API.  For the 5.1.0.12651 build of Cluster/FTC, SNMP has been disabled.  We will look into adding support back in for a future build.
 
 
-**PostgreSQL upgrade**
+**Notice: PostgreSQL upgrade (FTC v5.6)**
 
 * Database migration between Postgres 9.3 and 14.3 is not automatic
 * Installing Cluster/FTC ver. 5.0 will come with a clean Database (Postgres 14.3)
