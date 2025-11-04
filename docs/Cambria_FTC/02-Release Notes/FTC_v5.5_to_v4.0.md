@@ -120,6 +120,8 @@ Manufactured under license from Dolby Laboratories. Dolby and the double-D symbo
 
 ## Version 5.6
 
+Release Build 5.7.0.26561
+
 | Module | Feature | Description | Capella Ref # |
 |---------|----------|--------------|----------------|
 | **Filter – Subtitle Inject Filter** | Added a new DVB Subtitle Inject filter | Allows DVB subtitle streams to be injected into the output from subtitle files. | 19954 |
