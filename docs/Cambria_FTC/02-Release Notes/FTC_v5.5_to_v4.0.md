@@ -1,6 +1,6 @@
 ---
-id: FTC_v5.5_to_v4.0
-title: FTC v5.5 to v4.0
+id: FTC_v5.6_to_v4.0
+title: FTC v5.56 to v4.0
 ---
 
 Release notes cover Cluster, FTC, FTC API Packager, Cluster/FTC Linux & Kubernetes
@@ -54,6 +54,10 @@ OS Installation note: File Convert and Cluster installation requires additional 
 
 >Cluster/FTC support of multiple processor groups requires the Capella License option **“Windows Multi-Processor Group Support (more than 64 logical processors)”**.  Without this license option, FTC will only utilize only one of the processor groups for all FTC Jobs run on the machine.  If the license option is enabled, FTC will distribute multiple Jobs to each processor group.  However, a single job will still only use one processor group at a time. 
 
+Key Points (Behavior Clarified 10/2025):
+Cambria FTC limits the number of logical CPU cores that can be used.
+Extra licenses (options) are available to support more CPU cores.
+Supported OS are Windows 11, Server 2022, Server 2025.
 
 **Recommended Configuration**
   
