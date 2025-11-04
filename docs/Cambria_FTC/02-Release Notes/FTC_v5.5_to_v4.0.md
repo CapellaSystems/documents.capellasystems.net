@@ -120,7 +120,7 @@ Manufactured under license from Dolby Laboratories. Dolby and the double-D symbo
 
 ## Version 5.6
 
-Release Build 5.6.0.26561 (and 5.5.0.x Branch Builds)
+Release Build 5.6.0.26561 (and 5.6.0.x Branch Builds)
 
 | Module | Feature | Description | Capella Ref # |
 |---------|----------|--------------|----------------|
