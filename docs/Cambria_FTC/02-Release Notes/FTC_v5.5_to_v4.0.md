@@ -5,7 +5,11 @@ title: FTC v5.56 to v4.0
 
 Release notes cover Cluster, FTC, FTC API Packager, Cluster/FTC Linux & Kubernetes
 
-### Important Notifications
+**Notice: Removal of Cloud Extend Storage**
+
+*As MinIO has discontinued support for the filesystem backend functionality leveraged by Cluster’s CloudExtend 
+*features, the CloudExtend Storage feature (used for simplified on-premise storage mapping) will be removed from 
+*Cluster. Version 5.6 will be the last release to support this functionality
 
 **EZTitles plugin has reached the end of its life-cycle**
 
