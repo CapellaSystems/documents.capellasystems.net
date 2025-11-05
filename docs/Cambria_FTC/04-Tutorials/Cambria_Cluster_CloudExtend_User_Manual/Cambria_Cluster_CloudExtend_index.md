@@ -82,7 +82,6 @@ Prepare following information to add AWS instances to Cluster:
 - Number of instances  
   When “Add” is clicked, instances will be automatically launched in AWS portal and added into Machines tab
 
-![Screenshot](./02_screenshot.png)
 
 ## Akamai Linode Setup
 
@@ -121,8 +120,6 @@ Prepare following information to add Linode instances to Cluster:
 
 When “Add” is clicked, instances will be automatically launched in Linode portal and added into Linodes tab.
 
-![Screenshot](./03_screenshot.png)
-
 ## Instance Controller
 
 A sample is already provided and installed with Cluster:
@@ -149,8 +146,6 @@ Usage: AwsDynInstCtrl [--create X --limit Y [--slot W]] [--stop Z] [--debug 1]
 Example:  
 `AwsDynInstCtrl.exe --create 20 --limit 1 --stop 5`
 
-![Screenshot](./04_screenshot.png)
-
 ## CloudExtend Storage (S3 Mapping)
 
 This allows instances to access to local storage.
@@ -173,8 +168,6 @@ Example:
   Router routes `10852` to port `9000` of the Cluster machine.  
 - Remote S3 Path (Alternate): backup mapping. Example `32.22.156.123:10853`.
 
-![Screenshot](./05_screenshot.png)
-
 ## Pay As You Go
 
 Once you have a PAYG license, you will be able to see your current balance in:
@@ -190,8 +183,6 @@ Once you have a PAYG license, you will be able to see your current balance in:
 - UI takes 2–3 minutes to update balance
 - If balance is 0, you will get:  
   `No balance: License Error: Balance is empty for pay-as-you-go license`
-
-![Screenshot](./06_screenshot.png)
 
 ## Remarks and Troubleshooting
 
@@ -213,8 +204,6 @@ Once you have a PAYG license, you will be able to see your current balance in:
 
 - Slow transcoding performance → stronger instance, lower concurrency, ensure high bandwidth and nearby region
 
-![Screenshot](./07_screenshot.png)
-
 ## Q/A
 
 **Q: How to revoke the configured “Cloud Extend Storage”?**  
@@ -225,6 +214,4 @@ Once you have a PAYG license, you will be able to see your current balance in:
 **Q: The “Cloud Extend Storage” does not apply settings in Credential Manager for “On Premise Path”.**  
 - Limitation as of now. Workaround: log on to Capella CpClusterServiceManager with an administrator account that has access to the On Premise Path.
 
-![Screenshot](./08_screenshot.png)
 
-_Last updated: November 2025_
