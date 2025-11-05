@@ -146,35 +146,6 @@ Usage: AwsDynInstCtrl [--create X --limit Y [--slot W]] [--stop Z] [--debug 1]
 Example:  
 `AwsDynInstCtrl.exe --create 20 --limit 1 --stop 5`
 
-## CloudExtend Storage (S3 Mapping)
-
-This allows instances to access to local storage.
-
-This section can be skipped if your whole transcoding farm is purely in Amazon AWS (including Cluster), or purely using direct read/write in S3 storage.
-
-Configure via “CloudExtend Storage (On Premise to S3 mapping)”
-
-Example:
-
-![Screenshot](03_screenshot.png)
-
-- On Premise Path: The shared storage location (includes subdirectories).  
-  Note that source files/output files must be in subdirectories.  
-  Ex. `F:\MiniosShare\Output\source.mp4`  
-- Minio Port Number: Ex. 9000.  
-  The port number can be anything; it just needs to be opened up through your network settings (port forward your computer’s IP address with the port number).  
-- Remote S3 Path: how the instance can communicate to this Cluster Minio mapped S3 storage.  
-  Example: instance communicates via `32.22.156.123:10852`.  
-  Router routes `10852` to port `9000` of the Cluster machine.  
-- Remote S3 Path (Alternate): backup mapping. Example `32.22.156.123:10853`.
-
-## Pay As You Go
-
-Once you have a PAYG license, you will be able to see your current balance in:
-
-- Cluster CloudExtend Tab under Pay As You Go licensing
-- In the Selected Machine AWS Info summary of any AWS machines in your machine list in Cluster
-
 ### How are credits deducted?
 
 - Based on source duration (in seconds)
