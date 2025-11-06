@@ -8,9 +8,7 @@ sidebar_position: 1
 
 ## Introduction
 
-Cloud computing is a popular trend and is favored in many industries, including transcoding.
-
-With continuous improvement of cloud infrastructure, support, and user experience, such as AWS and Linode, many users have started to look into cloud transcoding solutions. It has low deployment cost, no long-term commitment, is flexible, etc. However, it is often very costly in the long term for workflows that have stable and continuous transcoding. Media files also take up significant storage space and require high internet bandwidth. Also, many users have security concerns, and their media assets cannot be stored in cloud environments. Hence, many workflows still favor transcoding locally with physical hardware.
+Cloud computing is a popular trend and is favored in many industries, including transcoding. With continuous improvement of cloud infrastructure, support, and user experience, such as AWS and Linode, many users have started to look into cloud transcoding solutions. It has low deployment cost, no long-term commitment, is flexible, etc. However, it is often very costly in the long term for workflows that have stable and continuous transcoding. Media files also take up significant storage space and require high internet bandwidth. Also, many users have security concerns, and their media assets cannot be stored in cloud environments. Hence, many workflows still favor transcoding locally with physical hardware.
 
 For local transcoding solutions, the setup is often fixed and not very flexible to change in capacity. When there is a surge in transcoding needs, backlogs will be created temporarily. If not, the transcoding system has to be over-built to handle the surge as well, resulting in huge initial deployment costs.
 
@@ -66,7 +64,7 @@ Prepare following information to add AWS instances to Cluster:
   Allows remote access to instance  
   Use that as the Key Pair that you created when creating the AMI or make a new one
 
-  To Create a Key Pair using AWS Console:
+- To Create a Key Pair using AWS Console:
 
   1. In the navigation pane on the left, choose Key Pairs under Network & Security.
   2. Choose Create key pair.
@@ -78,6 +76,7 @@ Prepare following information to add AWS instances to Cluster:
 - Instance Name  
   Eg “AWS-C5xLarge-*”, then new instances will be created and automatically named AWS-C5xLarge-0, AWS-C5xLarge-1 and so on
 - Region (eg, “us-west-2”)  
+  https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html
   If you are using the Capella created AMI please set region to “us-west-2”
 - Number of instances  
   When “Add” is clicked, instances will be automatically launched in AWS portal and added into Machines tab
