@@ -51,7 +51,7 @@ Operating System: Windows 10 (64 bit), Windows 11, Windows Server (64 bit) 2016 
 Processor: Intel 2.8GHz (Quad-Core) or faster  
 Memory: 8GB or more (4K/8K encoding requires more memory, 32GB or more suggested)  
 Video Card: Supports Direct3D acceleration  
-OS Installation note: File Convert and Cluster installation requires additional system files included in recent Windows Update.  If you encounter issues during installation, please conduct "Windows Update", reboot, and try again.  
+**OS Installation note:** File Convert and Cluster installation requires additional system files included in recent Windows Update.  If you encounter issues during installation, please conduct "Windows Update", reboot, and try again.  
 
 ***Warning for machines with more than 64 cores or machines that have multiple processor groups*** 
 
@@ -59,8 +59,8 @@ OS Installation note: File Convert and Cluster installation requires additional 
 
 **<u>Key Points (Behavior Clarified 10/2025):</u>**
 
-Cambria FTC limits the number of logical CPU cores that can be used.  
-Extra licenses (options) are available to support more CPU cores.  
+Cambria FTC limits the number of logical CPU cores that can be used.
+Extra licenses (options) are available to support more CPU cores.
 Supported OS are Windows 11, Server 2022, Server 2025.
 
 **Recommended Configuration**
