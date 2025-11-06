@@ -59,8 +59,8 @@ OS Installation note: File Convert and Cluster installation requires additional 
 
 **<u>Key Points (Behavior Clarified 10/2025):</u>**
 
-Cambria FTC limits the number of logical CPU cores that can be used.
-Extra licenses (options) are available to support more CPU cores.
+Cambria FTC limits the number of logical CPU cores that can be used.  
+Extra licenses (options) are available to support more CPU cores.  
 Supported OS are Windows 11, Server 2022, Server 2025.
 
 **Recommended Configuration**
