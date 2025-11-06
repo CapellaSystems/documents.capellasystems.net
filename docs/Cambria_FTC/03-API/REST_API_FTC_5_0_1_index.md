@@ -19,7 +19,8 @@
 | 4.5 | Added more attributes to JobDescr for GetJobInfo |
 | 4.8 | Fixed errors in API “SetSettings” and added more attributes |
 | 5.0.1 | Fixed errors in formatting of this document; Added new Job Type “Management_FlowParent” |
-
+| 5.1 | Removed non-HTTPS ports (8648, 8650) |
+| 5.5 | Added API "CambriaManagerOptions" |
 ---
 
 ## 1. Introduction
