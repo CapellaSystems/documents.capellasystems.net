@@ -6,25 +6,24 @@ title: FTC v5.6 to v4.0
 Release notes cover Cluster, FTC, FTC API Packager, Cluster/FTC Linux & Kubernetes
 
 **Notice: Removal of Cloud Extend Storage (FTC v5.6)**
+* As MinIO has discontinued support for the filesystem backend functionality leveraged by Cluster’s CloudExtend 
+* features, the CloudExtend Storage feature (used for simplified on-premise storage mapping) will be removed from 
+* Cluster. Version 5.6 will be the last release to support this functionality
 
-As MinIO has discontinued support for the filesystem backend functionality leveraged by Cluster’s CloudExtend 
-*features, the CloudExtend Storage feature (used for simplified on-premise storage mapping) will be removed from 
-*Cluster. Version 5.6 will be the last release to support this functionality
-
-**Notice: EZTitles plugin has reached the end of its life-cycle (FTC v5.6)**
+**Notice: EZTitles plugin has reached the end of its life-cycle (FTC v5.1)**
 
 * The Capella EZTitles plug-in will no longer be in active development because the plug-in product has come to the end of its life-cycle.  
 * EZTitles will no longer provide customer support for the plug-in, although existing installations are expected to continue to work at this time.
 * Please contact Capella with your caption/subtitle requests.   
 
 
-**Notice: Removal of non-HTTPS APIs (FTC v5.6)**
+**Notice: Removal of non-HTTPS APIs (FTC v5.4)**
 
 * The methods of the API must be executed using HTTPS.  HTTP has been removed and will no longer work.  To use HTTPS, simply use the “https://” prefix instead of the “http://” prefix for the URIs.  For FTC the port number used for HTTPS methods is 8648.  For Cluster the port number used for HTTPS is 8650.   
 * SNMP support for Cluster/FTC was using non-HTTPS API.  For the 5.1.0.12651 build of Cluster/FTC, SNMP has been disabled.  We will look into adding support back in for a future build.
 
 
-**Notice: PostgreSQL upgrade (FTC v5.6)**
+**Notice: PostgreSQL upgrade (FTC v5.4)**
 
 * Database migration between Postgres 9.3 and 14.3 is not automatic
 * Installing Cluster/FTC ver. 5.0 will come with a clean Database (Postgres 14.3)
@@ -58,7 +57,7 @@ OS Installation note: File Convert and Cluster installation requires additional 
 
 >Cluster/FTC support of multiple processor groups requires the Capella License option **“Windows Multi-Processor Group Support (more than 64 logical processors)”**.  Without this license option, FTC will only utilize only one of the processor groups for all FTC Jobs run on the machine.  If the license option is enabled, FTC will distribute multiple Jobs to each processor group.  However, a single job will still only use one processor group at a time. 
 
-Key Points (Behavior Clarified 10/2025):
+<u>Key Points (Behavior Clarified 10/2025):</u>
 Cambria FTC limits the number of logical CPU cores that can be used.
 Extra licenses (options) are available to support more CPU cores.
 Supported OS are Windows 11, Server 2022, Server 2025.
