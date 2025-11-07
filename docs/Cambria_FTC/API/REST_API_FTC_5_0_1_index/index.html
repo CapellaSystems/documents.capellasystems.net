@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.7.0">
 <title data-rh="true">Capella Cambria FTC and Cluster | Capella Documents</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://documents.capellasystems.net/img/capellalogo.png"><meta data-rh="true" name="twitter:image" content="https://documents.capellasystems.net/img/capellalogo.png"><meta data-rh="true" property="og:url" content="https://documents.capellasystems.net/docs/Cambria_FTC/API/REST_API_FTC_5_0_1_index"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Capella Cambria FTC and Cluster | Capella Documents"><meta data-rh="true" name="description" content="REST API Documentation"><meta data-rh="true" property="og:description" content="REST API Documentation"><link data-rh="true" rel="icon" href="/img/capellalogo.png"><link data-rh="true" rel="canonical" href="https://documents.capellasystems.net/docs/Cambria_FTC/API/REST_API_FTC_5_0_1_index"><link data-rh="true" rel="alternate" href="https://documents.capellasystems.net/docs/Cambria_FTC/API/REST_API_FTC_5_0_1_index" hreflang="en"><link data-rh="true" rel="alternate" href="https://documents.capellasystems.net/docs/Cambria_FTC/API/REST_API_FTC_5_0_1_index" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://FG2ZSI8I7W-dsn.algolia.net" crossorigin="anonymous"><link rel="search" type="application/opensearchdescription+xml" title="Capella Documents" href="/opensearch.xml"><link rel="stylesheet" href="/assets/css/styles.32bb5c81.css">
-<script src="/assets/js/runtime~main.d3a51818.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.8f0f100c.js" defer="defer"></script>
 <script src="/assets/js/main.ef653a35.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -47,7 +47,7 @@
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="13-notes-about-methods-usage">1.3 Notes about methods usage<a href="#13-notes-about-methods-usage" class="hash-link" aria-label="Direct link to 1.3 Notes about methods usage" title="Direct link to 1.3 Notes about methods usage">​</a></h3>
 <p>Success or failure of the methods is described using standard HTTP status codes. Status codes in the 200-299 range indicate success. Status codes in the 400-599 range indicate errors. More information about HTTP status codes can be found at: <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html" target="_blank" rel="noopener noreferrer">http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html</a></p>
-<p>The methods of the API can be executed using either the HTTP or the HTTPS protocol. To use HTTPS, simply use the <code>https://</code> prefix instead of the <code>http://</code> prefix for the URIs.</p>
+<p>The methods of the API can only be executed using the HTTPS protocol.</p>
 <p>Default ports:</p>
 <ul>
 <li>FTC: HTTP <strong>8647</strong>, HTTPS <strong>8648</strong></li>
@@ -72,9 +72,17 @@
 <li><strong>HTTP POST XML Content</strong>: XML to pass to the server when using POST (UTF-8 encoded)</li>
 <li><strong>HTTP XML response</strong>: XML returned by the method</li>
 </ul>
-<p>The examples assume <code>machineName</code> is the host and the REST API server is using the default port.</p>
-<p>Methods which require a job ID use the following notation: <code>http://machineName:8647/CambriaFC/v1/Jobs/[JobID]</code></p>
-<p>For Cluster-only methods requiring a machine ID: <code>http://machineName:8649/CambriaFC/v1/Machines/[MachineID]</code></p>
+<p>The examples assume that Cambria FTC is installed on a machine with name “MachineName” and the
+REST API server is configured to use port 8648.</p>
+<p>Methods which require a job ID use the following notation in the document:
+<a href="https://machineName:8648/CambriaFC/v1/Jobs/%5BJobID" target="_blank" rel="noopener noreferrer">https://machineName:8648/CambriaFC/v1/Jobs/[JobID</a>]</p>
+<p>To use them, replace [JobID] with the actual job ID. For example:
+<a href="https://machineName:8648/CambriaFC/v1/Jobs/dce7d7f1-d10d-4c3d-95ed-58db5b8a7a05" target="_blank" rel="noopener noreferrer">https://machineName:8648/CambriaFC/v1/Jobs/dce7d7f1-d10d-4c3d-95ed-58db5b8a7a05</a></p>
+<p>For methods that are designed to work with Cluster, the port to be used is port 8650.</p>
+<p>Methods for Cluster which require a machine ID use the following notation in the document:
+<a href="https://machineName:8650/CambriaFC/v1/Machines/%5BMachineID" target="_blank" rel="noopener noreferrer">https://machineName:8650/CambriaFC/v1/Machines/[MachineID</a>]</p>
+<p>To use them, replace [MachineID] with the actual machine ID. For example:
+<a href="https://machineName:8650/CambriaFC/v1/Machines/14fc5617-ee6a-4a2d-8f63-b610fd3dc427" target="_blank" rel="noopener noreferrer">https://machineName:8650/CambriaFC/v1/Machines/14fc5617-ee6a-4a2d-8f63-b610fd3dc427</a></p>
 <blockquote>
 <p><strong>Note:</strong> The XML Elements mentioned in this section are described in <strong>Chapter 3 — XML Elements</strong>.</p>
 </blockquote>
@@ -86,17 +94,7 @@
 <p><strong>Arguments:</strong> none</p>
 <p><strong>HTTP Method:</strong> <code>GET</code></p>
 <p><strong>HTTP XML Response Elements:</strong></p>
-<ul>
-<li><code>Content</code>: container for the response</li>
-<li><code>Status</code>: logs of the API call</li>
-<li><code>ServerRequest</code>: information about the request</li>
-<li><code>Error</code>: information about errors (when present)</li>
-<li><code>System</code>: system information<!-- -->
-<ul>
-<li><code>HasCluster</code>: set to <code>1</code> indicates that Cambria Cluster is installed</li>
-</ul>
-</li>
-</ul>
+<table><thead><tr><th>Element</th><th>Parent</th><th>Description</th></tr></thead><tbody><tr><td><strong>Content</strong></td><td>None</td><td>Container of the response.</td></tr><tr><td><strong>Status</strong></td><td>Content</td><td>Logs of the API call.</td></tr><tr><td><strong>ServerRequest</strong></td><td>Status</td><td>Information about the request.</td></tr><tr><td><strong>Error</strong></td><td>Status</td><td>Information about errors; only exists when there is any.</td></tr><tr><td><strong>System</strong></td><td>Content</td><td>System information.</td></tr><tr><td><strong>HasCluster</strong></td><td>System</td><td>Set to &#x27;1&#x27; indicates that Cambria Cluster is installed on the system.</td></tr></tbody></table>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="getsystemstatus">GetSystemStatus<a href="#getsystemstatus" class="hash-link" aria-label="Direct link to GetSystemStatus" title="Direct link to GetSystemStatus">​</a></h3>
 <p><strong>FTC:</strong> <code>http://machineName:8647/CambriaFC/v1/SystemStatus</code><br>
 <strong>Cluster:</strong> <code>http://machineName:8649/CambriaFC/v1/SystemStatus</code></p>
@@ -104,9 +102,7 @@
 <p><strong>Arguments:</strong> none</p>
 <p><strong>HTTP Method:</strong> <code>GET</code></p>
 <p><strong>HTTP XML Response Elements:</strong></p>
-<ul>
-<li><code>Content</code>, <code>Status</code>, <code>ServerRequest</code>, <code>Error</code>, <code>System</code></li>
-</ul>
+<table><thead><tr><th>Element</th><th>Parent</th><th>Description</th></tr></thead><tbody><tr><td><strong>Content</strong></td><td>None</td><td>Container of the response.</td></tr><tr><td><strong>Status</strong></td><td>Content</td><td>Logs of the API call.</td></tr><tr><td><strong>ServerRequest</strong></td><td>Status</td><td>Information about the request.</td></tr><tr><td><strong>Error</strong></td><td>Status</td><td>Information about errors; only exists when there is any.</td></tr><tr><td><strong>System</strong></td><td>Content</td><td>System information.</td></tr></tbody></table>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="addjob">AddJob<a href="#addjob" class="hash-link" aria-label="Direct link to AddJob" title="Direct link to AddJob">​</a></h3>
 <p><strong>FTC:</strong> <code>http://machineName:8647/CambriaFC/v1/Jobs</code><br>
 <strong>Cluster:</strong> <code>http://machineName:8649/CambriaFC/v1/Jobs</code></p>
