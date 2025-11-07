@@ -109,13 +109,19 @@ Prepare following information to add Linode instances to Cluster:
   https://www.linode.com/docs/products/tools/cli/guides/install/#install-python-3-and-pip3
 - Choose an Instance Type  
   To find the different types of instances in command prompt use linode-cli linode types
-- Image ID (starts with “private/”). Ex. private/14585314  
+**- Image ID (starts with “private/”). Ex. private/14585314  
   To find your Image ID use command “linode-cli images list”  
   Or view in Linode dashboard → Images → Deploy to New Linode → the imageID will appear in the URL.  
   Example: https://cloud.linode.com/linodes/create/?type=Images&imageID=private/410965
-- Root Password (7–128 characters)
-- Instance Name (must be unique)
-- Region (list using “linode-cli regions list”)
+**- Root Password
+- Create a password for your instance
+- Must be 7–128 characters
+**- Instance Name 
+- must be unique
+- You cannot have two instances with the same name, or else you will receive an error  
+** Region
+- To find the different types of instances use command “linode-cli regions list”  
+- You can also use the table provided in the Setup Guide
 
 When “Add” is clicked, instances will be automatically launched in Linode portal and added into Linodes tab.
 
@@ -144,6 +150,10 @@ Usage: AwsDynInstCtrl [--create X --limit Y [--slot W]] [--stop Z] [--debug 1]
 
 Example:  
 `AwsDynInstCtrl.exe --create 20 --limit 1 --stop 5`
+
+- Create 1 instance if there are more than 20 queued jobs  
+- Set all instances to 0 slot when there are 5 or less queued jobs  
+- Cluster service will automatically stop/terminate those instances if configured  
 
 # Remarks and Troubleshooting
 
