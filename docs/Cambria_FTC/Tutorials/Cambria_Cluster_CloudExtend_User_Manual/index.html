@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.7.0">
 <title data-rh="true">Cambria Cluster CloudExtend User Manual | Capella Documents</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://documents.capellasystems.net/img/capellalogo.png"><meta data-rh="true" name="twitter:image" content="https://documents.capellasystems.net/img/capellalogo.png"><meta data-rh="true" property="og:url" content="https://documents.capellasystems.net/docs/Cambria_FTC/Tutorials/Cambria_Cluster_CloudExtend_User_Manual/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Cambria Cluster CloudExtend User Manual | Capella Documents"><meta data-rh="true" name="description" content="Introduction"><meta data-rh="true" property="og:description" content="Introduction"><link data-rh="true" rel="icon" href="/img/capellalogo.png"><link data-rh="true" rel="canonical" href="https://documents.capellasystems.net/docs/Cambria_FTC/Tutorials/Cambria_Cluster_CloudExtend_User_Manual/"><link data-rh="true" rel="alternate" href="https://documents.capellasystems.net/docs/Cambria_FTC/Tutorials/Cambria_Cluster_CloudExtend_User_Manual/" hreflang="en"><link data-rh="true" rel="alternate" href="https://documents.capellasystems.net/docs/Cambria_FTC/Tutorials/Cambria_Cluster_CloudExtend_User_Manual/" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://FG2ZSI8I7W-dsn.algolia.net" crossorigin="anonymous"><link rel="search" type="application/opensearchdescription+xml" title="Capella Documents" href="/opensearch.xml"><link rel="stylesheet" href="/assets/css/styles.32bb5c81.css">
-<script src="/assets/js/runtime~main.b5f9189f.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.1556753f.js" defer="defer"></script>
 <script src="/assets/js/main.ef653a35.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -128,68 +128,68 @@ If you are using the Capella created AMI please set region to “us-west-2”</p
 </ul>
 <p>Example:<br>
 <code>AwsDynInstCtrl.exe --create 20 --limit 1 --stop 5</code></p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="how-are-credits-deducted">How are credits deducted?<a href="#how-are-credits-deducted" class="hash-link" aria-label="Direct link to How are credits deducted?" title="Direct link to How are credits deducted?">​</a></h3>
+<h1>Remarks and Troubleshooting</h1>
 <ul>
-<li>Based on source duration (in seconds)</li>
-<li>Doubled if encoding to multiple targets or layers</li>
-<li>Deducted only after job completion</li>
-<li>UI takes 2–3 minutes to update balance</li>
-<li>If balance is 0, you will get:<br>
-<code>No balance: License Error: Balance is empty for pay-as-you-go license</code></li>
+<li>Instances take a while to start up. You can refer to the <strong>Machines</strong> tab to know the estimated ready time.<br>
+<!-- -->Cambria Cluster enforces a <strong>minimum 10 minutes waiting time</strong> for each newly launched instance to avoid jobs being assigned prematurely and causing errors.</li>
+<li>When creating an instance make sure that it shows up in the <strong>Machine</strong> tab.</li>
+<li>Make sure the instance is shown in the Machine tab.<br>
+<!-- -->It should show up as the <strong>Instance Name</strong> that you put in CloudExtend.</li>
+<li>If the machine is showing <strong>Offline</strong>, make sure you have waited long enough (the “!” icon will show estimated time).</li>
+<li>Make sure <strong>available slot &gt; 0</strong>.<br>
+<!-- -->By default, new instances added have <strong>2 default slots</strong>.</li>
+<li>The machine is required to be set as <strong>Online</strong> in order to be assigned jobs.<br>
+<!-- -->By default, new instances added via Cluster UI are added to Cluster (so they are either <em>Online</em> or <em>Offline</em>, but not <em>Standby / Cold Standby</em>).</li>
+<li>Instances, if left idle or even stopped, will still incur charges.<br>
+<!-- -->→ “<strong>Terminate</strong>” or “<strong>Delete</strong>” instances when not used.<br>
+<!-- -->→ Set up usage warning / monitoring notification in the AWS portal.</li>
+<li>The temporary output folder for <strong>S3 Mapping redirection</strong> is<br>
+<code>C:\Users\Public\Documents\CapellaOutput</code> — ensure drive C has sufficient space.</li>
+<li>HTTP GET from Cluster machine to instances via “Machine IP” should return proper XML, e.g.:</li>
 </ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="remarks-and-troubleshooting">Remarks and Troubleshooting<a href="#remarks-and-troubleshooting" class="hash-link" aria-label="Direct link to Remarks and Troubleshooting" title="Direct link to Remarks and Troubleshooting">​</a></h2>
+<p><a href="https://34.123.186.99:8648/CambriaFC/v1/SystemInfo" target="_blank" rel="noopener noreferrer">https://34.123.186.99:8648/CambriaFC/v1/SystemInfo</a></p>
 <ul>
 <li>
-<p>Instances take a while to start up (minimum 10 minutes enforced wait)</p>
+<p>Make sure you have configured <strong>Security Group</strong> properly so that the instance is reachable from Cluster.</p>
 </li>
 <li>
-<p>Verify new instances appear in the Machine tab</p>
+<p>Make sure that the internet connection is <strong>Private</strong> or <strong>Domain</strong>, not <strong>Public</strong>.<br>
+<!-- -->Otherwise, during FTC/Cluster installation, you must enable firewall rules for <em>Public</em> as well.<br>
+<!-- -->You can verify this by disabling all Windows Firewall profiles (Private, Domain, Public) temporarily.</p>
 </li>
 <li>
-<p>New instances default to 2 slots</p>
+<p><strong>Source files / output files not mapped properly</strong>, or you encounter these errors:</p>
 </li>
 <li>
-<p>Instances must be Online to receive jobs</p>
+<p><em>Unable to connect to endpoint</em></p>
 </li>
 <li>
-<p>Idle or stopped instances still incur charges (Terminate/Delete when unused)</p>
+<p>Ensure CloudExtend S3 Mapping is correct.</p>
 </li>
-<li>
-<p>Temp output folder for S3 Mapping: <code>C:\Users\Public\Documents\CapellaOutput</code> (ensure drive C has sufficient space)</p>
-</li>
-<li>
-<p>HTTP GET from Cluster machine to instance IP should return XML:<br>
-<code>https://34.123.186.99:8648/CambriaFC/v1/SystemInfo</code></p>
-</li>
-<li>
-<p>Ensure proper Security Group and firewall configuration</p>
-</li>
-<li>
-<p>Internet connection should be Private or Domain (enable Public firewall rules during install if needed)</p>
-</li>
-<li>
-<p>“Unable to connect to endpoint” → check CloudExtend S3 mapping</p>
-</li>
-<li>
-<p>Verify directories:<br>
-<code>F:\MiniosShare\Source</code> → sources<br>
-<code>F:\MiniosShare\Output</code> → outputs<br>
-<code>32.22.156.123:10852</code> → Cluster public IP mapping to port 9000</p>
-</li>
-<li>
-<p>Slow transcoding performance → stronger instance, lower concurrency, ensure high bandwidth and nearby region</p>
-</li>
+</ul>
+<p>Example configuration:
+F:\MiniosShare\Source → source files<br>
+<!-- -->F:\MiniosShare\Output → transcoded outputs<br>
+<!-- -->32.22.156.123:10852 → Cluster public IP (firewall configured properly)
+Hosting Minio web server at port 9000<br>
+<!-- -->Routing external port 10852 → Cluster machine IP port 9000</p>
+<ul>
+<li><strong>Slow transcoding performance</strong></li>
+<li>Ensure <strong>Instance Type</strong> is strong enough (sufficient CPU cores + memory).</li>
+<li>Lower concurrent transcoding slots.</li>
+<li>Have a fast internet connection to the instances.</li>
+<li>Make sure the <strong>Region</strong> is set close to you.</li>
 </ul>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="qa">Q/A<a href="#qa" class="hash-link" aria-label="Direct link to Q/A" title="Direct link to Q/A">​</a></h2>
 <p><strong>Q: How to revoke the configured “Cloud Extend Storage”?</strong></p>
 <ul>
 <li>The snapshot of them are stored in encrypted form in client’s job.</li>
-<li>Remove the configuration from the Cluster. Existing credentials in the client job become invalid.</li>
-<li>Re-adding the same configuration will not reactivate the old one.</li>
+<li>Remove the configuration from the Cluster. Existing credentials that are stored in the client job become invalid.</li>
+<li>Hence, if you remove the configuration, and add the “same” configuration again, the old one will still be invalidated.</li>
 </ul>
 <p><strong>Q: The “Cloud Extend Storage” does not apply settings in Credential Manager for “On Premise Path”.</strong></p>
 <ul>
-<li>Limitation as of now. Workaround: log on to Capella CpClusterServiceManager with an administrator account that has access to the On Premise Path.</li>
-</ul></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/Cambria_FTC/API/placeholder"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Document Coming Soon</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/Cambria_FTC/Tutorials/external-postgresql"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Using External PostgreSQL with Cambria FTC and Cluster</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#introduction" class="table-of-contents__link toc-highlight">Introduction</a></li><li><a href="#amazon-aws-setup" class="table-of-contents__link toc-highlight">Amazon AWS Setup</a><ul><li><a href="#credential-and-s3ec2-setup" class="table-of-contents__link toc-highlight">Credential and S3/EC2 Setup</a></li><li><a href="#ami-image" class="table-of-contents__link toc-highlight">AMI Image</a></li><li><a href="#aws-instances-settings" class="table-of-contents__link toc-highlight">AWS Instances Settings</a></li></ul></li><li><a href="#akamai-linode-setup" class="table-of-contents__link toc-highlight">Akamai Linode Setup</a><ul><li><a href="#linode-image" class="table-of-contents__link toc-highlight">Linode Image</a></li><li><a href="#linode-instance-settings" class="table-of-contents__link toc-highlight">Linode Instance Settings</a></li></ul></li><li><a href="#instance-controller" class="table-of-contents__link toc-highlight">Instance Controller</a><ul><li><a href="#how-are-credits-deducted" class="table-of-contents__link toc-highlight">How are credits deducted?</a></li></ul></li><li><a href="#remarks-and-troubleshooting" class="table-of-contents__link toc-highlight">Remarks and Troubleshooting</a></li><li><a href="#qa" class="table-of-contents__link toc-highlight">Q/A</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Company</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://www.capellasystems.net/about-capella" target="_blank" rel="noopener noreferrer" class="footer__link-item">About<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.capellasystems.net/newsfeed" target="_blank" rel="noopener noreferrer" class="footer__link-item">Newsfeed<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.capellasystems.net/contact-us" target="_blank" rel="noopener noreferrer" class="footer__link-item">Contact Us<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://documents.capellasystems.net/docs/Cambria%20Stream/Installation%20Guides/Kubernetes/AWS/AWS_Kubernetes_Documentation" target="_blank" rel="noopener noreferrer" class="footer__link-item">Cambria Stream<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://documents.capellasystems.net/docs/Cambria_FTC/Installation%20Guides/Kubernetes/AWS/" target="_blank" rel="noopener noreferrer" class="footer__link-item">Cambria FTC<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">Other</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://www.capellasystems.net/terms-of-use" target="_blank" rel="noopener noreferrer" class="footer__link-item">Terms of Use<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.capellasystems.net/online-privacy-policy" target="_blank" rel="noopener noreferrer" class="footer__link-item">Privacy Policy<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 Capella Systems</div></div></div></footer></div>
+<li>Limitation as of now. To workaround, log on to &quot;Capella CpClusterServiceManager&quot; with an administrator account that has access to the On Premise Path.</li>
+</ul></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/Cambria_FTC/API/placeholder"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Document Coming Soon</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/Cambria_FTC/Tutorials/external-postgresql"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Using External PostgreSQL with Cambria FTC and Cluster</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#introduction" class="table-of-contents__link toc-highlight">Introduction</a></li><li><a href="#amazon-aws-setup" class="table-of-contents__link toc-highlight">Amazon AWS Setup</a><ul><li><a href="#credential-and-s3ec2-setup" class="table-of-contents__link toc-highlight">Credential and S3/EC2 Setup</a></li><li><a href="#ami-image" class="table-of-contents__link toc-highlight">AMI Image</a></li><li><a href="#aws-instances-settings" class="table-of-contents__link toc-highlight">AWS Instances Settings</a></li></ul></li><li><a href="#akamai-linode-setup" class="table-of-contents__link toc-highlight">Akamai Linode Setup</a><ul><li><a href="#linode-image" class="table-of-contents__link toc-highlight">Linode Image</a></li><li><a href="#linode-instance-settings" class="table-of-contents__link toc-highlight">Linode Instance Settings</a></li></ul></li><li><a href="#instance-controller" class="table-of-contents__link toc-highlight">Instance Controller</a></li><li><a href="#qa" class="table-of-contents__link toc-highlight">Q/A</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Company</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://www.capellasystems.net/about-capella" target="_blank" rel="noopener noreferrer" class="footer__link-item">About<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.capellasystems.net/newsfeed" target="_blank" rel="noopener noreferrer" class="footer__link-item">Newsfeed<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.capellasystems.net/contact-us" target="_blank" rel="noopener noreferrer" class="footer__link-item">Contact Us<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://documents.capellasystems.net/docs/Cambria%20Stream/Installation%20Guides/Kubernetes/AWS/AWS_Kubernetes_Documentation" target="_blank" rel="noopener noreferrer" class="footer__link-item">Cambria Stream<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://documents.capellasystems.net/docs/Cambria_FTC/Installation%20Guides/Kubernetes/AWS/" target="_blank" rel="noopener noreferrer" class="footer__link-item">Cambria FTC<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">Other</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://www.capellasystems.net/terms-of-use" target="_blank" rel="noopener noreferrer" class="footer__link-item">Terms of Use<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.capellasystems.net/online-privacy-policy" target="_blank" rel="noopener noreferrer" class="footer__link-item">Privacy Policy<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 Capella Systems</div></div></div></footer></div>
 </body>
 </html>
