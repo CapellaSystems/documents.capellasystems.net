@@ -145,43 +145,60 @@ Usage: AwsDynInstCtrl [--create X --limit Y [--slot W]] [--stop Z] [--debug 1]
 Example:  
 `AwsDynInstCtrl.exe --create 20 --limit 1 --stop 5`
 
-### How are credits deducted?
+# Remarks and Troubleshooting
 
-- Based on source duration (in seconds)
-- Doubled if encoding to multiple targets or layers
-- Deducted only after job completion
-- UI takes 2–3 minutes to update balance
-- If balance is 0, you will get:  
-  `No balance: License Error: Balance is empty for pay-as-you-go license`
+- Instances take a while to start up. You can refer to the **Machines** tab to know the estimated ready time.  
+  Cambria Cluster enforces a **minimum 10 minutes waiting time** for each newly launched instance to avoid jobs being assigned prematurely and causing errors.
+- When creating an instance make sure that it shows up in the **Machine** tab.
+- Make sure the instance is shown in the Machine tab.  
+  It should show up as the **Instance Name** that you put in CloudExtend.
+- If the machine is showing **Offline**, make sure you have waited long enough (the “!” icon will show estimated time).
+- Make sure **available slot > 0**.  
+  By default, new instances added have **2 default slots**.
+- The machine is required to be set as **Online** in order to be assigned jobs.  
+  By default, new instances added via Cluster UI are added to Cluster (so they are either *Online* or *Offline*, but not *Standby / Cold Standby*).
+- Instances, if left idle or even stopped, will still incur charges.  
+  → “**Terminate**” or “**Delete**” instances when not used.  
+  → Set up usage warning / monitoring notification in the AWS portal.
+- The temporary output folder for **S3 Mapping redirection** is  
+  `C:\Users\Public\Documents\CapellaOutput` — ensure drive C has sufficient space.
+- HTTP GET from Cluster machine to instances via “Machine IP” should return proper XML, e.g.:
 
-## Remarks and Troubleshooting
+https://34.123.186.99:8648/CambriaFC/v1/SystemInfo
 
-- Instances take a while to start up (minimum 10 minutes enforced wait)
-- Verify new instances appear in the Machine tab
-- New instances default to 2 slots
-- Instances must be Online to receive jobs
-- Idle or stopped instances still incur charges (Terminate/Delete when unused)
-- Temp output folder for S3 Mapping: `C:\Users\Public\Documents\CapellaOutput` (ensure drive C has sufficient space)
-- HTTP GET from Cluster machine to instance IP should return XML:  
-  `https://34.123.186.99:8648/CambriaFC/v1/SystemInfo`
-- Ensure proper Security Group and firewall configuration
-- Internet connection should be Private or Domain (enable Public firewall rules during install if needed)
-- “Unable to connect to endpoint” → check CloudExtend S3 mapping
-- Verify directories:  
-  `F:\MiniosShare\Source` → sources  
-  `F:\MiniosShare\Output` → outputs  
-  `32.22.156.123:10852` → Cluster public IP mapping to port 9000
 
-- Slow transcoding performance → stronger instance, lower concurrency, ensure high bandwidth and nearby region
+- Make sure you have configured **Security Group** properly so that the instance is reachable from Cluster.  
+- Make sure that the internet connection is **Private** or **Domain**, not **Public**.  
+  Otherwise, during FTC/Cluster installation, you must enable firewall rules for *Public* as well.  
+  You can verify this by disabling all Windows Firewall profiles (Private, Domain, Public) temporarily.
+
+- **Source files / output files not mapped properly**, or you encounter these errors:
+- *Unable to connect to endpoint*
+- Ensure CloudExtend S3 Mapping is correct.
+
+Example configuration:
+F:\MiniosShare\Source → source files  
+F:\MiniosShare\Output → transcoded outputs  
+32.22.156.123:10852 → Cluster public IP (firewall configured properly) 
+Hosting Minio web server at port 9000  
+Routing external port 10852 → Cluster machine IP port 9000  
+
+
+- **Slow transcoding performance**
+- Ensure **Instance Type** is strong enough (sufficient CPU cores + memory).
+- Lower concurrent transcoding slots.
+- Have a fast internet connection to the instances.
+- Make sure the **Region** is set close to you.
+
 
 ## Q/A
 
 **Q: How to revoke the configured “Cloud Extend Storage”?**  
 - The snapshot of them are stored in encrypted form in client’s job.  
-- Remove the configuration from the Cluster. Existing credentials in the client job become invalid.  
-- Re-adding the same configuration will not reactivate the old one.
+- Remove the configuration from the Cluster. Existing credentials that are stored in the client job become invalid.  
+- Hence, if you remove the configuration, and add the “same” configuration again, the old one will still be invalidated.
 
 **Q: The “Cloud Extend Storage” does not apply settings in Credential Manager for “On Premise Path”.**  
-- Limitation as of now. Workaround: log on to Capella CpClusterServiceManager with an administrator account that has access to the On Premise Path.
+- Limitation as of now. To workaround, log on to "Capella CpClusterServiceManager" with an administrator account that has access to the On Premise Path.
 
 
