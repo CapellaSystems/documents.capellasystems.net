@@ -70,7 +70,7 @@ Applications using the API can run on various operating systems, such as:
 
 Success or failure of the methods is described using standard HTTP status codes. Status codes in the 200-299 range indicate success. Status codes in the 400-599 range indicate errors. More information about HTTP status codes can be found at: http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
 
-The methods of the API can be executed using either the HTTP or the HTTPS protocol. To use HTTPS, simply use the `https://` prefix instead of the `http://` prefix for the URIs.
+The methods of the API can only be executed using the HTTPS protocol.
 
 Default ports:
 - FTC: HTTP **8647**, HTTPS **8648**
@@ -104,11 +104,23 @@ Each method of the API is described in this chapter. For each method, the follow
 - **HTTP POST XML Content**: XML to pass to the server when using POST (UTF-8 encoded)
 - **HTTP XML response**: XML returned by the method
 
-The examples assume `machineName` is the host and the REST API server is using the default port.
+The examples assume that Cambria FTC is installed on a machine with name “MachineName” and the 
+REST API server is configured to use port 8648.
 
-Methods which require a job ID use the following notation: `http://machineName:8647/CambriaFC/v1/Jobs/[JobID]`
+Methods which require a job ID use the following notation in the document: 
+https://machineName:8648/CambriaFC/v1/Jobs/[JobID]
 
-For Cluster-only methods requiring a machine ID: `http://machineName:8649/CambriaFC/v1/Machines/[MachineID]`
+To use them, replace [JobID] with the actual job ID. For example:
+https://machineName:8648/CambriaFC/v1/Jobs/dce7d7f1-d10d-4c3d-95ed-58db5b8a7a05
+
+For methods that are designed to work with Cluster, the port to be used is port 8650.
+
+Methods for Cluster which require a machine ID use the following notation in the document:
+https://machineName:8650/CambriaFC/v1/Machines/[MachineID]
+
+To use them, replace [MachineID] with the actual machine ID. For example:
+https://machineName:8650/CambriaFC/v1/Machines/14fc5617-ee6a-4a2d-8f63-b610fd3dc427
+
 
 > **Note:** The XML Elements mentioned in this section are described in **Chapter 3 — XML Elements**.
 
@@ -127,12 +139,15 @@ For Cluster-only methods requiring a machine ID: `http://machineName:8649/Cambri
 
 **HTTP XML Response Elements:**
 
-- `Content`: container for the response
-- `Status`: logs of the API call
-- `ServerRequest`: information about the request
-- `Error`: information about errors (when present)
-- `System`: system information  
-  - `HasCluster`: set to `1` indicates that Cambria Cluster is installed
+| Element       | Parent  | Description                                                                 |
+|--------------|---------|-----------------------------------------------------------------------------|
+| **Content**       | None     | Container of the response.                                                 |
+| **Status**        | Content  | Logs of the API call.                                                      |
+| **ServerRequest** | Status   | Information about the request.                                             |
+| **Error**         | Status   | Information about errors; only exists when there is any.                    |
+| **System**        | Content  | System information.                                                        |
+| **HasCluster**    | System   | Set to '1' indicates that Cambria Cluster is installed on the system.     |
+
 
 ### GetSystemStatus
 
@@ -147,7 +162,14 @@ For Cluster-only methods requiring a machine ID: `http://machineName:8649/Cambri
 
 **HTTP XML Response Elements:**
 
-- `Content`, `Status`, `ServerRequest`, `Error`, `System`
+| Element       | Parent  | Description                                              |
+|----------------|----------|----------------------------------------------------------|
+| **Content**       | None     | Container of the response.                              |
+| **Status**        | Content  | Logs of the API call.                                   |
+| **ServerRequest** | Status   | Information about the request.                          |
+| **Error**         | Status   | Information about errors; only exists when there is any. |
+| **System**        | Content  | System information.                                     |
+
 
 ### AddJob
 
