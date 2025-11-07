@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.7.0">
 <title data-rh="true">Cambria Cluster CloudExtend User Manual | Capella Documents</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://documents.capellasystems.net/img/capellalogo.png"><meta data-rh="true" name="twitter:image" content="https://documents.capellasystems.net/img/capellalogo.png"><meta data-rh="true" property="og:url" content="https://documents.capellasystems.net/docs/Cambria_FTC/Tutorials/Cambria_Cluster_CloudExtend_User_Manual/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Cambria Cluster CloudExtend User Manual | Capella Documents"><meta data-rh="true" name="description" content="Introduction"><meta data-rh="true" property="og:description" content="Introduction"><link data-rh="true" rel="icon" href="/img/capellalogo.png"><link data-rh="true" rel="canonical" href="https://documents.capellasystems.net/docs/Cambria_FTC/Tutorials/Cambria_Cluster_CloudExtend_User_Manual/"><link data-rh="true" rel="alternate" href="https://documents.capellasystems.net/docs/Cambria_FTC/Tutorials/Cambria_Cluster_CloudExtend_User_Manual/" hreflang="en"><link data-rh="true" rel="alternate" href="https://documents.capellasystems.net/docs/Cambria_FTC/Tutorials/Cambria_Cluster_CloudExtend_User_Manual/" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://FG2ZSI8I7W-dsn.algolia.net" crossorigin="anonymous"><link rel="search" type="application/opensearchdescription+xml" title="Capella Documents" href="/opensearch.xml"><link rel="stylesheet" href="/assets/css/styles.32bb5c81.css">
-<script src="/assets/js/runtime~main.1556753f.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.d3a51818.js" defer="defer"></script>
 <script src="/assets/js/main.ef653a35.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -102,14 +102,20 @@ If you are using the Capella created AMI please set region to “us-west-2”</p
 <li>If you are using command prompt, follow this guide on how to install linode-cli to your computer:<br>
 <a href="https://www.linode.com/docs/products/tools/cli/guides/install/#install-python-3-and-pip3" target="_blank" rel="noopener noreferrer">https://www.linode.com/docs/products/tools/cli/guides/install/#install-python-3-and-pip3</a></li>
 <li>Choose an Instance Type<br>
-<!-- -->To find the different types of instances in command prompt use linode-cli linode types</li>
-<li>Image ID (starts with “private/”). Ex. private/14585314<br>
+<!-- -->To find the different types of instances in command prompt use linode-cli linode types
+**- Image ID (starts with “private/”). Ex. private/14585314<br>
 <!-- -->To find your Image ID use command “linode-cli images list”<br>
 <!-- -->Or view in Linode dashboard → Images → Deploy to New Linode → the imageID will appear in the URL.<br>
-<!-- -->Example: <a href="https://cloud.linode.com/linodes/create/?type=Images&amp;imageID=private/410965" target="_blank" rel="noopener noreferrer">https://cloud.linode.com/linodes/create/?type=Images&amp;imageID=private/410965</a></li>
-<li>Root Password (7–128 characters)</li>
-<li>Instance Name (must be unique)</li>
-<li>Region (list using “linode-cli regions list”)</li>
+<!-- -->Example: <a href="https://cloud.linode.com/linodes/create/?type=Images&amp;imageID=private/410965" target="_blank" rel="noopener noreferrer">https://cloud.linode.com/linodes/create/?type=Images&amp;imageID=private/410965</a>
+**- Root Password</li>
+<li>Create a password for your instance</li>
+<li>Must be 7–128 characters
+**- Instance Name</li>
+<li>must be unique</li>
+<li>You cannot have two instances with the same name, or else you will receive an error<br>
+<!-- -->** Region</li>
+<li>To find the different types of instances use command “linode-cli regions list”</li>
+<li>You can also use the table provided in the Setup Guide</li>
 </ul>
 <p>When “Add” is clicked, instances will be automatically launched in Linode portal and added into Linodes tab.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="instance-controller">Instance Controller<a href="#instance-controller" class="hash-link" aria-label="Direct link to Instance Controller" title="Direct link to Instance Controller">​</a></h2>
@@ -128,6 +134,11 @@ If you are using the Capella created AMI please set region to “us-west-2”</p
 </ul>
 <p>Example:<br>
 <code>AwsDynInstCtrl.exe --create 20 --limit 1 --stop 5</code></p>
+<ul>
+<li>Create 1 instance if there are more than 20 queued jobs</li>
+<li>Set all instances to 0 slot when there are 5 or less queued jobs</li>
+<li>Cluster service will automatically stop/terminate those instances if configured</li>
+</ul>
 <h1>Remarks and Troubleshooting</h1>
 <ul>
 <li>Instances take a while to start up. You can refer to the <strong>Machines</strong> tab to know the estimated ready time.<br>
