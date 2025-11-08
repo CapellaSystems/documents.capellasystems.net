@@ -1,8 +1,9 @@
 ---
-id: cambria-cluster-ftc-5-6-terraform-akamai
+id: Cambria_Cluster_Terraform_Akamai_Kubernetes
 title: Cambria Cluster and FTC 5.6.0 – Terraform on Akamai Kubernetes
 sidebar_position: 1
 ---
+
 
 # Cambria Cluster / FTC 5.6.0 — Akamai Cloud Kubernetes Help Documentation
 
