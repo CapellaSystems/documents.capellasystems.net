@@ -205,25 +205,21 @@ Skip this step if the optional values don't need to be modified. Review the list
 
 | Terraform UI Editor Field | Explanation |
 |---|---|
-| `workersUseGPU` **[BETA]** | Must be set to `true` if planning to use NVENC capabilities on the encoding machines. Default `false`. |
-| `nbGPUs` | Max number of GPUs to use from the encoding machines if GPU functionality is enabled. Should not exceed available GPUs. |
-| `workersUseVPU` **[BETA]** | Must be set to `true` if planning to use NETINT VPU capabilities on the encoding machines. Default `false`. |
-| `nbVPUs` | Max number of VPUs to use from the encoding machines if VPU functionality is enabled. Should not exceed available VPUs. |
-| `ftc_enable_auto_scaler` | Enable/disable the FTC autoscaler which auto-deploys Cambria FTC encoders dynamically. Default `true`. |
-| `ftc_enable_scriptable_workflow` | Enable/disable the FTC scriptable workflow feature. Default `false`. |
-| `enable_manager_webui` | If enabled, allows users to use Cambria Cluster's Web UI; otherwise only the REST API server can be used. |
-| `storage_class_name` | Name of the storage class to use for volumes in the Kubernetes cluster. |
+| `workersUseGPU` [ BETA ] | This must be set to true if planning to use NVENC capabilities on the encoding machines. This is set to false by default. |
+| `nbGPUs` | The max number of GPUs to use from the encoding machines if GPU functionality is enabled. This value should not exceed the amount of GPUs available. |
+| `workersUseVPU` [ BETA ] | This must be set to true if planning to use netint VPU capabilities on the encoding machines. This is set to false by default. |
+| `nbVPUs` | The max number of VPUs to use from the encoding machines if VPU functionality is enabled. This value should not exceed the amount of VPUs available. |
+| `ftc_enable_auto_scaler` | This is used to enable / disable the FTC autoscaler which controls auto deployment of Cambria FTC encoders to handle encoding tasks dynamically. By default this is enabled (true). |
+| `ftc_enable_scriptable_workflow` | This is used to enable / disable the FTC scriptable workflow feature. By default, this is disabled. |
+| `enable_manager_webui` | If enabled, this allows users to use Cambria Clusterr's Web UI. Otherwise, only the REST API server can be used to interact with Cambria Cluster. |
+| `storage_class_name` | The name of the storage class to use for volumes in the Kubernetes cluster. |
 | `ftc_encoding_slots` | When a Cambria FTC worker node is connected to Cambria Cluster, this is the max number of encoding jobs it can run concurrently by default. |
-| `expose_capella_service_externally` | Create load balancers to publicly expose the Capella application. |
-| `enable_ingress` | Create an ingress for the Capella applications that should be exposed. |
-| `ftc_license_mode` | License mode for Cambria Cluster and FTC instances. Do not change unless instructed by Capella. |
-| `enable_eventing` | Enable/disable the argo-events event-based system. Default `true`. |
-| `kubernetes_version` | Kubernetes version number to use. Do not change unless instructed by Capella. |
-| `install_monitoring` | Install monitoring features (Prometheus, Grafana). Do not change unless instructed by Capella. |
-| `install_loki` | Install the Loki logs feature. Do not change unless instructed by Capella. |
-| `expose_grafana` | Make the Grafana dashboard accessible publicly via a load balancer. |
-| `loki_replicas` | (For `s3_embedcred` storage) Number of Loki pod replicas to use. At least 2 replicas are required. Ensure enough nodes. |
-| `loki_max_unavailable` | (For `s3_embedcred` storage) How many Loki pods can be taken down during upgrades. For simplicity, use `loki_replicas + 1`. |
+| `expose_capella_service_externally` | This option tells the deployment to create load balancers to publicly expose the Capella application. |
+| `enable_ingress` | This option tells the deployment to create an ingress for the Capella applications that should be exposed. |
+| `ftc_license_mode` | The license mode for Cambria Cluster and FTC instances. Do not change this value unless instructed by Capella. |
+| `enable_eventing` | This enables / disables the argo-events event-based system. By default, this is enabled (true). |
+| `kubernetes_version` | The Kubernetes version number to use. Do not change this value unless instructed by Capella. |
+| `install_monitoring` | This controls whether monitoring features (prometheus, grafana) should be installed. Do not change this value unless instructed by Capella. |
 
 3. Once done, click on **Save Changes** and close the UI.
 
@@ -310,7 +306,7 @@ This is the default way to perform an upgrade for anything from updating license
    ```
    If any pod in this list is in a **pending** state, see **section 3.1** and make sure the number of manager nodes created equals the amount of `cambriastreammanager-xyz` pods you see in this list.
 9. Run the Terraform install instructions from **section 3.3. Deploy Kubernetes Cluster**.  
-10. *(Skip if you ran the “Important” steps above.)* Restart the manager deployments:
+10. *(Skip if you ran the “Important” steps above.)* Run this command to restart the manager deployments:
     ```bash
     kubectl rollout restart deployment cambriaclusterwebui cambriaclusterapp -n default
     ```
@@ -328,11 +324,11 @@ Many resources are created in a Kubernetes environment. It is important that eac
 1. Verify that you have a **Linux deployment server**. To create a new Linux deployment server or verify that the deployment server tools are installed, run the steps in **1.2. Prepare Deployment Server** and also in **2. Cambria Stream Package**.  
 2. Download / Paste your `.tfvars` and `.tfstate` files that were used for the Kubernetes cluster deployment into the Linux deployment server.  
 3. Download / Paste the `kubeconfig.yaml` file of your Kubernetes cluster into the Linux deployment server.  
-4. Update the Cambria Stream package with the values from the `.tfvars` file (replace `my-values.tfvars` with your file):
+4. Linux deployment server, run the following command to update the Cambria Stream package with the values from the `.tfvars` file (replace `my-values.tfvars` with your file):
    ```bash
    ./bin/updateTfValuesFromTfvars.sh my-values.tfvars
    ```
-5. Destroy the Kubernetes cluster:
+5. Run the following command to destroy the Kubernetes cluster:
    ```bash
    terraform init && terraform apply -destroy -auto-approve -var-file=./my-values.tfvars
    ```
