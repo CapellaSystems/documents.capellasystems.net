@@ -167,10 +167,10 @@
                 },
                 {
                 {
-  type: 'doc',
-  id: 'Cambria_FTC/Installation Guides/Kubernetes/Akamai/Akamai-Kubernetes/cambria-cluster-ftc-5-6-akamai-kubernetes',
-  label: 'Cambria Cluster Akamai Kubernetes'
-}
+              type: 'doc',
+              id: 'Cambria_FTC/Installation Guides/Kubernetes/Akamai/Akamai-Kubernetes/cambria-cluster-ftc-5-6-akamai-kubernetes',
+              label: 'Cambria Cluster Akamai Kubernetes',
+               },
 
               ],
             },
