@@ -183,9 +183,9 @@ ssh -Y -i "mysshkey" root@123.123.123.123
 | `cambria_cluster_replicas` | The maximum number of Cambria management + replica machines to have up and running. This should match the `lke_manager_pool_node_count` or be greater if more manager replicas will be needed after installation. |
 | `host_name`, `acme_registration_email`, `acme_server` | One way to expose the main Cambria applications is to use an ingress. This information is needed to connect a real domain and TLS certificate to the ingress. The default values are only usable under a test environment. |
 | `loki_storage_type` | Decide what type of storage to use for Loki logs. Recommended to use an S3 compatible storage like AWS S3. For testing purposes only, there is a filesystem version (set this to `local`). |
-| `loki_local_storage_size_gi` | Used only for the local `loki_storage_type`. Size (GB) of the Loki log volume. Volumes can fill up quickly so testing different sizes may be required. |
-| `loki_s3_bucket_name` | Used when `loki_storage_type = s3_embedcred`. Name of the S3-compatible bucket for logs. |
-| `loki_s3_region` | Used when `loki_storage_type = s3_embedcred`. Region where the S3 bucket is located. |
+| `loki_local_storage_size_gi` | Used only for the local `loki_storage_type`. This is how many GB the Loki log volume should be.  Volumes can fill up quickly so testing different sizes may be required. |
+| `loki_s3_bucket_name` | Used when `loki_storage_type = s3_embedcred`. This option should be changed if using the s3_embedcred loki_storage_type. This is the name of the S3 compatible bucket to write logs to |
+| `loki_s3_region` | This option should be changed if using the s3_embedcred loki_storage_type. This is the region where the S3 bucket is located |
 | `loki_log_retention_period` | Number of days to retain Loki logs in the storage device. Default is 7 days. |
 
 8. Once done, click on **Save Changes** and wait for the message **Changes were saved** to appear.  
