@@ -138,7 +138,7 @@
   ],
 
 // Cambria FTC Sidebar
-const sidebars = {
+module.exports = {
   FTCSidebar: [
     {
       type: 'category',
@@ -239,5 +239,3 @@ const sidebars = {
     },
   ],
 };
-
-export default sidebars;
