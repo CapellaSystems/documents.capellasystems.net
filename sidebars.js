@@ -166,9 +166,12 @@
                   id: 'Cambria_FTC/Installation Guides/Kubernetes/Akamai/Akamai-Kubernetes/Cambria_Cluster_Akamai_Kubernetes',
                 },
                 {
-                  type: 'doc',
-                  id: 'Cambria_FTC/Installation Guides/Kubernetes/Akamai/Akamai-Terraform-Kubernetes/Cambria_Cluster_Terraform_Akamai_Kubernetes',
-                }
+                {
+  type: 'doc',
+  id: 'Cambria_FTC/Installation Guides/Kubernetes/Akamai/Akamai-Kubernetes/cambria-cluster-ftc-5-6-akamai-kubernetes',
+  label: 'Cambria Cluster Akamai Kubernetes'
+}
+
               ],
             },
             {
