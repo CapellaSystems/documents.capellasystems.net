@@ -336,6 +336,3 @@ Many resources are created in a Kubernetes environment. It is important that eac
    terraform init && terraform apply -destroy -auto-approve -var-file=./my-values.tfvars
    ```
 
----
-
-*End of document.*
