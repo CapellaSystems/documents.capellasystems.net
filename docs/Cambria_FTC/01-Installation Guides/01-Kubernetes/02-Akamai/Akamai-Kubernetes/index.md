@@ -1,15 +1,13 @@
 ---
 id: cambria-cluster-ftc-5-6-akamai-kubernetes
-title: Cambria Cluster / FTC 5.6.0 — Akamai Cloud Kubernetes Help Documentation
-sidebar_position: 1
+title: Akamai Cloud Kubernetes
 ---
-ahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
 # Cambria Cluster / FTC 5.6.0 — Akamai Cloud Kubernetes Help Documentation
 
 ## Document History
 
 | Version | Date       | Description                                   |
-|--------:|------------|-----------------------------------------------|
+|---------|------------|-----------------------------------------------|
 | 5.5.0   | 04/11/2025 | Updated for release 5.5.0.23529 (Linux)       |
 | 5.6.0   | 10/31/2025 | Updated for release 5.6.0.26533 (Linux)       |
 
@@ -17,16 +15,16 @@ ahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
 
 Do not move forward with the installation process if you do not agree with the End User License Agreement (EULA) for our products. You can download and read the EULA for Cambria FTC, Cambria Cluster, and Cambria License Manager from the links below:
 
-- **Cambria Cluster** — <https://www.dropbox.com/s/oemlax63aatjjiw/EULA_Cluster.pdf?dl=0>  
-- **Cambria FTC** — <https://www.dropbox.com/s/ualv9usxsowh6m2/EULA_FTC.pdf?dl=0>  
-- **Cambria License Manager** — <https://www.dropbox.com/s/1wg7ee7a59kzi8h/EULA_Cambria_License_Manager.pdf?dl=0>
+- **Cambria Cluster** — <a href="https://www.dropbox.com/s/oemlax63aatjjiw/EULA_Cluster.pdf?dl=0">https://www.dropbox.com/s/oemlax63aatjjiw/EULA_Cluster.pdf?dl=0</a>  
+- **Cambria FTC** — <a href="https://www.dropbox.com/s/ualv9usxsowh6m2/EULA_FTC.pdf?dl=0">https://www.dropbox.com/s/ualv9usxsowh6m2/EULA_FTC.pdf?dl=0</a>  
+- **Cambria License Manager** — <a href="https://www.dropbox.com/s/1wg7ee7a59kzi8h/EULA_Cambria_License_Manager.pdf?dl=0">https://www.dropbox.com/s/1wg7ee7a59kzi8h/EULA_Cambria_License_Manager.pdf?dl=0</a>
 
 ### Limitations and Security Information
 
 Cambria FTC, Cluster, and License Manager are installed on Linux Docker containers. Limitations and security checks for this version are included in the Linux document below (**informational only**; Kubernetes setup starts in **3. Create Kubernetes Cluster**).
 
 - **Cambria FTC / Cluster (sections 8 and 9):**  
-  <https://www.dropbox.com/scl/fi/rvf02h8tajsxrfbhpgmzy/Linux_Cambria_FTC_5_6_0_Guide.pdf?rlkey=gtqeowx2b9gartth8s6dwo95j&st=4wpy1dfi&dl=0>
+  <a href="https://www.dropbox.com/scl/fi/rvf02h8tajsxrfbhpgmzy/Linux_Cambria_FTC_5_6_0_Guide.pdf?rlkey=gtqeowx2b9gartth8s6dwo95j&st=4wpy1dfi&dl=0">https://www.dropbox.com/scl/fi/rvf02h8tajsxrfbhpgmzy/Linux_Cambria_FTC_5_6_0_Guide.pdf?rlkey=gtqeowx2b9gartth8s6dwo95j&st=4wpy1dfi&dl=0</a>
 
 > **Information:** This document references **Kubernetes 1.34** only.
 
@@ -93,7 +91,7 @@ General resource usage (varies by environment):
 - **Networking:** No VPCs created by default  
 - **Security:** No firewalls by default (Akamai LKE node firewalls can be applied)
 
-Akamai LKE documentation: <https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-lke-linode-kubernetes-engine>
+Akamai LKE documentation: <a href="https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-lke-linode-kubernetes-engine">https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-lke-linode-kubernetes-engine</a>
 
 ### 1.3. Akamai Cloud Machine Information and Benchmark (as of Oct 2025)
 
@@ -202,9 +200,9 @@ unzip -o CambriaClusterKubernetesAkamai_5_6_0.zip && chmod +x *.sh ./bin/*.sh
 > After success, open a new terminal.
 
 **Option 2 (manual):**  
-- kubectl — <https://kubernetes.io/docs/tasks/tools/>  
-- helm — <https://helm.sh/docs/intro/install/>  
-- linode‑cli — <https://techdocs.akamai.com/cloud-computing/docs/install-and-configure-the-cli>
+- kubectl — <a href="https://kubernetes.io/docs/tasks/tools/">https://kubernetes.io/docs/tasks/tools/</a>  
+- helm — <a href="https://helm.sh/docs/intro/install/">https://helm.sh/docs/intro/install/</a>  
+- linode‑cli — <a href="https://techdocs.akamai.com/cloud-computing/docs/install-and-configure-the-cli">https://techdocs.akamai.com/cloud-computing/docs/install-and-configure-the-cli</a>
 
 #### 2.2.2. Verification
 
@@ -298,12 +296,12 @@ kubectl get all -n ingress-nginx
 ```
 
 For production DNS/TLS, see:  
-<https://www.dropbox.com/scl/fi/kxt7tnv9q18fqjmjjuwrc/Cambria_Kubernetes_Domain_DNS_Guide.pdf?rlkey=mvm4jnplyji95snq4109noiwj&st=6a7nial5&dl=0>
+<a href="https://www.dropbox.com/scl/fi/kxt7tnv9q18fqjmjjuwrc/Cambria_Kubernetes_Domain_DNS_Guide.pdf?rlkey=mvm4jnplyji95snq4109noiwj&st=6a7nial5&dl=0">https://www.dropbox.com/scl/fi/kxt7tnv9q18fqjmjjuwrc/Cambria_Kubernetes_Domain_DNS_Guide.pdf?rlkey=mvm4jnplyji95snq4109noiwj&st=6a7nial5&dl=0</a>
 
 ### 3.4. Performance Metrics and Logging
 
 Install **Prometheus, Grafana, Loki, Promtail**:  
-<https://www.dropbox.com/scl/fi/cb75lsh6ipvbf0x1y4ysp/Prometheus_Grafana_Setup_for_Cambria_Cluster_5_6_0_on_Akamai_Kubernetes.pdf?rlkey=kcxit4i6ntj5ynv2e26zydhiy&st=douvkvi9&dl=0>
+<a href="https://www.dropbox.com/scl/fi/cb75lsh6ipvbf0x1y4ysp/Prometheus_Grafana_Setup_for_Cambria_Cluster_5_6_0_on_Akamai_Kubernetes.pdf?rlkey=kcxit4i6ntj5ynv2e26zydhiy&st=douvkvi9&dl=0">https://www.dropbox.com/scl/fi/cb75lsh6ipvbf0x1y4ysp/Prometheus_Grafana_Setup_for_Cambria_Cluster_5_6_0_on_Akamai_Kubernetes.pdf?rlkey=kcxit4i6ntj5ynv2e26zydhiy&st=douvkvi9&dl=0</a>
 
 ---
 
@@ -503,7 +501,7 @@ monitoring   cambriamonitoringingress   nginx   monitoring.mydomain.com         
 ## 6. Testing Cambria FTC / Cluster
 
 See:  
-<https://www.dropbox.com/scl/fi/ymu5fln1n811a1i92radv/Cambria_Cluster_and_FTC_5_6_0_Kubernetes_User_Guide.pdf?rlkey=cd0unkt9hcs3mhjp1fjbcvi9n&st=fb030h8o&dl=0>
+<a href="https://www.dropbox.com/scl/fi/ymu5fln1n811a1i92radv/Cambria_Cluster_and_FTC_5_6_0_Kubernetes_User_Guide.pdf?rlkey=cd0unkt9hcs3mhjp1fjbcvi9n&st=fb030h8o&dl=0">https://www.dropbox.com/scl/fi/ymu5fln1n811a1i92radv/Cambria_Cluster_and_FTC_5_6_0_Kubernetes_User_Guide.pdf?rlkey=cd0unkt9hcs3mhjp1fjbcvi9n&st=fb030h8o&dl=0</a>
 
 ---
 
@@ -565,7 +563,7 @@ Delete the LKE cluster in the Akamai console.
 
 ### 9.1. Installation (Terraform quick path)
 
-<https://www.dropbox.com/scl/fi/0vhx8634n6s12qjwxw25f/Cambria_Cluster_and_FTC_5_6_0_Terraform_on_Akamai_Kubernetes.pdf?rlkey=xamh1hkjbli55mwfm6gs67tti&st=yp5057bh&dl=0>
+<a href="https://www.dropbox.com/scl/fi/0vhx8634n6s12qjwxw25f/Cambria_Cluster_and_FTC_5_6_0_Terraform_on_Akamai_Kubernetes.pdf?rlkey=xamh1hkjbli55mwfm6gs67tti&st=yp5057bh&dl=0">https://www.dropbox.com/scl/fi/0vhx8634n6s12qjwxw25f/Cambria_Cluster_and_FTC_5_6_0_Terraform_on_Akamai_Kubernetes.pdf?rlkey=xamh1hkjbli55mwfm6gs67tti&st=yp5057bh&dl=0</a>
 
 ### 9.2. Upgrades and Teardown
 
@@ -662,7 +660,7 @@ kubectl delete pod <pod-name> -n <namespace>
 
 ### 11.1. Kubernetes
 
-For Kubernetes terms, see the official glossary: <https://kubernetes.io/docs/reference/glossary/?fundamental=true>
+For Kubernetes terms, see the official glossary: <a href="https://kubernetes.io/docs/reference/glossary/?fundamental=true">https://kubernetes.io/docs/reference/glossary/?fundamental=true</a>
 
 ### 11.2. Third‑Party Tools
 
