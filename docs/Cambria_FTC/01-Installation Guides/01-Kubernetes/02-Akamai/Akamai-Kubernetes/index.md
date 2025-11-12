@@ -26,6 +26,15 @@ Cambria FTC, Cluster, and License Manager are installed on Linux Docker containe
 - **Cambria FTC / Cluster (sections 8 and 9):**  
   <a href="https://www.dropbox.com/scl/fi/rvf02h8tajsxrfbhpgmzy/Linux_Cambria_FTC_5_6_0_Guide.pdf?rlkey=gtqeowx2b9gartth8s6dwo95j&st=4wpy1dfi&dl=0">https://www.dropbox.com/scl/fi/rvf02h8tajsxrfbhpgmzy/Linux_Cambria_FTC_5_6_0_Guide.pdf?rlkey=gtqeowx2b9gartth8s6dwo95j&st=4wpy1dfi&dl=0</a>
 
+- **Important: Before You Begin
+PDF documents have a copy/paste issue. For best results, download this document and any referenced PDF documents in this guide and open them in a PDF viewer such as Adobe Acrobat.  
+For commands that are in more than one line, copy each line one by one and check that the copied command matches the one in the document.
+
+When copying commands:
+
+- If a command spans multiple lines, **copy each line individually**.
+- After copying, **verify that the pasted command matches the text shown in the document**.
+
 > **Information:** This document references **Kubernetes 1.34** only.
 
 ---
