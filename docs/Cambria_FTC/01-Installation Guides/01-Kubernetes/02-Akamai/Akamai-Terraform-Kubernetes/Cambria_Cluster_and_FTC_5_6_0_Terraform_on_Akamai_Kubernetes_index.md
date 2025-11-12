@@ -219,6 +219,10 @@ Skip this step if the optional values don't need to be modified. Review the list
 | `enable_eventing` | This enables / disables the argo-events event-based system. By default, this is enabled (true). |
 | `kubernetes_version` | The Kubernetes version number to use. Do not change this value unless instructed by Capella. |
 | `install_monitoring` | This controls whether monitoring features (prometheus, grafana) should be installed. Do not change this value unless instructed by Capella. |
+| `install_loki` | This controls whether the Loki logs feature should be installed. Do not change this value unless instructed by Capella. |
+| `expose_grafana` | This option tells the deployment to make the Grafana dashboard accessible publicly via a load balancer |
+| `loki_replicas ` | This option should only be changed if using the s3_embedcred loki_storage_type. This is the number of Loki pod replicas to use for handling log requests. At least 2 replicas need to be active for Loki to work properly. Also, there should be at least the same amount of nodes running to cover the number of replicas specified here.
+| `loki_max_unavailable` | This option should only be changed if using the s3_embedcred loki_storage_type. This is how many Loki pods can be taken down when performing upgrades. For simplicity, this value should be loki_replicas + 1 |
 
 3. Once done, click on **Save Changes** and close the UI.
 
