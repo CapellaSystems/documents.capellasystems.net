@@ -451,11 +451,12 @@ export KUBECONFIG=$CLUSTER_NAME-kubeconfig.yaml
 7. Verify that kubectl works with the cluster  
 kubectl get nodes
 
-Example:
+```text
 NAME STATUS ROLES AGE VERSION
 lke525068-759150-2bfe0e460000 Ready <none> 20m v1.34.0
 lke525068-759150-4661256b0000 Ready <none> 20m v1.34.0
 lke525068-759150-5d7b909a0000 Ready <none> 20m v1.34.0
+
 
 8. Back in the Akamai dashboard in the LKE cluster, click on Copy Token. Then, on Kubernetes Dashboard, use the token to log in to the dashboard
 
