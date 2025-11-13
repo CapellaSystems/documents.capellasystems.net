@@ -41,17 +41,46 @@ When copying commands:
 
 ## ⚠️ Critical Information: Read Before Proceeding with Installation
 
-1. **A New Kubernetes Cluster Will Be Deployed** — creates a brand‑new cluster to isolate the Cambria ecosystem.  
-2. **Default Installation is Non‑Secure** — the guide covers an open environment by default. Secure/custom setups require Akamai Cloud expertise; see **1.5 Firewall Information**.  
-3. **Understand Your Transcoding Requirements** — expected volume, I/O specs, GPU need; see **1.3 Akamai Cloud Machine Information and Benchmark**.  
-4. **Administrative Rights Required** — steps require admin rights in Akamai Cloud.  
-5. **Check Akamai Cloud Account Quota** — ensure quotas cover k8s resources; see **1.2 Resource Usage**.  
-6. **A Separate Linux Machine is Required** — dedicated deployment box is strongly recommended.  
-7. **Verify Region‑Specific Resource Availability** — some regions lack certain resources (e.g., GPUs).
+Before starting the installation, carefully review the following considerations. Skipping this section
+may result in errors, failed deployments, or misconfigurations.
+
+1. **A New Kubernetes Cluster Will Be Deployed**  
+● The installation process creates a brand-new Kubernetes cluster to keep the Cambria ecosystem
+isolated from other applications.
+
+2. **Default Installation is Non-Secure**  
+● The guide covers installation with default settings in an open environment (not secure).  
+● If you require a secure or customized setup, you will need Akamai Cloud expertise, which is not
+covered in this guide.  
+● Firewall information is provided in section 1.5. Firewall Information
+
+3. **Understand Your Transcoding Requirements**  
+● Know your expected transcoding volume, input/output specs, and whether a GPU is needed.  
+● Refer to section 1.3. Akamai Cloud Machine Information and Benchmark for guidelines on machine
+requirements.
+
+4. **Administrative Rights Required**  
+● Many of the steps in this guide require administrative rights to Akamai Cloud for adding permissions and
+performing other administrative functions of that sort.
+
+5. **Check Akamai Cloud Account Quota**  
+● Ensure the Akamai Cloud account has sufficient quota to deploy Kubernetes resources.  
+● See section 1.2. Resource Usage for estimated resource requirements.
+
+6. **A Separate Linux Machine is Required**  
+● A dedicated Linux machine (preferably Ubuntu on an Akamai Cloud Linode machine) is needed to
+deploy Kubernetes.  
+● Keeping Kubernetes tools and configuration files on a dedicated system is strongly recommended.
+
+7. **Verify Region-Specific Resource Availability**  
+● Not all Akamai Cloud regions support the same resources (e.g., GPU availability varies by region).  
+● Consult Akamai Cloud documentation to confirm available resources in your desired region.
+
 
 ---
 
 ## Document Overview
+The purpose of this document is to provide a walkthrough of the installation and initial testing process of the Cambria Cluster and Cambria FTC applications in the Kubernetes environment. The basic view of the document is the following:
 
 1. Overview of the Cambria Cluster / FTC Environment in a Kubernetes Environment  
 2. Preparation for the installation (Prerequisites)  
@@ -73,75 +102,156 @@ When copying commands:
 
 There are two major applications involved in this installation: **Cambria Cluster** and **Cambria FTC**.
 
-**Cambria Cluster** (recommended **replicas = 3**, one leader + two replicas). Each Cambria Cluster pod includes three containers:
+**Cambria Cluster** This deployment is recommended to run on at least 3 nodes (replica = 3) with a service (Load Balancer) that exposes the application externally. For each of these nodes, Cambria Cluster will be installed on its own pod and designated to its own node. One node acts as the leader and the other two are replicas for the purpose of replacing the leader in the case it becomes inactive, corrupted, etc. Each Cambria Cluster pod has three containers::
 
 1. **Cambria Cluster** (application)  
-2. **Leader Elector** — chooses which pod is the leader  
-3. **Cambria FTC Autoscaler** — when enabled, automatically deploys worker nodes based on queued jobs, using the (rounded down) calculation:  
-   \
+2. **Leader Elector** — that chooses which of the Cambria Cluster node / pod will be the leader  
+3. **Cambria FTC Autoscaler** — that when the FTC autoscaler is enabled, it will automatically deploy worker nodes for encoding purposes based on the number of encoding jobs queued to the system. This is based on the calculation (rounded down):  
+   
    **Number of Nodes to Deploy = (Number of Queued Jobs + 2) / 3**
 
-A **PostgreSQL** database runs on a separate pod for each active Cambria Cluster pod. Data is replicated for resiliency.
+Also for the Cluster deployment, there is a corresponding PostgreSQL database installed on a separate pod for each active Cambria Cluster pod. The data is replicated between the different database pods in order to preserve data in case of issues with the database and/or Cluster.
 
-**Cambria FTC** (worker nodes): Each FTC pod includes three containers:
+### Cambria FTC:
 
-1. **Cambria FTC** (application)  
-2. **Auto‑Connect FTC** (.NET tool) — lists pods, finds Cambria Cluster, and connects the FTC to the Cluster. If no Cluster is found within ~20 minutes, the node pool is deleted or recycled.  
-3. **pgcluster** — stores the encoder job’s contents for as long as the pod is running.
+Capella’s Cambria FTC deployment consists of one or more nodes that (by default) are of different instance
+types than the Cambria Cluster nodes. These nodes focus specifically on running encoding tasks. Similar to
+Cambria Cluster, the Cambria FTC application is installed on its own pod and designated to its own node. Each
+Cambria FTC pod has three containers:
 
-> Each Kubernetes node runs **either** the Cluster deployment **or** the FTC deployment.
+1. Cambria FTC (application)
+2. Auto-Connect FTC dotnet tool that does the following: 1. list pods, 2. attempts to find Cambria
+Cluster, and 3. connects the Cambria FTC application running in the pod to the Cambria Cluster that it
+found. This container also deletes its own node pool or recycles its node if no Cambria Cluster is found
+within a specific time (~20 minutes)
+3. Pgcluster database for storing its encoder's own job contents and other such information for as long
+as the pod is running.
+
+Each node in the Kubernetes Cluster will either be running the Cluster deployment or the FTC deployment.
+
 
 ### 1.2. Resource Usage
 
-General resource usage (varies by environment):
+The resources used and their quantities will vary depending on requirements and different
+environments. Below is general information about some of the major resource usage (other resources may be
+used. Consult Akamai Cloud documentation for other resources created, usage limits, etc):
 
-- **NodeBalancers:** 0–3 (Manager WebUI, Manager Web Server, Grafana) and 0–1 (Ingress)  
-- **Nodes:** X Cambria Manager instances (default 3), Y Cambria FTC instances (default max 20)  
-- **Networking:** No VPCs created by default  
-- **Security:** No firewalls by default (Akamai LKE node firewalls can be applied)
+Akamai Cloud Documentation:  
+https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-lke-linode-kubernetes-engine
 
-Akamai LKE documentation: <a href="https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-lke-linode-kubernetes-engine">https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-lke-linode-kubernetes-engine</a>
+| Resource       | Details                                                                 |
+|----------------|-------------------------------------------------------------------------|
+| NodeBalancers  | 0–3 NodeBalancers (Manager WebUI, Manager Web Server, Grafana)<br/>0–1 NodeBalancer (Ingress) |
+| Nodes          | X Cambria Manager Instances (Default is 3)<br/>Y Cambria FTC Instances (Depends on max FTC instance configuration; Default is 20) |
+| Networking     | No VPCs are created                                                     |
+| Security       | By default, no firewalls are created. However, Firewalls can be applied to the LKE cluster nodes for stricter security |
 
-### 1.3. Akamai Cloud Machine Information and Benchmark (as of Oct 2025)
+---
 
-**Benchmark job**: Source TS H.264 1080p30 → HLS/TS H.264 (1080p/4 Mbps, 720p/2.4 Mbps, 480p/0.8 Mbps, 320x240/0.3 Mbps). I/O to Akamai ObjectStorage impacts real‑time speed.
+### 1.3. Akamai Cloud Machine Information and Benchmark
 
-#### a) g6-dedicated-16 (AMD EPYC 7713)
+The following is a benchmark of two Akamai Cloud machines. The information below is as of October 2025.  
+Note that the benchmark involves read from / write to Akamai ObjectStorage which influences the real-time speed of
+transcoding jobs.
 
-- **Machine:** Dedicated 32GB RAM, 16 vCPU, 640GB storage, 7TB transfer, 40Gbps/7Gbps, **$0.432/hr (10/15/2025)**  
-- **Benchmark:** 2 concurrent jobs → ~0.65× RT per job (throughput ~1.30× RT); CPU ~100%
+#### Benchmark Job Information
 
-#### b) g6-dedicated-56 (AMD EPYC 7713)
+| Container | Codec   | Frame Rate | Resolution | Bitrate |
+|-----------|---------|------------|------------|---------|
+| Source    | TS H.264 | 30        | 1920 x 1080 | 8 Mbps |
+| Output    | HLS/TS H.264 | 29.97 | 1920 x 1080 @ 4Mbps<br/>1280 x 720 @ 2.4Mbps<br/>640 x 480 @ 0.8Mbps<br/>320 x 240 @ 0.3Mbps | — |
 
-- **Machine:** Dedicated 256GB RAM, 56 vCPU, 5000GB storage, 11TB transfer, 40Gbps/11Gbps, **$3.456/hr (05/28/2024)**  
-- **Benchmark:** 2 concurrent jobs → ~1.56× RT per job (throughput ~3.12× RT); CPU ~90%
+---
 
-**Finding:** g6‑dedicated‑56 has higher throughput; g6‑dedicated‑16 is more cost‑efficient per hour.
+## a. g6-dedicated-16 \[ AMD EPYC 7713 ]
+
+### Machine Info
+
+| Name            | RAM   | CPUs | Storage | Transfer | Network In/Out       | Cost per Hour             |
+|-----------------|--------|------|---------|----------|------------------------|----------------------------|
+| Dedicated 32 GB | 32 GB | 16   | 640 GB  | 7 TB     | 40 Gbps / 7 Gbps      | $0.432 (As of 10/15/2025) |
+
+### Benchmark Results
+
+- **# of Concurrent Jobs:** 2  
+- **Real Time Speed:** For each job: 0.65x RT (slower than real-time)  
+- **Throughput:** 1.30x RT (it takes around 47 seconds to transcode 1 minute of source)  
+- **CPU Usage:** 100%
+
+---
+
+## b. g6-dedicated-56 \[ AMD EPYC 7713 ]
+
+### Machine Info
+
+| Name               | RAM     | CPUs | Storage | Transfer | Network In/Out       | Cost per Hour             |
+|--------------------|----------|------|---------|----------|------------------------|----------------------------|
+| Dedicated 256 GB   | 256 GB  | 56   | 5000 GB | 11 TB    | 40 Gbps / 11 Gbps     | $3.456 (As of 05/28/2024) |
+
+### Benchmark Results
+
+- **# of Concurrent Jobs:** 2  
+- **Real Time Speed:** For each job: 1.56x RT (faster than real-time)  
+- **Throughput:** 3.12x RT (it takes around 20 seconds to transcode 1 minute of source)  
+- **CPU Usage:** ~90%
+
+---
+
+### Benchmark Findings
+
+The results show the g6-dedicated-56 has higher overall throughput. This is expected as the instance has
+more processing power than the g6-dedicated-16. However, if you take into account the cost per hour for
+each machine, the more cost efficient option is to go with the **g6-dedicated-16**.
+
 
 ### 1.4. Cambria Application Access
+The Cambria applications are accessible via the following methods:
 
 #### 1.4.1. External Access via TCP Load Balancer
-
-Default installation exposes: **(1)** Manager WebUI + License Manager, **(2)** Web/REST API Server.
+The default Cambria installation configures the Cambria applications to be exposed through load balancers.
+There is one for the Cambria Manager WebUI + License Manager, and one for the web / REST API server. The
+load balancers are publicly available and can be accessed either through its public ip address or domain name,
+and the application's TCP port.
 
 Examples:
 
-- **Cambria Manager WebUI:** `https://44.33.212.155:8161`  
-- **Cambria REST API:** `https://121.121.121.121:8650/CambriaFC/v1/SystemInfo`
+Cambria Manager WebUI:
 
-External access can be toggled in Helm values; see **4.2 Creating and Editing Helm Configuration File**.
+https://44.33.212.155:8161  
+Cambria REST API:  
+https://121.121.121.121:8650/CambriaFC/v1/SystemInfo  
 
-#### 1.4.2. HTTP Ingress via Reverse Proxy
+External access in this way can be turned on / off via a configuration variable. See **4.2. Creating and Editing
+Helm Configuration File**. If this feature is disabled, another method of access will need to be configured.
 
-Expose a single public IP/domain using subdomains:
+### 1.4.2. HTTP Ingress via Reverse Proxy
 
-- **WebUI:** `https://webui.mydomain.com`  
-- **REST API:** `https://api.mydomain.com`  
-- **Grafana:** `https://monitoring.mydomain.com`
+In cases where the external access via TCP load balancer is not acceptable or for using a purchased domain
+name from servicers such as GoDaddy, the Cambria installation provides the option to expose an ingress.
 
-> Capella provides a default testing hostname (not for production). For production, configure your own hostname, certificate, etc.
+Similar to the external access load balancers, the Cambria Manager WebUI and web / REST API server are
+exposed. However, only **one** IP address / domain name is needed in this case.
+
+How it works is that the Cambria WebUI is exposed through the subdomain **webui**, the Cambria web server
+through the subdomain **api**, and Grafana dashboard through the subdomain **monitoring**. The following is an
+example with the domain **mydomain.com**:
+
+- Cambria Manager WebUI:  
+  https://webui.mydomain.com  
+- Cambria REST API:  
+  https://api.mydomain.com  
+- Grafana Dashboard:  
+  https://monitoring.mydomain.com  
+
+Capella provides a default ingress hostname for testing purposes only. In production, the default hostname, SSL
+certificate, and other such information needs to be configured. More information about ingress configuration is
+explained later in this guide.
+
 
 ### 1.5. Firewall Information
+By default, this guide creates a kubernetes cluster with default settings which do not include a
+Firewall. For custom / non-default configurations, or to explore with a more restrictive network based on the
+default virtual network created, the following is a list of known ports that the Cambria applications use:
 
 | Port(s) | Protocol | Direction | Description |
 |--------:|:--------:|:---------:|-------------|
@@ -149,17 +259,21 @@ Expose a single public IP/domain using subdomains:
 | 8161 | TCP | Inbound | Cambria Cluster WebUI |
 | 8678 | TCP | Inbound | Cambria License Manager Web Server |
 | 8481 | TCP | Inbound | Cambria License Manager WebUI |
-| 9100 | TCP | Inbound | Prometheus System Exporter (Cluster) |
+| 9100 | TCP | Inbound | Prometheus System Exporter for Cambria Cluster |
 | 8648 | TCP | Inbound | Cambria FTC REST API |
-| 3100 | TCP | Inbound | Loki |
-| 3000 | TCP | Inbound | Grafana |
+| 3100 | TCP | Inbound | Loki Logging Service |
+| 3000 | TCP | Inbound | Grafana Dashboard |
 | 443  | TCP | Inbound | Capella Ingress |
 | ALL  | TCP/UDP | Outbound | Allow all outbound traffic |
 
-**Licensing domains** (expose inbound & outbound):  
-- `api.cryptlex.com:443` — License Server  
-- `cryptlexapi.capellasystems.net:8485` — License Cache  
-- `cpfs.capellasystems.net:8483` — License Backup
+Also, for Cambria licensing, any Cambria Cluster and Cambria FTC machine requires that at least the following
+domains be exposed in your firewall (both inbound and outbound traffic):
+
+| Domain                       | Port(s) | Protocol | Traffic | Description              |
+|------------------------------|---------|----------|---------|--------------------------|
+| api.cryptlex.com            | 443     | TCP      | In/Out  | License Server           |
+| cryptlexapi.capellasystems.net | 8485 | TCP      | In/Out  | License Cache Server     |
+| cpfs.capellasystems.net     | 8483    | TCP      | In/Out  | License Backup Server    |
 
 ### 1.6. Specifications for Linux Deployment Server
 
