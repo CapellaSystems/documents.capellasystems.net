@@ -277,50 +277,66 @@ domains be exposed in your firewall (both inbound and outbound traffic):
 
 ### 1.6. Specifications for Linux Deployment Server
 
-Minimum recommended (Capella tests with **Dedicated 4GB / g6-dedicated-2**):
+In order to deploy Cambria FTC, a Linux Deployment Server is required because this is where all of the tools,
+dependencies, and packages for the Cambria FTC Kubernetes deployment will be installed and/or stored. If you
+already have a deployment server, you can skip this section.
 
-| Item | Spec |
-|---|---|
-| OS | Ubuntu 24.04 |
-| CPU(s) | 2 |
-| RAM | 2 GB |
-| Storage | 10 GB |
+Important: Linux Deployment Server Machine Information  
+The instructions in this document perform functions using a root user. To keep things consistent, Capella
+strongly recommends using Akamai Linode instances for the deployment process.
 
-> Commands assume **root**.
+Capella tests deployment with the Dedicated 4GB (g6-dedicated-2) instance type  
 
----
+Minimum Requirements:  
+Operating System (OS) Ubuntu 24.04  
+CPU(s) 2  
+RAM 2 GB  
+Storage 10 GB  
 
 ## 2. Prerequisites
 
+The following steps need to be completed before the deployment process.
+
 ### 2.1. Linux Tools
 
-Install `curl`, `unzip`, and `jq` (Ubuntu 24.04 example):
+This guide uses curl, unzip, and jq to run certain commands and download the required tools and applications.
+Therefore, the Linux server used for deployment will need to have these tools installed.
+
+Example with Ubuntu 24.04:
 
 ```bash
 sudo apt update && \
 sudo DEBIAN_FRONTEND=noninteractive apt -o Dpkg::Options::="--force-confold" -y upgrade && \
 sudo DEBIAN_FRONTEND=noninteractive apt -o Dpkg::Options::="--force-confold" -y install curl unzip jq
-```
+
+### 2.1. Linux Tools
+
+Install `curl`, `unzip`, and `jq` (Ubuntu 24.04 example):
 
 ### 2.2. Cambria FTC Package
 
-Download & unzip:
+The components of this installation are packaged in a zip archive. Download it using the following command:
 
 ```bash
-curl -o CambriaClusterKubernetesAkamai_5_6_0.zip -L "https://www.dropbox.com/scl/fi/58x4oeiijhf3au3hnit38/CambriaClusterKubernetesAkamai_5_6_0.zip?rlkey=uppqqa29s9yresdk2xk7qh7lt&st=s2mus6im&dl=0"
+curl -o CambriaClusterKubernetesAkamai_5_6_0.zip -L \
+"https://www.dropbox.com/scl/fi/58x4oeiijhf3au3hnit38/CambriaClusterKubernetesAkamai_5_6_0.zip?rlkey=\
+uppqqa29s9yresdk2xk7qh7lt&st=s2mus6im&dl=0"
 
 unzip -o CambriaClusterKubernetesAkamai_5_6_0.zip && chmod +x *.sh ./bin/*.sh
+
+Important: the scripts included have been tested with Ubuntu. They may work with other Linux distributions
+but not tested
+
 ```
 
-> Scripts tested on Ubuntu.
-
 #### 2.2.1. Kubernetes Tools: kubectl, helm, linode‑cli
+There are 2 options available for installing the kubernetes required tools for deployment to Akamai Cloud:
 
 **Option 1 (script, verified on Ubuntu):**
 ```bash
 ./bin/installKubeTools.sh && ./bin/installKubeToolsAkamai.sh
 ```
-> After success, open a new terminal.
+> If successful, use a new terminal window or restart the terminal window where the above steps were run
 
 **Option 2 (manual):**  
 - kubectl — <a href="https://kubernetes.io/docs/tasks/tools/">https://kubernetes.io/docs/tasks/tools/</a>  
@@ -328,6 +344,7 @@ unzip -o CambriaClusterKubernetesAkamai_5_6_0.zip && chmod +x *.sh ./bin/*.sh
 - linode‑cli — <a href="https://techdocs.akamai.com/cloud-computing/docs/install-and-configure-the-cli">https://techdocs.akamai.com/cloud-computing/docs/install-and-configure-the-cli</a>
 
 #### 2.2.2. Verification
+If any of the commands below fail, review the installation instructions for the failing tool and try again:
 
 ```bash
 kubectl version --client && helm version && linode-cli --version
@@ -336,59 +353,119 @@ kubectl version --client && helm version && linode-cli --version
 ---
 
 ## 3. Create Kubernetes Cluster (Akamai LKE)
+The following section provides the basic steps needed to create a Kubernetes Cluster on Akamai Cloud.
+
 
 ### 3.1. Create LKE Cluster and Cambria Cluster Node Group
 
-In Akamai Cloud Dashboard → **Kubernetes** → **Create Cluster**:
+In the Akamai Cloud Dashboard, go to Kubernetes and Create Cluster and configure as follows:
 
-| Field | Value |
 |---|---|
 | Cluster Label | e.g., `cambria-cluster` |
-| Cluster Tier | LKE (most cases) |
-| Region | e.g., **US, Los Angeles (us‑lax)** |
+| Cluster Tier | LKE In most cases, this should be LKE |
+| Region | e.g., Your region of operation (Eg. US, Los Angeles, CA (us-lax)) |
 | Kubernetes Version | **1.34** |
 | Akamai App Platform | No |
-| HA Control Plane | **No** (test) / **Yes** (prod; extra cost) |
-| Control Plane ACL | Only if you know allowed CIDRs |
+| HA Control Plane | For testing, set to No. For production, it is recommended to set this to Yes (Incurs additional cost. See Akamai documentation) |
+| Control Plane ACL | Only enable this if you already know which IP CIDRs will need access to the LKE control plane. Otherwise, leave as is Only if you know allowed CIDRs |
 
 > Do **not** create the cluster yet; add nodegroups first.
 
 #### 3.1.1. Cambria Cluster Nodegroup (Managers)
 
-Recommendation: **Dedicated 8GB**, **Nodes = 3** (1 leader, 2 backups). After creation, label the pool:
+One set of nodes that need to be added are the Cambria Cluster nodes. These are also referred to as the
+Manager Nodes. At least one Cambria Cluster node needs to be running at all times in the Kubernetes cluster.  
+To create these nodes, select the number of nodes to assign to the Cambria Cluster node pool in the Add Node
+Pools section
 
-- **Label:** `capella-manager=true`
+#### Information / Recommendation
+
+Cambria Cluster manages scheduling and handling Cambria FTC encoding / packaging programs. Think about
+how many programs will be intended to run and choose an instance type accordingly. The lowest recommended
+machine type for the manager machines is **Dedicated 8GB**.
+
+It is also recommended to set the node count to **3**. This is because **1 of the nodes will act as the Cambria
+Cluster node** while the other **2 nodes act as backup** (web server and database are replicated / duplicated).
+If the Cambria Cluster node goes down or stops responding, one of the other two nodes will take over as the
+Cambria Cluster node. Depending on your workflow(s), think about how many backup nodes may be needed.
+
+**Plan:** Dedicated 8GB (this is the recommended plan, but can be configured as needed)  
+**Nodes:** 3 (this is the recommended for manager redundancy, but can be configured as needed)
+
 
 #### 3.1.2. Create Cambria FTC Node Group(s) (Workers)
+Skip this step if planning to use Cambria FTC's autoscaler. Run the following steps to create the Node
+Group(s) for the worker application instances (replace the highlighted values to those of your specific
+environment):
 
-If not using autoscaler, create worker node pools. Start with one **g6-dedicated-16** instance; label the pool:
+#### Information / Recommendation
 
-- **Label:** `capella-worker=true`
+For this particular case, **Cambria FTC nodes need to be added manually**. Therefore, you will need to think
+about what machine / instance types are needed for running the Cambria FTC workflows. Based on benchmarks  
+(See **1.3. Akamai Cloud Machine Information and Benchmark**), the recommended machine / instance type
+to get started is **g6-dedicated-16**.
+
+To get started, it is recommended to start with **one instance**. This way, when the installation is complete,
+there will already be one Cambria FTC instance available to test with. The number of instances can always be
+scaled up or down, up to the maximum FTC instance count configured in  
+**section 4.2. Creating and Editing Helm Configuration File**.
+
+**Plan:** Dedicated 32GB (this is the recommended plan, but can be configured as needed)  
+**Nodes:** 1+
 
 #### 3.1.3. Deploy the Kubernetes Cluster
 
-1. Create the LKE cluster; wait until all nodes show **Running**.  
-2. Add labels (see above).  
-3. On the Linux Deployment Server, create a kubeconfig file and export it:
+1. After selecting the initial node group(s), create the cluster. This will begin the LKE cluster deployment with
+the initial nodes.
+  
+It may take a few minutes for everything configured so far to be in a usable state. Wait for the nodes to all have
+a Status of Running. 
+ 
+2. Once the LKE Cluster is running, labels need to be added to the Cambria Cluster node pool:
+a. In the Akamai Cloud Dashboard, go into the kubernetes cluster and look for the Cambria Cluster
+node pool 
+b. Select Labels and Taints and Add Label. In the Label field, enter capella-manager: true and then
+save the changes  
 
-```bash
-export CLUSTER_NAME=cambria-cluster && nano $CLUSTER_NAME-kubeconfig.yaml
-# paste kubeconfig from Akamai dashboard
+3. Only if you added Cambria FTC nodes, do the following:
+a. In the Akamai Cloud Dashboard, go to the kubernetes cluster and look for the Cambria FTC node pool
+b. Select Labels and Taints and Add Label. In the Label field, enter capella-worker: true and then
+save the changes
+
+4. (Optional) If you want Cambria Cluster nodes to also be able to run encoding jobs, set this label on the
+Cambria Cluster node pool as well: capella-worker: true
+
+5. Copy the contents of the Kubeconfig file:
+a. In the Linux Deployment Server, run the following commands (replace cambria-cluster with the
+Kubernetes Cluster's name):  
+export CLUSTER_NAME=cambria-cluster && nano $CLUSTER_NAME-kubeconfig.yaml  
+b. In the Akamai dashboard, navigate to the Kubernetes cluster that was created. In the Kubeconfig
+section, click on View and copy the contents  
+c. In the Linux Deployment Server, paste the kubeconfig contents. Save the file by holding CTRL/CMD
++ X, pressing the letter 'y', and then the Enter/Return key  
+
+6. Still in the Linux Deployment Server, set the KUBECONFIG environment variable for terminal interaction
+with the LKE cluster:  
 export KUBECONFIG=$CLUSTER_NAME-kubeconfig.yaml
+
+7. Verify that kubectl works with the cluster  
 kubectl get nodes
-```
 
-_Example:_
+Example:
+NAME STATUS ROLES AGE VERSION
+lke525068-759150-2bfe0e460000 Ready <none> 20m v1.34.0
+lke525068-759150-4661256b0000 Ready <none> 20m v1.34.0
+lke525068-759150-5d7b909a0000 Ready <none> 20m v1.34.0
 
-```
-NAME                            STATUS   ROLES    AGE   VERSION
-lke525068-759150-2bfe0e460000   Ready    <none>   20m   v1.34.0
-...
-```
+8. Back in the Akamai dashboard in the LKE cluster, click on Copy Token. Then, on Kubernetes Dashboard, use the token to log in to the dashboard
 
-4. (Optional) Log in to **Akamai Kubernetes Dashboard** with the copied token.
+This will show details about the LKE cluster in its current state. This dashboard can be used to view and manage
+the LKE cluster from a graphical point of view.
+
+![Screenshot](01_screenshot.png)
 
 #### 3.1.4. Default Storage Class
+Set the storage class linode-block-storage as the default storage class:
 
 ```bash
 kubectl patch storageclass linode-block-storage \
@@ -396,8 +473,11 @@ kubectl patch storageclass linode-block-storage \
 ```
 
 ### 3.2. \[BETA] GPU Operator for NVENC (optional)
+This section is only required for a Kubernetes cluster that will use GPUs. Skip this step if GPUs will
+not be used in this Kubernetes cluster.
 
-> **BETA:** GPU support exists but may not function as expected. **Not compatible** with FTC autoscaler yet.
+> **BETA Feature:** GPU can be used in Cambria Cluster/FTC. However, this feature is still a work in progress and may not function as expected.
+
 
 ```bash
 helm repo add nvidia https://helm.ngc.nvidia.com/nvidia; \
