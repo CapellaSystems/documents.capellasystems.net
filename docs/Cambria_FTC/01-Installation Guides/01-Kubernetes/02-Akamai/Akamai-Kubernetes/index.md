@@ -1095,6 +1095,7 @@ The WebUI address should be:
 ---
 
 ## 11. Glossary (selected)
+This glossary provides a brief definition / description of some of the more common terms found in this guide.
 
 ### 11.1. Kubernetes
 
@@ -1102,21 +1103,37 @@ For Kubernetes terms, see the official glossary: <a href="https://kubernetes.io/
 
 ### 11.2. Third‑Party Tools
 
-- **Argo** — Orchestrates parallel jobs in Kubernetes.  
-- **Argo‑Events** — Triggers Kubernetes functions from events (webhook, S3, etc.).  
-- **cert‑manager** — Automates TLS certificate issuance/renewal.  
-- **Helm** — Package manager for Kubernetes.  
-- **ingress‑nginx** — Nginx‑based reverse proxy and load balancer for Ingress.
+- **Argo:** the Argo third-party system is a collection of tools for orchestrating parallel jobs in a Kubernetes
+environment.
+
+- **Argo-Events:** an Argo tool that triggers specific Kubernetes functions based on events from other
+dependencies such as webhook, s3, etc.
+
+- **Cert-Manager:** the cert-manager addon automates the process of retrieving and managing TLS certificates.
+These certificates are periodically renewed to keep the certificates up to date and valid.
+
+- **Helm:** the Helm third-party tool is used for deploying / managing (install, update, delete) deployments for
+Kubernetes Cluster applications.
+
+- **Ingress-Nginx:** the ingress-nginx addon is an ingress server using Nginx as a reverse proxy and load balancer.
+In this case, ingress-nginx is used for applying domain name use to the Kubernetes services (REST API, WebUI,
+etc).
+
 
 ### 11.3. Capella Applications
 
-- **cambriaclusterapp** — Cambria Cluster application container.  
-- **cambriaftautoscale** — Spawns FTC nodes based on queue depth.  
-- **cambriaftcapp** — Cambria FTC application container.  
-- **cambriaftcconnect** — Auto‑connects FTC instances to Cambria Cluster.  
-- **cambrialeaderelector** — Handles Cambria Cluster leader election.  
-- **pgcluster-capella** — PostgreSQL pod used by Cambria Cluster.
+- **cambriaclusterapp:** the Cambria Cluster application container. This container exists in all
+cambriaclusterapp-xyz pods.
 
----
+- **cambriaftautoscale:** this container is used like a load balancer. It spawns new nodes with Cambria FTC
+specific content whenever Cambria Cluster has jobs in the queue.
 
-*End of document.*
+- **cambriaftcapp:** the Cambria FTC application container. This container exists in all cambriaftcapp-xyz pods.
+
+- **cambriaftcconnect:** this container is used for automatically connecting Cambria FTC instances to Cambria
+Cluster. This container exists in all cambriaftcapp-xyz pods.
+
+- **cambrialeaderelector:** this container is used for Cambria Cluster replication in that it decides which of the
+Cambria Cluster instances is the primary instance. This container exists in all cambriaclusterapp-xyz pods.
+
+- **pgcluster-capella:** this type of pod holds the PostgreSQL database that Cambria Cluster uses / interacts with.
