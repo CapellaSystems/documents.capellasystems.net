@@ -941,7 +941,7 @@ kubectl delete namespace ingress-nginx
 
 4. Run the following commands to uninstall the monitoring deployment:
 
-<install_type>: the loki install type. If the S3 loki version was installed, use 's3_embedcred'. If the Filesystem
+`<install_type>:` the loki install type. If the S3 loki version was installed, use 's3_embedcred'. If the Filesystem
 loki version was installed, use 'local'
 
 ```bash
