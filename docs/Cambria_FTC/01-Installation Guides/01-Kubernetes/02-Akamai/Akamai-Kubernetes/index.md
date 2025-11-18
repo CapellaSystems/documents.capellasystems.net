@@ -700,13 +700,13 @@ Run the following command to temporarily expose the WebUI via port-forwarding:
 
 ```bash
 kubectl port-forward -n default svc/cambriaclusterwebuiservice 8161:8161 --address=0.0.0.0
-# URL: https://<server>:8161
+# URL: https://`<server>`:8161
 ```
 
 The url depends on the location of the web browser. If the web browser and the port-forward are on the
 same machine, use localhost. Otherwise, use the ip address of the machine with the port-forward:
 
-https://`<server>`:8161
+https://``<server>``:8161                   
 
 2. In a web browser, enter the above url. This should trigger an "Unsafe" page similar to the one below:
 
@@ -742,15 +742,15 @@ Run the following command to temporarily expose the REST API via port-forwarding
 
 ```bash
 kubectl port-forward -n default svc/cambriaclusterservice 8650:8650 --address=0.0.0.0
-curl -k -X GET https://<server>:8650/CambriaFC/v1/SystemInfo
+curl -k -X GET https://`<server>`:8650/CambriaFC/v1/SystemInfo
 ```
 The url depends on the location of the port-forward. If the web browser and the port-forward are on the
 same machine, use localhost. Otherwise, use the ip address of the machine with the port-forward:
 
-https://<server>:8650
+https://`<server>`:8650
 
 2. Run the following API query to check if the REST API is active:
-curl -k -X GET https://<server>:8650/CambriaFC/v1/SystemInfo
+curl -k -X GET https://`<server>`:8650/CambriaFC/v1/SystemInfo
 
 #### 5.3.3. Cambria License WebUI
 Skip this step if the ingress will be used instead of external access or any other type of access. The
@@ -775,12 +775,12 @@ Run the following command to temporarily expose the License WebUI via port-forwa
 
 ```bash
 kubectl port-forward -n default svc/cambriaclusterwebuiservice 8481:8481 --address=0.0.0.0
-# URL: https://<server>:8481
+# URL: https://`<server>`:8481
 ```
 The url depends on the location of the port-forward. If the web browser and the port-forward are on the
 same machine, use localhost. Otherwise, use the ip address of the machine with the port-forward:
 
-https://<server>:8481
+https://`<server>`:8481
 
 Proceed past the unsafe warning; sign in with `cambriaClusterWebUIUser`. Ensure License Status is valid (Primary and/or Backup).
 
@@ -1102,11 +1102,11 @@ f8-b4fc-53afd3893d5f
 
 ### Cambria FTC Instance External IP
 1. In the Cambria Cluster WebUI, go to the Machines tab and copy the name of the machine (pod)  
-2. Run the following commands with the name of the machine (aka. `<pod-name>`):
+2. Run the following commands with the name of the machine (aka. ``<pod-name>``):
 
 ```bash
-# Replace <pod-name> with your pod name
-kubectl get pod/<pod-name> -n capella-worker -o=jsonpath={.spec.nodeName}
+# Replace `<pod-name>` with your pod name
+kubectl get pod/`<pod-name>` -n capella-worker -o=jsonpath={.spec.nodeName}
 
 # Replace <node-name> with the result from the above command
 kubectl get node/<node-name> -n capella-worker -o=jsonpath={.status.addresses[1].address}
@@ -1123,7 +1123,7 @@ kubectl get lease -o=jsonpath="{.items[0].spec.holderIdentity}"
 The general command for remote accessing a pod is:
 
 ```bash
-kubectl exec -it <pod-name> -n <namespace> -- /bin/bash
+kubectl exec -it `<pod-name>` -n <namespace> -- /bin/bash
 ```
 
 Example with Cambria FTC:
@@ -1137,30 +1137,30 @@ make sure to set the KUBECONFIG environment variable to the path of your kubecon
 more of the following commands depending on what types of logs you need (or that Capella needs). You will get
 a folder full of logs. Compress these logs into one zip file and send it to Capella:
 
-<pod-name>: the name of the pod to grab logs from (Eg. cambriaftcapp-5c79586784-wbfvf)
+`<pod-name>`: the name of the pod to grab logs from (Eg. cambriaftcapp-5c79586784-wbfvf)
 
 ### Cambria FTC
 
 ```bash
-kubectl cp <pod-name>:/opt/capella/Cambria/Logs ./CambriaFTCLogs -n capella-worker
+kubectl cp `<pod-name>`:/opt/capella/Cambria/Logs ./CambriaFTCLogs -n capella-worker
 ```
 
 ##Cambria Cluster
 
 ```bash
-kubectl cp <pod-name>:/opt/capella/CambriaCluster/Logs ./CambriaClusterLogs -n default
+kubectl cp `<pod-name>`:/opt/capella/CambriaCluster/Logs ./CambriaClusterLogs -n default
 ```
 
 ##Cambria License Manager (Cambria FTC)
 
 ```bash
-kubectl cp <pod-name>:/opt/capella/CambriaLicenseManager/Logs ./CambriaFTCLicLogs -n capella-worker
+kubectl cp `<pod-name>`:/opt/capella/CambriaLicenseManager/Logs ./CambriaFTCLicLogs -n capella-worker
 ```
 
 ##Cambria License Manager (Cambria Cluster)
 
 ```bash
-kubectl cp <pod-name>:/opt/capella/CambriaLicenseManager/Logs ./CambriaClusterLicLogs -n default
+kubectl cp `<pod-name>`:/opt/capella/CambriaLicenseManager/Logs ./CambriaClusterLicLogs -n default
 ```
 ---
 
@@ -1170,7 +1170,7 @@ you want to use as a source directly from the encoding machine’s file system. 
 to the Cambria FTC / Cluster pod, do the following:
 
 ```bash
-kubectl cp <host-file-path> <pod-name>:<path-inside-container> -n <namespace>
+kubectl cp <host-file-path> `<pod-name>`:<path-inside-container> -n <namespace>
 ```
 
 Example:
@@ -1190,7 +1190,7 @@ Kubectl does not currently have a way to restart pods. Instead, a pod will need 
 pod which causes a new pod to be created / existing pod to take over the containers.
 
 ```bash
-kubectl delete pod <pod-name> -n <namespace>
+kubectl delete pod `<pod-name>` -n <namespace>
 ```
 
 Example:
