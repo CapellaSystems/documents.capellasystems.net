@@ -568,10 +568,6 @@ nano cambriaClusterConfig.yaml
 
 2. Open the configuration file in your favorite text / document editor and edit the following values:
 
----
-id: cambriaClusterConfig_chart
-title: cambriaClusterConfig.yaml Configuration Chart
----
 
 Blue: values in <span style="color:blue">blue</span> will be given to you by Capella.  
 Red: values in <span style="color:red">red</span> are proprietary values that need to be changed based on your specific environment.
