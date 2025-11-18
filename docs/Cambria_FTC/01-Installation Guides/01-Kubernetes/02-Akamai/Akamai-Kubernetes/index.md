@@ -506,7 +506,7 @@ a. Check that at least one node is one of the supported Akamai Cloud GPU instanc
 
 b. Use the following command to check the state of a failing pod (check the Events section):
 
-kubectl describe pod <your-pod-name> -n gpu-operator
+kubectl describe pod `<your-pod-name>` -n gpu-operator
 
 Either look up the error for a potential solution or send the entire Events section to the Capella support team for
 investigation.
