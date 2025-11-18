@@ -1006,7 +1006,7 @@ number of nodes to add. Add Pool.
 2. In the new node pool's "..." settings, choose Labels and Taints. In the Labels, add a new Node Label:
 
 ```bash
-kubectl label node <node-name> capella-worker=true
+kubectl label node `<node-name>` capella-worker=true
 ```
 3. Save Changes
 
@@ -1017,7 +1017,7 @@ number of nodes to add. Add Pool.
 
 **Add manager label**
 ```bash
-kubectl label node <node-name> capella-manager=true
+kubectl label node `<node-name>` capella-manager=true
 ```
 
 3. Save Changes
@@ -1031,7 +1031,7 @@ For any node that should be an encoding node:
 
 2. Apply the following label to each of those nodes:
 
-kubectl label node <node-name> capella-worker=true
+kubectl label node ``<node-name>`` capella-worker=true
 
 **Setting Cambria Cluster Label on New Nodes
 For any node that should be a Cambria management node / management backup:
@@ -1044,7 +1044,7 @@ kubectl get nodes
 
 2. Apply the following label to each of those nodes:
 ```bash
-kubectl label node <node-name> capella-manager=true
+kubectl label node `<node-name>` capella-manager=true
 ```
 
 ## Akamai Kubernetes Kubeconfig File  
@@ -1108,8 +1108,8 @@ f8-b4fc-53afd3893d5f
 # Replace `<pod-name>` with your pod name
 kubectl get pod/`<pod-name>` -n capella-worker -o=jsonpath={.spec.nodeName}
 
-# Replace <node-name> with the result from the above command
-kubectl get node/<node-name> -n capella-worker -o=jsonpath={.status.addresses[1].address}
+# Replace `<node-name>` with the result from the above command
+kubectl get node/`<node-name>` -n capella-worker -o=jsonpath={.status.addresses[1].address}
 ```
 
 ### Leader Cambria Cluster Pod
