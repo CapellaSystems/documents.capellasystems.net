@@ -1037,17 +1037,21 @@ For any node that should be an encoding node:
 
 kubectl label node <node-name> capella-worker=true
 
-Setting Cambria Cluster Label on New Nodes
+**Setting Cambria Cluster Label on New Nodes
 For any node that should be a Cambria management node / management backup:
 
 1. Find out which node(s) will be used as Cambria Cluster nodes:
+
+```bash
 kubectl get nodes
+```
 
 2. Apply the following label to each of those nodes:
+```bash
 kubectl label node <node-name> capella-manager=true
+```
 
 ## Akamai Kubernetes Kubeconfig File  
-**[ For use with kubectl and Akamai Kubernetes Dashboard ]**
 
 Log in to the Akamai Cloud dashboard and go to Clusters. Select your cluster from the list and click on the
 link below Kubeconfig to download or click on View to see/copy the contents of the kubeconfig.
@@ -1066,6 +1070,7 @@ link below Kubeconfig to download or click on View to see/copy the contents of t
 ```bash
 kubectl get service/cambriaclusterwebuiservice -n default \
 -o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8161'}"
+```
 
 2. To log in to the WebUI, the credentials are located in the Helm values .yaml file that you configure
 (See section 4.2. Creating and Editing Helm Configuration File)
@@ -1076,21 +1081,128 @@ kubectl get service/cambriaclusterwebuiservice -n default \
 
 1. In the Akamai Kubernetes Dashboard for your specific cluster, go to Services and look for the cambriaclusterwebuiservice service. Copy the IP address of one of the External Endpoints.
 
-2. The WebUI address should be:
+2. The WebUI address should behttps: https//[ EXTERNAL IP ]:8161. To log in to the WebUI, the credentials are
+located in the Helm values .yaml file that you configure (See section 4.2. Creating and Editing Helm
+Configuration File)
+
+##Cambria Cluster REST API (via kbectl)
+1. Run the following command to get the base REST API Web Adress:
 
 ```bash
 kubectl get service/cambriaclusterwebuiservice -n default \
--o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8161'}"
+-o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':86161'}"
+```
 
-2. To log in to the WebUI, the credentials are located in the Helm values .yaml file that you configure
-(See section 4.2. Creating and Editing Helm Configuration File)
+The REST API url should look similar to this:
+https://23-45-226-151.ip.linodeusercontent.com:8650/CambriaFC/v1/Jobs?usertoken=12345678-1234-43
+f8-b4fc-53afd3893d5f
 
 ## Cambria Cluster WebUI (via Kubernetes Dashboard)
+1. In the Akamai Kubernetes Dashboard for your specific cluster, go to Services and look for the cambriaclusterwebuiservice service. Copy the IP address of one of the External Endpoints.
 
-1. In the Akamai Kubernetes Dashboard for your specific cluster, go to Services and look for the
-2. cambriaclusterwebuiservice service. Copy the IP address of one of the External Endpoints.
+The REST API should look similar to this:
+https://23-45-226-151.ip.linodeusercontent.com:8650/CambriaFC/v1/Jobs?usertoken=12345678-1234-43
+f8-b4fc-53afd3893d5f
 
-The WebUI address should be:
+### Cambria FTC Instance External IP
+1. In the Cambria Cluster WebUI, go to the Machines tab and copy the name of the machine (pod)  
+2. Run the following commands with the name of the machine (aka. `<pod-name>`):
+
+```bash
+# Replace <pod-name> with your pod name
+kubectl get pod/<pod-name> -n capella-worker -o=jsonpath={.spec.nodeName}
+
+# Replace <node-name> with the result from the above command
+kubectl get node/<node-name> -n capella-worker -o=jsonpath={.status.addresses[1].address}
+```
+
+### Leader Cambria Cluster Pod
+Run the following command to get the name of the Cambria Cluster leader pod:
+
+```bash
+kubectl get lease -o=jsonpath="{.items[0].spec.holderIdentity}"
+```
+
+## Remote Access to Kubernetes Pod
+The general command for remote accessing a pod is:
+
+```bash
+kubectl exec -it <pod-name> -n <namespace> -- /bin/bash
+```
+
+Example with Cambria FTC:
+
+```bash
+kubectl exec -it cambriaftcapp-5c79586784-wbfvf -n capella-worker -- bash
+```
+##Extracting Cambria Cluster | Cambria FTC | Cambria License Logs
+In a machine that has kubectl and the kubeconfig file for your Kubernetes cluster, open a terminal window and
+make sure to set the KUBECONFIG environment variable to the path of your kubeconfig file. Then run one or
+more of the following commands depending on what types of logs you need (or that Capella needs). You will get
+a folder full of logs. Compress these logs into one zip file and send it to Capella:
+
+<pod-name>: the name of the pod to grab logs from (Eg. cambriaftcapp-5c79586784-wbfvf)
+
+### Cambria FTC
+
+```bash
+kubectl cp <pod-name>:/opt/capella/Cambria/Logs ./CambriaFTCLogs -n capella-worker
+```
+
+##Cambria Cluster
+
+```bash
+kubectl cp <pod-name>:/opt/capella/CambriaCluster/Logs ./CambriaClusterLogs -n default
+```
+
+##Cambria License Manager (Cambria FTC)
+
+```bash
+kubectl cp <pod-name>:/opt/capella/CambriaLicenseManager/Logs ./CambriaFTCLicLogs -n capella-worker
+```
+
+##Cambria License Manager (Cambria Cluster)
+
+```bash
+kubectl cp <pod-name>:/opt/capella/CambriaLicenseManager/Logs ./CambriaClusterLicLogs -n default
+```
+---
+
+##Copy File(s) to Cambria FTC / Cluster Pod
+In some cases, you might need to copy files to a Cambria FTC / Cluster pod. For example, you have an MP4 file
+you want to use as a source directly from the encoding machine’s file system. In this case, to copy the file over
+to the Cambria FTC / Cluster pod, do the following:
+
+```bash
+kubectl cp <host-file-path> <pod-name>:<path-inside-container> -n <namespace>
+```
+
+Example:
+# Copy file to Cambria FTC pod
+kubectl cp /mnt/n/MySource.mp4 cambriaftcapp-7c55887db9-t42v7:/var/media/MySource.mp4 -n
+capella-worker
+
+# Copy file to Cambria Cluster pod
+kubectl cp C:\MyKeys\MyKeyFile.key cambriaclusterapp-695dcc848f-vjpc7:/var/keys/MyKeyFile.key -n
+default
+
+# Copy directory to Cambria FTC container
+kubectl cp /mnt/n/MyMediaFiles cambriaftcapp-7c55887db9-t42v7:/var/temp/mediafiles -n capella-worker
+
+## Restarting / Re-creating Pods
+Kubectl does not currently have a way to restart pods. Instead, a pod will need to be “restarted” by deleting the
+pod which causes a new pod to be created / existing pod to take over the containers.
+
+```bash
+kubectl delete pod <pod-name> -n <namespace>
+```
+
+Example:
+# Delete Cambria FTC Container
+kubectl delete pod cambriaftcapp-7c55887db9-t42v7 -n capella-worker
+
+# Delete Cambria Cluster Container
+kubectl delete pod cambriaclusterapp-695dcc848f-vjpc7 -n default
 
 ---
 
