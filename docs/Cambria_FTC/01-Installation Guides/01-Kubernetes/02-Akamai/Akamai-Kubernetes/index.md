@@ -1228,7 +1228,7 @@ These certificates are periodically renewed to keep the certificates up to date 
 Kubernetes Cluster applications.
 
 - **Ingress-Nginx:** the ingress-nginx addon is an ingress server using Nginx as a reverse proxy and load balancer.
-In this case, ingress-nginx is used for applying domain name use to the Kubernetes services (REST API, WebUI,
+In this case, ingress-nginx will be used for applying domain name use to the Kubernetes services (REST API, WebUI,
 etc).
 
 
