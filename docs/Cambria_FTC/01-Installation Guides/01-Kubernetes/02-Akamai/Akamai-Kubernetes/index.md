@@ -288,10 +288,10 @@ strongly recommends using Akamai Linode instances for the deployment process.
 Capella tests deployment with the Dedicated 4GB (g6-dedicated-2) instance type  
 
 Minimum Requirements:  
-Operating System (OS) Ubuntu 24.04  
-CPU(s) 2  
-RAM 2 GB  
-Storage 10 GB  
+Operating System (OS): Ubuntu 24.04  
+CPU(s): 2  
+RAM: 2 GB  
+Storage: 10 GB  
 
 ## 2. Prerequisites
 
@@ -307,7 +307,7 @@ Example with Ubuntu 24.04:
 ```bash
 sudo apt update && \
 sudo DEBIAN_FRONTEND=noninteractive apt -o Dpkg::Options::="--force-confold" -y upgrade && \
-sudo DEBIAN_FRONTEND=noninteractive apt -o Dpkg::Options::="--force-confold" -y install curl unzip jq
+sudo DEBIAN_FRONTEND=noninteractive apt -o Dpkg::Options::="--force-confold" -y install curl unzip jq```
 
 ### 2.1. Linux Tools
 
@@ -455,7 +455,7 @@ kubectl get nodes
 NAME STATUS ROLES AGE VERSION
 lke525068-759150-2bfe0e460000 Ready <none> 20m v1.34.0
 lke525068-759150-4661256b0000 Ready <none> 20m v1.34.0
-lke525068-759150-5d7b909a0000 Ready <none> 20m v1.34.0
+lke525068-759150-5d7b909a0000 Ready <none> 20m v1.34.0```
 
 
 8. Back in the Akamai dashboard in the LKE cluster, click on Copy Token. Then, on Kubernetes Dashboard, use the token to log in to the dashboard
@@ -478,6 +478,10 @@ This section is only required for a Kubernetes cluster that will use GPUs. Skip 
 not be used in this Kubernetes cluster.
 
 > **BETA Feature:** GPU can be used in Cambria Cluster/FTC. However, this feature is still a work in progress and may not function as expected.
+> **Limitation: Cambria FTC Autoscaler** This feature currently does not work with the FTC autoscaler
+
+In your command prompt / terminal, run the following commands to deploy the GPU Operator to the Kubernetes
+cluster:
 
 
 ```bash
@@ -488,21 +492,48 @@ helm install nvidia-operator nvidia/gpu-operator \
   --namespace gpu-operator
 ```
 
-- Wait ~5 minutes.  
-- Check pods: `kubectl get pods -n gpu-operator`  
-- Troubleshoot: `kubectl describe pod <pod> -n gpu-operator`
+Wait at least 5 minutes for the GPU operator to install completely
+
+Run this command with 'kubectl' and make sure that all of the pods are in a Running or Completed state:
+kubectl get pods -n gpu-operator
+
+If any pod is still in an Init state or PodCreating state, wait another 5 minutes to see if the pods will complete
+their install process.
+
+For any pods that are in an errored state or that are still in an Init state after 10 minutes, do the following:
+
+a. Check that at least one node is one of the supported Akamai Cloud GPU instances
+
+b. Use the following command to check the state of a failing pod (check the Events section):
+
+kubectl describe pod <your-pod-name> -n gpu-operator
+
+Either look up the error for a potential solution or send the entire Events section to the Capella support team for
+investigation.
 
 ### 3.3. Application Ingress: ingress‑nginx
+By default, certain parts of the Cambria applications are exposed via an ingress. In order to access these, the
+ingress-nginx service needs to be created and attached to the ingress via. This is done via a reverse-proxy.
 
+1. Run the following command:
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.13.0/deploy/static/provider/cloud/deploy.yaml
 kubectl get all -n ingress-nginx
 ```
 
-For production DNS/TLS, see:  
+2. Verify that the resources are created and in an active / online state:
+- Pods should be in a Running STATUS and all containers in READY should be active
+- Services should have a CLUSTER-IP assigned. The ingress-nginx-controller should have an EXTERNAL-IP
+- All other resources (Eg. replicasets, deployments, statefulsets, etc) should have all desired resources active.
+  
 <a href="https://www.dropbox.com/scl/fi/kxt7tnv9q18fqjmjjuwrc/Cambria_Kubernetes_Domain_DNS_Guide.pdf?rlkey=mvm4jnplyji95snq4109noiwj&st=6a7nial5&dl=0">https://www.dropbox.com/scl/fi/kxt7tnv9q18fqjmjjuwrc/Cambria_Kubernetes_Domain_DNS_Guide.pdf?rlkey=mvm4jnplyji95snq4109noiwj&st=6a7nial5&dl=0</a>
 
+If any resources are still not ready, wait about a minute for them to complete. If still not complete, contact the
+Capella support team.
+
 ### 3.4. Performance Metrics and Logging
+This section is required for logging and other performance information about the Cambria
+applications.
 
 Install **Prometheus, Grafana, Loki, Promtail**:  
 <a href="https://www.dropbox.com/scl/fi/cb75lsh6ipvbf0x1y4ysp/Prometheus_Grafana_Setup_for_Cambria_Cluster_5_6_0_on_Akamai_Kubernetes.pdf?rlkey=kcxit4i6ntj5ynv2e26zydhiy&st=douvkvi9&dl=0">https://www.dropbox.com/scl/fi/cb75lsh6ipvbf0x1y4ysp/Prometheus_Grafana_Setup_for_Cambria_Cluster_5_6_0_on_Akamai_Kubernetes.pdf?rlkey=kcxit4i6ntj5ynv2e26zydhiy&st=douvkvi9&dl=0</a>
@@ -512,6 +543,7 @@ Install **Prometheus, Grafana, Loki, Promtail**:
 ## 4. Install Cambria Cluster, FTC, and Dependencies
 
 ### 4.1. Prerequisite: Deploy External Kubernetes Tools
+There are a few tools that need to be deployed in order to make Cambria FTC / Cluster work properly.
 
 ```bash
 ./bin/deployCambriaKubeDependencies.sh
@@ -523,158 +555,271 @@ kubectl get all -n cert-manager
 
 ### 4.2. Creating and Editing Helm Configuration File
 
-Create values file and edit:
+With Helm and Kubectl installed on the Linux deployment server, create the Helm configuration file (yaml) that
+will be used to deploy Cambria Cluster / FTC to the Kubernetes environment.
+1. In a command line / terminal window, run the following command to create the configuration file:
+
+2. Open the configuration file in your favorite text / document editor and edit the following values:
 
 ```bash
 helm show values ./config/capella-cluster-0.5.4.tgz > cambriaClusterConfig.yaml
 nano cambriaClusterConfig.yaml
 ```
 
-**Key fields:**
+2. Open the configuration file in your favorite text / document editor and edit the following values:
 
-```yaml
-workersUseGPU: false         # true if using NVENC/GPU; also set nbGPUs accordingly
-nbGPUs: 1
-enableManagerWebUI: true
-ftcEnableAutoScaler: true
-ftcEnableScriptableWorkflow: true
-ftcInstanceType: "g6-dedicated-16"
-maxFTCInstances: 20
+---
+id: cambriaClusterConfig_chart
+title: cambriaClusterConfig.yaml Configuration Chart
+---
 
-pgInstances: 3
-cambriaClusterReplicas: 3
+Blue: values in <span style="color:blue">blue</span> will be given to you by Capella.  
+Red: values in <span style="color:red">red</span> are proprietary values that need to be changed based on your specific environment.
 
-externalAccess:
-  exposeStreamServiceExternally: true
-  enableIngress: true
-  hostName: myhost.com
-  acmeRegistrationEmail: test@example.com
-  acmeServer: https://acme-staging-v02.api.letsencrypt.org/directory
+| **Field / Key** | **Value (Example)** | **Description** |
+|-----------------|----------------------|------------------|
+| **workersUseGPU** | `false` | Allow workers to use NVIDIA GPU. Set to **true** for GPU / NVENC workflows; otherwise leave as false. |
+| **nbGPUs** | `1` | Number of GPUs available on the worker nodes. Only used when `workersUseGPU=true`. **Note:** More than 1 GPU requires multi-GPU support in the Cambria license. |
+| **enableManagerWebUI** | `true` | Deploys the Cambria Manager WebUI. Set to false if you do not plan to use the WebUI. |
+| **ftcEnableAutoScaler** | `true` | Deploy the Cambria FTC autoscaler, which spawns FTC encoders based on queue size. Set to false to add FTC nodes manually. |
+| **ftcEnableScriptableWorkflow** | `true` | Enables Scriptable Workflow system used in Cambria FTC Jobs. |
+| **ftcInstanceType** | `"g6-dedicated-16"` | Instance type for autoscaled Cambria FTC nodes. Default is `g6-dedicated-16`. Check Akamai Cloud documentation for available types. |
+| **maxFTCInstances** | `20` | Maximum number of Cambria FTC encoder instances that can be spawned. Default is 20. |
+| **pgInstances** | `3` | Number of PostgreSQL database replicas. Must match `cambriaClusterReplicas` and number of nodes created in Step 1. |
+| **cambriaClusterReplicas** | `3` | Number of Cambria Cluster instances. Must match `pgInstances` and the node count. |
+| **externalAccess.exposeStreamServiceExternally** | `true` | Set to true to access Cambria Cluster externally. |
+| **externalAccess.enableIngress** | `true` | Enables nginx ingress. |
+| **externalAccess.hostName** | `myhost.com` | Domain name for ingress. Must be replaced with a real domain for production. |
+| **externalAccess.acmeRegistrationEmail** | `test@example.com` | Email used for Automated Certificate Management (Let's Encrypt). Must be a valid email for production. |
+| **externalAccess.acmeServer** | `https://acme-staging-v02.api.letsencrypt.org/directory` | ACME TLS certificate server. Provided staging value is for testing only. |
+| **secrets.pgClusterPassword** | `"xrtVeQ4nN82SSiYHoswqdURZ…”"` | Password for PostgreSQL database. Should be changed to a strong password. |
+| **secrets.ftcLicenseKey** | `"2XXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX"` | FTC product license key. Replace placeholder with the real key provided by Capella. |
+| **secrets.cambriaClusterAPIToken** | `"12345678-1234-43f8-b4fc-53afd3893d5f"` | Token for making API calls to Cambria Cluster. Change to your environment’s token. Allowed characters: letters, numbers, underscores, dashes. |
+| **secrets.cambriaClusterWebUIUser** | `"admin,defaultWebUIUser,RZvSSd3ffsElsCEEe9"` | WebUI login credentials in the form: `role,username,password`. Multiple users allowed, separated by commas. Roles: **admin**, **user**, **viewer**. |
+| **secrets.akamaiCloudAPIToken** | `"d02732530a2bcfd4d028425eb55f366f74631…”"` | Akamai Cloud API token. Needed for horizontal scaling. |
+| **secrets.argoEventWebhookSourceBearerToken** | `"L9Em5WIW8yth6H4uPtzT"` | Token used for argo-events workflows. Can be any value. |
+| **optionalInstall.enableEventing** | `true` | Enables eventing. | This is used for enabling / disabling the argo-events feature.
 
-secrets:
-  pgClusterPassword: "CHANGE_ME"
-  ftcLicenseKey: "2XXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX"
-  cambriaClusterAPIToken: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-  cambriaClusterWebUIUser: "admin,admin,changeme"
-  akamaiCloudAPIToken: "AKAMAI_API_TOKEN"
-  argoEventWebhookSourceBearerToken: "changeme"
-
-optionalInstall:
-  enableEventing: true
-```
-
-> Blue items are provided by Capella (release values). Red items are environment‑specific.
 
 ### 4.3. Installing Cambria FTC / Cluster
+Wait at least 5 minutes after installing prerequisites before moving on to this step. In a command line
+/ terminal window, run the following command:
 
 ```bash
 helm upgrade --install capella-cluster ./config/capella-cluster-0.5.4.tgz --values cambriaClusterConfig.yaml
 ```
 
-After a few minutes, get deployment info:
+The result of running the command should look something like this:
 
 ```bash
 ./bin/getFtcInfo.sh
 ```
+
+2. At this point, several components are being deployed to the Kubernetes environment. Wait a few minutes
+for everything to be deployed.
+3. Get important information about the Cambria Stream Manager deployment:
+./bin/getFtcInfo.sh
 
 ---
 
 ## 5. Verify Cambria FTC / Cluster Installation
 
 ### 5.1. Verify Cambria Cluster Deployment
+Important: The components below are only a subset of the whole installation. These are the components
+considered as key to a proper deployment.
+
+1. Run the following command:
 
 ```bash
 kubectl get all -n default
 ```
 
-**Expect:**
+2. Run the following command:
 
-- **Deployments:** `cambriaclusterapp` (active), `cambriaclusterwebui` (active)  
-- **Pods:** `cambriaclusterapp-*` (count = replicas), `cambriaclusterwebui-*` (active)  
-- **Services:** `cambriaclusterservice` and `cambriaclusterwebuiservice` (EXTERNAL‑IP if external access enabled)
+| Resources  | Content |
+|------------|---------|
+| Deployments | - 1 cambriaclusterapp deployment with all items active<br/>- 1 cambriaclusterwebui deployment with all items active |
+| Pods | - X pods with cambriaclusterapp in the name (X = # of replicas specified in config file)<br/>with all items active / Running<br/>- 1 pod with cambriaclusterwebui in the name |
+| Services | - 1 service named cambriaclusterservice. If exposeStreamServiceExternally is true,<br/>this should have an EXTERNAL-IP<br/>- 1 service named cambriaclusterwebuiservice. If exposeStreamServiceExternally is<br/>true, this should have an EXTERNAL-IP |
 
-Check database resources:
+
+3. If any of the above are not in an expected state, wait a few more minutes in case some resources take longer than
+expected to complete. If after a few minutes there are still resources in an unexpected state, contact the Capella
+support team.
+4. Run the following command for the pgcluster configuration:
 
 ```bash
 kubectl get all -n capella-database
 ```
 
-**Expect:**
+5. Verify the following information:
 
-- **Pods:** `pgcluster-*` replicas = config; all Running  
-- **Services:** 3 services with `pgcluster` in name (ClusterIP)
+| Resources | Content |
+|------------|----------|
+| Pods | - X pods with pgcluster in the name (X = # of replicas specified in config file) with all items active / Running |
+| Services | - 3 services with pgcluster in the name with a CLUSTER-IP assigned |
+
 
 ### 5.2. Verify Cambria FTC Deployment
+Important: The components below are only a subset of the whole installation.These are the components
+considered as key to a proper deployment.
+
+1. Run the following command:
 
 ```bash
 kubectl get all -n capella-worker
 ```
 
-**Expect:**
+2. Verify the following information:
 
-- **Pods:** `cambriaftcapp-*`  
-  - With autoscaler: most in **Pending** until autoscaler creates nodes  
-  - Without autoscaler: Y Running (equals number of active FTC nodes)
-- **Deployments:** one `cambriaftcapp`
+| Resources | Content |
+|------------|----------|
+| Pods | - X pods with cambriaftcapp in the name (X = Max # of FTCs specified in the config file)<br/><br/>**Notes:**<br/>1. If using Cambria FTC autoscaler, all of these pods should be in a pending state. Every time the autoscaler deploys a Cambria FTC node, one pod will be assigned to it.<br/>2. If not using Cambria FTC autoscaler, Y of the pods should be in an active / running state and all containers running (Y = # of Cambria FTC nodes active). |
+| Deployments | - 1 cambriaftcapp deployment. |
+
+3. If any of the above are not in an expected state, wait a few more minutes in case some resources take longer than
+expected to complete. If after a few minutes there are still resources in an unexpected state, contact the Capella
+support team.
 
 ### 5.3. Verify Applications are Accessible
 
 #### 5.3.1. Cambria Cluster WebUI
+Skip this step if the WebUI was set to disabled in the Helm values configuration yaml file or the
+ingress will be used instead. For any issues, contact the Capella support team
 
-**External URL (if enabled):**
+1. Get the WebUI address. A web browser is required to access the WebUI:
+
+**Option 1: External URL (if enabled):**
+
+Run the following command:
 
 ```bash
 kubectl get svc/cambriaclusterwebuiservice -n default -o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8161'}{'\n'}"
 ```
+The response should look something like this:
+https://192.122.45.33:8161
 
-**Port‑forward (temporary):**
+Option 2: Non-External Url Access
+Run the following command to temporarily expose the WebUI via port-forwarding:
 
 ```bash
 kubectl port-forward -n default svc/cambriaclusterwebuiservice 8161:8161 --address=0.0.0.0
 # URL: https://<server>:8161
 ```
 
-Proceed past the browser’s unsafe warning and log in using `cambriaClusterWebUIUser` credentials from values.
+The url depends on the location of the web browser. If the web browser and the port-forward are on the
+same machine, use localhost. Otherwise, use the ip address of the machine with the port-forward:
+
+https://<server>:8161
+
+2. In a web browser, enter the above url. This should trigger an "Unsafe" page similar to the one below:
+
+![Screenshot](02_screenshot.png)
+
+3. Click on Advanced and Proceed to [ EXTERNAL IP ] (unsafe). This will show the login page.
+
+![Screenshot](03_screenshot.png)
+
+4. Log in using the credentials created in the Helm values yaml file (See cambriaClusterWebUIUser)
 
 #### 5.3.2. Cambria Cluster REST API
+Skip this step if the ingress will be used instead of external access or any other type of access. For
+any issues, contact the Capella support team.
 
-**External URL (if enabled):**
+1. Get the REST API address:
+
+**Option 1: External Url if External Access is Enabled
+
+Run the following command:
+
 
 ```bash
 kubectl get svc/cambriaclusterservice -n default -o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8650'}{'\n'}"
 ```
 
-**Port‑forward (temporary) & test:**
+The response should look something like this:
+https://192.122.45.33:8650
+
+**Option 2: Non-External Url Access
+
+Run the following command to temporarily expose the REST API via port-forwarding:
 
 ```bash
 kubectl port-forward -n default svc/cambriaclusterservice 8650:8650 --address=0.0.0.0
 curl -k -X GET https://<server>:8650/CambriaFC/v1/SystemInfo
 ```
+The url depends on the location of the port-forward. If the web browser and the port-forward are on the
+same machine, use localhost. Otherwise, use the ip address of the machine with the port-forward:
+
+https://<server>:8650
+
+2. Run the following API query to check if the REST API is active:
+curl -k -X GET https://<server>:8650/CambriaFC/v1/SystemInfo
 
 #### 5.3.3. Cambria License WebUI
+Skip this step if the ingress will be used instead of external access or any other type of access. The
+Cambria license needs to be active in all entities where the Cambria application is deployed. Run the following
+steps to check the cambria license. Access to a web browser is required:
 
-**External URL (if enabled):**
+1. Get the url for the License Manager WebUI:
+
+**Option 1: External Url if External Access is Enabled
+
+Run the following command:
 
 ```bash
 kubectl get svc/cambriaclusterwebuiservice -n default -o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8481'}{'\n'}"
 ```
+The response should look something like this:
+https://192.122.45.33:8481
 
-**Port‑forward (temporary):**
+**Option 2: Non-External Url Access
+
+Run the following command to temporarily expose the License WebUI via port-forwarding:
 
 ```bash
 kubectl port-forward -n default svc/cambriaclusterwebuiservice 8481:8481 --address=0.0.0.0
 # URL: https://<server>:8481
 ```
+The url depends on the location of the port-forward. If the web browser and the port-forward are on the
+same machine, use localhost. Otherwise, use the ip address of the machine with the port-forward:
+
+https://<server>:8481
 
 Proceed past the unsafe warning; sign in with `cambriaClusterWebUIUser`. Ensure License Status is valid (Primary and/or Backup).
 
+2. In a web browser, enter the above url. This should trigger an "Unsafe" page similar to the one below:
+
+![Screenshot](04_screenshot.png)
+
+3. Click on Advanced and Proceed to [ EXTERNAL IP ] (unsafe). This will show the login page.
+
+![Screenshot](05_screenshot.png)
+
+4. Log in using the credentials created in the Helm values yaml file (See cambriaClusterWebUIUser)
+
+5. Verify that the License Status is valid for at least either the Primary or Backup. Preferably, both Primary and
+Backup should be valid. If there are issues with the license, wait a few minutes as sometimes it takes a few minutes
+to properly update. If still facing issues, contact the Capella support team.
+
 #### 5.3.4. Cambria Ingress
+Skip this step if not planning to test with Cambria's ingress. For any issues, contact the Capella support
+team.
 
 ##### 5.3.4.1. Get the Ingress Endpoints
+There are two ways to use the ingress:
+
+**Option 1: Using Default Testing Ingress
+Only use this option for testing purposes. Skip to option 2 for production. In order to use the
+ingress in the testing state, the hostname needs to be DNS resolvable on the machines that will need
+access to the Cambria applications.
+
+1. Get the ingress HOSTS and ADDRESS:
 
 ```bash
 kubectl get ingress -A
 ```
+The response should look similar to the following:
 
 _Example output:_
 
@@ -684,7 +829,9 @@ default      cambriaclusteringress      nginx   api.mydomain.com,webui.mydomain.
 monitoring   cambriamonitoringingress   nginx   monitoring.mydomain.com             55.99.103.99 80,443 58m
 ```
 
-**Option 1 (test only):** Add to `/etc/hosts` on client machines:
+2. In your local server(s) or any other server(s) that need to access the ingress, edit the hosts file (in
+Linux, usually /etc/hosts) and add the following lines (Example):
+
 
 ```
 55.99.103.99  api.mydomain.com
@@ -693,16 +840,33 @@ monitoring   cambriamonitoringingress   nginx   monitoring.mydomain.com         
 ```
 
 **Option 2 (production):** Use a publicly registered domain and proper DNS/TLS (see DNS guide above).
+Contact Capella if unable to set up a purchased domain with the ingress. If the domain is set up,
+the endpoints needed are the following:
+
+Example with mydomain.com as the domain:
 
 ##### 5.3.4.2. Test Ingress Endpoints
+If using the test ingress, these steps can only be verified in the machine(s) where the hosts file was
+modified. This is because the test ingress is not publicly DNS resolvable and so only those whose
+hosts file (or DNS) have been configured to resolve the test ingress will be able to access the
+Capella applications in this way.
 
-- WebUI: `https://webui.mydomain.com`  
-- REST: `https://api.mydomain.com/CambriaFC/v1/SystemInfo`  
-- Grafana: `https://monitoring.mydomain.com`
+1. Test Cambria Cluster WebUI with the ingress that starts with webui. Run steps 2-3 of 5.3.1. Cambria Cluster
+WebUI. Example:
+https://webui.myhost.com
 
+2. Test Cambria REST API with the ingress that starts with api. Run step 2 of 5.3.2. Cambrai Cluster REST API.
+Example:
+https://api.myhost.com/CambriaFC/v1/SystemInfo
+
+3. Test Grafana Dashboard with the ingress that starts with monitoring. Run the verification steps for the
+Grafana Dashboard section 1.4. Verify Grafana Deployment (steps 2-4) in the document in 3.7. Performance
+Metrics and Logging. Example:
+https://monitoring.myhost.com
 ---
 
 ## 6. Testing Cambria FTC / Cluster
+The following guide provides information on how to get started testing the Cambria FTC / Cluster software:
 
 See:  
 <a href="https://www.dropbox.com/scl/fi/ymu5fln1n811a1i92radv/Cambria_Cluster_and_FTC_5_6_0_Kubernetes_User_Guide.pdf?rlkey=cd0unkt9hcs3mhjp1fjbcvi9n&st=fb030h8o&dl=0">https://www.dropbox.com/scl/fi/ymu5fln1n811a1i92radv/Cambria_Cluster_and_FTC_5_6_0_Kubernetes_User_Guide.pdf?rlkey=cd0unkt9hcs3mhjp1fjbcvi9n&st=fb030h8o&dl=0</a>
@@ -710,42 +874,68 @@ See:
 ---
 
 ## 7. Updating / Upgrading Cambria Cluster / FTC
+There are currently two ways to update / upgrade Cambria FTC / Cluster in the kubernetes environment.
 
 ### 7.1. Option 1 — Normal Upgrade (Helm Upgrade)
+This upgrade method is best for when changing version numbers, secrets such as the license key, WebUI users,
+etc, and Cambria FTC | Cambria Cluster specific settings such as max number of pods, replicas, etc.
 
 > **Known issues:** `pgClusterPassword` and PostgreSQL version cannot be changed via this method.
 
+1. Edit the Helm configuration file (yaml) for your Kubernetes environment or create a new configuration file
+and edit the new file. See section 4.2. Creating and Editing Helm Configuration File for more details.
+
+2. Run the following command to apply the upgrade
+
 ```bash
 helm upgrade capella-cluster ./config/capella-cluster-0.5.4.tgz --values cambriaClusterConfig.yaml
+
+3. Restart the deployments
 
 kubectl rollout restart deployment cambriaclusterapp cambriaclusterwebui -n default
 kubectl rollout restart deployment cambriaftcapp -n capella-worker
 ```
 
 ### 7.2. Option 2 — Reinstall (Deletes DB and Jobs)
+For any upgrade cases for the Cambria Cluster | Cambria FTC environment, this is the most reliable option. This
+upgrade option basically uninstalls all of the Cambria FTC and Cluster components and then reinstall with the
+new Helm chart and values (.yaml) file. As a result, this will delete the database and delete all of your
+jobs in the Cambria Cluster UI.
+
+1. Follow section 4.2. Creating and Editing Helm Configuration File to download and edit your new
+cambriaClusterConfig.yaml file.
+
+2. In a command line / terminal window in your local server, run the following command:
 
 ```bash
 helm uninstall capella-cluster --wait
+
+3. Deploy the Helm configuration file with the following command
+
 helm upgrade --install capella-cluster ./config/capella-cluster-0.5.4.tgz --values cambriaClusterConfig.yaml
 ```
 
 ### 7.3. Upgrade Verification
 
-Repeat the checks in **5. Verify Cambria FTC / Cluster Installation**.
+The best way to verify the upgrade is to use the steps in 5.0. Verify Cambria FTC / Cluster Installation. For any
+issues, contact the Capella support team.
 
 ---
 
 ## 8. Deleting Kubernetes Cluster
+Many resources are created in a Kubernetes environment. It is important that each step is followed carefully:
+
+1. Run the following commands to remove the Helm deployments:
 
 ```bash
 helm uninstall capella-cluster -n default --wait
 ```
-
-If PVs remain:
+2. If any volumes are remaining, run the following command:
 
 ```bash
 kubectl get pv -o name | awk -F'/' '{print $2}' | xargs -I{} kubectl patch pv {} -p='{"spec": {"persistentVolumeReclaimPolicy": "Delete"}}'
 ```
+3. Delete the ingress controller:
 
 Delete ingress controller:
 
@@ -753,110 +943,154 @@ Delete ingress controller:
 kubectl delete namespace ingress-nginx
 ```
 
-Uninstall monitoring:
+4. Run the following commands to uninstall the monitoring deployment:
+
+<install_type>: the loki install type. If the S3 loki version was installed, use 's3_embedcred'. If the Filesystem
+loki version was installed, use 'local'
 
 ```bash
 ./bin/quickDestroyMonitoring.sh <install_type>   # 's3_embedcred' or 'local'
 ```
 
-Delete the LKE cluster in the Akamai console.
+5. In the Oracle Cloud dashboard, search for OKE. Look for your kubernetes cluster and click into it for more
+details.
+
+7. In the Akamai Cloud Home page, go into the Kubernetes Cluster and Delete Cluster
+Wait several minutes for the Kubernetes Cluster to delete completely.
 
 ---
 
 ## 9. Quick Reference: Installation, Testing, and Teardown
 
 ### 9.1. Installation (Terraform quick path)
+For quick installation, use the Terraform installation instructions:
 
 <a href="https://www.dropbox.com/scl/fi/0vhx8634n6s12qjwxw25f/Cambria_Cluster_and_FTC_5_6_0_Terraform_on_Akamai_Kubernetes.pdf?rlkey=xamh1hkjbli55mwfm6gs67tti&st=yp5057bh&dl=0">https://www.dropbox.com/scl/fi/0vhx8634n6s12qjwxw25f/Cambria_Cluster_and_FTC_5_6_0_Terraform_on_Akamai_Kubernetes.pdf?rlkey=xamh1hkjbli55mwfm6gs67tti&st=yp5057bh&dl=0</a>
 
 ### 9.2. Upgrades and Teardown
 
+**9.2.1. Cambria FTC | Cambria Cluster and/or the Kubernetes Cluster Upgrades
+Edit the capellaClusterConfig.yaml file and then run the following commands (See section 7. Updating /
+Upgrading Kubernetes Cluster for more details and warnings):
+
 - **Upgrade helper:**
   ```bash
   ./quickUpgradeCambriaCluster.sh
   ```
+  
+ **9.2.2. Cambria FTC | Cambria Cluster Uninstall
+If just wanting to uninstall Cambria Cluster and Cambria FTC, run the following command:
+
 - **Uninstall apps only:**
   ```bash
   helm uninstall capella-cluster --wait
   ```
-- **Full teardown:** see **8. Deleting Kubernetes Cluster**.
+  
+**9.2.3. Kubernetes Cluster Teardown
+As this involves several components, it is best to do the cluster teardown using the steps in section 8. Deleting
+Kubernetes Cluster.
 
 ---
 
 ## 10. Quick Reference: Helpful Commands / Info (Post‑Install)
+This section provides helpful commands and other information that may be useful after the installation process
+such as how to get the WebUI address, what ports are available to use for incoming sources, etc.
 
 **General Cambria FTC Deployment Info**
+Requires the Cambria FTC Package from 2.2. Cambria FTC Package and all of the prerequisites.
+
 ```bash
 ./bin/getFtcInfo.sh
 ```
+Adding Extra Cambria FTC Nodes
 
-**Add worker label**
+1. Go to your kubernetes cluster in the Akamai Cloud dashboard and Add A Node Pool. Select a Plan and
+number of nodes to add. Add Pool.
+
+2. In the new node pool's "..." settings, choose Labels and Taints. In the Labels, add a new Node Label:
+
 ```bash
 kubectl label node <node-name> capella-worker=true
 ```
+3. Save Changes
+
+1. Go to your kubernetes cluster in the Akamai Cloud dashboard and Add A Node Pool. Select a Plan and
+number of nodes to add. Add Pool.
+
+2. In the new node pool's "..." settings, choose Labels and Taints. In the Labels, add a new Node Label:
 
 **Add manager label**
 ```bash
 kubectl label node <node-name> capella-manager=true
 ```
 
+3. Save Changes
+
+Setting Cambria FTC Label on New Nodes
+For any node that should be an encoding node:
+
+1. Find out which node(s) will be used as Cambria FTC nodes:
+
 **Kubeconfig** — copy from Akamai console (Clusters → Kubeconfig).
 
-**Akamai Kubernetes Dashboard**
-1. Copy **Token** in your cluster.  
-2. Open **Kubernetes Dashboard** and log in with the token.
+2. Apply the following label to each of those nodes:
 
-**WebUI address (kubectl)**
+kubectl label node <node-name> capella-worker=true
+
+Setting Cambria Cluster Label on New Nodes
+For any node that should be a Cambria management node / management backup:
+
+1. Find out which node(s) will be used as Cambria Cluster nodes:
+kubectl get nodes
+
+2. Apply the following label to each of those nodes:
+kubectl label node <node-name> capella-manager=true
+
+## Akamai Kubernetes Kubeconfig File  
+**[ For use with kubectl and Akamai Kubernetes Dashboard ]**
+
+Log in to the Akamai Cloud dashboard and go to Clusters. Select your cluster from the list and click on the
+link below Kubeconfig to download or click on View to see/copy the contents of the kubeconfig.
+
+---
+
+## Akamai Kubernetes Dashboard
+
+1. Log in to the Akamai Cloud dashboard and go to your Kubernetes Cluster. **Copy Token**
+2. Click on the **Kubernetes Dashboard** link. Use the token from step 1 to log in.
+
+## Cambria Cluster WebUI (via kubectl)
+
+1. Run the following command to get the webui address:
+
 ```bash
-kubectl get service/cambriaclusterwebuiservice -n default -o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8161'}"
-```
+kubectl get service/cambriaclusterwebuiservice -n default \
+-o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8161'}"
 
-**WebUI address (Dashboard)**
-- Services → `cambriaclusterwebuiservice` → External Endpoint → `https://<EXTERNAL-IP>:8161`
+2. To log in to the WebUI, the credentials are located in the Helm values .yaml file that you configure
+(See section 4.2. Creating and Editing Helm Configuration File)
 
-**REST base URL (kubectl)**
+---
+
+## Cambria Cluster WebUI (via kubectl)
+
+1. In the Akamai Kubernetes Dashboard for your specific cluster, go to Services and look for the cambriaclusterwebuiservice service. Copy the IP address of one of the External Endpoints.
+
+2. The WebUI address should be:
+
 ```bash
-kubectl get service/cambriaclusterservice -n default -o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8650'}"
-```
+kubectl get service/cambriaclusterwebuiservice -n default \
+-o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8161'}"
 
-**REST base URL (Dashboard)**
-`https://<EXTERNAL-IP>:8650/CambriaFC/v1/Jobs?usertoken=<token>`
+2. To log in to the WebUI, the credentials are located in the Helm values .yaml file that you configure
+(See section 4.2. Creating and Editing Helm Configuration File)
 
-**FTC pod external IP**
-```bash
-# get node of the pod
-kubectl get pod/<pod-name> -n capella-worker -o=jsonpath={.spec.nodeName}
-# get external IP of node
-kubectl get node/<node-name> -o=jsonpath={.status.addresses[1].address}
-```
+## Cambria Cluster WebUI (via Kubernetes Dashboard)
 
-**Leader pod**
-```bash
-kubectl get lease -o=jsonpath="{.items[0].spec.holderIdentity}"
-```
+1. In the Akamai Kubernetes Dashboard for your specific cluster, go to Services and look for the
+2. cambriaclusterwebuiservice service. Copy the IP address of one of the External Endpoints.
 
-**Remote shell**
-```bash
-kubectl exec -it <pod-name> -n <namespace> -- /bin/bash
-```
-
-**Collect logs**
-```bash
-kubectl cp <pod>:/opt/capella/Cambria/Logs ./CambriaFTCLogs -n capella-worker
-kubectl cp <pod>:/opt/capella/CambriaCluster/Logs ./CambriaClusterLogs -n default
-kubectl cp <pod>:/opt/capella/CambriaLicenseManager/Logs ./CambriaFTCLicLogs -n capella-worker
-kubectl cp <pod>:/opt/capella/CambriaLicenseManager/Logs ./CambriaClusterLicLogs -n default
-```
-
-**Copy files into pods**
-```bash
-kubectl cp /path/to/file <pod>:/path/in/container -n <namespace>
-```
-
-**Restart pods (delete to recreate)**
-```bash
-kubectl delete pod <pod-name> -n <namespace>
-```
+The WebUI address should be:
 
 ---
 
