@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.7.0">
 <title data-rh="true">Terraform on Akamai Kubernetes | Capella Documents</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://documents.capellasystems.net/img/capellalogo.png"><meta data-rh="true" name="twitter:image" content="https://documents.capellasystems.net/img/capellalogo.png"><meta data-rh="true" property="og:url" content="https://documents.capellasystems.net/docs/Cambria_FTC/Installation Guides/Kubernetes/Akamai/Akamai-Terraform-Kubernetes/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Terraform on Akamai Kubernetes | Capella Documents"><meta data-rh="true" name="description" content="Terraform Installation"><meta data-rh="true" property="og:description" content="Terraform Installation"><link data-rh="true" rel="icon" href="/img/capellalogo.png"><link data-rh="true" rel="canonical" href="https://documents.capellasystems.net/docs/Cambria_FTC/Installation Guides/Kubernetes/Akamai/Akamai-Terraform-Kubernetes/"><link data-rh="true" rel="alternate" href="https://documents.capellasystems.net/docs/Cambria_FTC/Installation Guides/Kubernetes/Akamai/Akamai-Terraform-Kubernetes/" hreflang="en"><link data-rh="true" rel="alternate" href="https://documents.capellasystems.net/docs/Cambria_FTC/Installation Guides/Kubernetes/Akamai/Akamai-Terraform-Kubernetes/" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://FG2ZSI8I7W-dsn.algolia.net" crossorigin="anonymous"><link rel="search" type="application/opensearchdescription+xml" title="Capella Documents" href="/opensearch.xml"><link rel="stylesheet" href="/assets/css/styles.32bb5c81.css">
-<script src="/assets/js/runtime~main.450b5c57.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.8e694d57.js" defer="defer"></script>
 <script src="/assets/js/main.dcbf314e.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -195,25 +195,43 @@
 <p><strong>WARNING:</strong> THIS COMMAND WILL DELETE THE CAMBRIA DATABASE. PLEASE SAVE ANY PROJECT FILES, CONFIG FILES, CREDENTIALS, ETC BEFORE RUNNING IT.</p>
 </blockquote>
 <ol>
-<li>Review <strong>section 1. Prerequisites</strong> to verify they have been met.</li>
-<li>Verify that you have a <strong>Linux deployment server</strong>. To create a new Linux deployment server or verify that the deployment server tools are installed, run the steps in <strong>1.2. Prepare Deployment Server</strong>.</li>
-<li>Download / Paste your <code>.tfvars</code> and <code>.tfstate</code> files that were used for the Kubernetes cluster deployment into the Linux deployment server.</li>
-<li>Follow the steps in <strong>section 2. Cambria FTC Package</strong> to download the new Cambria FTC package.</li>
-<li>Update the Cambria FTC package with the values from the <code>.tfvars</code> file (replace <code>my-values.tfvars</code> with your file):<!-- -->
+<li>
+<p>Review <strong>section 1. Prerequisites</strong> to verify they have been met.</p>
+</li>
+<li>
+<p>Verify that you have a <strong>Linux deployment server</strong>. To create a new Linux deployment server or verify that the deployment server tools are installed, run the steps in <strong>1.2. Prepare Deployment Server</strong>.</p>
+</li>
+<li>
+<p>Download / Paste your <code>.tfvars</code> and <code>.tfstate</code> files that were used for the Kubernetes cluster deployment into the Linux deployment server.</p>
+</li>
+<li>
+<p>Follow the steps in <strong>section 2. Cambria FTC Package</strong> to download the new Cambria FTC package.</p>
+</li>
+<li>
+<p>Update the Cambria FTC package with the values from the <code>.tfvars</code> file (replace <code>my-values.tfvars</code> with your file):</p>
 <div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">./bin/updateTfValuesFromTfvars.sh my-values.tfvars</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 </li>
-<li>Follow the steps in <strong>3.1. Configure the Kubernetes Cluster</strong> and <strong>3.2. (Optional) Cambria FTC Optional Values</strong> to configure new values / update previous values.</li>
-<li>Set the kubeconfig environment variable for the Kubernetes API and Terraform:<!-- -->
+<li>
+<p>Follow the steps in <strong>3.1. Configure the Kubernetes Cluster</strong> and <strong>3.2. (Optional) Cambria FTC Optional Values</strong> to configure new values / update previous values.</p>
+</li>
+<li>
+<p>Set the kubeconfig environment variable for the Kubernetes API and Terraform:</p>
 <div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">export KUBECONFIG=kubeconfig.yaml &amp;&amp; export KUBE_CONFIG_PATH=kubeconfig.yaml</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 </li>
-<li>Make sure all <code>cambriacluster</code> and <code>pgcluster</code> pods are attached to a node. Check that all pods are in a running state:<!-- -->
+<li>
+<p>Make sure all <code>cambriacluster</code> and <code>pgcluster</code> pods are attached to a node. Check that all pods are in a running state:</p>
 <div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl get pods -n default &amp;&amp; kubectl get pods -n capella-database</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<!-- -->If any pod in this list is in a <strong>pending</strong> state, see <strong>section 3.1</strong> and make sure the number of manager nodes created equals the amount of <code>cambriastreammanager-xyz</code> pods you see in this list.</li>
-<li>Run the Terraform install instructions from <strong>section 3.3. Deploy Kubernetes Cluster</strong>.</li>
-<li><em>(Skip if you ran the “Important” steps above.)</em> Run this command to restart the manager deployments:<!-- -->
+<p>If any pod in this list is in a <strong>pending</strong> state, see <strong>section 3.1</strong> and make sure the number of manager nodes created equals the amount of <code>cambriastreammanager-xyz</code> pods you see in this list.</p>
+</li>
+<li>
+<p>Run the Terraform install instructions from <strong>section 3.3. Deploy Kubernetes Cluster</strong>.</p>
+</li>
+<li>
+<p><em>(Skip if you ran the “Important” steps above.)</em> Run this command to restart the manager deployments:</p>
 <div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl rollout restart deployment cambriaclusterwebui cambriaclusterapp -n default</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 </li>
-<li><em>(Skip if you ran the “Important” steps above.)</em> Restart the worker deployment:<!-- -->
+<li>
+<p><em>(Skip if you ran the “Important” steps above.)</em> Run this command to restart the worker deployment:</p>
 <div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl rollout restart deployment cambriaftcapp -n capella-worker</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 </li>
 </ol>
@@ -224,7 +242,7 @@
 <li>Verify that you have a <strong>Linux deployment server</strong>. To create a new Linux deployment server or verify that the deployment server tools are installed, run the steps in <strong>1.2. Prepare Deployment Server</strong> and also in <strong>2. Cambria Stream Package</strong>.</li>
 <li>Download / Paste your <code>.tfvars</code> and <code>.tfstate</code> files that were used for the Kubernetes cluster deployment into the Linux deployment server.</li>
 <li>Download / Paste the <code>kubeconfig.yaml</code> file of your Kubernetes cluster into the Linux deployment server.</li>
-<li>Linux deployment server, run the following command to update the Cambria Stream package with the values from the <code>.tfvars</code> file (replace <code>my-values.tfvars</code> with your file):<!-- -->
+<li>In Linux deployment server, run the following command to update the Cambria Stream package with the values from the <code>.tfvars</code> file (replace <code>my-values.tfvars</code> with your file):<!-- -->
 <div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">./bin/updateTfValuesFromTfvars.sh my-values.tfvars</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 </li>
 <li>Run the following command to destroy the Kubernetes cluster:<!-- -->
