@@ -1,7 +1,7 @@
 # Capella Cambria FTC and Cluster
 ## REST API Documentation
 
-## Document History
+## Document Historya
 
 | FTC Version | Description |
 |---|---|
