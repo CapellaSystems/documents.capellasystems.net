@@ -1174,6 +1174,8 @@ kubectl cp <host-file-path> `<pod-name>`:<path-inside-container> -n <namespace>
 ```
 
 Example:
+
+```bash
 # Copy file to Cambria FTC pod
 kubectl cp /mnt/n/MySource.mp4 cambriaftcapp-7c55887db9-t42v7:/var/media/MySource.mp4 -n
 capella-worker
@@ -1184,8 +1186,9 @@ default
 
 # Copy directory to Cambria FTC container
 kubectl cp /mnt/n/MyMediaFiles cambriaftcapp-7c55887db9-t42v7:/var/temp/mediafiles -n capella-worker
+```
 
-## Restarting / Re-creating Pods
+# Restarting / Re-creating Pods
 Kubectl does not currently have a way to restart pods. Instead, a pod will need to be “restarted” by deleting the
 pod which causes a new pod to be created / existing pod to take over the containers.
 
@@ -1194,15 +1197,21 @@ kubectl delete pod `<pod-name>` -n <namespace>
 ```
 
 Example:
-# Delete Cambria FTC Container
-kubectl delete pod cambriaftcapp-7c55887db9-t42v7 -n capella-worker
 
+```bash
+# Delete Cambria FTC Container
+
+kubectl delete pod cambriaftcapp-7c55887db9-t42v7 -n capella-worker
+```
+```bash
 # Delete Cambria Cluster Container
+
 kubectl delete pod cambriaclusterapp-695dcc848f-vjpc7 -n default
+```
 
 ---
 
-## 11. Glossary (selected)
+## 11. Glossary
 This glossary provides a brief definition / description of some of the more common terms found in this guide.
 
 ### 11.1. Kubernetes
