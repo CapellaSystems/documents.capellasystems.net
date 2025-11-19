@@ -1081,7 +1081,7 @@ kubectl get service/cambriaclusterwebuiservice -n default \
 located in the Helm values .yaml file that you configure (See section 4.2. Creating and Editing Helm
 Configuration File)
 
-##Cambria Cluster REST API (via kbectl)
+## Cambria Cluster REST API (via kbectl)
 1. Run the following command to get the base REST API Web Adress:
 
 ```bash
@@ -1100,7 +1100,7 @@ The REST API should look similar to this:
 https://23-45-226-151.ip.linodeusercontent.com:8650/CambriaFC/v1/Jobs?usertoken=12345678-1234-43
 f8-b4fc-53afd3893d5f
 
-### Cambria FTC Instance External IP
+## Cambria FTC Instance External IP
 1. In the Cambria Cluster WebUI, go to the Machines tab and copy the name of the machine (pod)  
 2. Run the following commands with the name of the machine (aka. ``<pod-name>``):
 
@@ -1131,7 +1131,7 @@ Example with Cambria FTC:
 ```bash
 kubectl exec -it cambriaftcapp-5c79586784-wbfvf -n capella-worker -- bash
 ```
-##Extracting Cambria Cluster | Cambria FTC | Cambria License Logs
+## Extracting Cambria Cluster | Cambria FTC | Cambria License Logs
 In a machine that has kubectl and the kubeconfig file for your Kubernetes cluster, open a terminal window and
 make sure to set the KUBECONFIG environment variable to the path of your kubeconfig file. Then run one or
 more of the following commands depending on what types of logs you need (or that Capella needs). You will get
@@ -1139,32 +1139,32 @@ a folder full of logs. Compress these logs into one zip file and send it to Cape
 
 `<pod-name>`: the name of the pod to grab logs from (Eg. cambriaftcapp-5c79586784-wbfvf)
 
-### Cambria FTC
+## Cambria FTC
 
 ```bash
 kubectl cp `<pod-name>`:/opt/capella/Cambria/Logs ./CambriaFTCLogs -n capella-worker
 ```
 
-##Cambria Cluster
+## Cambria Cluster
 
 ```bash
 kubectl cp `<pod-name>`:/opt/capella/CambriaCluster/Logs ./CambriaClusterLogs -n default
 ```
 
-##Cambria License Manager (Cambria FTC)
+## Cambria License Manager (Cambria FTC)
 
 ```bash
 kubectl cp `<pod-name>`:/opt/capella/CambriaLicenseManager/Logs ./CambriaFTCLicLogs -n capella-worker
 ```
 
-##Cambria License Manager (Cambria Cluster)
+## Cambria License Manager (Cambria Cluster)
 
 ```bash
 kubectl cp `<pod-name>`:/opt/capella/CambriaLicenseManager/Logs ./CambriaClusterLicLogs -n default
 ```
 ---
 
-##Copy File(s) to Cambria FTC / Cluster Pod
+## Copy File(s) to Cambria FTC / Cluster Pod
 In some cases, you might need to copy files to a Cambria FTC / Cluster pod. For example, you have an MP4 file
 you want to use as a source directly from the encoding machine’s file system. In this case, to copy the file over
 to the Cambria FTC / Cluster pod, do the following:
