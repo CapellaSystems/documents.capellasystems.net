@@ -291,29 +291,39 @@ This is the default way to perform an upgrade for anything from updating license
 > **WARNING:** THIS COMMAND WILL DELETE THE CAMBRIA DATABASE. PLEASE SAVE ANY PROJECT FILES, CONFIG FILES, CREDENTIALS, ETC BEFORE RUNNING IT.
 
 1. Review **section 1. Prerequisites** to verify they have been met.  
+
 2. Verify that you have a **Linux deployment server**. To create a new Linux deployment server or verify that the deployment server tools are installed, run the steps in **1.2. Prepare Deployment Server**.  
+
 3. Download / Paste your `.tfvars` and `.tfstate` files that were used for the Kubernetes cluster deployment into the Linux deployment server.  
+
 4. Follow the steps in **section 2. Cambria FTC Package** to download the new Cambria FTC package.  
+
 5. Update the Cambria FTC package with the values from the `.tfvars` file (replace `my-values.tfvars` with your file):
    ```bash
    ./bin/updateTfValuesFromTfvars.sh my-values.tfvars
    ```
+   
 6. Follow the steps in **3.1. Configure the Kubernetes Cluster** and **3.2. (Optional) Cambria FTC Optional Values** to configure new values / update previous values.  
+
 7. Set the kubeconfig environment variable for the Kubernetes API and Terraform:
    ```bash
    export KUBECONFIG=kubeconfig.yaml && export KUBE_CONFIG_PATH=kubeconfig.yaml
    ```
+   
 8. Make sure all `cambriacluster` and `pgcluster` pods are attached to a node. Check that all pods are in a running state:
    ```bash
    kubectl get pods -n default && kubectl get pods -n capella-database
    ```
+   
    If any pod in this list is in a **pending** state, see **section 3.1** and make sure the number of manager nodes created equals the amount of `cambriastreammanager-xyz` pods you see in this list.
+
 9. Run the Terraform install instructions from **section 3.3. Deploy Kubernetes Cluster**.  
+
 10. *(Skip if you ran the “Important” steps above.)* Run this command to restart the manager deployments:
     ```bash
     kubectl rollout restart deployment cambriaclusterwebui cambriaclusterapp -n default
     ```
-11. *(Skip if you ran the “Important” steps above.)* Restart the worker deployment:
+11. *(Skip if you ran the “Important” steps above.)* Run this command to restart the worker deployment:
     ```bash
     kubectl rollout restart deployment cambriaftcapp -n capella-worker
     ```
@@ -327,7 +337,7 @@ Many resources are created in a Kubernetes environment. It is important that eac
 1. Verify that you have a **Linux deployment server**. To create a new Linux deployment server or verify that the deployment server tools are installed, run the steps in **1.2. Prepare Deployment Server** and also in **2. Cambria Stream Package**.  
 2. Download / Paste your `.tfvars` and `.tfstate` files that were used for the Kubernetes cluster deployment into the Linux deployment server.  
 3. Download / Paste the `kubeconfig.yaml` file of your Kubernetes cluster into the Linux deployment server.  
-4. Linux deployment server, run the following command to update the Cambria Stream package with the values from the `.tfvars` file (replace `my-values.tfvars` with your file):
+4. In Linux deployment server, run the following command to update the Cambria Stream package with the values from the `.tfvars` file (replace `my-values.tfvars` with your file):
    ```bash
    ./bin/updateTfValuesFromTfvars.sh my-values.tfvars
    ```

@@ -841,7 +841,7 @@ the endpoints needed are the following:
 
 Example with mydomain.com as the domain:
 
-##### 5.3.4.2. Test Ingress Endpoints
+#### 5.3.4.2. Test Ingress Endpoints
 If using the test ingress, these steps can only be verified in the machine(s) where the hosts file was
 modified. This is because the test ingress is not publicly DNS resolvable and so only those whose
 hosts file (or DNS) have been configured to resolve the test ingress will be able to access the
