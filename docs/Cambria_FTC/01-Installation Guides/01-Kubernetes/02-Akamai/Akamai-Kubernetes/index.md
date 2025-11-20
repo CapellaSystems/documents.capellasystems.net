@@ -1119,7 +1119,7 @@ Run the following command to get the name of the Cambria Cluster leader pod:
 kubectl get lease -o=jsonpath="{.items[0].spec.holderIdentity}"
 ```
 
-## Remote Access to Kubernetes Pod
+### Remote Access to Kubernetes Pod
 The general command for remote accessing a pod is:
 
 ```bash
@@ -1139,25 +1139,25 @@ a folder full of logs. Compress these logs into one zip file and send it to Cape
 
 `<pod-name>`: the name of the pod to grab logs from (Eg. cambriaftcapp-5c79586784-wbfvf)
 
-## Cambria FTC
+### Cambria FTC
 
 ```bash
 kubectl cp `<pod-name>`:/opt/capella/Cambria/Logs ./CambriaFTCLogs -n capella-worker
 ```
 
-## Cambria Cluster
+### Cambria Cluster
 
 ```bash
 kubectl cp `<pod-name>`:/opt/capella/CambriaCluster/Logs ./CambriaClusterLogs -n default
 ```
 
-## Cambria License Manager (Cambria FTC)
+### Cambria License Manager (Cambria FTC)
 
 ```bash
 kubectl cp `<pod-name>`:/opt/capella/CambriaLicenseManager/Logs ./CambriaFTCLicLogs -n capella-worker
 ```
 
-## Cambria License Manager (Cambria Cluster)
+### Cambria License Manager (Cambria Cluster)
 
 ```bash
 kubectl cp `<pod-name>`:/opt/capella/CambriaLicenseManager/Logs ./CambriaClusterLicLogs -n default
@@ -1188,7 +1188,7 @@ default
 kubectl cp /mnt/n/MyMediaFiles cambriaftcapp-7c55887db9-t42v7:/var/temp/mediafiles -n capella-worker
 ```
 
-# Restarting / Re-creating Pods
+## Restarting / Re-creating Pods
 Kubectl does not currently have a way to restart pods. Instead, a pod will need to be “restarted” by deleting the
 pod which causes a new pod to be created / existing pod to take over the containers.
 
