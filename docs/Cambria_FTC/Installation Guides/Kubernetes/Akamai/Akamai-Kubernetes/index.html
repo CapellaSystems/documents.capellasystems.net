@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.7.0">
 <title data-rh="true">Akamai Cloud Kubernetes | Capella Documents</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://documents.capellasystems.net/img/capellalogo.png"><meta data-rh="true" name="twitter:image" content="https://documents.capellasystems.net/img/capellalogo.png"><meta data-rh="true" property="og:url" content="https://documents.capellasystems.net/docs/Cambria_FTC/Installation Guides/Kubernetes/Akamai/Akamai-Kubernetes/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Akamai Cloud Kubernetes | Capella Documents"><meta data-rh="true" name="description" content="Document History"><meta data-rh="true" property="og:description" content="Document History"><link data-rh="true" rel="icon" href="/img/capellalogo.png"><link data-rh="true" rel="canonical" href="https://documents.capellasystems.net/docs/Cambria_FTC/Installation Guides/Kubernetes/Akamai/Akamai-Kubernetes/"><link data-rh="true" rel="alternate" href="https://documents.capellasystems.net/docs/Cambria_FTC/Installation Guides/Kubernetes/Akamai/Akamai-Kubernetes/" hreflang="en"><link data-rh="true" rel="alternate" href="https://documents.capellasystems.net/docs/Cambria_FTC/Installation Guides/Kubernetes/Akamai/Akamai-Kubernetes/" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://FG2ZSI8I7W-dsn.algolia.net" crossorigin="anonymous"><link rel="search" type="application/opensearchdescription+xml" title="Capella Documents" href="/opensearch.xml"><link rel="stylesheet" href="/assets/css/styles.32bb5c81.css">
-<script src="/assets/js/runtime~main.3039d665.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.edb95e59.js" defer="defer"></script>
 <script src="/assets/js/main.dcbf314e.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -500,24 +500,45 @@ same machine, use localhost. Otherwise, use the ip address of the machine with t
 <ol start="3">
 <li>Click on Advanced and Proceed to [ EXTERNAL IP ] (unsafe). This will show the login page.</li>
 </ol>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/assets/images/03_screenshot-9ed7448cacaa52c97e8b7253818757aa.png" width="947" height="128" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Screenshot" src="/assets/images/03_screenshot-3f6cff6b1ae76e05f7d18f4d6235fb11.png" width="554" height="382" class="img_ev3q"></p>
 <ol start="4">
-<li>Log in using the credentials created in the Helm values yaml file (See cambriaClusterWebUIUser)</li>
+<li>
+<p>Log in using the credentials created in the Helm values yaml file (See cambriaClusterWebUIUser)</p>
+</li>
+<li>
+<p>Verify that the License Status is valid for at least either the Primary or Backup. Preferably, both Primary and
+Backup should be valid. If there are issues with the license, wait a few minutes as sometimes it takes a few minutes
+to properly update. If still facing issues, contact the Capella support team.</p>
+</li>
 </ol>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="532-cambria-cluster-rest-api">5.3.2. Cambria Cluster REST API<a href="#532-cambria-cluster-rest-api" class="hash-link" aria-label="Direct link to 5.3.2. Cambria Cluster REST API" title="Direct link to 5.3.2. Cambria Cluster REST API">​</a></h4>
 <p>Skip this step if the ingress will be used instead of external access or any other type of access. For
 any issues, contact the Capella support team.</p>
+<p>** 5.3.4.1. Get the Ingress Endpoints
+There are two ways to use the ingress:</p>
+<p>** Option 1: Using Default Testing Ingress</p>
+<p>Only use this option for testing purposes. Skip to option 2 for production. In order to use the
+ingress in the testing state, the hostname needs to be DNS resolvable on the machines that will need
+access to the Cambria applications</p>
 <ol>
-<li>Get the REST API address:</li>
+<li>Get the ingress HOSTS and ADDRESS:</li>
 </ol>
-<p>**Option 1: External Url if External Access is Enabled</p>
-<p>Run the following command:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl get ingress -A</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>The response should look similar to the following:</p>
 <div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl get svc/cambriaclusterservice -n default -o=jsonpath=&quot;{&#x27;https://&#x27;}{.status.loadBalancer.ingress[0].hostname}{&#x27;:8650&#x27;}{&#x27;\n&#x27;}&quot;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <p>The response should look something like this:
 <a href="https://192.122.45.33:8650" target="_blank" rel="noopener noreferrer">https://192.122.45.33:8650</a></p>
-<p>**Option 2: Non-External Url Access</p>
-<p>Run the following command to temporarily expose the REST API via port-forwarding:</p>
-<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl port-forward -n default svc/cambriaclusterservice 8650:8650 --address=0.0.0.0</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">curl -k -X GET https://`&lt;server&gt;`:8650/CambriaFC/v1/SystemInfo</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">NAMESPACE NAME CLASS HOSTS ADDRESS</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">PORTS AGE</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">default cambriaclusteringress nginx api.akamai.capellatest.com,webui.akamaicapellatest.com</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">55.99.103.99 80, 443 23m</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">monitoring cambriamonitoringingress nginx monitoring.myhost.com</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">55.99.103.99 80, 443 58m</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<ol start="2">
+<li>In your local server(s) or any other server(s) that need to access the ingress, edit the hosts file (in
+Linux, usually /etc/hosts) and add the following lines (Example):</li>
+</ol>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">55.99.103.99 api.myhost.com</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">55.99.103.99 webui.myhost.com</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">55.99.103.99 monitoring.myhost.com</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>** Option 2: Non-External Url Access</p>
+<p>Contact Capella if unable to set up a purchased domain with the ingress. If the domain is set up,
+the endpoints needed are the following:</p>
+<p>Example with mydomain.com as the domain:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">REST API: https://api.myhost.com</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">WebUI: https://webui.myhost.com</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">Grafana Dashboard: https://monitoring.myhost.com</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <p>The url depends on the location of the port-forward. If the web browser and the port-forward are on the
 same machine, use localhost. Otherwise, use the ip address of the machine with the port-forward:</p>
 <p>https://<code>&lt;server&gt;</code>:8650</p>
@@ -543,11 +564,10 @@ steps to check the cambria license. Access to a web browser is required:</p>
 <p>The url depends on the location of the port-forward. If the web browser and the port-forward are on the
 same machine, use localhost. Otherwise, use the ip address of the machine with the port-forward:</p>
 <p>https://<code>&lt;server&gt;</code>:8481</p>
-<p>Proceed past the unsafe warning; sign in with <code>cambriaClusterWebUIUser</code>. Ensure License Status is valid (Primary and/or Backup).</p>
 <ol start="2">
 <li>In a web browser, enter the above url. This should trigger an &quot;Unsafe&quot; page similar to the one below:</li>
 </ol>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/assets/images/04_screenshot-3f6cff6b1ae76e05f7d18f4d6235fb11.png" width="554" height="382" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Screenshot" src="/assets/images/04_screenshot-9ed7448cacaa52c97e8b7253818757aa.png" width="947" height="128" class="img_ev3q"></p>
 <ol start="3">
 <li>Click on Advanced and Proceed to [ EXTERNAL IP ] (unsafe). This will show the login page.</li>
 </ol>
@@ -567,7 +587,7 @@ to properly update. If still facing issues, contact the Capella support team.</p
 team.</p>
 <h5 class="anchor anchorWithStickyNavbar_LWe7" id="5341-get-the-ingress-endpoints">5.3.4.1. Get the Ingress Endpoints<a href="#5341-get-the-ingress-endpoints" class="hash-link" aria-label="Direct link to 5.3.4.1. Get the Ingress Endpoints" title="Direct link to 5.3.4.1. Get the Ingress Endpoints">​</a></h5>
 <p>There are two ways to use the ingress:</p>
-<p>**Option 1: Using Default Testing Ingress
+<p>** Option 1: Using Default Testing Ingress
 Only use this option for testing purposes. Skip to option 2 for production. In order to use the
 ingress in the testing state, the hostname needs to be DNS resolvable on the machines that will need
 access to the Cambria applications.</p>
@@ -583,8 +603,8 @@ access to the Cambria applications.</p>
 Linux, usually /etc/hosts) and add the following lines (Example):</li>
 </ol>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">55.99.103.99  api.mydomain.com</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">55.99.103.99  webui.mydomain.com</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">55.99.103.99  monitoring.mydomain.com</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<p><strong>Option 2 (production):</strong> Use a publicly registered domain and proper DNS/TLS (see DNS guide above).
-Contact Capella if unable to set up a purchased domain with the ingress. If the domain is set up,
+<p>** Option 2 (production):** Use a publicly registered domain (Production)</p>
+<p>Contact Capella if unable to set up a purchased domain with the ingress. If the domain is set up,
 the endpoints needed are the following:</p>
 <p>Example with mydomain.com as the domain:</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="5342-test-ingress-endpoints">5.3.4.2. Test Ingress Endpoints<a href="#5342-test-ingress-endpoints" class="hash-link" aria-label="Direct link to 5.3.4.2. Test Ingress Endpoints" title="Direct link to 5.3.4.2. Test Ingress Endpoints">​</a></h4>
