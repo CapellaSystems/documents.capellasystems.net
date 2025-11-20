@@ -307,11 +307,8 @@ Example with Ubuntu 24.04:
 ```bash
 sudo apt update && \
 sudo DEBIAN_FRONTEND=noninteractive apt -o Dpkg::Options::="--force-confold" -y upgrade && \
-sudo DEBIAN_FRONTEND=noninteractive apt -o Dpkg::Options::="--force-confold" -y install curl unzip jq```
-
-### 2.1. Linux Tools
-
-Install `curl`, `unzip`, and `jq` (Ubuntu 24.04 example):
+sudo DEBIAN_FRONTEND=noninteractive apt -o Dpkg::Options::="--force-confold" -y install curl unzip jq
+```
 
 ### 2.2. Cambria FTC Package
 
@@ -321,13 +318,16 @@ The components of this installation are packaged in a zip archive. Download it u
 curl -o CambriaClusterKubernetesAkamai_5_6_0.zip -L \
 "https://www.dropbox.com/scl/fi/58x4oeiijhf3au3hnit38/CambriaClusterKubernetesAkamai_5_6_0.zip?rlkey=\
 uppqqa29s9yresdk2xk7qh7lt&st=s2mus6im&dl=0"
+```
 
+```bash
 unzip -o CambriaClusterKubernetesAkamai_5_6_0.zip && chmod +x *.sh ./bin/*.sh
+```
 
 Important: the scripts included have been tested with Ubuntu. They may work with other Linux distributions
 but not tested
 
-```
+
 
 #### 2.2.1. Kubernetes Tools: kubectl, helm, linode‑cli
 There are 2 options available for installing the kubernetes required tools for deployment to Akamai Cloud:
