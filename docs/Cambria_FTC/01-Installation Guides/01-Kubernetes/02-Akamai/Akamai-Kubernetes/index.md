@@ -737,16 +737,30 @@ https://``<server>``:8161
 
 4. Log in using the credentials created in the Helm values yaml file (See cambriaClusterWebUIUser)
 
+5. Verify that the License Status is valid for at least either the Primary or Backup. Preferably, both Primary and
+Backup should be valid. If there are issues with the license, wait a few minutes as sometimes it takes a few minutes
+to properly update. If still facing issues, contact the Capella support team.
+
 #### 5.3.2. Cambria Cluster REST API
 Skip this step if the ingress will be used instead of external access or any other type of access. For
 any issues, contact the Capella support team.
 
-1. Get the REST API address:
+** 5.3.4.1. Get the Ingress Endpoints
+There are two ways to use the ingress:
 
-**Option 1: External Url if External Access is Enabled
+** Option 1: Using Default Testing Ingress
 
-Run the following command:
+Only use this option for testing purposes. Skip to option 2 for production. In order to use the
+ingress in the testing state, the hostname needs to be DNS resolvable on the machines that will need
+access to the Cambria applications
 
+1. Get the ingress HOSTS and ADDRESS:
+
+```bash
+kubectl get ingress -A
+```
+
+The response should look similar to the following:
 
 ```bash
 kubectl get svc/cambriaclusterservice -n default -o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8650'}{'\n'}"
@@ -755,14 +769,37 @@ kubectl get svc/cambriaclusterservice -n default -o=jsonpath="{'https://'}{.stat
 The response should look something like this:
 https://192.122.45.33:8650
 
-**Option 2: Non-External Url Access
+```bash
+NAMESPACE NAME CLASS HOSTS ADDRESS
+PORTS AGE
+default cambriaclusteringress nginx api.akamai.capellatest.com,webui.akamaicapellatest.com
+55.99.103.99 80, 443 23m
+monitoring cambriamonitoringingress nginx monitoring.myhost.com
+55.99.103.99 80, 443 58m
+```
 
-Run the following command to temporarily expose the REST API via port-forwarding:
+2. In your local server(s) or any other server(s) that need to access the ingress, edit the hosts file (in
+Linux, usually /etc/hosts) and add the following lines (Example):
 
 ```bash
-kubectl port-forward -n default svc/cambriaclusterservice 8650:8650 --address=0.0.0.0
-curl -k -X GET https://`<server>`:8650/CambriaFC/v1/SystemInfo
+55.99.103.99 api.myhost.com
+55.99.103.99 webui.myhost.com
+55.99.103.99 monitoring.myhost.com
 ```
+
+** Option 2: Non-External Url Access
+
+Contact Capella if unable to set up a purchased domain with the ingress. If the domain is set up,
+the endpoints needed are the following:
+
+Example with mydomain.com as the domain:
+
+```bash
+REST API: https://api.myhost.com
+WebUI: https://webui.myhost.com
+Grafana Dashboard: https://monitoring.myhost.com
+```
+
 The url depends on the location of the port-forward. If the web browser and the port-forward are on the
 same machine, use localhost. Otherwise, use the ip address of the machine with the port-forward:
 
@@ -801,7 +838,6 @@ same machine, use localhost. Otherwise, use the ip address of the machine with t
 
 https://`<server>`:8481
 
-Proceed past the unsafe warning; sign in with `cambriaClusterWebUIUser`. Ensure License Status is valid (Primary and/or Backup).
 
 2. In a web browser, enter the above url. This should trigger an "Unsafe" page similar to the one below:
 
@@ -824,7 +860,7 @@ team.
 ##### 5.3.4.1. Get the Ingress Endpoints
 There are two ways to use the ingress:
 
-**Option 1: Using Default Testing Ingress
+** Option 1: Using Default Testing Ingress
 Only use this option for testing purposes. Skip to option 2 for production. In order to use the
 ingress in the testing state, the hostname needs to be DNS resolvable on the machines that will need
 access to the Cambria applications.
@@ -854,7 +890,8 @@ Linux, usually /etc/hosts) and add the following lines (Example):
 55.99.103.99  monitoring.mydomain.com
 ```
 
-**Option 2 (production):** Use a publicly registered domain and proper DNS/TLS (see DNS guide above).
+** Option 2 (production):** Use a publicly registered domain (Production)
+
 Contact Capella if unable to set up a purchased domain with the ingress. If the domain is set up,
 the endpoints needed are the following:
 
