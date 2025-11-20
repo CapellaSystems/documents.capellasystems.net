@@ -1030,14 +1030,14 @@ For any node that should be an encoding node:
 **Kubeconfig** — copy from Akamai console (Clusters → Kubeconfig).
 
 2. Apply the following label to each of those nodes:
-
+```bash
 kubectl label node ``<node-name>`` capella-worker=true
+```
 
-**Setting Cambria Cluster Label on New Nodes
+## Setting Cambria Cluster Label on New Nodes
 For any node that should be a Cambria management node / management backup:
 
 1. Find out which node(s) will be used as Cambria Cluster nodes:
-
 ```bash
 kubectl get nodes
 ```
@@ -1090,15 +1090,19 @@ kubectl get service/cambriaclusterwebuiservice -n default \
 ```
 
 The REST API url should look similar to this:
-https://23-45-226-151.ip.linodeusercontent.com:8650/CambriaFC/v1/Jobs?usertoken=12345678-1234-43
-f8-b4fc-53afd3893d5f
+
+```bash
+https://23-45-226-151.ip.linodeusercontent.com:8650/CambriaFC/v1/Jobs?usertoken=12345678-1234-43f8-b4fc-53afd3893d5f
+```
 
 ## Cambria Cluster WebUI (via Kubernetes Dashboard)
 1. In the Akamai Kubernetes Dashboard for your specific cluster, go to Services and look for the cambriaclusterwebuiservice service. Copy the IP address of one of the External Endpoints.
 
 The REST API should look similar to this:
-https://23-45-226-151.ip.linodeusercontent.com:8650/CambriaFC/v1/Jobs?usertoken=12345678-1234-43
-f8-b4fc-53afd3893d5f
+
+```bash
+https://23-45-226-151.ip.linodeusercontent.com:8650/CambriaFC/v1/Jobs?usertoken=12345678-1234-43f8-b4fc-53afd3893d5f
+```
 
 ## Cambria FTC Instance External IP
 1. In the Cambria Cluster WebUI, go to the Machines tab and copy the name of the machine (pod)  
@@ -1202,8 +1206,7 @@ Example:
 # Delete Cambria FTC Container
 
 kubectl delete pod cambriaftcapp-7c55887db9-t42v7 -n capella-worker
-```
-```bash
+
 # Delete Cambria Cluster Container
 
 kubectl delete pod cambriaclusterapp-695dcc848f-vjpc7 -n default
