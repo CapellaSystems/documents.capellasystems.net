@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.7.0">
 <title data-rh="true">Akamai Cloud Kubernetes | Capella Documents</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://documents.capellasystems.net/img/capellalogo.png"><meta data-rh="true" name="twitter:image" content="https://documents.capellasystems.net/img/capellalogo.png"><meta data-rh="true" property="og:url" content="https://documents.capellasystems.net/docs/Cambria_FTC/Installation Guides/Kubernetes/Akamai/Akamai-Kubernetes/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Akamai Cloud Kubernetes | Capella Documents"><meta data-rh="true" name="description" content="Document History"><meta data-rh="true" property="og:description" content="Document History"><link data-rh="true" rel="icon" href="/img/capellalogo.png"><link data-rh="true" rel="canonical" href="https://documents.capellasystems.net/docs/Cambria_FTC/Installation Guides/Kubernetes/Akamai/Akamai-Kubernetes/"><link data-rh="true" rel="alternate" href="https://documents.capellasystems.net/docs/Cambria_FTC/Installation Guides/Kubernetes/Akamai/Akamai-Kubernetes/" hreflang="en"><link data-rh="true" rel="alternate" href="https://documents.capellasystems.net/docs/Cambria_FTC/Installation Guides/Kubernetes/Akamai/Akamai-Kubernetes/" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://FG2ZSI8I7W-dsn.algolia.net" crossorigin="anonymous"><link rel="search" type="application/opensearchdescription+xml" title="Capella Documents" href="/opensearch.xml"><link rel="stylesheet" href="/assets/css/styles.32bb5c81.css">
-<script src="/assets/js/runtime~main.e44444b3.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.3039d665.js" defer="defer"></script>
 <script src="/assets/js/main.dcbf314e.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -352,7 +352,7 @@ with the LKE cluster:</li>
 </ol>
 <p>This will show details about the LKE cluster in its current state. This dashboard can be used to view and manage
 the LKE cluster from a graphical point of view.</p>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/assets/images/01_screenshot-50b93b3176e6451c725baa95edf2da67.png" width="553" height="409" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Screenshot" src="/assets/images/01_screenshot-158c5454c8f10b0073f44dd2567656ba.png" width="945" height="296" class="img_ev3q"></p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="314-default-storage-class">3.1.4. Default Storage Class<a href="#314-default-storage-class" class="hash-link" aria-label="Direct link to 3.1.4. Default Storage Class" title="Direct link to 3.1.4. Default Storage Class">​</a></h4>
 <p>Set the storage class linode-block-storage as the default storage class:</p>
 <div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl patch storageclass linode-block-storage \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">  -p &#x27;{&quot;metadata&quot;: {&quot;annotations&quot;: {&quot;storageclass.kubernetes.io/is-default-class&quot;: &quot;true&quot;}}}&#x27;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
@@ -496,11 +496,11 @@ same machine, use localhost. Otherwise, use the ip address of the machine with t
 <ol start="2">
 <li>In a web browser, enter the above url. This should trigger an &quot;Unsafe&quot; page similar to the one below:</li>
 </ol>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/assets/images/02_screenshot-9f0daf61e94f2be2cbe940f6f07a19f5.png" width="632" height="255" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Screenshot" src="/assets/images/02_screenshot-3f6cff6b1ae76e05f7d18f4d6235fb11.png" width="554" height="382" class="img_ev3q"></p>
 <ol start="3">
 <li>Click on Advanced and Proceed to [ EXTERNAL IP ] (unsafe). This will show the login page.</li>
 </ol>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/assets/images/03_screenshot-b71692948d624808448619c859f7b0ba.png" width="944" height="290" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Screenshot" src="/assets/images/03_screenshot-9ed7448cacaa52c97e8b7253818757aa.png" width="947" height="128" class="img_ev3q"></p>
 <ol start="4">
 <li>Log in using the credentials created in the Helm values yaml file (See cambriaClusterWebUIUser)</li>
 </ol>
@@ -547,11 +547,11 @@ same machine, use localhost. Otherwise, use the ip address of the machine with t
 <ol start="2">
 <li>In a web browser, enter the above url. This should trigger an &quot;Unsafe&quot; page similar to the one below:</li>
 </ol>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/assets/images/04_screenshot-158c5454c8f10b0073f44dd2567656ba.png" width="945" height="296" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Screenshot" src="/assets/images/04_screenshot-3f6cff6b1ae76e05f7d18f4d6235fb11.png" width="554" height="382" class="img_ev3q"></p>
 <ol start="3">
 <li>Click on Advanced and Proceed to [ EXTERNAL IP ] (unsafe). This will show the login page.</li>
 </ol>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/assets/images/05_screenshot-c31e157869b9257fcafe45fe4439e337.png" width="631" height="273" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Screenshot" src="/assets/images/05_screenshot-44b1b704a18082ab1af2c4afc531dabb.png" width="1573" height="116" class="img_ev3q"></p>
 <ol start="4">
 <li>
 <p>Log in using the credentials created in the Helm values yaml file (See cambriaClusterWebUIUser)</p>
