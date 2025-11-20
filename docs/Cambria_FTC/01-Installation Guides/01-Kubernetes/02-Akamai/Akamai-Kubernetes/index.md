@@ -163,7 +163,7 @@ transcoding jobs.
 
 ---
 
-## a. g6-dedicated-16 \[ AMD EPYC 7713 ]
+### a. g6-dedicated-16 \[ AMD EPYC 7713 ]
 
 ### Machine Info
 
@@ -180,7 +180,7 @@ transcoding jobs.
 
 ---
 
-## b. g6-dedicated-56 \[ AMD EPYC 7713 ]
+### b. g6-dedicated-56 \[ AMD EPYC 7713 ]
 
 ### Machine Info
 
@@ -328,7 +328,6 @@ Important: the scripts included have been tested with Ubuntu. They may work with
 but not tested
 
 
-
 #### 2.2.1. Kubernetes Tools: kubectl, helm, linode‑cli
 There are 2 options available for installing the kubernetes required tools for deployment to Akamai Cloud:
 
@@ -360,14 +359,16 @@ The following section provides the basic steps needed to create a Kubernetes Clu
 
 In the Akamai Cloud Dashboard, go to Kubernetes and Create Cluster and configure as follows:
 
-|---|---|
-| Cluster Label | e.g., `cambria-cluster` |
-| Cluster Tier | LKE In most cases, this should be LKE |
-| Region | e.g., Your region of operation (Eg. US, Los Angeles, CA (us-lax)) |
-| Kubernetes Version | **1.34** |
-| Akamai App Platform | No |
-| HA Control Plane | For testing, set to No. For production, it is recommended to set this to Yes (Incurs additional cost. See Akamai documentation) |
-| Control Plane ACL | Only enable this if you already know which IP CIDRs will need access to the LKE control plane. Otherwise, leave as is Only if you know allowed CIDRs |
+| **Setting**             | **Value / Description**                                                                                     |
+|-------------------------|--------------------------------------------------------------------------------------------------------------|
+| **Cluster Label**       | Choose a label (e.g., `cambria-cluster`)                                                                    |
+| **Cluster Tier**        | In most cases, this should be **LKE**                                                                        |
+| **Region**              | Your region of operation (e.g., **US, Los Angeles, CA (us-lax)**)                                           |
+| **Kubernetes Version**  | **1.34**                                                                                                     |
+| **Akamai App Platform** | **No**                                                                                                       |
+| **HA Control Plane**    | For testing, set to **No**. For production, recommended **Yes** (incurs additional cost; see Akamai docs)  |
+| **Control Plane ACL**   | Only enable if you already know which IP CIDRs need access to the LKE control plane; otherwise leave as-is |
+
 
 > Do **not** create the cluster yet; add nodegroups first.
 
@@ -422,13 +423,17 @@ It may take a few minutes for everything configured so far to be in a usable sta
 a Status of Running. 
  
 2. Once the LKE Cluster is running, labels need to be added to the Cambria Cluster node pool:
+
 a. In the Akamai Cloud Dashboard, go into the kubernetes cluster and look for the Cambria Cluster
 node pool 
+
 b. Select Labels and Taints and Add Label. In the Label field, enter capella-manager: true and then
 save the changes  
 
 3. Only if you added Cambria FTC nodes, do the following:
+
 a. In the Akamai Cloud Dashboard, go to the kubernetes cluster and look for the Cambria FTC node pool
+
 b. Select Labels and Taints and Add Label. In the Label field, enter capella-worker: true and then
 save the changes
 
@@ -436,20 +441,33 @@ save the changes
 Cambria Cluster node pool as well: capella-worker: true
 
 5. Copy the contents of the Kubeconfig file:
+
 a. In the Linux Deployment Server, run the following commands (replace cambria-cluster with the
-Kubernetes Cluster's name):  
+Kubernetes Cluster's name): 
+
+ ```bash
 export CLUSTER_NAME=cambria-cluster && nano $CLUSTER_NAME-kubeconfig.yaml  
+ ```
+ 
 b. In the Akamai dashboard, navigate to the Kubernetes cluster that was created. In the Kubeconfig
 section, click on View and copy the contents  
+
 c. In the Linux Deployment Server, paste the kubeconfig contents. Save the file by holding CTRL/CMD
 + X, pressing the letter 'y', and then the Enter/Return key  
 
 6. Still in the Linux Deployment Server, set the KUBECONFIG environment variable for terminal interaction
 with the LKE cluster:  
-export KUBECONFIG=$CLUSTER_NAME-kubeconfig.yaml
 
+```bash
+export KUBECONFIG=$CLUSTER_NAME-kubeconfig.yaml
+ ```
+ 
 7. Verify that kubectl works with the cluster  
+
+```bash
 kubectl get nodes
+```
+Example: 
 
 ```text
 NAME STATUS ROLES AGE VERSION
