@@ -1010,19 +1010,20 @@ kubectl label node `<node-name>` capella-worker=true
 ```
 3. Save Changes
 
+## Adding Extra Cambria Manager Nodes
+
 1. Go to your kubernetes cluster in the Akamai Cloud dashboard and Add A Node Pool. Select a Plan and
 number of nodes to add. Add Pool.
 
 2. In the new node pool's "..." settings, choose Labels and Taints. In the Labels, add a new Node Label:
 
-**Add manager label**
 ```bash
 kubectl label node `<node-name>` capella-manager=true
 ```
 
 3. Save Changes
 
-Setting Cambria FTC Label on New Nodes
+## Setting Cambria FTC Label on New Nodes
 For any node that should be an encoding node:
 
 1. Find out which node(s) will be used as Cambria FTC nodes:
