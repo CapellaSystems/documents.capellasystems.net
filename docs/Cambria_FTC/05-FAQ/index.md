@@ -50,18 +50,3 @@ This line will usually give you a clue on what caused the redundancy event to tr
 If the Error is not clear, please send the log file to the support team and we can help explain it.  
 
 </details>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const details = document.querySelectorAll('details');
-    details.forEach((targetDetail) => {
-      targetDetail.addEventListener('click', () => {
-        details.forEach((detail) => {
-          if (detail !== targetDetail) {
-            detail.removeAttribute('open');
-          }
-        });
-      });
-    });
-  });
-</script>
