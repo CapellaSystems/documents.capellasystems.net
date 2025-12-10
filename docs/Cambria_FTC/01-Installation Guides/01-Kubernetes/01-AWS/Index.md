@@ -963,20 +963,18 @@ kubectl get svc/cambriaclusterwebuiservice -n default -o=jsonpath="{'https://'}{
 
         kubectl port-forward -n default svc/cambriaclusterwebuiservice 8161:8161 --address=0.0.0.0
 
-    The URL depends on where the browser is located:
+    The URL depends on where the browser is located: 
 
     - If browser is on the same machine:  
       https://localhost:8161  
     - If remote:  
-      https://<server>:8161
+      https://`<server>`:8161
 
 2. In a web browser, enter the above URL. This will trigger an “Unsafe” page similar to what is shown in the installation guide.
 
 ![Screenshot](01_screenshot.png)
 
 3. Click on Advanced and Proceed to [ EXTERNAL IP ] (unsafe). This will show the login page.
-
-02_screenshot.png
 
 4. Log in using the credentials created in the Helm values yaml file (see cambriaClusterWebUIUser)
 
@@ -1004,12 +1002,12 @@ kubectl get svc/cambriaclusterservice -n default -o=jsonpath="{'https://'}{.stat
     - If browser and port-forward are on the same machine:  
       https://localhost:8650  
     - Otherwise:  
-      https://<server>:8650
+      https://`<server>`:8650
 
 2. Run the following API query to check if the REST API is active:
 ```bash
-curl -k -X GET https://<server>:8650/CambriaFC/v1/SystemInfo
-```bash
+curl -k -X GET https://`<server>`:8650/CambriaFC/v1/SystemInfo
+```
 
 ---
 
