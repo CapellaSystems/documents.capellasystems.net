@@ -976,7 +976,7 @@ kubectl get svc/cambriaclusterwebuiservice -n default -o=jsonpath="{'https://'}{
 
 3. Click on Advanced and Proceed to [ EXTERNAL IP ] (unsafe). This will show the login page.
 
-![Screenshot](02_screenshot.png)
+02_screenshot.png
 
 4. Log in using the credentials created in the Helm values yaml file (see cambriaClusterWebUIUser)
 
@@ -987,9 +987,9 @@ Skip this step if the ingress will be used instead of external access or any oth
 
     **Option 1: External URL (if External Access is Enabled)**  
     Run:
-
-        kubectl get svc/cambriaclusterservice -n default -o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8650'}{'\n'}"
-
+```bash
+kubectl get svc/cambriaclusterservice -n default -o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8650'}{'\n'}"
+```
     Example response:
 
         https://192.122.45.33:8650
@@ -1007,8 +1007,9 @@ Skip this step if the ingress will be used instead of external access or any oth
       https://<server>:8650
 
 2. Run the following API query to check if the REST API is active:
-
-        curl -k -X GET https://<server>:8650/CambriaFC/v1/SystemInfo
+```bash
+curl -k -X GET https://<server>:8650/CambriaFC/v1/SystemInfo
+```bash
 
 ---
 
@@ -1019,9 +1020,9 @@ The Cambria license must be active in all entities where the Cambria application
 
     **Option 1: External URL (if External Access is Enabled)**  
     Run:
-
-        kubectl get svc/cambriaclusterwebuiservice -n default -o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8481'}{'\n'}"
-
+```bash
+kubectl get svc/cambriaclusterwebuiservice -n default -o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8481'}{'\n'}"
+```
     Example response:
 
         https://192.122.45.33:8481
@@ -1063,8 +1064,9 @@ Only use this option for testing purposes. Skip to option 2 for production.
 For testing, the hostname must be DNS resolvable on the machines that need access to Cambria applications.
 
 1. Get the ingress HOSTS and ADDRESS:
-
-        kubectl get ingress -A
+```bash
+kubectl get ingress -A
+```
 
     Example output:
 
@@ -1136,14 +1138,14 @@ Best for version changes, secret updates (license key, WebUI users), or configur
    See section **4.2. Creating and Editing Helm Configuration File**.
 
 2. Apply the upgrade:
-
-        helm upgrade capella-cluster ./config/capella-cluster-0.5.4.tgz --values cambriaClusterConfig.yaml
-
+```bash
+helm upgrade capella-cluster ./config/capella-cluster-0.5.4.tgz --values cambriaClusterConfig.yaml
+```
 3. Restart the deployments:
-
-        kubectl rollout restart deployment cambriaclusterapp cambriaclusterwebui -n default
-        kubectl rollout restart deployment cambriaftcapp -n capella-worker
-
+```bash
+kubectl rollout restart deployment cambriaclusterapp cambriaclusterwebui -n default
+kubectl rollout restart deployment cambriaftcapp -n capella-worker
+```
 4. Wait a few minutes for pods to restart.
 
 ### 7.2. Option 2: Upgrade via Cambria Cluster Reinstallation
@@ -1154,12 +1156,13 @@ It **uninstalls all components**, then reinstalls using the new chart and values
 1. Download and edit your updated cambriaClusterConfig.yaml (see **4.2**).
 
 2. Uninstall the current deployment:
-
-        helm uninstall capella-cluster --wait
-
+```bash
+helm uninstall capella-cluster --wait
+```
 3. Reinstall using the new Helm chart and values file:
-
-        helm upgrade --install capella-cluster ./config/capella-cluster-0.5.4.tgz --values cambriaClusterConfig.yaml
+```bash
+helm upgrade --install capella-cluster ./config/capella-cluster-0.5.4.tgz --values cambriaClusterConfig.yaml
+```
 
 ### 7.3. Upgrade Verification
 Verify the upgrade using steps in  
@@ -1170,16 +1173,19 @@ For any issues, contact the Capella support team.
 Many resources are created in a Kubernetes environment. It is important that each step is followed carefully. If using FTC's autoscaler, make sure no leftover Cambria FTC nodes are running.
 
 1. Run the following command to remove the Helm deployments:
-
-        helm uninstall capella-cluster -n default --wait
+```bash
+helm uninstall capella-cluster -n default --wait
+```
 
 2. If any volumes are remaining, run the following command:
-
-        kubectl get pv -o name | awk -F'/' '{print $2}' | xargs -I{} kubectl patch pv {} -p='{"spec": {"persistentVolumeReclaimPolicy": "Delete"}}'
+```bash
+kubectl get pv -o name | awk -F'/' '{print $2}' | xargs -I{} kubectl patch pv {} -p='{"spec": {"persistentVolumeReclaimPolicy": "Delete"}}'
+```
 
 3. Only if the ingress-nginx tool was deployed, delete the namespace:
-
-        kubectl delete namespace ingress-nginx
+```bash
+kubectl delete namespace ingress-nginx
+```
 
 4. Run the following commands to uninstall the monitoring deployment:
 
@@ -1187,27 +1193,35 @@ Many resources are created in a Kubernetes environment. It is important that eac
     - If S3 Loki version was installed → use **s3_embedcred**  
     - If Filesystem Loki version was installed → use **local**
 
-        ./bin/quickDestroyMonitoring.sh <install_type>
+```bash
+./bin/quickDestroyMonitoring.sh <install_type>
+```
 
 5. Set the Kubernetes cluster name and region as environment variables (if not already done):
 
-        export CLUSTER_NAME=cambria-cluster REGION=us-west-2
+```bash
+export CLUSTER_NAME=cambria-cluster REGION=us-west-2
+```
 
 6. Delete the inline policy for the FTC role:
-
-        aws iam delete-role-policy --role-name=eksctl-ftc-role --policy-name=S3AccessPolicy
+```bash
+aws iam delete-role-policy --role-name=eksctl-ftc-role --policy-name=S3AccessPolicy
+```
 
 7. If using FTC's autoscaler, delete the inline policy for the autoscaler role:
-
-        aws iam delete-role-policy --role-name=eksctl-autoscaler-role --policy-name=FTCAutoscalerPolicy
+```bash
+aws iam delete-role-policy --role-name=eksctl-autoscaler-role --policy-name=FTCAutoscalerPolicy
+```
 
 8. If using FTC's autoscaler, delete the autoscaler config role created for the cluster. This can be done manually or via aws-cli. Example:
-
-        ./bin/deleteConfigRoleForFtcAutoscaler.sh eksctl-autoscaler-cfg-role
+```bash
+./bin/deleteConfigRoleForFtcAutoscaler.sh eksctl-autoscaler-cfg-role
+```
 
 9. Delete the Kubernetes cluster:
-
-        eksctl delete cluster --name=$CLUSTER_NAME --region=$REGION --wait
+```bash
+eksctl delete cluster --name=$CLUSTER_NAME --region=$REGION --wait
+```
 
     Wait several minutes for the Kubernetes cluster to delete completely.
 
@@ -1232,7 +1246,9 @@ a. Switch the Linux Deployment Server EC2 instance to assume an IAM admin role.
 b. In an SSH session on the Linux Deployment Server, go to the location of the Cambria FTC package (see section 2.2. Cambria FTC Package).  
 c. Run the following command with the name of the IAM role to delete:
 
-        ./bin/deleteRole.sh eksctl-user
+```bash
+./bin/deleteRole.sh eksctl-user
+```
 
 ---
 
