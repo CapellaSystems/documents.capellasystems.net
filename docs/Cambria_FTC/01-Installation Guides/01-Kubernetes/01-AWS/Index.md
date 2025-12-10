@@ -951,8 +951,9 @@ For any issues, contact the Capella support team.
     **Option 1: External URL (if External Access is Enabled)**  
     Run:
 
-        kubectl get svc/cambriaclusterwebuiservice -n default -o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8161'}{'\n'}"
-
+```bash
+kubectl get svc/cambriaclusterwebuiservice -n default -o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8161'}{'\n'}"
+```
     Example response:
 
         https://192.122.45.33:8161
