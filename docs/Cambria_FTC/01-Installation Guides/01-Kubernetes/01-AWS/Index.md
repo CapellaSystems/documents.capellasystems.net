@@ -822,11 +822,11 @@ nano cambriaClusterConfig.yaml
 | **enableManagerWebUI** | enableManagerWebUI: true | Enables the Cambria Manager WebUI. If you do not plan to use the UI, set this to false. |
 | **ftcEnableAutoScaler** | ftcEnableAutoScaler: true | Enables Cambria FTC autoscaler, which spawns FTC encoders based on queue size. Set to false if adding FTC nodes manually. |
 | **ftcEnableScriptableWorkflow** | ftcEnableScriptableWorkflow: true | Enables scriptable workflow execution for FTC jobs. Usually left true. |
-| **ftcAutoScalerExtraConfig** | cpClusterName=cambria-cluster,<br/>cpCloudVendor=AWS,<br/>cpRegion=us-west-2,<br/>cpNodeRole=aws:iam::12341234:role/eksctl-autoscaler-cfg-role,<br/>cpCapacityType=dedicated | Extra config used when autoscaler is enabled.<br><br>**cpClusterName:** Kubernetes cluster name (default: CapellaEKS)<br/>**cpRegion:** AWS region where cluster is deployed (default: us-west-2)<br/>**cpNodeRole:** ARN for FTC autoscaler config role (from AWS IAM)<br/>**cpCapacityType:** EC2 type: dedicated or spot |
+| **ftcAutoScalerExtraConfig** | cpClusterName=cambria-cluster,<br/>cpCloudVendor=AWS,<br/>cpRegion=us-west-2,<br/>cpNodeRole=aws:iam::12341234:role/eksctl-autoscaler-cfg-role,<br/>cpCapacityType=dedicated | Extra config used when autoscaler is enabled.<br/><br/>**cpClusterName:** Kubernetes cluster name (default: CapellaEKS)<br/>**cpRegion:** AWS region where cluster is deployed (default: us-west-2)<br/>**cpNodeRole:** ARN for FTC autoscaler config role (from AWS IAM)<br/>**cpCapacityType:** EC2 type: dedicated or spot |
 | **ftcInstanceType** | ftcInstanceType: "c6a.4xlarge" | EC2 instance type for FTC encoding machines when autoscaler creates new instances. Default is c6a.4xlarge. |
 | **maxFTCInstances** | maxFTCInstances: 20 | Maximum number of FTC encoder instances that can be created. |
 | **pgInstances** | pgInstances: 3 | Number of PostgreSQL replicas. |
-| **cambriaClusterReplicas** | cambriaClusterReplicas: 3 | Number of Cambria Cluster instances.<br>**Must match pgInstances and manager node count.** |
+| **cambriaClusterReplicas** | cambriaClusterReplicas: 3 | Number of Cambria Cluster instances.<br/>**Must match pgInstances and manager node count.** |
 | **externalAccess.exposeStreamServiceExternally** | exposeStreamServiceExternally: true | Set to true to access Cambria Cluster externally. |
 | **externalAccess.enableIngress** | enableIngress: true | Enable NGINX ingress controller integration. |
 | **externalAccess.hostName** | hostName: myhost.com | Hostname for ingress. Must be a valid domain name in production. |
@@ -835,7 +835,7 @@ nano cambriaClusterConfig.yaml
 | **secrets.pgClusterPassword** | pgClusterPassword: "xrtVeQ4nN82SSiYHoswqdURZ…" | Password for the PostgreSQL cluster. **Must be changed** from the default. |
 | **secrets.ftcLicenseKey** | ftcLicenseKey: "2XXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX" | FTC license key provided by Capella. Replace placeholder with your actual license. |
 | **secrets.cambriaClusterAPIToken** | cambriaClusterAPIToken: "12345678-1234-43f8-b4fc-53afd3893d5f" | API token for Cambria Cluster API calls. Must contain letters, numbers, underscores, or dashes. |
-| **secrets.cambriaClusterWebUIUser** | cambriaClusterWebUIUser: "admin,defaultWebUIUser,RZvSSd3ffsElsCEEe9" | Comma-separated list of WebUI users in the format: role,username,password.<br/><br>**Roles:** admin, user, viewer.<br/>**Example:** admin,admin,changethis,user,guest,password123 |
+| **secrets.cambriaClusterWebUIUser** | cambriaClusterWebUIUser: "admin,defaultWebUIUser,RZvSSd3ffsElsCEEe9" | Comma-separated list of WebUI users in the format: role,username,password.<br/><br/>**Roles:** admin, user, viewer.<br/>**Example:** admin,admin,changethis,user,guest,password123 |
 | **secrets.argoEventWebhookSourceBearerToken** | argoEventWebhookSourceBearerToken: "L9Em5WIW8yth6H4uPtzT" | Bearer token for argo-events workflows. Can be configured to any desired value. |
 | **aws.role.ftc** | ftc: arn:aws:iam::12341234:role/eksctl-ftc-role | IAM role ARN for Cambria FTC. Must match the role created in **3.4.1 Create FTC Role**. |
 | **aws.role.autoscaler** | autoscaler: arn:aws:iam::12341234:role/eksctl-autoscaler-role | IAM role ARN for the FTC autoscaler. Must match role created in **3.4.2 Create FTC Autoscaler Role**. |
