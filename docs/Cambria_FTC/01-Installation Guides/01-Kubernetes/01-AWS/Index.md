@@ -1497,8 +1497,10 @@ kubectl get service/cambriaclusterwebuiservice -n default -o=jsonpath="{'https:/
 1. Run the following command to get the base REST API Web Address:
 ```bash
 kubectl get service/cambriaclusterservice -n default -o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8650'}"
+```
 ```bash
 Example REST API URL:
+```
 
 ```bash
 https://a7e4559218cg923a8dfc85d689bd9713-329199856.us-west-2.elb.amazonaws.com:8650/CambriaFC/v1/Jobs?usertoken=12345678-1234-43f8-b4fc-53afd3893d5f
