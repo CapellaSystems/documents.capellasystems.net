@@ -84,17 +84,17 @@ This guide provides a full walkthrough for installation and testing of Cambria C
 
 It includes:
 
-- Overview  
-- Prerequisites  
-- Cluster creation  
-- Installation of Cambria Cluster / FTC  
-- Verification  
-- Testing  
-- Upgrading  
-- Deletion  
-- Quick reference  
-- Kubernetes component references  
-- Glossary  
+1. Overview of the Cambria Cluster / FTC Environment in a Kubernetes Environment
+2. Preparation for the installation (Prerequisites)
+3. Create and configure the Kubernetes Cluster
+4. Install Cambria Cluster and Cambria FTC on the Kubernetes Cluster
+5. Verify the installation is working properly
+6. Test the Cambria Cluster / FTC applications
+7. Update the Cambria Cluster / FTC applications on Kubernetes Cluster
+8. Delete a Kubernetes Cluster
+9. Quick Reference of Kubernetes Installation
+10. Quick Reference of Important Kubernetes Components (urls, template projects, test player, etc)
+11. Glossary of important terms 
 
 ---
 
@@ -108,44 +108,47 @@ Two major applications are deployed in this environment:
 
 ### **Cambria Cluster**
 
-Recommended configuration:
-
-- **Minimum 3 nodes** (1 leader, 2 replicas)
-
-Each Cambria Cluster pod contains:
+This deployment is recommended to run on at least 3 nodes (replica = 3) with a service (Load Balancer) that
+exposes the application externally. For each of these nodes, Cambria Cluster will be installed on its own pod and
+designated to its own node. One node acts as the leader and the other two are replicas for the purpose of
+replacing the leader in the case it becomes inactive, corrupted, etc. Each Cambria Cluster pod has three
+containers:
 
 1. **Cambria Cluster (application)**  
-2. **Leader Elector** (selects the leader pod)  
-3. **FTC Autoscaler**, which deploys worker nodes based on queue size:
+2. **Leader Elector** that chooses which of the Cambria Cluster node / pod will be the leader)  
+3. **FTC Autoscaler**, that when the FTC autoscaler is enabled, it will automatically deploy worker nodes for encoding purposes based on the number of encoding jobs queued to the system. This is based on the calculation (rounded down):
 
 Number of Nodes = (Queued Jobs + 2) / 3
 
 
-A corresponding **PostgreSQL instance** runs per Cluster pod, with replication to preserve state and ensure resilience.
+Also for the Cluster deployment, there is a corresponding PostgreSQL database installed on a separate pod for each active Cambria Cluster pod. The data is replicated between the different database pods in order to preserve data in case of issues with the database and/or Cluster.
 
 ---
 
 ### **Cambria FTC**
 
-Designed specifically for **encoding tasks**.
-
-Each Cambria FTC pod contains:
+Capella’s Cambria FTC deployment consists of one or more nodes that (by default) are of different instance
+types than the Cambria Cluster nodes. These nodes focus specifically on running encoding tasks. Similar to
+Cambria Cluster, the Cambria FTC application is installed on its own pod and designated to its own node. Each
+Cambria FTC pod has three containers:
 
 1. **Cambria FTC application**  
-2. **Auto-Connect FTC .NET tool**, which:  
-   - Lists pods  
-   - Locates Cambria Cluster  
-   - Connects FTC → Cluster  
-   - Deletes or recycles its node if no Cluster is found within ~20 minutes  
-3. **Pgcluster database** for job content and runtime data
+2. **Auto-Connect FTC .NET tool**, that does the following: 1. list pods, 2. attempts to find Cambria
+Cluster, and 3. connects the Cambria FTC application running in the pod to the Cambria Cluster that it
+found. This container also deletes its own node pool or recycles its node if no Cambria Cluster is found
+within a specific time (~20 minutes)
+  
+3. **Pgcluster database** for storing its encoder's own job contents and other such information for as long as the pod is running.
 
-Nodes in the Kubernetes cluster run **either Cambria Cluster workloads or FTC workloads**, never both.
+
+Each node in the Kubernetes Cluster will either be running the Cluster deployment or the FTC deployment.
 
 ---
 
 ### 1.2 Resource Usage
-
-AWS components required vary depending on your environment and expected workload.
+The resources used and their quantities will vary depending on requirements and different
+environments. Below is general information about some of the major resource usage (other resources may be
+used. Consult AWS and eksctl documentation for other resources created, usage limits, etc):
 
 ---
 
@@ -168,18 +171,22 @@ AWS components required vary depending on your environment and expected workload
 | Nodes            | 3 Cambria Manager nodes (default), plus FTC nodes                                      |
 | Networking       | 1 VPC, 3 public + 3 private subnets                                                    |
 | IP Space         | Default `/16`, subnets `/19`                                                           |
-| Security Groups  | 1 for the control plane, plus per node-group SGs                                       |
+| Security Groups  | Default is 1 security group for control plane, Default is X security groups
+                                      
 
 ---
 
 ## 1.3 AWS Machine Information and Benchmark
 
-Two AWS machines were benchmarked (October 2025).
+The following is a benchmark of two AWS machines. The information below is as of October 2025. Note that the
+benchmark involves read from / write to AWS S3 which influences the real-time speed of transcoding jobs.
 
 **Benchmark Input**
 
 - Source: **TS H.264 @ 1080p 8 Mbps**  
 - Outputs: **HLS variants** (1080p → 240p)
+
+**a. c6a.4xlarge [ AMD EPYC 7R13 ]**
 
 ### 1.3 AWS Machine Information and Benchmark
 
@@ -217,80 +224,106 @@ Two AWS machines were benchmarked (October 2025).
 
 ---
 
-**Finding:**  
-The **c6a.4xlarge** instance provides **better cost-efficiency** despite its lower overall throughput.
+**Benchmark Finding:**  
+The results show the **c6a.16xlarge** has higher overall throughput. This is expected as the instance has more
+processing power than the **c6a.4xlarge.** However, if you take into account the cost per hour for each machine,
+the more cost efficient option is to go with the c6a.4xlarge
 
 ---
 
 ## 1.4 Cambria Application Access
+The Cambria applications are accessible via the following methods:
 
 ### 1.4.1 External Access via TCP Load Balancer
+The default Cambria installation configures the Cambria applications to be exposed through load balancers.
+There is one for the Cambria Manager WebUI + License Manager, and one for the web / REST API server. The
+load balancers are publicly available and can be accessed either through its public ip address or domain name,
+and the application's TCP port.
 
 Examples:
 
 - WebUI: **https://44.33.212.155:8161**  
 - REST API: **https://121.121.121.121:8650/CambriaFC/v1/SystemInfo**
 
-External access behavior is controlled through **Helm configuration settings**.
+External access in this way can be turned on / off via a configuration variable. See 4.2. Creating and Editing
+Helm Configuration File. If this feature is disabled, another method of access will need to be configured.
 
 ---
 
 ### 1.4.2 HTTP Ingress via Reverse Proxy
 
-Subdomains (examples):
+In cases where the external access via TCP load balancer is not acceptable or for using a purchased domain
+name from servicers such as GoDaddy, the Cambria installation provides the option to expose an ingress.
+Similar to the external access load balancers, the Cambria Manager WebUI and web / REST API server are
+exposed. However, only one ip address / domain name is needed in this case.
 
-- **webui.mydomain.com**  
-- **api.mydomain.com**  
-- **monitoring.mydomain.com**
+How it works is that the Cambria WebUI is exposed through the subdomain **webui**, the Cambria web server
+through the subdomain **api**, and Grafana dashboard through the subdomain monitoring. The following is an
+example with the domain **mydomain.com**
 
-Capella provides a **default test hostname**.  
-Production deployments require:
+- Cambria Manager WebUI: **webui.mydomain.com**  
+- Cambria REST API: **api.mydomain.com**  
+- Grafana Dashboard: **monitoring.mydomain.com**
 
-- A real domain  
-- TLS certificates (ACM, cert-manager, etc.)
+Capella provides a default ingress hostname for testing purposes only. In production, the default hostname, ssl
+certificate, and other such information needs to be configured. More information about ingress configuration is
+explained later in this guide.
 
 ---
 
 ## 1.5 Firewall Information
+By default, this guide creates a kubernetes cluster with default settings which includes the default
+network firewall configurations. In the default configuration, a virtual network is created alongside the
+kubernetes cluster. For custom / non-default configurations, or to explore with a more restrictive network based
+on the default virtual network created, the following is a list of known ports that the Cambria applications use:
+
 
 ### Required Ports
 
-| Port | Protocol | Description                |
-|------|----------|----------------------------|
-| 8650 | TCP      | Cluster REST API           |
-| 8161 | TCP      | Cluster WebUI              |
-| 8678 | TCP      | License Manager Web Server |
-| 8481 | TCP      | License Manager WebUI      |
-| 9100 | TCP      | Prometheus Exporter        |
-| 8648 | TCP      | FTC REST API               |
-| 3100 | TCP      | Loki                       |
-| 3000 | TCP      | Grafana                    |
-| 443  | TCP      | Ingress                    |
-| ALL  | TCP/UDP  | Outbound allowed           |
+| Port | Protocol | Traffic   Description                |
+|------|----------|---------|--------------------|
+| 8650 | TCP      | Inbound |Cluster REST API           |
+| 8161 | TCP      | Inbound | Cluster WebUI              |
+| 8678 | TCP      | Inbound | License Manager Web Server |
+| 8481 | TCP      | Inbound | License Manager WebUI      |
+| 9100 | TCP      | Inbound | Prometheus Exporter        |
+| 8648 | TCP      | Inbound | FTC REST API               |
+| 3100 | TCP      | Inbound | Loki                       |
+| 3000 | TCP      | Inbound | Grafana                    |
+| 443  | TCP      | Inbound | Ingress                    |
+| ALL  | TCP/UDP  | Outbound| Outbound allowed           |
 
----
+Also, for Cambria licensing, any Cambria Cluster and Cambria FTC machine requires that at least the following
+domains be exposed in your firewall (both inbound and outbound traffic):
 
-### Required Licensing Domains
 
-| Domain                          | Port | Purpose          |
-|----------------------------------|------|------------------|
-| api.cryptlex.com                | 443  | License server   |
-| cryptlexapi.capellasystems.net  | 8485 | License cache    |
-| cpfs.capellasystems.net         | 8483 | License backup   |
+| Domain                         | Port(s) | Protocol | Traffic Direction | Description             |
+|--------------------------------|---------|----------|-------------------|-------------------------|
+| api.cryptlex.com               | 443     | TCP      | Inbound / Outbound | License Server          |
+| cryptlexapi.capellasystems.net | 8485    | TCP      | Inbound / Outbound | License Cache Server    |
+| cpfs.capellasystems.net        | 8483    | TCP      | Inbound / Outbound | License Backup Server   |
+
 
 ---
 
 ## 1.6 Specifications for Linux Deployment Server
+In order to deploy Cambria FTC, a Linux Deployment Server is required because this is where all of the tools,
+dependencies, and packages for the Cambria FTC Kubernetes deployment will be installed and/or stored. If you
+already have a deployment server, you can skip this section.
 
-Minimum configuration (Capella-tested):
+**Important: Linux Deployment Server Machine Information**
+The instructions in this document require IAM admin rights and IAM role assignment. For this purpose, it
+is required to use an AWS EC2 instance (unless you already have a way to assign IAM roles to a machine that
+is not an EC2 instance).
 
-- **Ubuntu 24.04**  
-- **t3.small instance**  
-  - CPU: **2 vCPUs**  
-  - RAM: **2 GB**  
-  - Storage: **10 GB**  
+Capella tests deployment with the **t3.small** instance type
 
-This server **requires AWS IAM administrator permissions** for cluster creation and management.
+**Minimum Requirements:**
+|--------------------------------|---------|
+| Operating System (OS)          | 443     | 
+| CPU(s)                         | 8485    | 
+| RAM                            | 8483    | 
+| Storage                        | 10 GB   |
 
 ## 2. Prerequisites
 The following steps need to be completed before the deployment process.
@@ -299,7 +332,7 @@ The following steps need to be completed before the deployment process.
 This guide uses curl, unzip, and jq to run certain commands and download the required tools and applications.
 Therefore, the Linux server used for deployment will need to have these tools installed.
 
-Install the required packages:
+Example with Ubuntu 24.04:
 
 ```bash
 sudo apt update && \
@@ -333,7 +366,6 @@ There are 2 options available for installing the kubernetes required tools for d
 3. Eksctl: https://eksctl.io/installation/
 4. AWS CLI: https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 
-
 # 2.2.2 Verification
 If any of the commands below fail, review the installation instructions for the failing tool and try again:
 
@@ -346,18 +378,12 @@ In order to create resources on AWS for the kubernetes cluster, certain policies
 configured.
 
 ### Important: AWS Admin Rights
+This section requires IAM administrative permission. The steps can be done manually using the AWS
+Dashboard. However, the aws-cli will be used in this guide. To follow the exact steps, the **Linux Deployment Server** (in this case, an EC2 machine with the admin IAM role) and the aws-cli will be required.
 
-This section requires **IAM administrative permission**.
-
-These steps can be completed manually in the AWS Dashboard, but this guide uses the **aws-cli**.  
-To follow the exact procedure, ensure the Linux Deployment Server (typically an **EC2 instance with an IAM admin role**) has both:
-
-- AWS administrative rights  
-- aws-cli installed  
-
-1. Create an IAM admin role (if not already created).  
-2. In the AWS EC2 Dashboard, select the Linux Deployment Server.  
-   Go to **Actions → Security → Modify IAM role**, and assign the IAM admin role.
+1. Create an IAM admin role (if not already done so)
+2. On the AWS EC2 Dashboard, select the Linux Deployment Server created. Go to Actions > Security >
+Modify IAM role and select the IAM admin role
 
 Before continuing, the AWS account id must be temporarily set as an environment variable to run the
 commands in this section.
@@ -400,10 +426,9 @@ order for permissions to work
 
 ```bash
 ./bin/createEksctlClusterUserRole.sh eksctl-user
+```
 2. Assume the new role on the Linux deployment machine. If using an AWS EC2 instance, select the instance
 and go to Actions > Security > Modify IAM role. Select the eksctl-user-instance-profile from the list
-```
-
 
 ## 3. Create Kubernetes Cluster
 
