@@ -1163,11 +1163,11 @@ https://23-45-226-151.ip.linodeusercontent.com:8650/CambriaFC/v1/Jobs?usertoken=
 
 ## Cambria FTC Instance External IP
 1. In the Cambria Cluster WebUI, go to the Machines tab and copy the name of the machine (pod)  
-2. Run the following commands with the name of the machine (aka. ``<pod-name>``):
+2. Run the following commands with the name of the machine (aka. ):
 
 ```bash
-# Replace `<pod-name>` with your pod name
-kubectl get pod/`<pod-name>` -n capella-worker -o=jsonpath={.spec.nodeName}
+# Replace with your pod name
+kubectl get pod/ -n capella-worker -o=jsonpath={.spec.nodeName}
 
 # Replace `<node-name>` with the result from the above command
 kubectl get node/`<node-name>` -n capella-worker -o=jsonpath={.status.addresses[1].address}
@@ -1184,7 +1184,7 @@ kubectl get lease -o=jsonpath="{.items[0].spec.holderIdentity}"
 The general command for remote accessing a pod is:
 
 ```bash
-kubectl exec -it `<pod-name>` -n <namespace> -- /bin/bash
+kubectl exec -it  -n <namespace> -- /bin/bash
 ```
 
 Example with Cambria FTC:
@@ -1198,30 +1198,30 @@ make sure to set the KUBECONFIG environment variable to the path of your kubecon
 more of the following commands depending on what types of logs you need (or that Capella needs). You will get
 a folder full of logs. Compress these logs into one zip file and send it to Capella:
 
-`<pod-name>`: the name of the pod to grab logs from (Eg. cambriaftcapp-5c79586784-wbfvf)
+: the name of the pod to grab logs from (Eg. cambriaftcapp-5c79586784-wbfvf)
 
 ### Cambria FTC
 
 ```bash
-kubectl cp `<pod-name>`:/opt/capella/Cambria/Logs ./CambriaFTCLogs -n capella-worker
+kubectl cp :/opt/capella/Cambria/Logs ./CambriaFTCLogs -n capella-worker
 ```
 
 ### Cambria Cluster
 
 ```bash
-kubectl cp `<pod-name>`:/opt/capella/CambriaCluster/Logs ./CambriaClusterLogs -n default
+kubectl cp :/opt/capella/CambriaCluster/Logs ./CambriaClusterLogs -n default
 ```
 
 ### Cambria License Manager (Cambria FTC)
 
 ```bash
-kubectl cp `<pod-name>`:/opt/capella/CambriaLicenseManager/Logs ./CambriaFTCLicLogs -n capella-worker
+kubectl cp :/opt/capella/CambriaLicenseManager/Logs ./CambriaFTCLicLogs -n capella-worker
 ```
 
 ### Cambria License Manager (Cambria Cluster)
 
 ```bash
-kubectl cp `<pod-name>`:/opt/capella/CambriaLicenseManager/Logs ./CambriaClusterLicLogs -n default
+kubectl cp :/opt/capella/CambriaLicenseManager/Logs ./CambriaClusterLicLogs -n default
 ```
 ---
 
@@ -1231,7 +1231,7 @@ you want to use as a source directly from the encoding machine’s file system. 
 to the Cambria FTC / Cluster pod, do the following:
 
 ```bash
-kubectl cp <host-file-path> `<pod-name>`:<path-inside-container> -n <namespace>
+kubectl cp <host-file-path> :<path-inside-container> -n <namespace>
 ```
 
 Example:
@@ -1254,7 +1254,7 @@ Kubectl does not currently have a way to restart pods. Instead, a pod will need 
 pod which causes a new pod to be created / existing pod to take over the containers.
 
 ```bash
-kubectl delete pod `<pod-name>` -n <namespace>
+kubectl delete pod -n <namespace>
 ```
 
 Example:
