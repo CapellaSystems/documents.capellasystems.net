@@ -270,13 +270,17 @@ Cambria FTC supports importing DPX (Digital Picture Exchange) image sequences fo
 1. Create an XML file containing property information for the sequence and place it in the same folder as the DPX files.
 
 **Example XML:**
-<?xml version="1.0" encoding="UTF-8" ?>
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
 <AudioVideoSource
- Type="DPX"
- FrameRateNum="24000"
- FrameRateDen="1001"
- PixAspRatioVer="1"
- PixAspRatioHor="1" />
+  Type="DPX"
+  FrameRateNum="24000"
+  FrameRateDen="1001"
+  PixAspRatioVer="1"
+  PixAspRatioHor="1" />
+
+```
 
 1. Load the XML file into Cambria FTC as a source.  
    The software will automatically load the DPX sequence in alphabetical order.
@@ -780,11 +784,11 @@ Add/Remove Track
 Edit Track
 At HTTP target setting, select 1 for ‘Number of Audio Tracks’ and 2 for ‘Number of Channels’
 
-![Screenshot](23_screenshot.png)
+![Screenshot](24_screenshot.png)
 
 **File Converter Encoding Tab**
 
-![Screenshot](24_screenshot.png)
+![Screenshot](25_screenshot.png)
 
 Note: You can export and save encode settings. Alternatively, you can click save in ‘Preset Editor’.
 Presets in the Encoding Presets list will not be automatically remembered.
@@ -836,7 +840,7 @@ output preview file to verify encode settings and video quality
    
 ## Preset Editor Summary
 
-![Screenshot](24_screenshot.png)
+![Screenshot](26_screenshot.png)
 
 1. **Output Folder**
 Specifies the location of the encoded video. Click ‘Browse’ to select folder location.
@@ -906,7 +910,7 @@ subtitle filter with source file.
 
 ## Preset Editor Encode Settings
 
-![Screenshot](25_screenshot.png)
+![Screenshot](27_screenshot.png)
 
 Encoding settings are divided into 5 basic categories.
 
@@ -1001,7 +1005,7 @@ C:\Users\Public\Documents\Capella\CambriaCluster\Encoder Presets
 
 ## Preset Editor • Filter Settings
 
-![Screenshot](25_screenshot.png)
+![Screenshot](28_screenshot.png)
 
 1. **Add**
 Select filter to add.
@@ -1047,7 +1051,7 @@ Displays filters to be applied.
 
 ## Preset Editor – Post Task Settings
 
-![Screenshot](26_screenshot.png)
+![Screenshot](29_screenshot.png)
 
 1. **Use Upload**  
    Check the box to upload a video after it has completed being encoded. Checking
@@ -1066,7 +1070,7 @@ conversion task will be terminated.
 
 ## Preset Editor – Notification
 
-![Screenshot](27_screenshot.png)
+![Screenshot](30_screenshot.png)
 
 1. **Name**  
    Name of the notification email.
@@ -1082,7 +1086,7 @@ conversion task will be terminated.
 
 ## Preset Editor – Scriptable Workflow
 
-![Screenshot](27_screenshot.png)
+![Screenshot](31_screenshot.png)
 
 1. **Use Script Checkbox**  
    Enable or disable script usage.
@@ -1118,25 +1122,29 @@ Typical use cases include:
 
 ---
 
-### How Scripts Work
 
-1. At the start of a job, Cambria FTC analyses the source file.
-2. The source metadata (video/audio tracks, frame rate, resolution, etc.) is injected into the job XML.
-3. The script executes, reading the Input XML and writing a new Output XML.
-4. The job runs using the settings defined in the Output XML.
-
-Temporary files are created during this process (script, input XML, output XML) and are automatically deleted unless debugging is enabled.
 
 ---
 
+```md
 ## Example Augmented XML (Source Section)
 
+```xml
 <Source Location="\\storage\media\MP4\juno_6ch.mp4" Name="Src1">
- <VideoTrackInfo Format="H.264 Video" FrameMode="Progressive"
- FrameRateNum="30000" FrameRateDen="1001" Width="640" Height="480"
- PixelAspectRatioHor="4" PixelAspectRatioVer="3" />
- <AudioTrackInfo Format="AAC Audio" NbChannels="6" SampleRate="48000"
- BitsPerSample="16" />
+  <VideoTrackInfo
+    Format="H.264 Video"
+    FrameMode="Progressive"
+    FrameRateNum="30000"
+    FrameRateDen="1001"
+    Width="640"
+    Height="480"
+    PixelAspectRatioHor="4"
+    PixelAspectRatioVer="3" />
+  <AudioTrackInfo
+    Format="AAC Audio"
+    NbChannels="6"
+    SampleRate="48000"
+    BitsPerSample="16" />
 </Source>
 
 ---
@@ -1224,7 +1232,7 @@ https://documents.capellasystems.net/docs/Cambria_FTC/Tutorials/Scriptable_Workf
 
 ## FTC Conversion Tab
 
-![Screenshot](28_screenshot.png)
+![Screenshot](32_screenshot.png)
 
 1. **Conversion List**
 Displays a list of the jobs that have been triggered by ‘Convert All Jobs’ or ‘Convert
@@ -1261,7 +1269,7 @@ during the encoding process.
 
 ## FTC Options Tab
 
-![Screenshot](29_screenshot.png)
+![Screenshot](33_screenshot.png)
 
 1. **Output Filename Conflict Resolution**
 Choose the method used to resolve naming conflicts during file creation.
@@ -1304,7 +1312,7 @@ Start → All Programs → Capella → Cambria → Cambria Manager
 
 (Or double click Cambria Manager icon on the desktop)
 
-![Screenshot](30_screenshot.png)
+![Screenshot](34_screenshot.png)
 
 The Watch Folder automates batch transcoding by monitoring directories and triggering processing when new files appear.
 
@@ -1327,7 +1335,7 @@ Lists all jobs and their status
 5. **Watch Folder Tab**
 Note: Please refer to “Cambria Manager • Watch Folder” section.
 
-![Screenshot](31_screenshot.png)
+![Screenshot](35_screenshot.png)
 
 1. **Job Management Settings**
 ‘Number of Simultaneous Transcode Jobs’ – Sets the number of jobs that can be
@@ -1390,7 +1398,7 @@ checked.
 Default log location is:
 C:\Users\Public\Documents\Capella\Cambria\Logs\Diagnostics
 
-![Screenshot](32_screenshot.png)
+![Screenshot](36_screenshot.png)
 
 ---
 
@@ -1460,7 +1468,7 @@ Open Properties panel for Capella CpServiceManager
 
 ## Watch Folder Tab
 
-![Screenshot](33_screenshot.png)
+![Screenshot](37_screenshot.png)
 
 1. **Watch Folder List**
 Displays saved Watch Folder configurations. This window will display the status,
@@ -1497,7 +1505,7 @@ it can be loaded at another time.
 
 ## Watch Folder Configuration
 
-![Screenshot](34_screenshot.png)
+![Screenshot](38_screenshot.png)
 
 1. **Folder to watch**
 Enter or browse for a location for the Watch Folder.
@@ -1548,7 +1556,7 @@ Check to enable the Watch Folder after accepting configuration settings.
 13. **Retrieval**
 Add Network location to retrieve files
 
-![Screenshot](35_screenshot.png)
+![Screenshot](39_screenshot.png)
 
 1. **Retrieval List**
 Displays the type of retrievals that are configured for the current Watch Folder.
@@ -1566,7 +1574,7 @@ Remove the selected FTP or network retrieval.
 5. **Edit**
 Change the settings for the selected retrieval.
 
-![Screenshot](36_screenshot.png)
+![Screenshot](40_screenshot.png)
 
 1. **Server**
 Enter the FTP location in which files will be retrieved.
@@ -1606,7 +1614,7 @@ Move the selected trigger up/down on the Triggered Actions list.
 
 ## FTP Retrieval • Add Triggered Action
 
-![Screenshot](37_screenshot.png)
+![Screenshot](41_screenshot.png)
 
 1. **Trigger**
 Add a condition for the FTP retrieval Watch Folder.
@@ -1620,7 +1628,7 @@ selected. This field will change depending on the Action selected.
 
 ## Network Source Setting
 
-![Screenshot](38_screenshot.png)
+![Screenshot](42_screenshot.png)
 
 1. **Location**
 Select the network location in which the file retrieval will move files into the
@@ -1653,7 +1661,7 @@ trigger down on the Triggered Actions list.
 
 ## Add Triggered Action
 
-![Screenshot](39_screenshot.png)
+![Screenshot](43_screenshot.png)
 
 1. **Trigger**
 Add a condition for the network retrieval Watch Folder.
@@ -1667,7 +1675,7 @@ selected. This field will change depending on the Action selected.
 
 ## Source Acceptance
 
-![Screenshot](40_screenshot.png)
+![Screenshot](44_screenshot.png)
 
 1. **Accept if source file size is constant for**
 Set the time that a file in a watch folder, FTP location or network location must be
@@ -1690,7 +1698,7 @@ together as source input.
 
 ## Encoding & Actions
 
-![Screenshot](41_screenshot.png)
+![Screenshot](45_screenshot.png)
 
 1. **Triggered Actions**
 Displays a list of triggered actions that are added to the current Watch Folder.
@@ -1726,7 +1734,7 @@ all triggers will be one job that will perform each trigger separately.
 
 ## Add simple Action
 
-![Screenshot](42_screenshot.png)
+![Screenshot](46_screenshot.png)
 
 1. **Action**
 Add an action for the simple action trigger.
@@ -1756,7 +1764,7 @@ Audio track mapping will be applied if conditions in the .cfma file are satisfie
 
 ## Add Complex Actioon
 
-![Screenshot](43_screenshot.png)
+![Screenshot](47_screenshot.png)
 
 1. **Trigger List**
 Displays a list of triggers added from the Add Actions Trigger window.
@@ -1801,7 +1809,7 @@ Audio track mapping will be applied if conditions in the .cfma file are satisfie
 
 ## Add Complex Action • Actions Trigger
 
-![Screenshot](44_screenshot.png)
+![Screenshot](48_screenshot.png)
 
 1. **Select a Trigger**
 
@@ -1821,7 +1829,7 @@ can be overwritten as well.
 
 ## Cleanup
 
-![Screenshot](45_screenshot.png)
+![Screenshot](49_screenshot.png)
 
 1. **Clean up watch folder every:**
 Set the time before files in the Watch Folder are deleted.
@@ -1842,7 +1850,7 @@ Opens the cleanup configuration window of the selected cleanup trigger.
 
 ## Cleanup • Triggered Action
 
-![Screenshot](45_screenshot.png)
+![Screenshot](50_screenshot.png)
 
 1. **Trigger**
 Displays cleanup triggered actions.
@@ -1877,7 +1885,7 @@ Delete Source - Deletes the source file in the Watch Folder.
 
 ## Cleanup • Triggered Action • Actions Trigger
 
-![Screenshot](46_screenshot.png)
+![Screenshot](51_screenshot.png)
 
 1. **Select a Trigger**
 
@@ -1944,17 +1952,17 @@ number and unit as well.
 Step 1: Check ‘Source is a group of files.’
 Step 2: Enter file name matching criteria “%match%.*, %match%.txt”
 
-![Screenshot](47_screenshot.png)
+![Screenshot](52_screenshot.png)
 
 Step 3: Add Simple Action - Select ‘%match%.*’ under Filename is matched to following group
 filename criteria.
 
-![Screenshot](48_screenshot.png)
+![Screenshot](53_screenshot.png)
 
 Step 4: Check ‘Use Script’ - We will send necessary script files for those who purchased SST
 option.
 
-![Screenshot](49_screenshot.png)
+![Screenshot](54_screenshot.png)
 
 ## Parameter Details • Video Codecs • H.264
 
