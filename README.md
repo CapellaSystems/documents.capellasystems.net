@@ -38,7 +38,6 @@ documents.capellasystems.net/
 │   ├── css/                       # Custom CSS styles
 │   ├── pages/                     # Custom pages
 │   └── theme/                     # Theme overrides
-│       └── SearchBar.disabled/    # Disabled custom SearchBar (see below)
 ├── static/                        # Static assets (images, etc.)
 ├── sidebars.js                    # Sidebar navigation config
 ├── docusaurus.config.js           # Main Docusaurus config
