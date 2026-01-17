@@ -272,7 +272,7 @@ Cambria FTC supports importing DPX (Digital Picture Exchange) image sequences fo
 **Example XML:**
 
 ```xml
-<?xml version="1.0" encoding="UTF-8"?>
+{`<?xml version="1.0" encoding="UTF-8"?>`}
 <AudioVideoSource
   Type="DPX"
   FrameRateNum="24000"
