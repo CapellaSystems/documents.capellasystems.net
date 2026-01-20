@@ -57,6 +57,10 @@ const config = {
         theme: {
           customCss: './src/css/custom.css',
         },
+        gtag: {
+        trackingID: 'G-WQ8DZ3HYRX', // Replace with your GA4 Measurement ID
+        anonymizeIP: true, // Optional: anonymize visitor IPs
+      },
       }),
     ],
   ],

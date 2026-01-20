@@ -96,6 +96,12 @@ npm run serve
 
 Push to `main` branch triggers automatic deployment to GitHub Pages (`gh-pages` branch).
 
+### Analytics (GA4)
+
+Site traffic is tracked via **Google Analytics 4**. Configuration is in `docusaurus.config.js` under the `gtag` section.
+
+To view analytics data, visit the [Google Analytics Dashboard](https://analytics.google.com/).
+
 ---
 
 ## ⚠️ Disclaimer & Copyright Notice
