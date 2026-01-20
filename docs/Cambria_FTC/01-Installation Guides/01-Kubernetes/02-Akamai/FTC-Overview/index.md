@@ -1039,12 +1039,12 @@ C:\Users\Public\Documents\Capella\CambriaCluster\Encoder Presets
 | Sync Mode – Start of Stream | Discard or preserve audio that starts before video |
 | Sync Mode – End of Stream | End-of-stream synchronization handling |
 | Dolby E Decode | Decode (if licensed) or do not decode |
-| Pulldown Preference | Select pulldown method: 2:3:2:3 or 2:3:3:2 |
-| Frame Rate Conversion Mode | Blend Frames, Nearest Frame, or Auto |
+| Pulldown Preference | Allows users to selected which pulldown method is applied, if pulldown is used. Options include 2:3:2:3 or 2:3:3:2. |
+| Frame Rate Conversion Mode | Blend Frames: Smooths motion by blending frames. Nearest Frame: Sharper but may appear less fluid. Auto: Cambria FTC selects the optimal method based on source/target frame rates and interlacing.. |
 | Motion Compensation Strength | Dynamic or Static (100 is smoothest) |
-| Source Speed Adjustment | Adjust speed instead of dropping/duplicating frames |
-| Downscale Mode | Downscale behavior during resolution reduction |
-| Auto 601/709 Correction | Automatically apply color conversion during HD↔SD transcodes |
+| Source Speed Adjustment | Allows speed adjustment (e.g., 24 ↔ 25 fps conversions)rather than dropping/duplicating frames. Preserves motion quality but changes duration |
+| Downscale Mode | Allows speed adjustment (e.g., 24 ↔ 25 fps conversions)rather than dropping/duplicating frames. Preserves motion quality but changes duration. |
+| Auto 601/709 Correction | By default, this setting is disabled. When enabled with the “Based on source/target frame size” option, Cambria FTC automatically applies 601↔709 color conversion filters during HD↔SD transcodes to maintain correct color mapping between standard and high-definition sources |
 | Deinterlacer Mode | Options include: Best Quality (motionadaptive) or Faster (single field/frame per pair). |
 | VBI Preservation | Preserve VBI if present in target or never preserve |
 
