@@ -1287,7 +1287,7 @@ flexibility.
 • For further information on Scriptable workflows, please refer to our documentation:
 https://documents.capellasystems.net/docs/Cambria_FTC/Tutorials/Scriptable_Workflow/
 
-## FTC Conversion Tab
+### FTC Conversion Tab
 
 ![Screenshot](32_screenshot.png)
 
@@ -1296,11 +1296,17 @@ Displays a list of the jobs that have been triggered by ‘Convert All Jobs’ o
 Selected Jobs’ (Button). Select a job and right-click for the following action.
 
 Pause : Pauses the selected job
+
 Stop : Cancels the selected job
+
 Reconvert Job : Reconverts the selected job
+
 Remove : Removes the selected job
+
 Move Up Arrow : Move the selected job higher in the queue
+
 Move Down Arrow : Move the selected job lower in the queue
+
 Diagnostics : Extract job XML
 
 2. **Move Up / Move Down**
@@ -1316,15 +1322,18 @@ Displays a live preview of the source frame decode during the encoding process.
 Shows the progress of all jobs in the Conversion List.
 
 Green : Jobs are running
+
 Yellow : Jobs are paused
+
 Red : Jobs have failed
+
 Purple : Jobs have been canceled or failed
 
 6. **Job Information**
 Displays a live preview of the source frame decode, job progress, job error if any
 during the encoding process.
 
-## FTC Options Tab
+### FTC Options Tab
 
 ![Screenshot](33_screenshot.png)
 
@@ -1365,21 +1374,19 @@ Set the duration of each segment and set the temporary file location
 
 **How to Start Cambria Manager**
 
-Start → All Programs → Capella → Cambria → Cambria Manager
-
-(Or double click Cambria Manager icon on the desktop)
-
 ![Screenshot](34_screenshot.png)
 
-The Watch Folder automates batch transcoding by monitoring directories and triggering processing when new files appear.
 
 1. **File**
 Clean up jobs, Database management or Exit the application.
 
 2. **Recent Activity**
 Green : Jobs are running
+
 Yellow : Jobs are paused
+
 Red : Jobs have failed
+
 Purple : Jobs have been canceled or failed
 
 3. **Preview Window**
@@ -1447,7 +1454,7 @@ Cambria FTC 5
 Installation And User Guide
 after the specified wait time if no transcoding jobs are running on the machine
 
-## Cambria Manager • Diagnostics
+### Cambria Manager • Diagnostics
 
 Diagnostic mode allows jobs to be run with a more detailed logging. Select error job and right-click to
 select Diagnostics and run ‘Requeue with Diagnostics’. Re-run the job and error occurs, log file can be
@@ -1463,52 +1470,35 @@ C:\Users\Public\Documents\Capella\Cambria\Logs\Diagnostics
 
 **Watch Folder Summary (Basic Workflow)**
 
-1. Setup Watch Folder
-Watch Folder Configuration
+1. **Setup Watch Folder**
 
-From the Cambria Manager Watch Folder tab, click Add to launch the Watch Folder configuration dialog box.
+**Watch Folder Configuration**
+- From the Cambria Manager Watch Folder tab, click Add to launch the Watch Folder configuration dialog box.
+- A Watch Folder can be placed on a network location other than local storage by configuring FTP and network settings.
 
-A Watch Folder can be placed on a network location other than local storage by configuring FTP and network settings.
+**Source Acceptance**
+- Open the Source Acceptance tab. Adjust the polling time to check whether the source file is completely available before processing.
 
-Source Acceptance
-
-Open the Source Acceptance tab.
-
-Adjust the polling time to check whether the source file is completely available before processing.
-
-Actions
-
-From the Actions tab, select Add Simple Action.
-
-Choose Encoding to target preset and configure the desired encoding preset.
-
-Uploading to FTP after encoding can be configured using the Post Task feature in the Encode Preset settings.
+**Actions**
+- from the Actions tab, select Add Simple Action. Choose Encoding to target preset and configure the desired encoding preset.
+- Uploading to FTP after encoding can be configured using the Post Task feature in the Encode Preset settings.
 
 Click OK to add the Watch Folder to the Watch Folder List.
 
-2. Add Sources to Watch Folder
+2. **Add Sources to Watch Folder**
+- Copying short cut works to run jobs.
+- Jobs can be monitored in Job Manager tab in Cambria Manager.
 
-Add source files to the Watch Folder.
+**Add source files to the Watch Folder.
 
-Copying or creating a shortcut to the source file also works to run jobs.
+3. **Cleanup**
 
-Jobs can be monitored in the Job Manager tab in Cambria Manager.
-
-3. Cleanup
-
-Configure cleanup settings.
-
-Select the Watch Folder to clean up and configure cleanup options such as:
-
-Send email
-
-Move source
-
-Delete source
+**Configure cleanup settings.**
+- Select Watch Folder to cleanup and configure cleanup settings (send email, move source, delete source).
 
 ---
 
-## Watch Floder Service Credentials (Network Location Acess)
+### Watch Floder Service Credentials (Network Location Acess)
 The services will need to have the appropriate access rights to read from and write to network file
 locations. Here are the instructions on how to modify ‘Capella CpServiceManager’ service credentials.
 
@@ -1523,7 +1513,7 @@ Open Properties panel for Capella CpServiceManager
 
 5. Restart the service as prompted
 
-## Watch Folder Tab
+### Watch Folder Tab
 
 ![Screenshot](37_screenshot.png)
 
@@ -1560,7 +1550,7 @@ performed again.
 Loads a Watch Folder that have been saved previously. Saves the Watch Folder so
 it can be loaded at another time.
 
-## Watch Folder Configuration
+### Watch Folder Configuration
 
 ![Screenshot](38_screenshot.png)
 
