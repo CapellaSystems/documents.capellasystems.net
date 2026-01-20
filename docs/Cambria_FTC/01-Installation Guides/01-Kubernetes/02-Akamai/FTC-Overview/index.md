@@ -171,17 +171,17 @@ This approach combines enterprise scalability with cloud elasticity, ensuring yo
 | HDV | MXF | H.264 | Windows Media Audio |
 | Still Images | R3D | HEVC | |
 | JPEG2000 | RMVB | IEC DV25 | |
-| MOV | JPEG2000 | | |
-| Panasonic P2 | Microsoft DV | | |
-| RealMedia | MPEG-1 | | |
-| REDCODE RAW | MPEG-2 | | |
-| Sony XAVC | MPEG-2 IMX | | |
-| Sony XDCAM | MPEG-2 XDCAM HD | | |
-| Sony XDCAM-EX | ProRes | | |
-| Still Image (DPX, TIFF, TGA, BMP, JPG) | | | |
-| Windows Media | Uncompressed QT (in323 codec) | | |
-| | Windows Media Video | | |
-| | XAVC H.264, Intra/Long GOP | | |
+| MOV |  | JPEG2000 | |
+| Panasonic P2 |  | Microsoft DV | |
+| RealMedia |  | MPEG-1 | |
+| REDCODE RAW | | MPEG-2 | |
+| Sony XAVC | | MPEG-2 IMX | |
+| Sony XDCAM | | MPEG-2 XDCAM HD | |
+| Sony XDCAM-EX | | ProRes | |
+| Still Image (DPX, TIFF, TGA, BMP, JPG) | | RealVideo | |
+| Windows Media |  | Uncompressed | |
+| | | Uncompressed QT (in323 codec) | |
+| | | XAVC H.264, Intra/Long GOP  | |
 
 ---
 
