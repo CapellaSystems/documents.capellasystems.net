@@ -1165,6 +1165,18 @@ Typical use cases include:
 - Automate subtitle burn-in or time-based overlays via Watch Folders
 - Optimise encoding profiles based on resolution or HDR/SDR status
 
+### How Scripts Work
+
+1. At the start of a job, Cambria FTC analyses the source file.
+
+2. The source metadata (video/audio tracks, frame rate, resolution, etc.) is injected into the job XML.
+
+3. The script executes, reading the Input XML and writing a new Output XML.
+
+4. The job runs using the settings defined in the Output XML.
+
+Temporary files are created during this process (script, input XML, output XML) and are
+automatically deleted unless debugging is enabled.
 ---
 
 
