@@ -1180,9 +1180,9 @@ automatically deleted unless debugging is enabled.
 ---
 
 
-```md
-## Example Augmented XML (Source Section)
 
+## Example Augmented XML (Source Section)
+```md
 <Source Location="\\storage\media\MP4\juno_6ch.mp4" Name="Src1">
   <VideoTrackInfo
     Format="H.264 Video"
@@ -1251,7 +1251,7 @@ The --s 1 option disables automatic deletion of script files.
 
 ---
 
-## Script File Locations
+### Script File Locations
 
 Temporary script files are stored in:
 
@@ -1263,7 +1263,7 @@ C:\Users\Public\Documents\Capella\Cambria\Scripts_Tmp\
 
 ---
 
-## Testing Workflow
+### Testing Workflow
 
 1. Edit the script_xxxxx.pl file in the temporary folder.
 2. Run manually:
@@ -1278,9 +1278,12 @@ Inspect newtgt_xxxxx.xml to confirm expected changes.
 **Notes**
 
 • Scripts are executed before decoding; they cannot adjust mid-transcode behaviour.
+
 • Perl is the supported language (Python/PowerShell are not).
+
 • For bulk automation, use Watch Folders or Cambria Cluster with scripts for maximum
 flexibility.
+
 • For further information on Scriptable workflows, please refer to our documentation:
 https://documents.capellasystems.net/docs/Cambria_FTC/Tutorials/Scriptable_Workflow/
 
