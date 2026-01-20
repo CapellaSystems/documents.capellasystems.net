@@ -1094,7 +1094,7 @@ Displays filters to be applied.
 
 ---
 
-## Preset Editor – Post Task Settings
+### Preset Editor – Post Task Settings
 
 ![Screenshot](29_screenshot.png)
 
@@ -1113,7 +1113,7 @@ conversion task will be terminated.
 
 ---
 
-## Preset Editor – Notification
+### Preset Editor – Notification
 
 ![Screenshot](30_screenshot.png)
 
@@ -1121,15 +1121,15 @@ conversion task will be terminated.
    Name of the notification email.
 
 2. **Notification Event Type**
-   - On Transcoding Non-Source Error
-   - On Transcoding Source Error
+   - ‘On Transcoding Non-Source Error’ sends an email when source import error occurs.
+   - ‘On Transcoding Source error’ sends an email when source file error occurs.
 
 3. **Destination Email Address**  
-   Email address to receive notifications.
+   Sets an email address where a notification gets send to.
 
 ---
 
-## Preset Editor – Scriptable Workflow
+### Preset Editor – Scriptable Workflow
 
 ![Screenshot](31_screenshot.png)
 
@@ -1137,7 +1137,7 @@ conversion task will be terminated.
    Enable or disable script usage.
 
 2. **Timeout (ms)**  
-   Timeout for script execution.
+   Timeout for system response of script execution.
 
 3. **Script Type**  
    Currently only Perl scripts are supported.
@@ -1168,13 +1168,9 @@ Typical use cases include:
 ---
 
 
-
----
-
 ```md
 ## Example Augmented XML (Source Section)
 
-```xml
 <Source Location="\\storage\media\MP4\juno_6ch.mp4" Name="Src1">
   <VideoTrackInfo
     Format="H.264 Video"
@@ -1191,6 +1187,7 @@ Typical use cases include:
     SampleRate="48000"
     BitsPerSample="16" />
 </Source>
+```
 
 ---
 
