@@ -241,18 +241,18 @@ Grass Valley HQ/HQX is primarily used in EDIUS editing workflows. If you are wor
 
 Cambria FTC is supported on the following operating systems:
 
-# Desktop Operating Systems
+### Desktop Operating Systems
 
 - Windows 10 Pro / Enterprise (64-bit)
 - Windows 11 Pro / Enterprise (64-bit)
 
-# Server Operating Systems
+### Server Operating Systems
 
 - Windows Server 2016 (Desktop Experience)
 - Windows Server 2019 (Desktop Experience)
 - Windows Server 2022 (Desktop Experience)
 
-# Important Notes
+### Important Notes
 
 - Server Core installations are not supported. Cambria FTC requires a full desktop GUI environment.
 - Legacy Windows versions (Windows 7, Windows 8.x, Windows Server 2008/2012) are no longer supported.
