@@ -111,9 +111,9 @@ The Watch Folder feature enables fully automated batch transcoding.
 - Define one or more folders and assign a preset to each.
 - Drop files into the folder, and Cambria FTC will automatically pick them up, transcode them, and deliver the outputs.
 - Post-processing actions are supported, such as:
-  - Moving or copying output files to a local or network path
-  - Uploading to FTP/SFTP destinations
-  - Sending email notifications for job start, completion, or errors
+- Moving or copying output files to a local or network path
+- Uploading to FTP/SFTP destinations
+- Sending email notifications for job start, completion, or errors
 
 This feature is ideal for high-volume workflows that require unattended operation.
 
@@ -272,7 +272,7 @@ Cambria FTC supports importing DPX (Digital Picture Exchange) image sequences fo
 **Example XML:**
 
 ```xml
-{`<?xml version="1.0" encoding="UTF-8"?>`}
+<?xml version="1.0" encoding="UTF-8"?>
 <AudioVideoSource
   Type="DPX"
   FrameRateNum="24000"
