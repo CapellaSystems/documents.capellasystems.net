@@ -760,9 +760,13 @@ which may result in leaving a few black lines.
 as the configuration file for the Conditional Audio Map function for a Watch Folder.
 
 **Audio Track Mapping Example:**
+
 Source file: MOV video, 4 track (2ch) audio
+
 Audio file: WAV
+
 Target: HTTP video, 1 track (2ch) audio
+
 Setup Directions:
 
 Add source file and select ‘Map Audio Tracks’ to display original audio tracks of the
@@ -835,7 +839,7 @@ allows you to encode a short segment of the source based on the QuickPreview
 options configured in the ‘Options’ tab. QuickPreview encodes allows users to
 output preview file to verify encode settings and video quality
    
-## Preset Editor Summary
+### Preset Editor Summary
 
 ![Screenshot](26_screenshot.png)
 
@@ -905,7 +909,7 @@ subtitle filter with source file.
 
 ---
 
-## Preset Editor Encode Settings
+### Preset Editor Encode Settings
 
 ![Screenshot](27_screenshot.png)
 
@@ -937,50 +941,94 @@ C:\Users\Public\Documents\Capella\CambriaCluster\Encoder Presets
 
 | Folder            | Preset File                                                        |
 | ----------------- | ------------------------------------------------------------------ |
-| actvila           | acTVila_H264_AAC192kbps_1920x1080i_6000kbps.cen                    |
-| actvila           | acTVila_H264_AAC192kbps_480i_3000kbps_ClosedGOP.cen                |
-| actvila           | acTVila_H264_AAC5_1Surround256kbps_480i_2000kbps.cen               |
-| actvila           | acTVila_H264_AAC5_1Surround384kbps_1080i_6000kbps.cen              |
-| actvila           | acTVila_H264_AAC_1080i_6000kbps.cen                                |
-| actvila           | acTVila_H264_AAC_1080i_7000kbps.cen                                |
-| actvila           | acTVila_H264_AAC_1080i_8000kbps.cen                                |
-| actvila           | acTVila_H264_AAC_1920x1080i_6000kbps.cen                           |
-| actvila           | acTVila_H264_AAC_480i_2000kbps.cen                                 |
-| actvila           | acTVila_H264_AAC_480i_4_3_2000kbps.cen                             |
-| AdaptiveStreaming | HLS-H264-7Bitrates.cen                                             |
-| AdaptiveStreaming | MPEG-DASH-H264_7Bitrates.cen                                       |
-| AdaptiveStreaming | SmoothStreaming-H264_7Bitrates.cen                                 |
-| ARIB              | ARIB4KHEVC_5994fps_CBR40Mbps_420_10bit_Defaultv4.cen               |
-| ARIB              | ARIB4KHEVC_5994fps_CBR40Mbps_420_10bit_Qualityv4.cen               |
-| ARIB              | ARIB4KHLGHEVC_5994fps_CBR40Mbps_420_10bit_Defaultv4.cen            |
-| ARIB              | ARIB4KHLGHEVC_5994fps_CBR40Mbps_420_10bit_Qualityv4.cen            |
-| ARIB              | ARIB4KPQHEVC_5994fps_CBR40Mbps_420_10bit_Defaultv4.cen             |
-| ARIB              | ARIB4KPQHEVC_5994fps_CBR40Mbps_420_10bit_Qualityv4.cen             |
-| ARIB              | ARIB8KHEVC_5994fps_CBR120Mbps_420_10bit_Defaultv4.cen              |
-| ARIB              | ARIB8KHEVC_5994fps_CBR120Mbps_420_10bit_Qualityv4.cen              |
-| ARIB              | ARIB8KHLGHEVC_5994fps_CBR120Mbps_420_10bit_Defaultv4.cen           |
-| ARIB              | ARIB8KHLGHEVC_5994fps_CBR120Mbps_420_10bit_Qualityv4.cen           |
-| ARIB              | ARIB8KPQHEVC_5994fps_CBR120Mbps_420_10bit_Defaultv4.cen            |
-| ARIB              | ARIB8KPQHEVC_5994fps_CBR120Mbps_420_10bit_Qualityv4.cen            |
-| Blu Ray           | BluRay_ES_15000kbps.cen                                            |
-| Flash             | F4V_H264_AAC_480p_1000kbps.cen                                     |
-| MP4               | HEVCv4_MP4_2passVBR_1280x720_5994fps_3500Kbps_420_8bit_Default.cen |
-| MP4               | HEVCv4_MP4_2passVBR_1280x720_5994fps_3500Kbps_420_8bit_Quality.cen |
-| MP4               | HEVCv4_MP4_2passVBR_1920x1080_11988fps_16Mbps_420_8bit_Default.cen |
-| MP4               | HEVCv4_MP4_2passVBR_1920x1080_11988fps_16Mbps_420_8bit_Quality.cen |
-| MP4               | HEVCv4_MP4_2passVBR_1920x1080_2997fps_4Mbps_420_8bit_Default.cen   |
-| MP4               | HEVCv4_MP4_2passVBR_1920x1080_2997fps_4Mbps_420_8bit_Quality.cen   |
-| MP4               | HEVCv4_MP4_2passVBR_1920x1080_5994fps_8Mbps_420_8bit_Default.cen   |
-| MP4               | HEVCv4_MP4_2passVBR_1920x1080_5994fps_8Mbps_420_8bit_Quality.cen   |
-| MP4               | HEVCv4_MP4_2passVBR_3840x2160_11988fps_60Mbps_420_8bit_Default.cen |
-| MP4               | HEVCv4_MP4_2passVBR_3840x2160_11988fps_60Mbps_420_8bit_Quality.cen |
-| MP4               | HEVCv4_MP4_2passVBR_3840x2160_2997fps_15Mbps_420_8bit_Default.cen  |
-| MP4               | HEVCv4_MP4_2passVBR_3840x2160_2997fps_15Mbps_420_8bit_Quality.cen  |
-| MP4               | HEVCv4_MP4_2passVBR_3840x2160_5994fps_30Mbps_420_8bit_Default.cen  |
-| MP4               | HEVCv4_MP4_2passVBR_3840x2160_5994fps_30Mbps_420_8bit_Quality.cen  |
-| MP4               | HEVCv4_MP4_2passVBR_720x480_2997fps_1Mbps_420_8bit_Default.cen     |
-| MP4               | HEVCv4_MP4_2passVBR_720x480_2997fps_1Mbps_420_8bit_Quality.cen     |
-| MP4               | HEVCv4_MP4_2passVBR                                                |
+| actvila           |                     |
+|            | acTVila_H264_AAC192kbps_1920x1080i_6000kbps.cen                    |
+|            | acTVila_H264_AAC192kbps_480i_3000kbps_ClosedGOP.cen                |
+|            | acTVila_H264_AAC5_1Surround256kbps_480i_2000kbps.cen               |
+|            | acTVila_H264_AAC5_1Surround384kbps_1080i_6000kbps.cen              |
+|            | acTVila_H264_AAC_1080i_6000kbps.cen                                |
+|            | acTVila_H264_AAC_1080i_7000kbps.cen                                |
+|            | acTVila_H264_AAC_1080i_8000kbps.cen                                |
+|            | acTVila_H264_AAC_1920x1080i_6000kbps.cen                           |
+|            | acTVila_H264_AAC_480i_2000kbps.cen                                 |
+|            | acTVila_H264_AAC_480i_4_3_2000kbps.cen                             |
+| AdaptiveStreaming |                                              |
+|  | HLS-H264-7Bitrates.cen                                             |
+|  | MPEG-DASH-H264_7Bitrates.cen                                       |
+|  | SmoothStreaming-H264_7Bitrates.cen                                 |
+| ARIB              |                |
+|               | ARIB4KHEVC_5994fps_CBR40Mbps_420_10bit_Defaultv4.cen               |
+|               | ARIB4KHEVC_5994fps_CBR40Mbps_420_10bit_Qualityv4.cen               |
+|               | ARIB4KHLGHEVC_5994fps_CBR40Mbps_420_10bit_Defaultv4.cen            |
+|               | ARIB4KHLGHEVC_5994fps_CBR40Mbps_420_10bit_Qualityv4.cen            |
+|               | ARIB4KPQHEVC_5994fps_CBR40Mbps_420_10bit_Defaultv4.cen             |
+|               | ARIB4KPQHEVC_5994fps_CBR40Mbps_420_10bit_Qualityv4.cen             |
+|               | ARIB8KHEVC_5994fps_CBR120Mbps_420_10bit_Defaultv4.cen              |
+|               | ARIB8KHEVC_5994fps_CBR120Mbps_420_10bit_Qualityv4.cen              |
+|               | ARIB8KHLGHEVC_5994fps_CBR120Mbps_420_10bit_Defaultv4.cen           |
+|               | ARIB8KHLGHEVC_5994fps_CBR120Mbps_420_10bit_Qualityv4.cen           |
+|               | ARIB8KPQHEVC_5994fps_CBR120Mbps_420_10bit_Defaultv4.cen            |
+|               | ARIB8KPQHEVC_5994fps_CBR120Mbps_420_10bit_Qualityv4.cen            |
+| Blu Ray           |                                            |
+|            | BluRay_ES_15000kbps.cen                                            |
+| Flash             |    
+|              | F4V_H264_AAC_480p_1000kbps.cen                                   |
+| MP4               |  |
+|                | HEVCv4_MP4_2passVBR_1280x720_5994fps_3500Kbps_420_8bit_Default.cen |
+|                | HEVCv4_MP4_2passVBR_1280x720_5994fps_3500Kbps_420_8bit_Quality.cen |
+|                | HEVCv4_MP4_2passVBR_1920x1080_11988fps_16Mbps_420_8bit_Default.cen |
+|                | HEVCv4_MP4_2passVBR_1920x1080_11988fps_16Mbps_420_8bit_Quality.cen |
+|                | HEVCv4_MP4_2passVBR_1920x1080_2997fps_4Mbps_420_8bit_Default.cen   |
+|                | HEVCv4_MP4_2passVBR_1920x1080_2997fps_4Mbps_420_8bit_Quality.cen   |
+|                | HEVCv4_MP4_2passVBR_1920x1080_5994fps_8Mbps_420_8bit_Default.cen   |
+|                | HEVCv4_MP4_2passVBR_1920x1080_5994fps_8Mbps_420_8bit_Quality.cen   |
+|                | HEVCv4_MP4_2passVBR_3840x2160_11988fps_60Mbps_420_8bit_Default.cen |
+|                | HEVCv4_MP4_2passVBR_3840x2160_11988fps_60Mbps_420_8bit_Quality.cen |
+|                | HEVCv4_MP4_2passVBR_3840x2160_2997fps_15Mbps_420_8bit_Default.cen  |
+|                | HEVCv4_MP4_2passVBR_3840x2160_2997fps_15Mbps_420_8bit_Quality.cen  |
+|                | HEVCv4_MP4_2passVBR_3840x2160_5994fps_30Mbps_420_8bit_Default.cen  |
+|                | HEVCv4_MP4_2passVBR_3840x2160_5994fps_30Mbps_420_8bit_Quality.cen  |
+|                | HEVCv4_MP4_2passVBR_720x480_2997fps_1Mbps_420_8bit_Default.cen     |
+|                | HEVCv4_MP4_2passVBR_720x480_2997fps_1Mbps_420_8bit_Quality.cen     |
+|                | iPod_H264_AAC_480p_1000kbps.cen                                                |
+| MXF            |                                                 |
+|                | AS10_CNN_HD_2012.cen     |
+|                | AS10_HIGH_HD_2014.cen     |
+|                | AS10_JVC_HD_25_CBR_2012.cen     |
+|                | AS10_NRK_HD_2012.cen     |
+|                | XDCAM_HD420_1080i_HQ.cen    |
+|                | XDCAM_HD420_720p_HQ.cen     |
+|                | XDCAM_HD422_1080i_50Mbps.cen     |
+|                | XDCAM_HD422_720p_50Mbps.cen     |
+|                | XDCAM_HD420_1080i_HQ.cen    |
+| Program Stream               |     
+|                | Adobe_Encore_MPEG2-PS_480i_4000kbps.cen     |
+|                | Adobe_Encore_MPEG2-PS_480i_6000kbps.cen     |
+|                | Adobe_Encore_MPEG2-PS_480i_8000kbps.cen     |
+|                | CANVASs_MPEG1-PS_NTSC_240p_1150kbps.cen     |
+|                | CANVASs_MPEG1-PS_PAL_240p_1150kbps.cen     |
+| QuickTime               |      |
+|                | MOV_DVCPROHD_1080i.cen     |
+|                | MOV_DVCPROHD_720p.cen     |
+| Transport Stream               |      |
+|                | H264_AAC_1080i_10000kbps.cen     |
+|                | H264_AAC_1080i_9000kbps.cen     |
+|                | HEVCv4_TS_1280x720_5994fps_3500Kbps_420_8bit_Default.cen     |
+|                | HEVCv4_TS_1280x720_5994fps_3500Kbps_420_8bit_Quality.cen     |
+|                | HEVCv4_TS_1920x1080_2997fps_4Mbps_420_8bit_Default.cen     |
+|                | HEVCv4_TS_1920x1080_2997fps_4Mbps_420_8bit_Quality.cen     |
+|                | HEVCv4_TS_3840x2160_11988fps_60Mbps_420_8bit_Quality.cen     |
+|                | HEVCv4_TS_3840x2160_2997fps_15Mbps_420_8bit_Default.cen     |
+|                | HEVCv4_TS_3840x2160_2997fps_15Mbps_420_8bit_Quality.cen     |
+|                | HEVCv4_TS_3840x2160_5994fps_30Mbps_420_8bit_Default.cen     |
+|                | HEVCv4_TS_3840x2160_5994fps_30Mbps_420_8bit_Quality.cen     |
+|                | HEVCv4_TS_720x480_2997fps_1Mbps_420_8bit_Default.cen     |
+|                | HEVCv4_TS_720x480_2997fps_1Mbps_420_8bit_Quality.cen     |
+|                | HEVCv4_TS_7680x4320_5994fps_100Mbps_420_10bit_Default.cen     |
+|                | HEVCv4_TS_7680x4320_5994fps_100Mbps_420_10bit_Quality.cen     |
+| WMV               |      |
+|                | WM_WMV3_480p_1Mbps.cen     |
+|                | WM_WVC1_1080_24p_45Mbps.cen     |
 
 ## Parameter Details – Transcoding Preferences
 
