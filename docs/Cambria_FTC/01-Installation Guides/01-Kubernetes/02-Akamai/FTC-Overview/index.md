@@ -296,7 +296,7 @@ Cambria FTC supports importing DPX (Digital Picture Exchange) image sequences fo
 
 ### Cambria FTC System Requirements (2025)
 
-# Minimum Recommended Hardware
+### Minimum Recommended Hardware
 
 **CPU**
 - Intel Xeon / Core i7 or higher, or AMD equivalent
@@ -342,14 +342,14 @@ The following configurations are provided as guidelines for common deployment sc
 
 ---
 
-# Additional Notes
+### Additional Notes
 
 - GPU/VPU acceleration is optional but provides significant performance gains for H.264/HEVC, especially with UHD/HDR workloads.
 - Storage throughput is often the bottleneck for image sequences (DPX/TIFF). NVMe or RAID is recommended.
 - Networking: For cluster or cloud deployments, ensure 10 Gbps or higher connectivity to storage for sustained throughput.
 - Scaling: Cambria Cluster enables linear scalability — adding more nodes increases job capacity with minimal overhead.
 
-## Windows System Settings
+### Windows System Settings
 
 Machine Administrator for Installation:
 
@@ -362,7 +362,8 @@ logon with other users, that user must be a local administrator as well. Otherwi
 may not start.
 To add a user to local administrator: Run lusrmgr.msc, go to Groups -> Administrators, Add that
 user to this group.
-## Service Credentials
+
+### Service Credentials
 
 After installation check the Capella CpServiceManager (File Convert) or CpClusterManager
 (Cluster) service! These services will need to have the appropriate access rights to read from
@@ -376,7 +377,7 @@ CpServiceManager’ service credentials:
 5. This domain account must have access rights to the locations
 6. Restart the service as prompted
 
-## Windows Virtual Memory Setting
+### Windows Virtual Memory Setting
 To prevent some memory allocation errors that can occur, we recommend changing a Windows
 Virtual Memory setting to allow for “System managed size”:
 
@@ -387,29 +388,29 @@ Security>System>Advanced system settings)
 4. Uncheck “Automatically manage paging file size for all drives”, select “System managed
 size”
 
-### Cambria FTC Structure
+## Cambria FTC Structure
 
 Cambria FTC consists of several integrated components:
 
-## Cambria File Converter
+### Cambria File Converter
 
 The core transcoding engine, supporting a wide range of input and output formats. Handles
 video/audio processing such as scaling, frame rate conversion, logo insertion, metadata
 handling, and audio channel mapping.
 
-## Cambria Manager / Cluster
+### Cambria Manager / Cluster
 
 Provides monitoring and control of active, queued, completed, and failed conversions. Includes
 diagnostic logging, job re-queuing, priority management, and a benchmark tool for measuring
 system performance.
 
-## Cambria Watch Folder
+### Cambria Watch Folder
 
 Automates batch transcoding: assign presets to watch folders, drop files in, and Cambria FTC
 automatically processes them. Supports post-conversion tasks such as network delivery
 (FTP/SFTP, local copy/move) and email notifications.
 
-## Cambria FTC Installation
+### Cambria FTC Installation
 
 Run `setup.exe` from the Cambria FTC folder and click **Install**.
 
@@ -475,31 +476,27 @@ Click **Finish** to complete the uninstallation.
 
 ---
 
-## Using Cambria Software License in a Cloud Environment
+### Using Cambria Software License in a Cloud Environment
 
 Software license can be provided to use Cambria in a cloud environment. Please send us the
 MAC address for the machine which Cambria will be installed. It only runs on the specific MAC
 address, hence please notify us of a new MAC address when it is changed.
 
 Instructions: Copy the software license to the assigned folder and start Cambria FTC.
+
 Software license name: CapellaSoftwareLicense.lic
+
 Assigned folder name: C:\Program Files (x86)\Capella\Cambria
 
 ![Screenshot](14_screenshot.png)
 
 **Note:** When Cambria FTC is uninstalled to install a newer version, the software license is not removed. If Cambria FTC does not start after installing an update, check the assigned folder to verify that the software license exists.
 
-- Software license name: `CapellaSoftwareLicense.lic`
-- Assigned folder:  
-  `C:\Program Files (x86)\Capella\Cambria`
-
-Copy the software license to the assigned folder and start Cambria FTC.
-
 ---
 
-### Cambria FTC
+## Cambria FTC
 
-## Getting Started with Cambria FTC
+### Getting Started with Cambria FTC
 
 Start → All Programs → Capella → Cambria → Cambria FTC  
 (or open File Convert from the desktop shortcut icon)
@@ -554,7 +551,7 @@ through drag-and-drop from Explorer.
 4. **Remove Sources**  
    Remove selected sources.
 
-   **Keyboard Shortcuts**
+   Keyboard Shortcuts:
    - CTRL + A: Select all sources
    - CTRL + Click: Select individual sources
    - SHIFT + Click: Select range
@@ -580,7 +577,7 @@ allow setting it as the main source. All other sources will respect the properti
 
 ---
 
-## Source Segments Settings
+### Source Segments Settings
 
 ![Screenshot](17_screenshot.png)
 
@@ -706,11 +703,11 @@ end of the video.
 | Volume Adjustment | Adjust audio volume |
 
 
-## Auto Crop Filter Settings
+### Auto Crop Filter Settings
 
 ![Screenshot](19_screenshot.png)
 
-1.**Analysis Duration**
+1. **Analysis Duration**
 Select the duration between ‘Automatic’, ‘Entire’, ‘Specify’.
 ‘Automatic’: When source is HD file, ‘Automatic’ setting analyzes the first 15
 frames. When source is SD file, ‘Automatic’ setting analyzes the first 100 frames.
@@ -720,17 +717,17 @@ frames. When source is SD file, ‘Automatic’ setting analyzes the first 100 f
 Note: If letterbox and pillarbox are the same in an entire source, selecting
 ‘Automatic’ or ‘Specific’ can reduce process time.
 
-2.**Symmetrical Crop Setting**
+2. **Symmetrical Crop Setting**
 By selecting ‘Use Symmetrical Letterbox Cropping’, top and bottom cropping
 percentage will be the same.
 By selecting ‘Use Symmetrical Pillarbox Cropping’, left and right cropping
 percentage will be the same.
 
-3.**Maximum Percentage Audio Crop Setting**
+3. **Maximum Percentage Audio Crop Setting**
 ‘Max Percentage Auto Crop Letterbox/Pillarbox’ and sets the maximum
 percentage. The file will not be cropped more than the value.
 
-4.**Edge Detection**
+4. **Edge Detection**
 The frame height and frame width must be a multiple of 4. So after we detect
 sizes of the letterbox and pillarbox, we need to round the crop values to the
 nearest multiple of 4. By checking ‘Preserve Non-Black Content’ we will perform
