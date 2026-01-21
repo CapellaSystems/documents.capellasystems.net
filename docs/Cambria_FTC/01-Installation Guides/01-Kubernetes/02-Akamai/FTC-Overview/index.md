@@ -1659,7 +1659,7 @@ Move the selected trigger up/down on the Triggered Actions list.
 
 ---
 
-## FTP Retrieval • Add Triggered Action
+### FTP Retrieval • Add Triggered Action
 
 ![Screenshot](41_screenshot.png)
 
@@ -1673,7 +1673,7 @@ Add an action to perform when a FTP retrieval is activated.
 Specify an Email address to send notifications for when the send Email trigger is
 selected. This field will change depending on the Action selected.
 
-## Network Source Setting
+### Network Source Setting
 
 ![Screenshot](42_screenshot.png)
 
@@ -1706,7 +1706,7 @@ editing of the trigger.
 Move the selected trigger up on the Triggered Actions list. Move the selected
 trigger down on the Triggered Actions list.
 
-## Add Triggered Action
+### Add Triggered Action
 
 ![Screenshot](43_screenshot.png)
 
@@ -1720,7 +1720,7 @@ Add an action to perform when a network retrieval is activated.
 Specify an E-mail address to send notifications for when the send E-mail trigger is
 selected. This field will change depending on the Action selected.
 
-## Source Acceptance
+### Source Acceptance
 
 ![Screenshot](44_screenshot.png)
 
@@ -1743,7 +1743,7 @@ watch folder.
 Check this box to setup and define what constitutes a group of files to be accepted
 together as source input.
 
-## Encoding & Actions
+### Encoding & Actions
 
 ![Screenshot](45_screenshot.png)
 
@@ -1779,7 +1779,7 @@ all triggers will be one job that will perform each trigger separately.
 
 ---
 
-## Add simple Action
+### Add simple Action
 
 ![Screenshot](46_screenshot.png)
 
@@ -1809,7 +1809,7 @@ If the Action is encoding to target preset, these filters are applied.
 3. **Conditional Audio Mapping**
 Audio track mapping will be applied if conditions in the .cfma file are satisfied.
 
-## Add Complex Actioon
+### Add Complex Action
 
 ![Screenshot](47_screenshot.png)
 
@@ -1854,7 +1854,7 @@ If the Action is encoding to target preset, these filters are applied.
 8. **Conditional Audio Mapping**
 Audio track mapping will be applied if conditions in the .cfma file are satisfied
 
-## Add Complex Action • Actions Trigger
+### Add Complex Action • Actions Trigger
 
 ![Screenshot](48_screenshot.png)
 
