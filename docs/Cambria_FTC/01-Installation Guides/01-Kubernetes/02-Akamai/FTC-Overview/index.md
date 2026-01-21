@@ -1874,7 +1874,7 @@ can be overwritten as well.
 
 ---
 
-## Cleanup
+### Cleanup
 
 ![Screenshot](49_screenshot.png)
 
@@ -1895,7 +1895,7 @@ Remove the selected cleanup trigger settings.
 5. **Edit**
 Opens the cleanup configuration window of the selected cleanup trigger.
 
-## Cleanup • Triggered Action
+### Cleanup • Triggered Action
 
 ![Screenshot](50_screenshot.png)
 
@@ -1930,7 +1930,7 @@ when 'Move source' is selected.
 
 Delete Source - Deletes the source file in the Watch Folder.
 
-## Cleanup • Triggered Action • Actions Trigger
+### Cleanup • Triggered Action • Actions Trigger
 
 ![Screenshot](51_screenshot.png)
 
@@ -1948,7 +1948,7 @@ specified in the ‘File remains more than’ field.
 Select 1 hour, 2 hours, 3 hours, 5 hours, 10 hours or 1 day. You can overwrite the
 number and unit as well.
 
-## Triggered Action List
+### Triggered Action List
 
 | Trigger Action Result | Action                            | Description                                                                     |
 | --------------------- | --------------------------------- | ------------------------------------------------------------------------------- |
@@ -1979,7 +1979,8 @@ number and unit as well.
 | File name is matched to specified criteria                | Criteria                 | This trigger will activate if a file in the Watch Folder matches the file name and extension specified in the **Criteria** field.                                                                 |
 | File size is equal to or greater/less than specified size | Equal to or greater than | This trigger will activate if a file in the Watch Folder is equal to or greater than the specified size. The size can be changed in the drop-down menu that appears when this option is selected. |
 | File size is equal to or greater/less than specified size | Equal to or less than    | This trigger will activate if a file in the Watch Folder is equal to or less than the specified size. The size can be changed in the drop-down menu that appears when this option is selected.    |
-| Trigger Action Result                       | Action                    | Description                                                                                                                                                                   |
+
+| Trigger Action Result                       | Action                    | Result                                                                                                                                                                  |
 | ------------------------------------------- | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | All of the following / Any of the following | Encoding to target preset | Encodes a file that has been moved into the Watch Folder. A job will start with the settings specified in the encoding preset.                                                |
 | All of the following / Any of the following | Send Email                | Sends an email if a file is detected in the Watch Folder. The email address is specified under the drop-down menu when **Send Email** is selected.                            |
