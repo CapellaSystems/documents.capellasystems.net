@@ -1572,14 +1572,14 @@ kubectl get lease -o=jsonpath="{.items[0].spec.holderIdentity}"
 2. Run the following commands with the pod name:
 
 ```bash
-kubectl get node/$(kubectl get pod/<pod-name> -n capella-worker -o=jsonpath={.spec.nodeName}) -o=jsonpath="{.status.addresses[1].address}{'\n'}"
+kubectl get node/$(kubectl get pod/pod name -n capella-worker -o=jsonpath={.spec.nodeName}) -o=jsonpath="{.status.addresses[1].address}{'\n'}"
 ```
 
 ## Remote Access to Kubernetes Pod
 The general command for remote accessing a pod is:
 
 ```bash
-kubectl exec -it <pod-name> -n <namespace> -- /bin/bash
+kubectl exec -it pod name -n <namespace> -- /bin/bash
 ```
 
 # Example with Cambria FTC:
@@ -1597,23 +1597,23 @@ make sure to set the KUBECONFIG environment variable to the path of your kubecon
 more of the following commands depending on what types of logs you need (or that Capella needs). You will get
 a folder full of logs. Compress these logs into one zip file and send it to Capella:
 
-<pod-name>: the name of the pod to grab logs from (Eg. cambriaftcapp-5c79586784-wbfvf)
+pod name: the name of the pod to grab logs from (Eg. cambriaftcapp-5c79586784-wbfvf)
 
 **Cambria FTC Logs**
 ```bash
-kubectl cp <pod-name>:/opt/capella/Cambria/Logs ./CambriaFTCLogs -n capella-worker
+kubectl cp pod name:/opt/capella/Cambria/Logs ./CambriaFTCLogs -n capella-worker
 ```
 **Cambria Cluster Logs**
 ```bash
-kubectl cp <pod-name>:/opt/capella/CambriaCluster/Logs ./CambriaClusterLogs -n default
+kubectl cp pod name:/opt/capella/CambriaCluster/Logs ./CambriaClusterLogs -n default
 ```
 **Cambria License Manager (Cambria FTC)**
 ```bash
-kubectl cp <pod-name>:/opt/capella/CambriaLicenseManager/Logs ./CambriaFTCLicLogs -n capella-worker
+kubectl cp pod name:/opt/capella/CambriaLicenseManager/Logs ./CambriaFTCLicLogs -n capella-worker
 ```
 **Cambria License Manager (Cambria Cluster)**
 ```bash
-kubectl cp <pod-name>:/opt/capella/CambriaLicenseManager/Logs ./CambriaClusterLicLogs -n default
+kubectl cp pod name:/opt/capella/CambriaLicenseManager/Logs ./CambriaClusterLicLogs -n default
 ```
 
 # Copy Files to Cambria FTC / Cluster Pod
@@ -1622,7 +1622,7 @@ you want to use as a source directly from the encoding machine’s file system. 
 to the Cambria FTC / Cluster pod, do the following:
 
 ```bash
-kubectl cp <host-file-path> <pod-name>:<path-inside-container> -n <namespace>
+kubectl cp <host-file-path> pod name:<path-inside-container> -n <namespace>
 ```
 
 Examples:
@@ -1646,7 +1646,7 @@ which causes a new pod to be created / existing pod to take over the containers.
 
 ```bash
 Kubectl does not have a direct restart command. To restart a pod, delete it:
-kubectl delete pod <pod-name> -n <namespace>
+kubectl delete pod pod name -n <namespace>
 ```
 
 Examples:
