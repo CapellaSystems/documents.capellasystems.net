@@ -1962,7 +1962,7 @@ number and unit as well.
 | Retrieval failed      | Delete source in the Watch Folder | Deletes the failed source from the Watch Folder.                                |
 | Retrieval failed      | Delete source on the server       | Deletes the retrieved source from the FTP server after retrieval has completed. |
 
-## Actions – Add Simple Action
+### Actions – Add Simple Action
 
 | Trigger Action Result | Action                    | Description                                                                                                                                                                   |
 | --------------------- | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1972,7 +1972,7 @@ number and unit as well.
 | Always                | Move Source               | Moves a file that has been detected in the Watch Folder. The destination location can be specified in the **Target folder** field when **Move Source** is selected.           |
 | Always                | Delete Source             | Deletes the source file if the file is not needed.                                                                                                                            |
 
-## Actions – Add Complex Action
+### Actions – Add Complex Action
 
 | Trigger                                                   | Option                   | Description                                                                                                                                                                                       |
 | --------------------------------------------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1988,16 +1988,17 @@ number and unit as well.
 | All of the following / Any of the following | Move Source               | Moves a file that has been detected in the Watch Folder. The destination location can be specified in the **Target folder** field when **Move Source** is selected.           |
 | All of the following / Any of the following | Delete Source             | Deletes the source file if the file is not needed.                                                                                                                            |
 
-## Cleanup – Add Triggered Action
+### Cleanup – Add Triggered Action
 
 | Trigger Result                                   | Description                                                                                                                                                                                                                            |
 | ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | File remains more than specified period          | This trigger will delete a file in the Watch Folder if it has been there longer than the time specified in the **File remains more than** field. This field appears only when **File remains more than specified period** is selected. |
 | No running job or queued job requires the source | If a file in the Watch Folder is not currently being used by a running job or a queued job, the source file will be deleted, moved, or an email notification will be sent.                                                             |
 
-## Canvas SST Subtitles Burn-in (Available for SST Option)
+### Canvas SST Subtitles Burn-in (Available for SST Option)
 
 Step 1: Check ‘Source is a group of files.’
+
 Step 2: Enter file name matching criteria “%match%.*, %match%.txt”
 
 ![Screenshot](52_screenshot.png)
@@ -2012,20 +2013,20 @@ option.
 
 ![Screenshot](54_screenshot.png)
 
-## Parameter Details • Video Codecs • H.264
+### Parameter Details • Video Codecs • H.264
 
-# H.264 Codec
+### H.264 Codec
 | Video Setting                        | Description                                                                                                                                                                                                                                                                                                                                                                                        |
 | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Profile                              | H.264 profiles define basic feature sets that address certain application domains. In combination with the Level setting, it provides constraints on encoding attributes such as picture size, frame rate, bitrate, and other settings. Device and application specifications often state the minimum and maximum Profile and Level supported. **Baseline**, **Main**, and **High** are available. |
-| Level                                | H.264 Level provides constraints on encoding attributes such as picture size, frame rate, bitrate, and other settings. Device and application specifications often state the minimum and maximum Profile and Level supported. Available levels range from **1.0 to 5.1**.                                                                                                                          |
+| Profile                              | H.264 profiles define basic feature sets that address certain application domains. In combination with the Level setting, it provides constraints on some encoding attributes such as picture size, frame rate, bitrate and other settings. Device and application specifications will often state the minimum and maximum Profile and Level supported. ‘Baseline’, ‘Main’, ‘High’ are available to select |
+| Level                                | H.264 level provides constraints on some encoding attributes such as picture size, frame rate, bitrate and other settings. Device and application specifications will often state the minimum and maximum Profile and Level supported. Available level is from 1.0 to 5.1.                                                                                                                          |
 | Frame Size (pixels)                  | Configure the width and height of the video in pixels. **Same as Source** matches the detected source frame size. **Custom** allows manual input of the target frame size.                                                                                                                                                                                                                         |
 | Frame Rate (fps)                     | Frequency of frames per second for playback. **Same as Source** matches the detected source frame rate. **Custom** allows manual input of the target frame rate.                                                                                                                                                                                                                                   |
-| Interlacing                          | Method used for encoding and storing video frames. **Progressive** uses frames instead of fields. **Upper Field First** and **Lower Field First** use separate fields. **Same as Source** matches the detected source interlacing mode.                                                                                                                                                            |
-| Video Aspect Ratio                   | Sets the display aspect ratio (DAR) of the target. **Same as Source** matches the detected source DAR. **Custom** allows manual input of pixel aspect ratio (PAR). PAR determines DAR. When the difference between source and target PAR is within 5%, the video is stretched; if greater than 5%, pillarbox or letterbox is added.                                                                |
-| Rate Control Mode                    | Sets the rate control mode: Constant Bitrate (CBR) or 2-pass Variable Bitrate (VBR). 2-pass VBR is available only for certain container configurations (Elementary Stream, MP4, HTTP Streaming).                                                                                                                                                                                                   |
+| Interlacing                          | Method used for encoding/storing video frames. ‘Progressive’ uses frames instead of fields. ‘Upper Field First’ uses separate fields with the upper (top) field first. ‘Lower Field First’ uses separate fields with the lower (bottom) field first. ‘Same as Source’ option allows the target interlacing to match the interlacing mode detected in the source                                                                                                                                                            |
+| Video Aspect Ratio                   | Set the display aspect ratio (DAR) of the target. ‘Same as Source’ option allows the target frame rate to match the display aspect ratio detected in the source. ‘Custom’ option allows for manual input of the pixel aspect ratio (PAR). Pixel aspect ratio (PAR) determines display aspect ratio (DAR). When selecting 4:3, 16:9, it configures display aspect ratio (PAR). When configured pixel aspect ratio (PAR) in source filter is different from target pixel aspect ratio (PAR) within 5%, it matches to target video aspect ratio by stretching. If the difference is more than 5%, pillarbox and letterbox is added.                                                                |
+| Rate Control Mode                    | Sets either constant bitrate encoding (CBR), 2-pass variable bitrate encoding (VBR) as the rate control mode. 2-pass VBR is only available for certain Container configurations (elementary stream, MP4, HTTP Streaming).                                                                                                                                                                                                   |
 | Bitrate (kbps)                       | Amount of bits per second used to encode the target video. Values are in kilobits per second. Recommended values are **2000–4000 kbps for SD (720×480)** and **7000–9000 kbps for HD (1920×1080)**. Maximum value is restricted by the selected H.264 Profile and Level.                                                                                                                           |
-| Maximum CPB size (sec)               | Maximum CPV (VBV buffer) size simulating the target decoder buffer. Typically set to **1–2 seconds** for MPEG-2 TS. For acTVila conformance, set to **1 second**. For web content, values of **5 seconds or more** may be used. Custom values are entered in kbits/sec, with a minimum of **200 kbits/sec** and a maximum of **62500 kbits/sec**.                                                  |
+| Maximum CPB size (sec)               | Maximum CPV (VBV buffer), simulates the size of the target decoder's video buffer. For MPEG-2 transport streams this value is typically set to 1 or 2 seconds. For acTVila conformance this should be set to 1 second. For web content this can be set to 5 seconds or more. ‘Custom’ option allows you to manually input the CPB size in (kbits/sec). Values are in seconds. The minimum is 200 kbits/second, the maximum is 62500 kbits/second.                                                  |
 | Conformance Mode                     | Standards compliance mode. The **ARIB** option creates an H.264 bitstream based on ARIB standards.                                                                                                                                                                                                                                                                                                 |
 | Maximum GOP (frames)                 | Maximum length of the GOP. Range is **1–250**. For I-frame-only encoding, set this value to **1**.                                                                                                                                                                                                                                                                                                 |
 | Use fixed length GOP                 | When enabled, the maximum GOP length must be an integral multiple of (**Number of B Frames + 1**). If disabled, Cambria automatically selects an optimal value.                                                                                                                                                                                                                                    |
@@ -2049,9 +2050,9 @@ option.
 | Extended Spatial Filter Mode         | Extended spatial pre-filter mode. **0** = Off, **1** = On (uses Extended Spatial Filter Strength for partial filtering within each frame).                                                                                                                                                                                                                                                         |
 | Extended Spatial Filter Strength     | Extended spatial pre-filter strength. Range is **1–10**. Higher values apply stronger filtering.                                                                                                                                                                                                                                                                                                   |
 
-## Parameter Details • Video Codecs • x264
+### Parameter Details • Video Codecs • x264
 
-# x264 Codec
+### x264 Codec
 
 | Video Setting                        | Description                                                                                                                                                                                                                                                                                                                                                                                         |
 | ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -2087,9 +2088,9 @@ option.
 | Extended Spatial Filter Mode         | Extended spatial pre-filter mode. **0** = Off, **1** = On (uses Extended Spatial Filter Strength for partial filtering within each frame).                                                                                                                                                                                                                                                          |
 | Extended Spatial Filter Strength     | Extended spatial pre-filter strength. Range is **1–10**. Higher values apply stronger filtering.                                                                                                                                                                                                                                                                                                    |
 
-## Parameter Details • Video Codecs • x265
+### Parameter Details • Video Codecs • x265
 
-# x265 Codec
+### x265 Codec
 
 | Video Setting                                                    | Description                                                                                                                                                                                                                                                                                                     |
 | ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -2117,9 +2118,9 @@ option.
 | Write Timecode                                                   | When enabled, embeds a timecode track in the output for editing and playback synchronization.                                                                                                                                                                                                                   |
 | Color Primaries / Transfer Characteristics / Matrix Coefficients | Defines colorimetry (for example **BT.709**, **BT.2020**) and transfer functions (**PQ**, **HLG**). Essential for HDR workflows. Leaving these values unspecified may cause playback mismatches.                                                                                                                |
 
-## Parameter Details • Audio Codecs • AAC
+### Parameter Details • Audio Codecs • AAC
 
-# AAC Codec
+### AAC Codec
 
 | Audio Setting              | Description                                                                                                                                                           |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -2131,18 +2132,16 @@ option.
 | Use Temporal Noise Shaping | Temporal Noise Shaping (TNS) reduces noise during audio encoding and helps eliminate echoes and background noise.                                                     |
 | Language Code (ISO 639)    | Defines the language used for the audio track. Refer to the ISO 639 standard for valid language codes (for example, **eng** for English).                             |
 
-Define triggered actions that execute after FTP retrieval completes.
-
 ---
 
-## Parameter Details • Container • MPEG-2 TS
+### Parameter Details • Container • MPEG-2 TS
 
 Video codec can be set as H.264, H.264 (x264 ) 1, or MPEG-2. Audio can be set as AAC, PCM,
 Passthrough, or AC-3
 Note: Additional Purchase Option required for AC-3. This audio codec option will only be available if your
 license is enabled for AC-3.
 
-# MPEG-2 TS Container
+### MPEG-2 TS Container
 | Setting                         | Description                                                                                                                                                                                                                                                                                 |
 | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Automatic Transport Stream Rate | When enabled, this setting automatically sets the transport stream rate based on the video and audio bitrates. When disabled, the user can manually set the transport stream rate. Transport stream rates should be approximately **5% larger** than the combined video and audio bitrates. |
@@ -2159,19 +2158,20 @@ license is enabled for AC-3.
 | Program Number                  | Specifies the program number within the Program Map Table (PMT). The program number represents a channel in the transport stream, allowing multiple logical programs for different purposes.                                                                                                |
 | File Extension                  | Sets the file extension for encoded videos. Any extension may be specified; the default extension is **.ts**.                                                                                                                                                                               |
 
-## Parameter Details • Container • MP4
+### Parameter Details • Container • MP4
 
 Video codec can be set as H.264 or H.264 (x264 ). Audio can be set as AAC, PCM, or
 Passthrough.
+
 Note: Additional Purchase Option required for x264. This video codec option will only be
 available if your license is enabled for x264.
 
-# MP4 Container
+### MP4 Container
 | Setting        | Description                                                                                       |
 | -------------- | ------------------------------------------------------------------------------------------------- |
 | File Extension | Default file extension is **.mp4**. For Flash9 format, change the **File Extension** to **.f4v**. |
 
-## Parameter Details • Container • HTTP
+### Parameter Details • Container • HTTP
 
 HTTP live streaming format enables users to stream video and audio from web server to mobile
 device such as iPhone or PC through HTTP protocol. It supports both live streaming and on
@@ -2182,22 +2182,22 @@ It can protect contents by media encryption and user authentication on HTTPS pro
 Note: Additional Purchase Option required. You will not see the HTTP exporter if your license
 does not contain HTTP.
 
-# HTTP
+### HTTP
 | Setting                | Description                                                                                                                         |
 | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | Frame Rate (fps)       | Sets the frame rate (frames per second). Available range is **12 to 30 fps**.                                                       |
 | Segment Duration (sec) | Sets the duration of each segmented file.                                                                                           |
 | Video Layers           | Select from the available presets: **640×480 (1000 kbps)**, **320×240 (700 kbps)**, **320×240 (450 kbps)**, **320×240 (300 kbps)**. |
 
-## Parameter Details • Container • MOV
+### Parameter Details • Container • MOV
 Video codec can be set as DVCPROHD, DV, Uncompressed, or ProRES. Audio is PCM.
 
-# MOV Container
+### MOV Container
 | Setting        | Description                         |
 | -------------- | ----------------------------------- |
 | File Extension | Default file extension is **.mov**. |
 
-## Parameter Details • Container • MXF
+### Parameter Details • Container • MXF
 
 Video codec can be set to XDCAM DVCAM, XDCAM IMX, or MPEG-2 XDCAM HD. The charts
 below refer to MPEG-2 XDCAM HD. Audio is PCM.
@@ -2208,7 +2208,7 @@ Note: Options available are based on the Sony XDCAM spec, some settings are only
 certain combinations. For example, 1920x1080 video resolution is only supported in 4:2:2 color
 sampling.
 
-# MPEG-2 XDCAM HD
+### MPEG-2 XDCAM HD
 | Video Setting    | Options                        |
 | ---------------- | ------------------------------ |
 | Color Sampling   | 4:2:0, 4:2:2                   |
@@ -2217,14 +2217,14 @@ sampling.
 | Frame Rate (fps) | 23.98, 25, 29.97, 50, 59.94    |
 | Bitrate (kbps)   | 17500, 25000, 35000, 50000     |
 
-# MPEG-2 XDCAM HD Container
+### MPEG-2 XDCAM HD Container
 | Setting        | Description                         |
 | -------------- | ----------------------------------- |
 | File Extension | Default file extension is **.mxf**. |
 
 **Parameter Details • Container • Windows Media**
 
-# Windows Media Video
+### Windows Media Video
 | Video Setting | Options / Description                                                                   |
 | ------------- | --------------------------------------------------------------------------------------- |
 | Codec         | **WVC1** (Windows Media 9 Advanced Profile)                                             |
@@ -2233,13 +2233,13 @@ sampling.
 | Codec         | **WMV1** (Windows Media Video 7)                                                        |
 | Codec         | **WMV PowerToy (.reg)** – Supports `.reg` configuration files created from WMV PowerToy |
 
-# Windows Media Audio
+### Windows Media Audio
 | Audio Setting | Options / Description |
 | ------------- | --------------------- |
 | Codec         | **WMAudio V9**        |
 | Codec         | **WMAudio V8**        |
 
-# Windows Media Container
+### Windows Media Container
 | Setting        | Description                         |
 | -------------- | ----------------------------------- |
 | File Extension | Default file extension is **.wmv**. |
