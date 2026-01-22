@@ -1280,11 +1280,11 @@ eksctl delete cluster --name=$CLUSTER_NAME --region=$REGION --wait
     a. Search for **Elastic Kubernetes Service** in the region where the cluster was located.  
        Confirm that the deleted cluster no longer appears in the list.
 
-![Screenshot](05screenshot.png)
+![Screenshot](05_screenshot.png)
 
     b. Search for CloudFormation in the region that the Kubernetes Cluster is located. Make sure there are no stacks specific to the Kubernetes Cluster on the list 
 
-![Screenshot](06screenshot.png)
+![Screenshot](06_screenshot.png)
 
 c. Important: Check in **EC2 Volumes** and **Load Balancers** to make sure no volumes or load balancers were leftover from the Kubernetes cluster.  
 Most AWS resources will include the EKS cluster name in their resource names.
