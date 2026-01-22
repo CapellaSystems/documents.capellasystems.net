@@ -1,0 +1,79 @@
+---
+id: cambria-cluster-ftc-aws-5-6-0
+title: Cambria Cluster / FTC 5.6.0 – AWS Kubernetes
+---
+
+## Document History
+
+| Version | Date       | Description                                      |
+|---------|------------|--------------------------------------------------|
+| 5.5.0   | 04/11/2025 | Updated for release 5.5.0.23529 (Linux)          |
+| 5.6.0   | 10/31/2025 | Updated for release 5.6.0.26533 (Linux)          |
+
+> **Download the online version of this document for the latest information and latest files. Always download the latest files.**
+
+Do not move forward with the installation process if you do not agree with the End User License Agreement (EULA) for our products.  
+You can download and read the EULA for Cambria FTC, Cambria Cluster, and Cambria License Manager from the links below:
+
+- [Cambria License Manager EULA](https://www.dropbox.com/s/1wg7ee7a59kzi8h/EULA_Cambria_License_Manager.pdf?dl=0)  
+- [Cambria Cluster EULA](https://www.dropbox.com/s/oemlax63aatjjiw/EULA_Cluster.pdf?dl=0)  
+- [Cambria FTC EULA](https://www.dropbox.com/s/ualv9usxsowh6m2/EULA_FTC.pdf?dl=0)
+
+---
+
+### Limitations and Security Information
+
+Cambria FTC, Cluster, and License Manager run inside Linux Docker containers.  
+Security checks for this version are included in the general Linux documentation:
+
+- **Cambria FTC / Cluster (sections 8 and 9):**  
+  https://www.dropbox.com/scl/fi/rvf02h8tajsxrfbhpgmzy/Linux_Cambria_FTC_5_6_0_Guide.pdf?rlkey=gtqeowx2b9gartth8s6dwo95j&st=4wpy1dfi&dl=0
+
+---
+
+## ⚠️ Important: Before You Begin
+
+PDF documents often have copy/paste issues. For best results, download this document and any referenced PDFs and open them in a viewer such as Adobe Acrobat.
+
+For commands that span multiple lines, copy each line individually and verify accuracy.
+
+This document references **Kubernetes version 1.34 only**.
+
+---
+
+## ⚠️ Critical Information: Read Before Proceeding
+
+Before starting the installation, review the following key points:
+
+### 1. A New Kubernetes Cluster Will Be Deployed
+The installation process creates a **brand-new AWS EKS cluster**, isolated from other applications.
+
+### 2. Default Installation is Non-Secure
+- The default deployment uses open, non-secure settings.  
+- Secure or hardened deployments require AWS expertise (not covered in this guide).  
+- Firewall details are provided in **Section 1.5**.
+
+### 3. Understand Your Transcoding Requirements
+Know your:
+- Expected encoding workload  
+- Input/output specifications  
+- GPU requirements  
+
+See **Section 1.3** for AWS machine recommendations.
+
+### 4. Administrative AWS Rights Required
+Many steps require IAM-level administrative permissions in AWS.
+
+### 5. Verify AWS Account Quota
+Ensure your AWS account has enough quota to deploy all required EKS resources  
+(see **Section 1.2**).
+
+### 6. A Separate Linux Machine is Required
+A dedicated Linux machine is required to:
+- Install AWS and Kubernetes tools  
+- Run AWS CLI  
+- Safely store kubeconfig files  
+
+### 7. Verify Region-Specific Resource Availability
+GPU availability and instance types vary by AWS region.  
+Check AWS documentation to confirm support in your region of operation.
