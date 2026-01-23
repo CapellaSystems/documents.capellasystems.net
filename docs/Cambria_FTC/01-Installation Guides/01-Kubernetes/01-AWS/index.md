@@ -829,9 +829,8 @@ Example using nano:
 ```bash
 nano cambriaClusterConfig.yaml
 ```
-
-- <span style="color: #007bff">Blue</span>: values provided by Capella (release defaults)  
-- <span style="color: #d9534f">Red</span>: values that **must be customized** for your specific environment
+Values provided by Capella (release defaults)  
+Values that **must be customized** for your specific environment
 
 ### cambriaClusterConfig.yaml Explanation
 
