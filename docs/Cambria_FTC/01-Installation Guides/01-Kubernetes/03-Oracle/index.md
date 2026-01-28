@@ -831,17 +831,189 @@ https://<server>:8161
 
 2. In a web browser, enter the above URL. This should trigger an "Unsafe" page similar to the one below:
 
-![Screenshot](01_filter_icon.png)
+![Screenshot](01_screenshot.png)
 
 3. Click on Advanced and Proceed to [ EXTERNAL IP ] (unsafe). This will show the login page.
 
-![Screenshot](02_filter_icon.png)
+![Screenshot](02_screenshot.png)
+
+4. Log in using the credentials created in the Helm values yaml file (See cambriaClusterWebUIUser)
+
+#### 5.3.2. Cambria Cluster REST API
+Skip this step if the ingress will be used instead of external access or any other type of access. For
+any issues, contact the Capella support team.
+
+1. Get the REST API address:
+
+**Option 1:** External Url if External Access is Enabled
+
+Run the following command:
+
+```bash
+kubectl get svc/cambriaclusterservice -n default
+-o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].ip}{':8650'}{'\n'}"
+```
+
+The response should look something like this:
+
+```bash
+https://192.122.45.33:8650
+```
+
+**Option 2:** Non-External Url Access
+
+Run the following command to temporarily expose the REST API via port-forwarding:
+
+```bash
+kubectl port-forward -n default svc/cambriaclusterservice 8650:8650 --address=0.0.0.0
+```
+
+The url depends on the location of the port-forward. If the web browser and the port-forward are on the
+same machine, use localhost. Otherwise, use the ip address of the machine with the port-forward:
+
+```bash
+https://<server>:8650
+```
+
+2. Run the following API query to check if the REST API is active:
+
+```bash
+curl -k -X GET https://<server>:8650/CambriaFC/v1/SystemInfo
+```
+
+#### 5.3.3. Cambria License
+Skip this step if the ingress will be used instead of external access or any other type of access. The
+Cambria license needs to be active in all entities where the Cambria application is deployed. Run the following
+steps to check the cambria license. Access to a web browser is required:
+
+1. Get the url for the License Manager WebUI:
+
+**Option 1:** External Url if External Access is Enabled.
+
+Run the following command:
+
+```bash
+kubectl get svc/cambriaclusterwebuiservice -n default
+-o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].ip}{':8481'}{'\n'}"
+```
+
+The response should look something like this:
+
+```bash
+https://192.122.45.33:8481
+```
+
+**Option 2:** Non-External Url Access
+
+Run the following command to temporarily expose the License WebUI via port-forwarding:
+
+```bash
+kubectl port-forward -n default svc/cambriaclusterwebuiservice 8481:8481 --address=0.0.0.0
+```
+
+The url depends on the location of the port-forward. If the web browser and the port-forward are on the
+same machine, use localhost. Otherwise, use the ip address of the machine with the port-forward:
+
+```bash
+https://<server>:8481
+```
+
+2. In a web browser, enter the above url. This should trigger an "Unsafe" page similar to the one below:
+
+![Screenshot](03_screenshot.png)
+
+3.  Click on Advanced and Proceed to [ EXTERNAL IP ] (unsafe). This will show the login page.
+
+![Screenshot](04_screenshot.png)
 
 4. Log in using the credentials created in the Helm values yaml file (See cambriaClusterWebUIUser)
 
 5. Verify that the License Status is valid for at least either the Primary or Backup. Preferably, both Primary and
 Backup should be valid. If there are issues with the license, wait a few minutes as sometimes it takes a few minutes
-to properly update. If still facing issues, contact the Capella support team
+to properly update. If still facing issues, contact the Capella support team.
+
+#### 5.3.4. Cambria Ingress**
+Skip this step if not planning to test with Cambria's ingress. For any issues, contact the Capella support
+team.
+
+**5.3.4.1. Get the Ingress Endpoints***
+There are two ways to use the ingress:
+
+**Option 1: Using Default Testing Ingress**
+Only use this option for testing purposes. Skip to option 2 for production. In order to use the
+ingress in the testing state, the hostname needs to be DNS resolvable on the machines that will need
+access to the Cambria applications.
+
+1. Get the ingress **HOSTS** and **ADDRESS:**
+
+```bash
+kubectl get ingress -A
+```
+
+The response should look similar to the following:
+
+```bash
+NAMESPACE NAME CLASS HOSTS ADDRESS
+PORTS AGE
+default cambriaclusteringress nginx api.oracle.capellatest.com,webui.oracleicapellatest.com
+55.99.103.99 80, 443 23m
+monitoring cambriamonitoringingress nginx monitoring.myhost.com
+55.99.103.99 80, 443 58m
+```
+
+2. In your local server(s) or any other server(s) that need to access the ingress, edit the hosts file (in
+Linux, usually /etc/hosts) and add the following lines (Example):
+
+```bash
+55.99.103.99    api.myhost.com
+55.99.103.99    webui.myhost.com
+55.99.103.99    monitoring.myhost.com
+```
+
+**Option 2: Using Publicly Registered Domain (Production)**
+Contact Capella if unable to set up a purchased domain with the ingress. If the domain is set up,
+the endpoints needed are the following:
+
+Example with mydomain.com as the domain:
+
+```bash
+REST API: https://api.myhost.com
+WebUI: https://webui.myhost.com
+Grafana Dashboard: https://monitoring.myhost.com
+```
+
+**5.3.4.2. Test Ingress Endpoints**
+If using the test ingress, these steps can only be verified in the machine(s) where the hosts file was
+modified. This is because the test ingress is not publicly DNS resolvable and so only those whose
+hosts file (or DNS) have been configured to resolve the test ingress will be able to access the
+Capella applications in this way.
+
+1. Test Cambria Cluster WebUI with the ingress that starts with webui. Run steps 2-3 of 5.3.1. Cambria Cluster WebUI. 
+Example:
+
+```bash
+https://webui.myhost.com
+```
+
+2. Test Cambria REST API with the ingress that starts with api. Run step 2 of 5.3.2. Cambrai Cluster REST API.
+Example:
+
+```bash
+https://api.myhost.com/CambriaFC/v1/SystemInfo
+```
+
+3. Test Grafana Dashboard with the ingress that starts with monitoring. Run the verification steps for the
+Grafana Dashboard section 1.4. Verify Grafana Deployment (steps 2-4) in the document in 3.4. Performance
+Metrics and Logging. Example:
+
+```bash
+https://monitoring.myhost.com
+```
+
+## 6 Testing Cambria FTC / Cluster
+The following guide provides information on how to get started testing the Cambria FTC / Cluster software:
+
+https://www.dropbox.com/scl/fi/ymu5fln1n811a1i92radv/Cambria_Cluster_and_FTC_5_6_0_Kubernetes_User_Guide.pdf?rlkey=cd0unkt9hcs3mhjp1fjbcvi9n&st=hjsb8y9e&dl=0
 
 ## 7. Updating / Upgrading Cambria Cluster / FTC
 
