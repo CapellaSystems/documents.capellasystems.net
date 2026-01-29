@@ -19,26 +19,30 @@ You can download and read the EULA for Cambria FTC, Cambria Cluster, and Cambria
 - [Cambria Cluster EULA](https://www.dropbox.com/s/oemlax63aatjjiw/EULA_Cluster.pdf?dl=0)  
 - [Cambria FTC EULA](https://www.dropbox.com/s/ualv9usxsowh6m2/EULA_FTC.pdf?dl=0)
 
-### Limitations and Security Information
+#### Limitations and Security Information
 
 Cambria FTC, Cluster, and License Manager are installed on Linux Docker containers. Limitations and security checks done for this version are included in our general Linux Documents below:
-
-- [Linux Cambria Cluster and FTC 5.5.0 Guide](https://www.dropbox.com/scl/fi/0rvskhpqtla6dffhbfli5/Linux_Cambria_Cluster_and_FTC_5_5_0_Guide.pdf?rlkey=ngryjzox121ow5fgbc4y8n2yd)
 
 > **Note:** These documents are for informational use only. The setup for Kubernetes starts in section 3. Create Kubernetes Cluster.  
 > This document references Kubernetes version 1.32.1 only.
 
+- [Linux Cambria Cluster and FTC 5.5.0 Guide](https://www.dropbox.com/scl/fi/0rvskhpqtla6dffhbfli5/Linux_Cambria_Cluster_and_FTC_5_5_0_Guide.pdf?rlkey=ngryjzox121ow5fgbc4y8n2yd)
+
 ---
 
-## ⚠️ Important: Before You Begin
+#### ⚠️ Important: Before You Begin
 
 PDF documents have a copy/paste issue. For best results, download this document and any referenced PDF documents in this guide and open them in a PDF viewer such as Adobe Acrobat.
 
 For commands that are in more than one line, copy each line one by one and check that the copied command matches the one in the document.
 
+#### Information
+
+This document references Kubernetes version 1.34.1 only
+
 ---
 
-## ⚠️ Critical Information: Read Before Proceeding with Installation
+### ⚠️ Critical Information: Read Before Proceeding with Installation
 
 Before starting the installation, carefully review the following considerations. Skipping this section may result in errors, failed deployments, or misconfigurations.
 
