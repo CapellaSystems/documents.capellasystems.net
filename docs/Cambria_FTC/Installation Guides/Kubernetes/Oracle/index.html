@@ -11,7 +11,7 @@
 
 
 <link rel="search" type="application/opensearchdescription+xml" title="Capella Documents" href="/opensearch.xml"><link rel="stylesheet" href="/assets/css/styles.32bb5c81.css">
-<script src="/assets/js/runtime~main.db336884.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.58cc960d.js" defer="defer"></script>
 <script src="/assets/js/main.09c09f3d.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -81,7 +81,7 @@
 <!-- -->● Consult Oracle Cloud documentation to confirm available resources in your desired region.</p>
 </li>
 </ol>
-<h1>Document Overview</h1>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="document-overview">Document Overview<a href="#document-overview" class="hash-link" aria-label="Direct link to Document Overview" title="Direct link to Document Overview">​</a></h4>
 <p>The purpose of this document is to provide a walkthrough of the installation and initial testing process of the Cambria Cluster and Cambria FTC applications in the Kubernetes environment. The basic view of the document is the following:</p>
 <ol>
 <li>Overview of the Cambria Cluster / FTC Environment in a Kubernetes Environment</li>
@@ -100,22 +100,19 @@
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="11-cambria-cluster--ftc-kubernetes-deployment">1.1. Cambria Cluster / FTC Kubernetes Deployment<a href="#11-cambria-cluster--ftc-kubernetes-deployment" class="hash-link" aria-label="Direct link to 1.1. Cambria Cluster / FTC Kubernetes Deployment" title="Direct link to 1.1. Cambria Cluster / FTC Kubernetes Deployment">​</a></h3>
 <p>There are two major applications involved in this Kubernetes installation: <strong>Cambria Cluster</strong> and <strong>Cambria FTC</strong>.</p>
 <p><strong>Cambria Cluster:</strong><br>
-<!-- -->This deployment is recommended to run on at least 3 nodes (<code>replica = 3</code>) with a service (Load Balancer) that exposes the application externally. For each of these nodes, Cambria Cluster will be installed on its own pod and designated to its own node. One node acts as the leader and the other two are replicas for the purpose of replacing the leader in the case it becomes inactive, corrupted, etc.</p>
-<p>Each Cambria Cluster pod has three containers:</p>
+<!-- -->This deployment is recommended to run on at least 3 nodes (<code>replica = 3</code>) with a service (Load Balancer) that exposes the application externally. For each of these nodes, Cambria Cluster will be installed on its own pod and designated to its own node. One node acts as the leader and the other two are replicas for the purpose of replacing the leader in the case it becomes inactive, corrupted, etc. Each Cambria Cluster pod has three containers:</p>
 <ol>
-<li>Cambria Cluster (application)</li>
-<li>Leader Elector tool that chooses which of the Cambria Cluster node / pod will be the leader</li>
-<li>Cambria FTC Autoscaler tool that, when the FTC autoscaler is enabled, will automatically deploy worker nodes for encoding purposes based on the number of encoding jobs queued to the system.</li>
+<li><strong>Cambria Cluster (application)</strong></li>
+<li><strong>Leader Elector tool</strong> that chooses which of the Cambria Cluster node / pod will be the leader</li>
+<li><strong>Cambria FTC Autoscaler tool</strong> that, when the FTC autoscaler is enabled, will automatically deploy worker nodes for encoding purposes based on the number of encoding jobs queued to the system. This is based on the calculation (rounded down):</li>
 </ol>
-<p>This is based on the calculation (rounded down):<br>
-<strong>Number of Nodes to Deploy = (Number of Queued Jobs + 2) / 3</strong></p>
+<p>Number of Nodes to Deploy = (Number of Queued Jobs + 2) / 3</p>
 <p>Also for the Cluster deployment, there is a corresponding PostgreSQL database installed on a separate pod for each active Cambria Cluster pod. The data is replicated between the different database pods in order to preserve data in case of issues with the database and/or Cluster.</p>
 <p><strong>Cambria FTC:</strong><br>
-<!-- -->Capella’s Cambria FTC deployment consists of one or more nodes that (by default) are of different instance types than the Cambria Cluster nodes. These nodes focus specifically on running encoding tasks. Similar to Cambria Cluster, the Cambria FTC application is installed on its own pod and designated to its own node.</p>
-<p>Each Cambria FTC pod has three containers:</p>
+<!-- -->Capella’s Cambria FTC deployment consists of one or more nodes that (by default) are of different instance types than the Cambria Cluster nodes. These nodes focus specifically on running encoding tasks. Similar to Cambria Cluster, the Cambria FTC application is installed on its own pod and designated to its own node. Each Cambria FTC pod has three containers:</p>
 <ol>
-<li>Cambria FTC (application)</li>
-<li>Auto-Connect FTC dotnet tool that does the following:<!-- -->
+<li><strong>Cambria FTC (application)</strong></li>
+<li><strong>Auto-Connect FTC dotnet tool</strong> that does the following:<!-- -->
 <ul>
 <li>lists pods</li>
 <li>attempts to find Cambria Cluster</li>
@@ -123,7 +120,7 @@
 <!-- -->This container also deletes its own node pool or recycles its node if no Cambria Cluster is found within a specific time (~20 minutes).</li>
 </ul>
 </li>
-<li>Pgcluster database for storing its encoder&#x27;s own job contents and other such information for as long as the pod is running.</li>
+<li><strong>Pgcluster database</strong> for storing its encoder&#x27;s own job contents and other such information for as long as the pod is running.</li>
 </ol>
 <p>Each node in the Kubernetes Cluster will either be running the Cluster deployment or the FTC deployment.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="12-resource-usage">1.2. Resource Usage<a href="#12-resource-usage" class="hash-link" aria-label="Direct link to 1.2. Resource Usage" title="Direct link to 1.2. Resource Usage">​</a></h3>
