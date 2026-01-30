@@ -118,7 +118,6 @@ Capella’s Cambria FTC deployment consists of one or more nodes that (by defaul
 Each node in the Kubernetes Cluster will either be running the Cluster deployment or the FTC deployment.
 
 ### 1.2. Resource Usage
-
 The resources used and their quantities will vary depending on requirements and different environments.  
 Below is general information about some of the major resource usage (other resources may be used).  
 Consult Oracle Cloud documentation for other resources created, usage limits, etc.
@@ -137,7 +136,6 @@ https://docs.public.oneportal.content.oci.oraclecloud.com/en-us/iaas/Content/Con
 | Security        | Default is to use security lists (No NSGs are used)                     |
 
 ### 1.3. Oracle Cloud Machine Information and Benchmark
-
 The following is a benchmark of two Oracle Cloud machines. The information below is as of **October 2024**.  
 Note that the benchmark involves read from / write to an ObjectStorage location which influences the real-time speed of transcoding jobs.
 
@@ -146,30 +144,28 @@ Note that the benchmark involves read from / write to an ObjectStorage location 
 | Type     | Codec  | Frame Rate | Resolution               | Bitrate     |
 |----------|--------|------------|---------------------------|-------------|
 | Source   | TS H.264 | 30       | 1920 x 1080              | 8 Mbps      |
-| Output   | HLS/TS H.264 | 29.97 | 1920 x 1080, 1280 x 720, 640 x 480, 320 x 240 | 4 Mbps, 2.4 Mbps, 0.8 Mbps, 0.3 Mbps |
+| Output   | HLS/TS H.264 | 29.97 | 1920 x 1080, 1280 x 720, 640 x 480, 320 x 240 | 4 Mbps, 2.4 Mbps, 0.8 Mbps, 0.3 Mbps |             
 
 ---
 
-**Machine Used:** `VM.Standard.E4.Flex` – 8 OCPUs + 32 GB RAM (AMD EPYC 7J13)
+`VM.Standard.E4.Flex` – 8 OCPUs + 32 GB RAM (AMD EPYC 7J13)
 
 #### Machine Info
 
 | Name                | RAM   | OCPUs | Storage | Network         | Cost per Hour |
 |---------------------|--------|--------|---------|------------------|----------------|
-| VM.Standard.E4.Flex | 32 GB  | 16     | Any     | 2.5 – 3.5 GHz    | $0.448         |
+| VM.Standard.E4.Flex | 32 GB  | 8     | Any     | 2.5 – 3.5 GHz    | $0.448         |
 
 #### Benchmark Results
 
 | # of Concurrent Jobs | Real Time Speed              | CPU Usage |
 |----------------------|------------------------------|-----------|
-| 2                    | 1.18x RT per job (faster than real-time) <br /> Total Throughput: 2.36x RT ...<br />
+| 2                    | 1.18x RT per job (faster than real-time) <br /> Total Throughput: 2.36x RT ...<br /> | 100% |
 
 ### 1.4. Cambria Application Access
-
 The Cambria applications are accessible via the following methods:
 
 #### 1.4.1. External Access via TCP Load Balancer
-
 The default Cambria installation configures the Cambria applications to be exposed through load balancers.  
 There is one for the **Cambria Manager WebUI + License Manager**, and one for the **web / REST API server**.  
 The load balancers are publicly available and can be accessed either through their public IP address or domain name and the application's TCP port.
@@ -189,19 +185,14 @@ The load balancers are publicly available and can be accessed either through the
 ---
 
 #### 1.4.2. HTTP Ingress via Reverse Proxy
+In cases where the external access via TCP load balancer is not acceptable or for using a purchased domain
+name from servicers such as GoDaddy, the Cambria installation provides the option to expose an ingress.
+Similar to the external access load balancers, the Cambria Manager WebUI and web / REST API server are
+exposed. However, only one ip address / domain name is needed in this case.
 
-In cases where external access via TCP load balancer is not acceptable, or for using a purchased domain name from providers like GoDaddy,  
-the Cambria installation provides the option to expose an ingress.
-
-Similar to the external access load balancers, the **Cambria Manager WebUI** and **web / REST API server** are exposed.  
-However, only **one IP address or domain name** is needed in this case.
-
-How it works:
-- The **Cambria WebUI** is exposed through the subdomain `webui`
-- The **Cambria web server** is exposed through the subdomain `api`
-- The **Grafana dashboard** is exposed through the subdomain `monitoring`
-
-**Example with the domain `mydomain.com`:**
+How it works is that the Cambria WebUI is exposed through the subdomain **webui**, the Cambria web server
+through the subdomain **api**, and Grafana dashboard through the subdomain monitoring. The following is an
+example with the domain **mydomain.com**
 
 - **Cambria Manager WebUI**  
   `https://webui.mydomain.com`
@@ -217,12 +208,10 @@ How it works:
 > More information about ingress configuration is explained later in this guide.
 
 ### 1.5. Firewall Information
-
 By default, this guide creates a Kubernetes cluster with default settings, including the default network firewall configurations.  
-A virtual network is created alongside the Kubernetes cluster.
-
-For custom or non-default configurations, or to restrict the network beyond the default setup,  
-refer to the following list of known ports that the Cambria applications use:
+A virtual network is created alongside the Kubernetes cluster. In the default configuration, a virtual network is created alongside the
+kubernetes cluster. For custom / non-default configurations,or to explore with a more restrictive network based
+on the default virtual network created, the following is a list of known ports that the Cambria applications use:
 
 | Port(s) | Protocol | Direction | Description |
 |---------|----------|-----------|-------------|
@@ -239,7 +228,8 @@ refer to the following list of known ports that the Cambria applications use:
 
 ---
 
-For **Cambria licensing**, ensure that both **inbound and outbound** access is available for the following domains:
+Also, for Cambria licensing, any Cambria Cluster and Cambria FTC machine requires that at least the following
+domains be exposed in your firewall (both inbound and outbound traffic):
 
 | Domain                         | Port(s) | Protocol | Direction | Description              |
 |--------------------------------|---------|----------|-----------|--------------------------|
@@ -247,39 +237,55 @@ For **Cambria licensing**, ensure that both **inbound and outbound** access is a
 | cryptlexapi.capellasystems.net| 8485    | TCP      | In/Out    | License Cache Server     |
 | cpfs.capellasystems.net       | 8483    | TCP      | In/Out    | License Backup Server    |
 
-## 2. Prerequisites
+#### Specifications for Linux Deployment Server
+In order to deploy Cambria FTC, a Linux Deployment Server is required because this is where all of the tools,
+dependencies, and packages for the Cambria FTC Kubernetes deployment will be installed and/or stored. If you
+already have a deployment server, you can skip this section.
 
+#### Important: Linux Deployment Server Machine Information
+The instructions in this document perform functions using a root user. To keep things consistent, Capella
+strongly recommends using Oracle instances for the deployment process.
+
+Capella tests deployment with the VM.Standard.E5.Flex Shape
+
+**Minimum Requirements:**
+
+Operating System (OS): Canonical Ubuntu 24.04
+Shape: VM.Standard.E5.Flex
+OCPU(s): 2
+RAM: 4 GB
+Storage: 10 GB
+
+
+## 2. Prerequisites
 The following steps need to be completed before the deployment process.
 
-### 2.1. Tools: Kubectl, Helm, and OCI CLI
-
+#### 2.1. Linux Tools
 This guide uses `cURL` and `unzip` to run certain commands and download the required tools and applications.  
 Therefore, the Linux server used for deployment will need to have these tools installed.
 
-#### Example (Ubuntu)
+Example with Ubuntu 24.04:
 
 ```bash
-sudo apt update
-sudo apt upgrade
-sudo apt install curl unzip python3 jq
+sudo apt update && \
+sudo DEBIAN_FRONTEND=noninteractive apt -o Dpkg::Options::="--force-confold" -y upgrade && \
+sudo DEBIAN_FRONTEND=noninteractive apt -o Dpkg::Options::="--force-confold" -y install curl unzip jq python3
 ```
 
+#### 2.2 Cambria FTC Package
 The components of this installation are packaged in a zip archive.  
 Download and extract the archive using the following commands:
 
 ```bash
 curl -o CambriaClusterKubernetesOracle_5_5_0.zip -L "https://www.dropbox.com/scl/fi/xx1zx2548wc77j59x9vo4/CambriaClusterKubernetesOracle_5_5_0.zip?rlkey=2x7fwe5zc1q7qw0ghmdh4pcx6&st=y0opl2fv&dl=1"
-unzip CambriaClusterKubernetesOracle_5_5_0.zip
-chmod +x *.sh
+unzip CambriaClusterKubernetesOracle_5_5_0.zip chmod +x *.sh
 ```
 
-> **Important:** The scripts included have been tested with **Ubuntu**.  
-> They may work with other Linux distributions but have not been tested.
+> **Important:** The scripts included have been tested with **Ubuntu**. They may work with other Linux distributions but have not been tested.
 
 ---
 
-### 2.1.1. Installation
-
+### 2.2.1. Installation
 There are **two options** available for installing the Kubernetes-required tools for deployment to Oracle Cloud:
 
 **Option 1: Use Installation Script (Verified on Ubuntu)**
@@ -297,9 +303,8 @@ There are **two options** available for installing the Kubernetes-required tools
 
 ---
 
-### 2.1.2. Verification
-
-Run the following commands to verify that each tool is installed correctly:
+#### 2.2.2. Verification
+If any of the commands below fail, review the installation instructions for the failing tool and try again:
 
 ```bash
 kubectl version --client
@@ -307,11 +312,9 @@ helm version
 oci --version
 ```
 
-## 2.2. Create an Oracle Cloud API Key
-
-You can skip this step if you already have an Oracle Cloud config file in `$HOME/.oci` in the Linux machine that will run the commands in this guide. In order to work with Oracle Cloud, an API key needs to be created.
-
-### Steps:
+#### 2.3. Create an Oracle Cloud API Key
+You can skip this step if you already have an Oracle Cloud config file in $HOME/.oci in the Linux
+machine that will run the commands in this guide. In order to work with Oracle cloud, an API key needs to be created.
 
 1. Install `openssl` tool for creating keys:
    ```bash
@@ -327,7 +330,7 @@ You can skip this step if you already have an Oracle Cloud config file in `$HOME
 
 4. In the Oracle Cloud Dashboard, do the following:
    - Go to your profile (Profile is located in the top right corner and the option **My profile**).
-   - In **Resources**, select **API keys** and click **Add API key**.
+   - In **Tokens and keys**, select **API keys** and **Add API key**
    - Select the **Paste a public key** option and paste the public key that you copied from step 3.
    - Click **Add** to continue. You should get a read-only version of your Oracle config file.
 
