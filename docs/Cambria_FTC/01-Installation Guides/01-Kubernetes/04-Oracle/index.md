@@ -352,12 +352,14 @@ machine that will run the commands in this guide. In order to work with Oracle c
      - Press the `y` key
      - Press the `[Enter]` key
 	 
-	 ## 2.3. OKE Entity Permissions
+#### 2.4. OKE Entity Permissions
+Follow the steps in this section if you are planning to use Cambria Cluster's autoscaler feature. For
+this feature to work properly, the entities within the OKE cluster must have specific permissions in order to
+create and manage Oracle cloud instances.
 
-Follow the steps in this section if you are planning to use Cambria Cluster's autoscaler feature. For this feature to work properly, the entities within the OKE cluster must have specific permissions in order to create and manage Oracle cloud instances.
+1. In the Oracle Cloud Dashboard, go to **Identity & Security*** > ***Identity** > **Domains**. Choose the **Default**
+domain in the **root** compartment.
 
-1. In the Oracle Cloud Dashboard, go to **Identity > Domains** and choose the domain where the OKE cluster will be created. Then, go to **Dynamic Groups**.
-2. Create a new Dynamic Group with the following rule (replace `[CT_ID]` with the compartment id of the compartment where the OKE cluster will be created):
 
 ```
 All {instance.compartment.id = '[CT_ID]'}
