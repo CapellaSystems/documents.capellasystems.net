@@ -338,7 +338,11 @@ The following configurations are provided as guidelines for common deployment sc
 | UHD / HDR Single-Job | 16-core Intel Xeon / AMD Threadripper | 32 GB | 1 TB NVMe + RAID | NVIDIA RTX A4000+ or NETINT VPU | Efficient for 4K HDR |
 | UHD / HDR Multi-Job | Dual Xeon Silver/Gold or AMD EPYC (24+ cores) | 64 GB+ | Enterprise SSD/NVMe RAID or SAN | Multiple GPUs or VPUs | Parallel UHD jobs |
 | Cluster Deployment | Multiple servers (24+ cores each) | 64–128 GB per node | SAN/NAS (10 Gbps+) | Optional GPUs/VPUs | Managed via Cambria Cluster |
-| Cloud / Hybrid | AWS c6i.4xlarge or higher; Azure F16s_v2; GCP C2-standard-16; OCI CM.Standard.E4.Flex; Akamai Linode 32GB | 32 GB | EBS gp3 (provisioned IOPS) | N/A or GPU (g4/g5) | Elastic scaling with Cluster + CloudBurst |
+| Cloud / Hybrid | AWS c6i.4xlarge or higher; 
+Azure F16s_v2; 
+GCP C2-standard-16; 
+OCI CM.Standard.E4.Flex; 
+Akamai Linode 32GB | 32 GB | EBS gp3 (provisioned IOPS) | N/A or GPU (g4/g5) | Elastic scaling with Cluster + CloudBurst |
 
 ---
 
