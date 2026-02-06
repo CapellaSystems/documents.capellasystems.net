@@ -3,30 +3,32 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "docusaurus": "docusaurus",
-    "start": "docusaurus start",
-    "build": "docusaurus build",
-    "swizzle": "docusaurus swizzle",
-    "deploy": "docusaurus deploy",
-    "clear": "docusaurus clear",
-    "serve": "docusaurus serve",
-    "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids"
+    "docusaurus": "node node_modules/@docusaurus/core/bin/docusaurus.mjs",
+    "start": "node node_modules/@docusaurus/core/bin/docusaurus.mjs start",
+    "build": "node node_modules/@docusaurus/core/bin/docusaurus.mjs build",
+    "swizzle": "node node_modules/@docusaurus/core/bin/docusaurus.mjs swizzle",
+    "deploy": "node node_modules/@docusaurus/core/bin/docusaurus.mjs deploy",
+    "clear": "node node_modules/@docusaurus/core/bin/docusaurus.mjs clear",
+    "serve": "node node_modules/@docusaurus/core/bin/docusaurus.mjs serve",
+    "write-translations": "node node_modules/@docusaurus/core/bin/docusaurus.mjs write-translations",
+    "write-heading-ids": "node node_modules/@docusaurus/core/bin/docusaurus.mjs write-heading-ids"
   },
   "dependencies": {
-    "@docusaurus/core": "3.7.0",
-    "@docusaurus/preset-classic": "3.7.0",
+    "@docusaurus/core": "3.9.2",
+    "@docusaurus/preset-classic": "3.9.2",
+    "@easyops-cn/docusaurus-search-local": "^0.44.5",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.0.0",
     "lucide-react": "^0.525.0",
     "mark.js": "^8.11.1",
     "prism-react-renderer": "^2.3.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.7.0",
-    "@docusaurus/types": "3.7.0",
+    "@docusaurus/module-type-aliases": "3.9.2",
+    "@docusaurus/plugin-content-docs": "^3.9.2",
+    "@docusaurus/types": "3.9.2",
     "typescript": "^5.0.0"
   },
   "browserslist": {

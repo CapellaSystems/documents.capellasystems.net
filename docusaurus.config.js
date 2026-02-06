@@ -25,7 +25,7 @@ const config = {
   deploymentBranch: 'gh-pages',
 
   onBrokenLinks: 'warn',
-  onBrokenMarkdownLinks: 'warn',
+
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -58,14 +58,28 @@ const config = {
           customCss: './src/css/custom.css',
         },
         gtag: {
-        trackingID: 'G-WQ8DZ3HYRX', // Replace with your GA4 Measurement ID
-        anonymizeIP: true, // Optional: anonymize visitor IPs
-      },
+          trackingID: 'G-WQ8DZ3HYRX', // Replace with your GA4 Measurement ID
+          anonymizeIP: true, // Optional: anonymize visitor IPs
+        },
       }),
     ],
   ],
 
-  themeConfig: 
+  themes: [
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      {
+        hashed: true,
+        language: ["en"],
+        highlightSearchTermsOnTargetPage: true,
+        searchResultLimits: 8,
+        searchResultContextMaxLength: 50,
+        explicitSearchResultPath: true,
+      },
+    ],
+  ],
+
+  themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Color mode configuration
@@ -76,18 +90,7 @@ const config = {
       },
       // Replace with your project's social card
       image: 'img/capellalogo.png',
-      // Algolia search configuration
-      algolia: {
-        // safe api to put in the code
-        appId: 'FG2ZSI8I7W',
-        apiKey: 'd12af8e4130d8cc8c0337ee47938bfca',
-        indexName: 'Capella Documentation',
-        contextualSearch: true,
-        searchParameters: {},
-        externalUrlRegex: 'external\\.com|domain\\.com',
-        navigate: true,
-        clickAnalytics: true
-      },
+      // Local search configuration (removed Algolia)
       navbar: {
         title: 'Capella Documentation',
         logo: {
