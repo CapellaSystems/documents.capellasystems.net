@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import DocSidebar from '@theme-original/DocSidebar';
 import { ArrowUpAZ, ArrowDownAZ } from 'lucide-react';
+import SearchBar from '../SearchBar';
 
 function sortItems(items, order) {
   if (order === 'asc') return [...items].sort((a, b) => {
@@ -20,7 +21,7 @@ function sortItems(items, order) {
   return items;
 }
 
-function CustomSidebar({sidebar, ...props}) {
+function CustomSidebar({ sidebar, ...props }) {
   const [sortOrder, setSortOrder] = useState('asc'); // Default to A-Z
 
   // Find the Tutorials category and wrap it with sorting logic
@@ -48,7 +49,7 @@ function CustomSidebar({sidebar, ...props}) {
                 border: 'none',
                 color: 'var(--ifm-color-primary)',
               }}
-              onClick={e => {   
+              onClick={e => {
                 e.preventDefault();
                 setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc');
               }}
@@ -59,7 +60,7 @@ function CustomSidebar({sidebar, ...props}) {
               }
             >
               {sortOrder === 'asc' ? <ArrowDownAZ className="tutorial-sort-icon" size={18} /> : <ArrowUpAZ className="tutorial-sort-icon" size={18} />}
-              </button>
+            </button>
           ),
         },
       };
