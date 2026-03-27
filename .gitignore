@@ -29,3 +29,5 @@ push.bat
 # SearchBar disabled
 /src/theme/SearchBar.disabled
 
+*.db
+*.docx
