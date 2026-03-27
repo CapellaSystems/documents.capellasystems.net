@@ -925,11 +925,11 @@ https://<server>:8481
 
 2. In a web browser, enter the above url. This should trigger an "Unsafe" page similar to the one below:
 
-![Screenshot](03_screenshot.png)
+![Screenshot](01_screenshot.png)
 
 3.  Click on Advanced and Proceed to [ EXTERNAL IP ] (unsafe). This will show the login page.
 
-![Screenshot](04_screenshot.png)
+![Screenshot](02_screenshot.png)
 
 4. Log in using the credentials created in the Helm values yaml file (See cambriaClusterWebUIUser)
 
