@@ -31,3 +31,6 @@ push.bat
 
 *.db
 *.docx
+*.DS_Store
+*.lnk
+*._*.png
