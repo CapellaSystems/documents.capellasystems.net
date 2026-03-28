@@ -1,5 +1,5 @@
 ---
-id: cambria-ftc-5.x-overview
+id: cambria-ftc-5.x
 title: Cambria FTC 5.x – Overview
 ---
 
