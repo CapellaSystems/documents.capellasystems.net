@@ -36,7 +36,7 @@ Input a variety of live and VOD sources at up to 4K, including RTMP, RTP, SRT, Z
 
 **Exceptional Output Format Support**
 
-Encode video into DASH, HLS (TS) transport stream, HLS (fMP4) fragmented MP4, and CMAF encoding ladders for immediate distribution. Native support for various CDNs and Object Storage services such as Akamai (MSL), AWS MediaStore, AWS Media Package v1, AWS S3, Unified Streaming, WebDAV, and Akamai Object Storage. Encode video into Multi Bitrate SRT, RTP and File targets. Single stream passthrough is supported to RTMP, SRT/TS, Zixi/TS, RTP/UDP and File based targets.
+Encode video into DASH, HLS (TS) transport stream, HLS (fMP4) fragmented MP4, and CMAF encoding ladders for immediate distribution. Native support for various CDNs and Object Storage services such as Akamai (MSL), AWS Media Package v1, AWS S3, Unified Streaming, WebDAV, and Akamai Object Storage. Encode video into Multi Bitrate SRT, RTP and File targets. Single stream passthrough is supported to RTMP, SRT/TS, Zixi/TS, RTP/UDP and File based targets.
 
 **Unique Monetization Features**
 
@@ -167,9 +167,6 @@ Can stream to Akamai servers via HLS, CMAF (including CMAF-CTE chunked), and MPE
 
 Can stream to WebDAV servers via HLS, CMAF (including CMAF-CTE chunked), and MPEG-DASH formats. If project type is Encode then HLS can be specified as either TS or fMP4.
 
-**Streaming to AWS MediaStore via ABR**
-
-Can stream to AWS Media Store via HLS, CMAF (including CMAF-CTE chunked), and MPEG-DASH formats. User will need to enter AWS MediaStore End Point along with Subfolder, AWS Region, AWS Access Key ID, and AWS Secret Key. If project type is Encode then HLS can be specified as either TS or fMP4.
     
 **Streaming to AWS S3 via ABR**
 
