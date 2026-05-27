@@ -18,13 +18,13 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: npm ci
 
       - name: Build website with Algolia keys
         env:
           ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
           ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
-        run: yarn build
+        run: npm run build
         
       - name: Add CNAME file
         run: echo "documents.capellasystems.net" > build/CNAME
