@@ -3,7 +3,7 @@ name: Deploy Docusaurus to GitHub Pages
 on:
   push:
     branches:
-      - main  # or 'master', depending on your setup
+      - main
 
 jobs:
   deploy:
@@ -20,21 +20,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build website with Algolia keys
-        env:
-          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
-          ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
+      - name: Build website
         run: npm run build
-        
+
       - name: Add CNAME file
         run: echo "documents.capellasystems.net" > build/CNAME
 
-      - name: Add Algolia keys to environment variables
-        run: |
-          echo "ALGOLIA_APP_ID=${{ secrets.ALGOLIA_APP_ID }}" >> $GITHUB_ENV
-          echo "ALGOLIA_API_KEY=${{ secrets.ALGOLIA_API_KEY }}" >> $GITHUB_ENV
-
-        
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
