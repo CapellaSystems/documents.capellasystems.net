@@ -1,6 +1,6 @@
 ---
-id: ftc-v5.6-to-v4.0
-title: FTC v5.6 to v4.0
+id: ftc-v5.8-to-v4.0
+title: FTC v5.8 to v4.0
 ---
 
 Release notes cover Cluster, FTC, FTC API Packager, Cluster/FTC Linux & Kubernetes
