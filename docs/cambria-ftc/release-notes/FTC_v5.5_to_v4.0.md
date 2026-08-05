@@ -42,7 +42,7 @@ Release notes cover Cluster, FTC, FTC API Packager, Cluster/FTC Linux & Kubernet
 * Offline licenses will continue to work.
 * Please contact sales@capellasystems.net for instructions for additional instructions.
 
-## Things to Consider Before Upgrading
+### Things to Consider Before Upgrading
 
 Before upgrading FTC or Cluster, review the following requirements and dependencies:
 
