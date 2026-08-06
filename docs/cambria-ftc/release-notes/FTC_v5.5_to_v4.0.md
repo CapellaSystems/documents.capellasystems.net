@@ -53,7 +53,7 @@ Before upgrading FTC or Cluster, review the following requirements and dependenc
 * **Configuration Backups and Workflow Dependencies:** Back up all Target Presets and Watch Folder configurations before upgrading. Review workflows that depend on discontinued or modified components, including CloudExtend Storage, the EZTitles plug-in, and legacy scripts or executables.
 
 
-### System Requirements
+#### System Requirements
  
 **Minimum Requirements** 
  
