@@ -26,7 +26,7 @@ Cambria FTC supports the use of **SCTE-35 marker insertion**. This guide explain
 
 ### Preset Editor Configuration
 
-In the **Preset Editor** windowsed:
+In the **Preset Editor** window:
 
 - Select the **Encode** tab  
 - Set the **Container** to `MPEG-2 Transport Stream`  
