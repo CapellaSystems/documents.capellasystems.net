@@ -184,8 +184,7 @@ const sidebars = {
       label: 'FTC Overview',
       link: {
         type: 'generated-index',
-        slug: '/cambria-ftc/ftc-overview',
-        description: 'Overview of Cambria FTC',
+        id: 'cambria-ftc/ftc-overview/index',
       },
       items: [
         {
