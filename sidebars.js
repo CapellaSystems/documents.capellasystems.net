@@ -183,7 +183,7 @@ const sidebars = {
       type: 'category',
       label: 'FTC Overview',
       link: {
-        type: 'generated-index',
+        type: 'doc',
         id: 'cambria-ftc/ftc-overview/index',
       },
       items: [
