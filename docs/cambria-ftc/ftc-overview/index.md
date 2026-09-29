@@ -16,7 +16,7 @@ Use this documentation to learn about Cambria FTC, install and configure the pro
 
 Learn about Cambria FTC features, supported workflows, system requirements, configuration, and general product operation.
 
-[Open Cambria FTC 5.x – Overview](./cambria-ftc-5.x/)
+[Open Cambria FTC 5.x – Overview](/docs/cambria-ftc/ftc-overview/cambria-ftc-5.x/)
 
 ## Documentation
 
