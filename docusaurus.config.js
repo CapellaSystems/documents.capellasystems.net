@@ -76,7 +76,7 @@ const config = {
       colorMode: {
         defaultMode: 'light',
         disableSwitch: false,
-        respectPrefersColorScheme: false,
+        respectPrefersColorScheme: true,
       },
       // Replace with your project's social card
       image: 'img/capellalogo.png',
