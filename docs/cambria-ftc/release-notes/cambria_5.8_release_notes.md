@@ -486,7 +486,7 @@ Filter (Speech-   Speech-to-text enhancements/fixes                             
 to-text)                                                                                19629,
 ```
 
-![Release notes image from page 9](images/release-note-image-000.png)
+<!-- ![Release notes image from page 9](images/release-note-image-000.png) -->
 
 ### New Features added for 5.3
 
@@ -532,7 +532,7 @@ Vision)                                                                         
                  The updated version supports using Dolby Vision MOV as sources.
 ```
 
-![Release notes image from page 10](images/release-note-image-001.png)
+<!-- ![Release notes image from page 10](images/release-note-image-001.png) -->
 
 ```text
 Source         Read sources directly from Azure Blob storage (JobXML,                18991
@@ -1194,7 +1194,7 @@ conversion, and any other video filters
 details, please consult Capella Support.
 ```
 
-![Release notes image from page 21](images/release-note-image-003.png)
+<!-- ![Release notes image from page 21](images/release-note-image-003.png) -->
 
 ```text
 Source (DPX)    DPX files can now be loaded without needing the XML file              15994
