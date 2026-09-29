@@ -1,6 +1,5 @@
 ---
 title: FTC Overview
-sidebar_label: FTC Overview
 slug: /cambria-ftc/ftc-overview
 ---
 
