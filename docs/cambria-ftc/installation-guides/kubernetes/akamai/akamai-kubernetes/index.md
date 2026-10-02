@@ -733,7 +733,9 @@ kubectl port-forward -n capella-manager svc/cambriaclusterwebuiservice 8481:8481
 
 The url depends on the location of the port-forward. If the web browser and the port-forward are on the same machine, use **localhost** . Otherwise, use the **ip address** of the machine with the port-forward: 
 
-https://<server>:8481 
+```text
+https://<server>:8481
+```
 
 2. In a web browser, enter the above url. This should trigger an "Unsafe" page similar to the one below: 
 
