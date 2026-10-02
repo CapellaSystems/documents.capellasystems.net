@@ -102,7 +102,8 @@ Each Cambria Cluster pod includes:
 - Leader Elector tool, which selects the active leader pod
 - Cambria FTC Autoscaler tool, which automatically deploys FTC worker nodes for encoding when autoscaling is enabled, based on the number of queued encoding jobs
 
-![Cambria FTC autoscaler formula](images/autoscaler-formula.png)
+> **Cambria FTC autoscaler formula**  
+> [Image omitted from this Markdown build.]
 
 Each active Cambria Cluster pod also has a corresponding PostgreSQL database pod. Data is replicated across the database pods to help preserve Cluster data if a pod or database issue occurs.
 
@@ -425,7 +426,8 @@ lke525068-759150-5d7b909a0000     Ready    <none>   20m   v1.35.0
 
 This will show details about the LKE cluster in its current state. This dashboard can be used to view and manage the LKE cluster from a graphical point of view.
 
-![Akamai Kubernetes Dashboard](images/kubernetes-dashboard.png)
+> **Akamai Kubernetes Dashboard**  
+> [Image omitted from this Markdown build.]
 
 ### 1.4. Set Default Storage Class
 
@@ -719,11 +721,13 @@ https://<server>:8161
 
 2. In a web browser, enter the above url. This should trigger an "Unsafe" page similar to the one below:
 
-![Cambria Cluster WebUI certificate warning](images/cluster-webui-unsafe.png)
+> **Cambria Cluster WebUI certificate warning**  
+> [Image omitted from this Markdown build.]
 
 3. Click on Advanced and Proceed to [ EXTERNAL IP ] (unsafe). This will show the login page.
 
-![Cambria Cluster WebUI login page](images/cluster-webui-login.png)
+> **Cambria Cluster WebUI login page**  
+> [Image omitted from this Markdown build.]
 
 4. Log in using the credentials created in the Helm values yaml file (See cambriaClusterWebUIUser)
 
@@ -806,11 +810,13 @@ https://<server>:8481
 
 2. In a web browser, enter the above url. This should trigger an "Unsafe" page similar to the one below:
 
-![Cambria License Manager certificate warning](images/license-webui-unsafe.png)
+> **Cambria License Manager certificate warning**  
+> [Image omitted from this Markdown build.]
 
 3. Click on Advanced and Proceed to [ EXTERNAL IP ] (unsafe). This will show the login page.
 
-![Cambria License Manager login page](images/license-webui-login.png)
+> **Cambria License Manager login page**  
+> [Image omitted from this Markdown build.]
 
 4. Log in using the credentials created in the Helm values yaml file (See cambriaClusterWebUIUser)
 
