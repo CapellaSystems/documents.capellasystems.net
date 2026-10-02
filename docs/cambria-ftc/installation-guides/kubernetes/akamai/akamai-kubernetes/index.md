@@ -151,7 +151,7 @@ Each Cambria Cluster pod includes:
 - **Cambria FTC Autoscaler tool** , which automatically deploys FTC worker nodes for encoding when autoscaling is enabled, based on the number of queued encoding jobs 
 
 
-![](./images/Cambria_Cluster_and_FTC_5_8_0_Terraform_on_Akamai_Kubernetes.pdf-0005-18.png)
+![](./01_screenshot.png)
 
 
 Each active Cambria Cluster pod also has a corresponding PostgreSQL database pod. Data is replicated across the database pods to help preserve Cluster data if a pod or database issue occurs. 
@@ -649,14 +649,14 @@ https://<server>:8161
 2. In a web browser, enter the above url. This should trigger an "Unsafe" page similar to the one below: 
 
 
-![](./images/Cambria_Cluster_and_FTC_5_8_0_Terraform_on_Akamai_Kubernetes.pdf-0021-15.png)
+![](./02_screenshot.png)
 
 
 
 3. Click on **Advanced** and **Proceed to [ EXTERNAL IP ] (unsafe)** . This will show the login page. 
 
 
-![](./images/Cambria_Cluster_and_FTC_5_8_0_Terraform_on_Akamai_Kubernetes.pdf-0022-01.png)
+![](./03_screenshot.png)
 
 
 
@@ -740,14 +740,14 @@ https://<server>:8481
 2. In a web browser, enter the above url. This should trigger an "Unsafe" page similar to the one below: 
 
 
-![](./images/Cambria_Cluster_and_FTC_5_8_0_Terraform_on_Akamai_Kubernetes.pdf-0023-14.png)
+![](./02_screenshot.png)
 
 
 
 3. Click on **Advanced** and **Proceed to [ EXTERNAL IP ] (unsafe)** . This will show the login page. 
 
 
-![](./images/Cambria_Cluster_and_FTC_5_8_0_Terraform_on_Akamai_Kubernetes.pdf-0024-01.png)
+![](./03_screenshot.png)
 
 
 
