@@ -214,9 +214,9 @@ Features listed include all of the new features added for 4.x, 5.x up to 5.8. Pl
 | Filter (Speech- | Speech-to-text enhancements/fixes | 19640, |
 | to-text) | 19629, | 19629, |
 
-![](images/release-note-image-000.png)
+> [Image from source PDF not included in this Markdown file.]
 
-![](images/release-note-image-001.png)
+> [Image from source PDF not included in this Markdown file.]
 
 
 ### New Features added for 5.3
@@ -356,7 +356,7 @@ Features listed include all of the new features added for 4.x, 5.x up to 5.8. Pl
 | Filter<br />(NexGuard) | NexGuard v2 filter enhancement In our NexGuard v2 filter, we have now included a way to do ClipMark watermarking, along with G2 (which was already there before). In order to do ClipMark watermarking, you need an appropriate license from NexGuard.<br />Licensing note: NexGuard Watermarking V2 For FTC 4.8 has changed licenses due to NexGuard (NAGRA) requirements.<br />Hence, your existing Nexguard watermarking licenses will not work. Please obtain new licenses from NexGuard. | 15989 |
 | Windows OS | Windows 11 and Windows Server 2022 Supported | 16483 |
 
-![](images/release-note-image-002.png)
+> [Image from source PDF not included in this Markdown file.]
 
 
 ### New Features added for 4.7
