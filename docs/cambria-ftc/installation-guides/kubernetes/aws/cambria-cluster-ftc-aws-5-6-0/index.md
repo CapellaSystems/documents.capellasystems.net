@@ -128,7 +128,8 @@ Each Cambria Cluster pod includes:
 - Cambria FTC Autoscaler tool, which automatically deploys FTC worker nodes for encoding when
   autoscaling is enabled, based on the number of queued encoding jobs
 
-![Cambria FTC autoscaler formula](./images/autoscaler-formula.png)
+> **Cambria FTC autoscaler formula**  
+> [Image omitted from this Markdown build.]
 
 Each active Cambria Cluster pod also has a corresponding PostgreSQL database pod. Data is replicated across
 the database pods to help preserve Cluster data if a pod or database issue occurs.
@@ -1043,12 +1044,14 @@ https://<server>:8161
 
 2. In a web browser, enter the above url. This should trigger an "Unsafe" page similar to the one below:
 
-![Cambria Cluster WebUI certificate warning](./images/cluster-webui-unsafe.png)
+> **Cambria Cluster WebUI certificate warning**  
+> [Image omitted from this Markdown build.]
 
 
 3. Click on Advanced and Proceed to [ EXTERNAL IP ] (unsafe). This will show the login page.
 
-![Cambria Cluster WebUI login page](./images/cluster-webui-login.png)
+> **Cambria Cluster WebUI login page**  
+> [Image omitted from this Markdown build.]
 
 4. Log in using the credentials created in the Helm values yaml file (See cambriaClusterWebUIUser)
 
@@ -1132,12 +1135,14 @@ https://<server>:8481
 
 2. In a web browser, enter the above url. This should trigger an "Unsafe" page similar to the one below:
 
-![Cambria License Manager certificate warning](./images/license-webui-unsafe.png)
+> **Cambria License Manager certificate warning**  
+> [Image omitted from this Markdown build.]
 
 
 3. Click on Advanced and Proceed to [ EXTERNAL IP ] (unsafe). This will show the login page.
 
-![Cambria License Manager login page](./images/license-webui-login.png)
+> **Cambria License Manager login page**  
+> [Image omitted from this Markdown build.]
 
 4. Log in using the credentials created in the Helm values yaml file (See cambriaClusterWebUIUser)
 
@@ -1378,12 +1383,14 @@ permissions. Check the following:
 a. Search for Elastic Kubernetes Service in the region that the Kubernetes Cluster is located. Make sure the
 deleted cluster does not show up on the list
 
-![AWS EKS cluster deletion verification](./images/eks-cluster-deletion-check.png)
+> **AWS EKS cluster deletion verification**  
+> [Image omitted from this Markdown build.]
 
 b. Search for CloudFormation in the region that the Kubernetes Cluster is located. Make sure there are no stacks
 specific to the Kubernetes Cluster on the list
 
-![AWS CloudFormation deletion verification](./images/cloudformation-deletion-check.png)
+> **AWS CloudFormation deletion verification**  
+> [Image omitted from this Markdown build.]
 
 c. Important: Check in EC2 Volumes and Load Balancers to make sure no volumes or load balancers were
 leftover from the kubernetes cluster. Most will have the name of the EKS cluster in the resource name
