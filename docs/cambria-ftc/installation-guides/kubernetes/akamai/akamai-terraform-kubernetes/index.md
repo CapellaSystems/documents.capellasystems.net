@@ -102,8 +102,6 @@ Each Cambria Cluster pod includes:
 - Leader Elector tool, which selects the active leader pod
 - Cambria FTC Autoscaler tool, which automatically deploys FTC worker nodes for encoding when autoscaling is enabled, based on the number of queued encoding jobs
 
-![Cambria FTC autoscaler formula](images/autoscaler-formula.png)
-
 Each active Cambria Cluster pod also has a corresponding PostgreSQL database pod. Data is replicated across the database pods to help preserve Cluster data if a pod or database issue occurs.
 
 ### Cambria FTC
