@@ -102,6 +102,9 @@ Each Cambria Cluster pod includes:
 - Leader Elector tool, which selects the active leader pod
 - Cambria FTC Autoscaler tool, which automatically deploys FTC worker nodes for encoding when autoscaling is enabled, based on the number of queued encoding jobs
 
+> **Cambria FTC autoscaler formula**  
+> [Image omitted from this Markdown build.]
+
 Each active Cambria Cluster pod also has a corresponding PostgreSQL database pod. Data is replicated across the database pods to help preserve Cluster data if a pod or database issue occurs.
 
 ### Cambria FTC
@@ -288,8 +291,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt -o Dpkg::Options::="--force-confold" -y 
 The components of this installation are packaged in a zip archive. Download it using the following command:
 
 ```bash
-curl -o CambriaClusterKubernetesAkamai_5_8_0.zip -L
-"https://www.dropbox.com/scl/fi/m00s0lk8m6hby74hm0qhh/CambriaClusterKubernetesAkamai_5_8_0.zip?rlkey=kie58ays029znxnn70sk6jupj&st=e9f0uxn6&dl=1"
+curl -o CambriaClusterKubernetesAkamai_5_8_0.zip -L "https://www.dropbox.com/scl/fi/m00s0lk8m6hby74hm0qhh/CambriaClusterKubernetesAkamai_5_8_0.zip?rlkey=kie58ays029znxnn70sk6jupj&st=e9f0uxn6&dl=1"
 ```
 
 ```bash
@@ -414,16 +416,17 @@ Example:
 
 ```text
 NAME                              STATUS   ROLES    AGE   VERSION
-lke525068-759150-2bfe0e460000     Ready    <none>   20m   v1.35.0
-lke525068-759150-4661256b0000     Ready    <none>   20m   v1.35.0
-lke525068-759150-5d7b909a0000     Ready    <none>   20m   v1.35.0
+lke525068-759150-2bfe0e460000     Ready    <none>   20m   v1.34.0
+lke525068-759150-4661256b0000     Ready    <none>   20m   v1.34.0
+lke525068-759150-5d7b909a0000     Ready    <none>   20m   v1.34.0
 ```
 
 8. Back in the Akamai dashboard in the LKE cluster, click on Copy Token. Then, on Kubernetes Dashboard, use the token to log in to the dashboard
 
 This will show details about the LKE cluster in its current state. This dashboard can be used to view and manage the LKE cluster from a graphical point of view.
 
-![Akamai Kubernetes Dashboard](images/kubernetes-dashboard.png)
+> **Akamai Kubernetes Dashboard**  
+> [Image omitted from this Markdown build.]
 
 ### 1.4. Set Default Storage Class
 
@@ -584,7 +587,7 @@ Red: values in red are proprietary values that need to be changed based on your 
 | `externalAccess:`<br />` # exposeClusterServiceExternally: main Cambria Cluster service`<br />` exposeStreamServiceExternally: true` | Set to true to be able to access Cambria Cluster externally |
 | ` # enableIngress: enable traefik as an application ingress`<br />` enableIngress: true` | This allows the use of an application ingress to access the Cambria applications such as the Web UI, API, Grafana, etc. By default, this is set to true. |
 | `# extra annotations for API ingress route`<br />`apiExtraIngressAnnotations: {}`<br /><br />`# extra annotations for webUI ingress route`<br />`webuiExtraIngressAnnotations: {}` | If enableIngress is set to true, ingress routes are created for Cambria's Web UI and API.<br /><br />These specific values allow extra annotations to these ingress routes. By default, no extra annotations are added to the ingress routes. |
-| `# extra annotations for manager load balancer/service`<br />`managerExtraServiceAnnotations: {}`<br /><br />`# extra annotations for webUI load balancer/service`<br />`webuiExtraServiceAnnotations: {}` | If exposeStreamServiceExternally is set to true, load balancers are created to expose Cambria Web UI and API applications externally.<br /><br />These specific values allow extra annotations to these load balancers. By default, no extra annotations are added to the load balancers. |
+| `# extra annotations for manager load balancer/service`<br />`managerExtraServiceAnnotations: {}`<br /><br />`# extra annotations for webUI load balancer/service`<br />`webuiExtraServiceAnnotations: {}` | If exposeStreamServiceExternally is set to true, load balancers are created to expose Cambria Web UI and API applications externally.<br /><br />These specific values allow extra annotations to these load balancers. By default, not extra annotations are added to the load balancers. |
 | `# hostName: use for traefik. Replace this with your domain name.`<br />`hostName: myhost.com`<br /><br />`# acmeRegistrationEmail: email for Automated Certificate Management`<br />`acmeRegistrationEmail: test@example.com`<br /><br />`# acmeServer: server to get TLS certificate from`<br />`acmeServer: https://acme-staging-v02.api.letsencrypt.org/directory` | These fields are for use with the ingress. The default values can be used for testing purposes. For production, these values must be changed to a valid registered domain name, email, and TLS certificate server. |
 | `# ingressUseSelfSigned: use this for local testing without an actual domain`<br />`ingressUseSelfSigned: true` | For testing purposes, the ingress will use a self-signed certificate for the application servers. For production (and if you have your own valid certificate), set this to false |
 | `secrets:`<br />` # pgClusterPassword: password for the postgresql database`<br />` pgClusterPassword: "xrtVeQ4nN82SSiYHoswqdURZ…"` | The password for the postgres database. It is recommended to change the default values to something more secure. |
@@ -617,7 +620,7 @@ TEST SUITE: None
 
 4. At this point, several components are being deployed to the Kubernetes environment. Wait a few minutes for everything to be deployed.
 
-5. Get important information about the Cambria Cluster / FTC deployment:
+5. Get important information about the Cambria Stream Manager deployment:
 
 ```bash
 ./bin/getFtcInfo.sh
@@ -690,8 +693,7 @@ Skip this step if the WebUI was set to disabled in the Helm values configuration
 Run the following command:
 
 ```bash
-kubectl get svc/cambriaclusterwebuiservice -n capella-manager
--o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8161'}{'\n'}"
+kubectl get svc/cambriaclusterwebuiservice -n capella-manager -o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8161'}{'\n'}"
 ```
 
 The response should look something like this:
@@ -705,8 +707,7 @@ https://192.122.45.33:8161
 Run the following command to temporarily expose the WebUI via port-forwarding:
 
 ```bash
-kubectl port-forward -n capella-manager svc/cambriaclusterwebuiservice 8161:8161
---address=0.0.0.0
+kubectl port-forward -n capella-manager svc/cambriaclusterwebuiservice 8161:8161 --address=0.0.0.0
 ```
 
 The url depends on the location of the web browser. If the web browser and the port-forward are on the same machine, use localhost. Otherwise, use the ip address of the machine with the port-forward:
@@ -717,11 +718,13 @@ https://<server>:8161
 
 2. In a web browser, enter the above url. This should trigger an "Unsafe" page similar to the one below:
 
-![Cambria Cluster WebUI certificate warning](images/cluster-webui-unsafe.png)
+> **Cambria Cluster WebUI certificate warning**  
+> [Image omitted from this Markdown build.]
 
 3. Click on Advanced and Proceed to [ EXTERNAL IP ] (unsafe). This will show the login page.
 
-![Cambria Cluster WebUI login page](images/cluster-webui-login.png)
+> **Cambria Cluster WebUI login page**  
+> [Image omitted from this Markdown build.]
 
 4. Log in using the credentials created in the Helm values yaml file (See cambriaClusterWebUIUser)
 
@@ -736,8 +739,7 @@ Skip this step if the ingress will be used instead of external access or any oth
 Run the following command:
 
 ```bash
-kubectl get svc/cambriaclusterservice -n capella-manager
--o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8650'}{'\n'}"
+kubectl get svc/cambriaclusterservice -n capella-manager -o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8650'}{'\n'}"
 ```
 
 The response should look something like this:
@@ -777,8 +779,7 @@ Skip this step if the ingress will be used instead of external access or any oth
 Run the following command:
 
 ```bash
-kubectl get svc/cambriaclusterwebuiservice -n capella-manager
--o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8481'}{'\n'}"
+kubectl get svc/cambriaclusterwebuiservice -n capella-manager -o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8481'}{'\n'}"
 ```
 
 The response should look something like this:
@@ -792,8 +793,7 @@ https://192.122.45.33:8481
 Run the following command to temporarily expose the License WebUI via port-forwarding:
 
 ```bash
-kubectl port-forward -n capella-manager svc/cambriaclusterwebuiservice 8481:8481
---address=0.0.0.0
+kubectl port-forward -n capella-manager svc/cambriaclusterwebuiservice 8481:8481 --address=0.0.0.0
 ```
 
 The url depends on the location of the port-forward. If the web browser and the port-forward are on the same machine, use localhost. Otherwise, use the ip address of the machine with the port-forward:
@@ -804,11 +804,13 @@ https://<server>:8481
 
 2. In a web browser, enter the above url. This should trigger an "Unsafe" page similar to the one below:
 
-![Cambria License Manager certificate warning](images/license-webui-unsafe.png)
+> **Cambria License Manager certificate warning**  
+> [Image omitted from this Markdown build.]
 
 3. Click on Advanced and Proceed to [ EXTERNAL IP ] (unsafe). This will show the login page.
 
-![Cambria License Manager login page](images/license-webui-login.png)
+> **Cambria License Manager login page**  
+> [Image omitted from this Markdown build.]
 
 4. Log in using the credentials created in the Helm values yaml file (See cambriaClusterWebUIUser)
 
@@ -1070,8 +1072,7 @@ Log in to the Akamai Cloud dashboard and go to Clusters. Select your cluster fro
 1. Run the following command to get the webui address:
 
 ```bash
-kubectl get service/cambriaclusterwebuiservice -n capella-manager
--o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8161'}"
+kubectl get service/cambriaclusterwebuiservice -n capella-manager -o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8161'}"
 ```
 
 2. To log in to the WebUI, the credentials are located in the Helm values .yaml file that you configure (See section Deploy Cambria Cluster and FTC Application)
@@ -1087,8 +1088,7 @@ kubectl get service/cambriaclusterwebuiservice -n capella-manager
 1. Run the following command to get the base REST API Web Address:
 
 ```bash
-kubectl get service/cambriaclusterservice -n capella-manager
--o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8650'}"
+kubectl get service/cambriaclusterservice -n capella-manager -o=jsonpath="{'https://'}{.status.loadBalancer.ingress[0].hostname}{':8650'}"
 ```
 
 The REST API url should look similar to this:
@@ -1170,8 +1170,7 @@ kubectl cp <pod-name>:/opt/capella/CambriaLicenseManager/Logs ./CambriaFTCLicLog
 Cambria License Manager (Cambria Cluster):
 
 ```bash
-kubectl cp <pod-name>:/opt/capella/CambriaLicenseManager/Logs ./CambriaClusterLicLogs -n
-capella-manager
+kubectl cp <pod-name>:/opt/capella/CambriaLicenseManager/Logs ./CambriaClusterLicLogs -n capella-manager
 ```
 
 ## Copy File(s) to Cambria FTC / Cluster Pod
@@ -1186,12 +1185,10 @@ Example:
 
 ```bash
 # Copy file to Cambria FTC pod
-kubectl cp /mnt/n/MySource.mp4 cambriaftcapp-7c55887db9-t42v7:/var/media/MySource.mp4 -n
-capella-worker
+kubectl cp /mnt/n/MySource.mp4 cambriaftcapp-7c55887db9-t42v7:/var/media/MySource.mp4 -n capella-worker
 
 # Copy file to Cambria Cluster pod
-kubectl cp C:\MyKeys\MyKeyFile.key cambriaclusterapp-695dcc848f-vjpc7:/var/keys/MyKeyFile.key -n
-capella-manager
+kubectl cp C:\MyKeys\MyKeyFile.key cambriaclusterapp-695dcc848f-vjpc7:/var/keys/MyKeyFile.key -n capella-manager
 
 # Copy directory to Cambria FTC container
 kubectl cp /mnt/n/MyMediaFiles cambriaftcapp-7c55887db9-t42v7:/var/temp/mediafiles -n capella-worker
