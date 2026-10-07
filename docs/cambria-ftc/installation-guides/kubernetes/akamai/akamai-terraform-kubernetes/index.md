@@ -178,11 +178,11 @@ Each Kubernetes node runs either a Cambria Cluster deployment or a Cambria FTC d
 
 <u>https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-lke-linode-kubernetes-engine</u> 
 
-|**NodeBalancers**|0-3 NodeBalancers (Manager WebUI, Manager Web Server, Grafana)<br>0-1 NodeBalancer (Ingress)|
+|**NodeBalancers**|0-3 NodeBalancers (Manager WebUI, Manager Web Server, Grafana)<br />0-1 NodeBalancer (Ingress)|
 |---|---|
-|**Nodes**|X Cambria Manager Instances (Default is 3)<br>Y Cambria FTC Instances (Depends on max FTC instance configuration; Default is 20)|
+|**Nodes**|X Cambria Manager Instances (Default is 3)<br />Y Cambria FTC Instances (Depends on max FTC instance configuration; Default is 20)|
 |**Networking**|No VPCs are created|
-|**Security**|By default, no firewalls are created. However, Firewalls can be applied to the LKE cluster<br>nodes for stricter security|
+|**Security**|By default, no firewalls are created. However, Firewalls can be applied to the LKE cluster<br />nodes for stricter security|
 
 
 
@@ -193,7 +193,7 @@ The following is a benchmark of two Akamai Cloud machines. The information below
 | |**Container**|**Codec**|**Frame Rate**|**Resolution**|
 |---|---|---|---|---|
 |Source|TS|H.264|30|1920 x 1080 @ 8 Mbps|
-|Output|HLS/TS|H.264|29.97|1920 x 1080 @ 4Mbps \| 1280 x 720 @ 2.4Mbps<br>640 x 480 @ 0.8Mbps \| 320 x 240 @ 0.3Mbps|
+|Output|HLS/TS|H.264|29.97|1920 x 1080 @ 4Mbps \| 1280 x 720 @ 2.4Mbps<br />640 x 480 @ 0.8Mbps \| 320 x 240 @ 0.3Mbps|
 
 
 
@@ -202,14 +202,14 @@ The following is a benchmark of two Akamai Cloud machines. The information below
 |**Machine Info**|||||||
 |---|---|---|---|---|---|---|
 |**Name**|**RAM**|**CPUs**|**Storage**|**Transfer**|**Network In/Out**|**Cost per Hour**|
-|Dedicated 32 GB|32 GB|16|640 GB|7 TB|40 Gbps / 7 Gbps|$0.432 (As of<br>10/15/2025)|
+|Dedicated 32 GB|32 GB|16|640 GB|7 TB|40 Gbps / 7 Gbps|$0.432 (As of<br />10/15/2025)|
 
 
 
 |**Benchmark Results**|||
 |---|---|---|
 |**# of Concurrent Jobs**|**Real Time Speed**|**CPU Usage**|
-|2|**For Each job:**0.65x RT (slower than real-time)<br>**Throughput:**1.30x RT (it takes around 47 seconds to transcode<br>1 minute of source)|100%|
+|2|**For Each job:**0.65x RT (slower than real-time)<br />**Throughput:**1.30x RT (it takes around 47 seconds to transcode<br />1 minute of source)|100%|
 
 
 
@@ -218,14 +218,14 @@ The following is a benchmark of two Akamai Cloud machines. The information below
 |**Machine Info**|||||||
 |---|---|---|---|---|---|---|
 |**Name**|**RAM**|**CPUs**|**Storage**|**Transfer**|**Network In/Out**|**Cost per Hour**|
-|Dedicated 256 GB|256 GB|56|5000 GB|11 TB|40 Gbps / 11 Gbps|$3.456 (As of<br>05/28/2024)|
+|Dedicated 256 GB|256 GB|56|5000 GB|11 TB|40 Gbps / 11 Gbps|$3.456 (As of<br />05/28/2024)|
 
 
 
 |**Benchmark Results**|||
 |---|---|---|
 |**# of Concurrent Jobs**|**Real Time Speed**|**CPU Usage**|
-|2|**For Each Job:**1.56x RT (faster than real-time)<br>**Throughput:**3.12x RT (it takes around 20 seconds to transcode<br>1 minute of source)|~90%|
+|2|**For Each Job:**1.56x RT (faster than real-time)<br />**Throughput:**3.12x RT (it takes around 20 seconds to transcode<br />1 minute of source)|~90%|
 
 
 
@@ -432,15 +432,15 @@ ssh -Y -i "mysshkey" root@123.123.123.123
 
 |**Terraform UI Editor**|**Explanation**|
 |---|---|
-|pg_cluster_password|The password for the PostgreSQL database that Cambria Cluster<br>uses. General password rules apply|
-|cambria_cluster_api_token|A token needed for making calls to the Cambria FTC web server.<br>General token rules apply (Eg. 1234-5678-90abcdefg)|
-|cambria_cluster_webui_user|This is the login credentials for all of the Cambria WebUIs for the<br>kubernetes cluster. Each user is listed in the form:<br>role,username,password<br>**Allowed roles:**<br>**1. admin**- can view/create/edit/delete anything on the WebUI. Can<br>also create/manage WebUI users.<br>**2. superuser**- can view/create/edit/delete anything on the WebUI.<br>**3. user**- can only view anything on the WebUI.<br>For multiple users, separate each by a comma. Example:<br>admin,admin,changethispassword1234,user,guest,password123|
-|argo_event_webhook_source_bearer_token|A token needed for making specific argo events calls. General token<br>rules apply (Eg. 1234-5678-90abcdefg)|
-|ftc_license_key|This is the Cambria FTC license key that Capella should have<br>provided. The license key should start with a '2' in this case. Only<br>one license key is needed here (Eg.<br>2AB122-11123A-ABC890-DEF345-ABC321-543A21)|
+|pg_cluster_password|The password for the PostgreSQL database that Cambria Cluster<br />uses. General password rules apply|
+|cambria_cluster_api_token|A token needed for making calls to the Cambria FTC web server.<br />General token rules apply (Eg. 1234-5678-90abcdefg)|
+|cambria_cluster_webui_user|This is the login credentials for all of the Cambria WebUIs for the<br />kubernetes cluster. Each user is listed in the form:<br />role,username,password<br />**Allowed roles:**<br />**1. admin**- can view/create/edit/delete anything on the WebUI. Can<br />also create/manage WebUI users.<br />**2. superuser**- can view/create/edit/delete anything on the WebUI.<br />**3. user**- can only view anything on the WebUI.<br />For multiple users, separate each by a comma. Example:<br />admin,admin,changethispassword1234,user,guest,password123|
+|argo_event_webhook_source_bearer_token|A token needed for making specific argo events calls. General token<br />rules apply (Eg. 1234-5678-90abcdefg)|
+|ftc_license_key|This is the Cambria FTC license key that Capella should have<br />provided. The license key should start with a '2' in this case. Only<br />one license key is needed here (Eg.<br />2AB122-11123A-ABC890-DEF345-ABC321-543A21)|
 |grafana_admin_password|The password for Grafana Dashboard. General password rules apply|
-|loki_s3_access_key|The recommended log storage solution is AWS S3 or compatible S3<br>storage. If using this solution, this is the ACCESS_KEY or<br>AWS_ACCESS_KEY_ID|
-|loki_s3_secret_key|The recommended log storage solution is AWS S3 or compatible S3<br>storage. If using this solution, this is the SECRET_KEY or<br>AWS_SECRET_ACCESS_KEY|
-|linode_token|See<br>https://www.linode.com/docs/products/tools/api/guides/manage-api<br>-tokens/|
+|loki_s3_access_key|The recommended log storage solution is AWS S3 or compatible S3<br />storage. If using this solution, this is the ACCESS_KEY or<br />AWS_ACCESS_KEY_ID|
+|loki_s3_secret_key|The recommended log storage solution is AWS S3 or compatible S3<br />storage. If using this solution, this is the SECRET_KEY or<br />AWS_SECRET_ACCESS_KEY|
+|linode_token|See<br />https://www.linode.com/docs/products/tools/api/guides/manage-api<br />-tokens/|
 
 5. Once done, click on **Save Changes** and wait for the message **Changes were saved** to appear. 
 
@@ -452,21 +452,21 @@ ssh -Y -i "mysshkey" root@123.123.123.123
 |---|---|
 |lke_cluster_name|The name of the kubernetes cluster|
 |lk_region|The region code where the kubernetes cluster should be deployed|
-|lke_control_plane_ha|If true, this option enables Akamai LKE's High Availability setting for the<br>cluster. This does incur an extra charge. See the Akamai Cloud website<br>for more information. By default, this is set to false.|
+|lke_control_plane_ha|If true, this option enables Akamai LKE's High Availability setting for the<br />cluster. This does incur an extra charge. See the Akamai Cloud website<br />for more information. By default, this is set to false.|
 |lke_manager_pool_node_count|The number of Cambria Cluster nodes to create|
 |lke_worker_pool_node_count|The number of Cambria Stream nodes to create|
-|manager_instance_type|The instance type of the Cambria Cluster nodes. See Akamai<br>documentation for information on how to get the instance type name|
-|ftc_instance_type|The instance type of the Cambria FTC nodes. See Akamai<br>documentation for information on how to get the instance type name|
-|max_ftc_instances|The maximum number of encoders that the kubernetes cluster can<br>have up and running|
-|cambria_cluster_replicas|The maximum number of Cambria management + replica machines to<br>have up and running. This should match the<br>**lke_manager_pool_node_count**or be greater if more manager<br>replicas will be needed after installation|
-|host_name|One way to access the Cambria applications is through an Application<br>ingress. This is the domain name for the ingress (Eg. mydomain.com)|
-|acme_registration_email<br>acme_server|This information is needed to connect a real TLS certificate to the<br>ingress. The default values are only usable under a test environment.|
-|ingressUseSelfSigned|If true, use self-signed certificates for the Cambria application servers.<br>If false, the user needs to configure their own valid certificate for the<br>Cambria applications.|
-|loki_storage_type|This is for deciding what type of storage to use for Loki logs. It is<br>recommended to use an S3 compatible storage like AWS S3. For testing<br>purposes only, there is a filesystem version of the Loki log storage<br>deployment. For this, change this to**local**|
-|loki_local_storage_size_gi|This option is only used for the**local**loki_storage_type. This is how<br>many GB the Loki log volume should be. Volumes can fill up quickly so<br>testing different volume sizes may be required.|
-|loki_s3_bucket_name|This option should be changed if using the**s3_embedcred**<br>loki_storage_type. This is the name of the S3 compatible bucket to<br>write logs to|
-|loki_s3_region|This option should be changed if using the**s3_embedcred**<br>loki_storage_type. This is the region where the S3 bucket is located|
-|loki_log_retention_period|This is the number of days to retain Loki logs in the storage device. By<br>default, this is set to 7 days.|
+|manager_instance_type|The instance type of the Cambria Cluster nodes. See Akamai<br />documentation for information on how to get the instance type name|
+|ftc_instance_type|The instance type of the Cambria FTC nodes. See Akamai<br />documentation for information on how to get the instance type name|
+|max_ftc_instances|The maximum number of encoders that the kubernetes cluster can<br />have up and running|
+|cambria_cluster_replicas|The maximum number of Cambria management + replica machines to<br />have up and running. This should match the<br />**lke_manager_pool_node_count**or be greater if more manager<br />replicas will be needed after installation|
+|host_name|One way to access the Cambria applications is through an Application<br />ingress. This is the domain name for the ingress (Eg. mydomain.com)|
+|acme_registration_email<br />acme_server|This information is needed to connect a real TLS certificate to the<br />ingress. The default values are only usable under a test environment.|
+|ingressUseSelfSigned|If true, use self-signed certificates for the Cambria application servers.<br />If false, the user needs to configure their own valid certificate for the<br />Cambria applications.|
+|loki_storage_type|This is for deciding what type of storage to use for Loki logs. It is<br />recommended to use an S3 compatible storage like AWS S3. For testing<br />purposes only, there is a filesystem version of the Loki log storage<br />deployment. For this, change this to**local**|
+|loki_local_storage_size_gi|This option is only used for the**local**loki_storage_type. This is how<br />many GB the Loki log volume should be. Volumes can fill up quickly so<br />testing different volume sizes may be required.|
+|loki_s3_bucket_name|This option should be changed if using the**s3_embedcred**<br />loki_storage_type. This is the name of the S3 compatible bucket to<br />write logs to|
+|loki_s3_region|This option should be changed if using the**s3_embedcred**<br />loki_storage_type. This is the region where the S3 bucket is located|
+|loki_log_retention_period|This is the number of days to retain Loki logs in the storage device. By<br />default, this is set to 7 days.|
 
 
 
@@ -476,34 +476,34 @@ ssh -Y -i "mysshkey" root@123.123.123.123
 
 |**Terraform UI Editor**|**Explanation**|
 |---|---|
-|workers_can_use_manager_nodes|If true, allow encoding capabilities on the management nodes. This will<br>allow deployment of Cambria worker pods on the management nodes.<br>Default is false|
-|workersUseGPU|**[ BETA ]**This must be set to true if planning to use NVENC capabilities<br>on the encoding machines. This is set to false by default.|
-|nbGPUs|The max number of GPUs to use from the encoding machines if GPU<br>functionality is enabled. This value should not exceed the amount of<br>GPUs available|
-|workersUseVPU|[ BETA ]This must be set to true if planning to use netint VPU capabilities<br>on the encoding machines. This is set to false by default.|
-|nbVPUs|The max number of VPUs to use from the encoding machines if VPU<br>functionality is enabled. This value should not exceed the amount of VPUs<br>available|
-|ftc_enable_auto_scaler|This is used to enable / disable the FTC autoscaler which controls auto<br>deployment of Cambria FTC encoders to handle encoding tasks<br>dynamically. By default this is enabled (true).|
-|ftc_enable_scriptable_workflow|This is used to enable / disable the FTC scriptable workflow feature. By<br>default, this is disabled.|
-|enable_manager_webui|If enabled, this allows users to use Cambria Clusterr's Web UI.<br>Otherwise, only the REST API server can be used to interact with Cambria<br>Cluster.|
-|enable_cluster_as_ftc|Set this to true if planning to run any management type of jobs (Eg. split<br>and stitch jobs). The default is false.|
-|storage_class_name|The name of the storage class to use for volumes in the Kubernetes<br>cluster.|
-|ftc_encoding_slots|When a Cambria FTC worker node is connected to Cambria Cluster, this is<br>the max number of encoding jobs it can run concurrently by default.|
-|expose_capella_service_externally|This option tells the deployment to create load balancers to publicly<br>expose the Capella application|
-|enable_ingress|This option tells the deployment to create an ingress for the Capella<br>applications that should be exposed.|
-|ftc_license_mode|The license mode for Cambria Cluster and FTC instances.**Do not change**<br>**this value unless instructed by Capella.**|
-|enable_eventing|This enables / disables the argo-events event-based system. By default,<br>this is enabled (true).|
+|workers_can_use_manager_nodes|If true, allow encoding capabilities on the management nodes. This will<br />allow deployment of Cambria worker pods on the management nodes.<br />Default is false|
+|workersUseGPU|**[ BETA ]**This must be set to true if planning to use NVENC capabilities<br />on the encoding machines. This is set to false by default.|
+|nbGPUs|The max number of GPUs to use from the encoding machines if GPU<br />functionality is enabled. This value should not exceed the amount of<br />GPUs available|
+|workersUseVPU|[ BETA ]This must be set to true if planning to use netint VPU capabilities<br />on the encoding machines. This is set to false by default.|
+|nbVPUs|The max number of VPUs to use from the encoding machines if VPU<br />functionality is enabled. This value should not exceed the amount of VPUs<br />available|
+|ftc_enable_auto_scaler|This is used to enable / disable the FTC autoscaler which controls auto<br />deployment of Cambria FTC encoders to handle encoding tasks<br />dynamically. By default this is enabled (true).|
+|ftc_enable_scriptable_workflow|This is used to enable / disable the FTC scriptable workflow feature. By<br />default, this is disabled.|
+|enable_manager_webui|If enabled, this allows users to use Cambria Clusterr's Web UI.<br />Otherwise, only the REST API server can be used to interact with Cambria<br />Cluster.|
+|enable_cluster_as_ftc|Set this to true if planning to run any management type of jobs (Eg. split<br />and stitch jobs). The default is false.|
+|storage_class_name|The name of the storage class to use for volumes in the Kubernetes<br />cluster.|
+|ftc_encoding_slots|When a Cambria FTC worker node is connected to Cambria Cluster, this is<br />the max number of encoding jobs it can run concurrently by default.|
+|expose_capella_service_externally|This option tells the deployment to create load balancers to publicly<br />expose the Capella application|
+|enable_ingress|This option tells the deployment to create an ingress for the Capella<br />applications that should be exposed.|
+|ftc_license_mode|The license mode for Cambria Cluster and FTC instances.**Do not change**<br />**this value unless instructed by Capella.**|
+|enable_eventing|This enables / disables the argo-events event-based system. By default,<br />this is enabled (true).|
 
 
 
-|createCrashDumpOnManager|If true, anytime the Cambria management applications crash, a dump will<br>be created on the manager pod where the crash happened. As a result,<br>more storage might be needed to store the dumps on the nodes. By<br>default, this is set to false. Only recommended to be used for debugging<br>purposes|
+|createCrashDumpOnManager|If true, anytime the Cambria management applications crash, a dump will<br />be created on the manager pod where the crash happened. As a result,<br />more storage might be needed to store the dumps on the nodes. By<br />default, this is set to false. Only recommended to be used for debugging<br />purposes|
 |---|---|
-|createCrashDumpOnWorker|If true, anytime the Cambria worker applications crash, a dump will be<br>created on the worker pod where the crash happened. As a result, more<br>storage might be needed to store the dumps on the nodes. By default,<br>this is set to false. Only recommended to be used for debugging purposes|
-|webui_usertext|This is used for exposing important information to an operator of the<br>Cambria Web UI (Eg. API usertoken)|
-|kubernetes_version|The Kubernetes version number to use.**Do not change this value**<br>**unless instructed by Capella.**|
-|install_monitoring|This controls whether monitoring features (prometheus, grafana) should<br>be installed.**Do not change this value unless instructed by Capella.**|
-|install_loki|This controls whether the Loki logs feature should be installed.**Do not**<br>**change this value unless instructed by Capella.**|
-|expose_grafana|This option tells the deployment to make the Grafana dashboard<br>accessible publicly via a load balancer|
-|loki_replicas|This option should only be changed if using the**s3_embedcred**<br>loki_storage_type. This is the number of Loki pod replicas to use for<br>handling log requests.At least 2 replicas need to be active for Loki to<br>work properly. Also, there should be at least the same amount of nodes<br>running to cover the number of replicas specified here.|
-|loki_max_unavailable|This option should only be changed if using the**s3_embedcred**<br>loki_storage_type. This is how many Loki pods can be taken down when<br>performing upgrades. For simplicity, this value should be loki_replicas + 1|
+|createCrashDumpOnWorker|If true, anytime the Cambria worker applications crash, a dump will be<br />created on the worker pod where the crash happened. As a result, more<br />storage might be needed to store the dumps on the nodes. By default,<br />this is set to false. Only recommended to be used for debugging purposes|
+|webui_usertext|This is used for exposing important information to an operator of the<br />Cambria Web UI (Eg. API usertoken)|
+|kubernetes_version|The Kubernetes version number to use.**Do not change this value**<br />**unless instructed by Capella.**|
+|install_monitoring|This controls whether monitoring features (prometheus, grafana) should<br />be installed.**Do not change this value unless instructed by Capella.**|
+|install_loki|This controls whether the Loki logs feature should be installed.**Do not**<br />**change this value unless instructed by Capella.**|
+|expose_grafana|This option tells the deployment to make the Grafana dashboard<br />accessible publicly via a load balancer|
+|loki_replicas|This option should only be changed if using the**s3_embedcred**<br />loki_storage_type. This is the number of Loki pod replicas to use for<br />handling log requests.At least 2 replicas need to be active for Loki to<br />work properly. Also, there should be at least the same amount of nodes<br />running to cover the number of replicas specified here.|
+|loki_max_unavailable|This option should only be changed if using the**s3_embedcred**<br />loki_storage_type. This is how many Loki pods can be taken down when<br />performing upgrades. For simplicity, this value should be loki_replicas + 1|
 
 
 
@@ -562,9 +562,9 @@ kubectl get all -n capella-manager
 
 |**Resources**|**Content**|
 |---|---|
-|Deployments|- 1**cambriaclusterapp**deployment with all items active<br>- 1**cambriaclusterwebui**deployment with all items active|
-|Pods|- X pods with**cambriaclusterapp**in the name (X = # of replicas specified in config file)<br>with all items active / Running<br>- 1 pod with**cambriaclusterwebui**in the name|
-|Services|- 1 service named**cambriaclusterservice**. If**exposeStreamServiceExternally**is true,<br>this should have an EXTERNAL-IP<br>- 1 service named**cambriaclusterwebuiservice**. If**exposeStreamServiceExternally**is<br>true, this should have an EXTERNAL-IP|
+|Deployments|- 1**cambriaclusterapp**deployment with all items active<br />- 1**cambriaclusterwebui**deployment with all items active|
+|Pods|- X pods with**cambriaclusterapp**in the name (X = # of replicas specified in config file)<br />with all items active / Running<br />- 1 pod with**cambriaclusterwebui**in the name|
+|Services|- 1 service named**cambriaclusterservice**. If**exposeStreamServiceExternally**is true,<br />this should have an EXTERNAL-IP<br />- 1 service named**cambriaclusterwebuiservice**. If**exposeStreamServiceExternally**is<br />true, this should have an EXTERNAL-IP|
 
 
 
@@ -580,7 +580,7 @@ kubectl get all -n capella-database
 
 |**Resources**|**Content**|
 |---|---|
-|Pods|- X pods with**pgcluster**in the name (X = # of replicas specified in config file) with all<br>items active / Running|
+|Pods|- X pods with**pgcluster**in the name (X = # of replicas specified in config file) with all<br />items active / Running|
 |Services|- 3 services with**pgcluster**in the name with a CLUSTER-IP assigned|
 
 
@@ -599,9 +599,9 @@ kubectl get all -n capella-worker
 
 |**Resources**|**Content**|
 |---|---|
-|Pods|- X pods with**cambriaftcapp**in the name (X = Max # of FTCs specified in the<br>config file)|
-||**Notes:**<br>1. If using Cambria FTC autoscaler, all of these pods should be in a pending state.<br>Every time the autoscaler deploys a Cambria FTC node, one pod will be assigned to<br>it|
-||2. If not using Cambria fTC autoscaler, Y of the pods should be in an active /<br>running state and all containers running (Y = # of Cambria FTC nodes active)|
+|Pods|- X pods with**cambriaftcapp**in the name (X = Max # of FTCs specified in the<br />config file)|
+||**Notes:**<br />1. If using Cambria FTC autoscaler, all of these pods should be in a pending state.<br />Every time the autoscaler deploys a Cambria FTC node, one pod will be assigned to<br />it|
+||2. If not using Cambria fTC autoscaler, Y of the pods should be in an active /<br />running state and all containers running (Y = # of Cambria FTC nodes active)|
 |Deployments|- 1**cambriaftcapp**deployment.|
 
 
