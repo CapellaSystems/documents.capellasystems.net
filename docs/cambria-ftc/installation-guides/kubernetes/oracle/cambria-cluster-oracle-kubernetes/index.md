@@ -1907,10 +1907,8 @@ helm uninstall capella-cluster -n default --wait
 ### 2. If any volumes are remaining, run the following command:
 
 ```text
-kubectl get pv -o name | awk -F'/' '{print $2}' | xargs -I{} kubectl patch pv {} -p='{"spec":
+kubectl get pv -o name | awk -F'/' '{print $2}' | xargs -I{} kubectl patch pv {} -p='{"spec":{"persistentVolumeReclaimPolicy": "Delete"}}'
 ```
-
-{"persistentVolumeReclaimPolicy": "Delete"}}'
 
 ### 3. Only if traefik ingress was deployed, do the following:
 
