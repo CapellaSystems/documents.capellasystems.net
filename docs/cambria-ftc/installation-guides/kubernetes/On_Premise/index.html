@@ -1,0 +1,1203 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-cambria-ftc/installation-guides/kubernetes/On_Premise/index" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.9.2">
+<title data-rh="true">Cambria Cluster / FTC 5.8.0 | Capella Documents</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://documents.capellasystems.net/img/capellalogo.png"><meta data-rh="true" name="twitter:image" content="https://documents.capellasystems.net/img/capellalogo.png"><meta data-rh="true" property="og:url" content="https://documents.capellasystems.net/docs/cambria-ftc/installation-guides/kubernetes/On_Premise/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Cambria Cluster / FTC 5.8.0 | Capella Documents"><meta data-rh="true" name="description" content="On Premise Kubernetes Help Documentation"><meta data-rh="true" property="og:description" content="On Premise Kubernetes Help Documentation"><link data-rh="true" rel="icon" href="/img/capellalogo.png"><link data-rh="true" rel="canonical" href="https://documents.capellasystems.net/docs/cambria-ftc/installation-guides/kubernetes/On_Premise/"><link data-rh="true" rel="alternate" href="https://documents.capellasystems.net/docs/cambria-ftc/installation-guides/kubernetes/On_Premise/" hreflang="en"><link data-rh="true" rel="alternate" href="https://documents.capellasystems.net/docs/cambria-ftc/installation-guides/kubernetes/On_Premise/" hreflang="x-default"><link rel="preconnect" href="https://www.google-analytics.com">
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WQ8DZ3HYRX"></script>
+<script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-WQ8DZ3HYRX",{anonymize_ip:!0})</script><link rel="stylesheet" href="/assets/css/styles.b5f02841.css">
+<script src="/assets/js/runtime~main.2c5cb28a.js" defer="defer"></script>
+<script src="/assets/js/main.c5b5d01c.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/capellalogo.png" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/capellalogo.png" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Capella Documentation</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a class="navbar__item navbar__link" href="/docs/cambria-ftc/ftc-overview">Cambria FTC</a><a class="navbar__item navbar__link" href="/docs/cambria-stream/installation-guides">Cambria Stream</a><a href="https://www.capellasystems.net" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Capella Website<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="navbarSearchContainer_Bca1"><div class="search-bar-wrapper"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input searchInput_YFbd" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div><span class="search-shortcut-hint"><kbd class="search-kbd">Ctrl</kbd><span class="search-plus">+</span><kbd class="search-kbd">K</kbd></span></div></div><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Cambria Cluster / FTC 5.8.0</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="on-premise-kubernetes-help-documentation">On Premise Kubernetes Help Documentation<a href="#on-premise-kubernetes-help-documentation" class="hash-link" aria-label="Direct link to On Premise Kubernetes Help Documentation" title="Direct link to On Premise Kubernetes Help Documentation" translate="no">​</a></h2>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="document-history">Document History<a href="#document-history" class="hash-link" aria-label="Direct link to Document History" title="Direct link to Document History" translate="no">​</a></h2>
+<p>Version         Date            Description</p>
+<p>5.6.0           10/31/2025      Updated for release 5.6.0.26533 (Linux)</p>
+<p>5.8.0           07/01/2026      Updated for release 5.8.0.31580 (Linux)</p>
+<ul>
+<li class="">Download the online version of this document for the latest information and latest files. Always</li>
+</ul>
+<p>download the latest files</p>
+<p>Do not move forward with the installation process if you do not agree with the End User License</p>
+<p>Agreement (EULA) for our products. You can download and read the EULA for Cambria FTC, Cambria</p>
+<p>Cluster, and Cambria License Manager from the links below:</p>
+<p>Cambria Cluster | Cambria FTC | Cambria License Manager</p>
+<p><a href="https://www.dropbox.com/s/1wg7ee7a59kzi8h/EULA_Cambria_License_Manager.pdf?dl=0https://www.dropbox.com/s/oemlax63aatjjiw/EULA_Cluster.pdf?dl=0" target="_blank" rel="noopener noreferrer" class="">https://www.dropbox.com/s/1wg7ee7a59kzi8h/EULA_Cambria_License_Manager.pdf?dl=0https://www.dropbox.com/s/oemlax63aatjjiw/EULA_Cluster.pdf?dl=0</a></p>
+<p><a href="https://www.dropbox.com/s/ualv9usxsowh6m2/EULA_FTC.pdf?dl=0" target="_blank" rel="noopener noreferrer" class="">https://www.dropbox.com/s/ualv9usxsowh6m2/EULA_FTC.pdf?dl=0</a></p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="important-limitations-and-security-information">Important: Limitations and Security Information<a href="#important-limitations-and-security-information" class="hash-link" aria-label="Direct link to Important: Limitations and Security Information" title="Direct link to Important: Limitations and Security Information" translate="no">​</a></h3>
+<p>Cambria Cluster, FTC, and License Manager are installed on Linux in containers. Limitations and security information</p>
+<p>can be found in the document below:</p>
+<p><a href="https://www.dropbox.com/scl/fi/zwojjdyy4kd6ul0s843kx/Cambria_FTC_5_8_0_Limitations_and_Security_Information.pdf?rlkey=ei1tnflrwm8nduiewfd6g6ghu&amp;st=wi4rgxvh&amp;dl=0" target="_blank" rel="noopener noreferrer" class="">https://www.dropbox.com/scl/fi/zwojjdyy4kd6ul0s843kx/Cambria_FTC_5_8_0_Limitations_and_Security_Information.pdf?rlkey=ei1tnflrwm8nduiewfd6g6ghu&amp;st=wi4rgxvh&amp;dl=0</a></p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="important-before-you-begin">Important: Before You Begin<a href="#important-before-you-begin" class="hash-link" aria-label="Direct link to Important: Before You Begin" title="Direct link to Important: Before You Begin" translate="no">​</a></h3>
+<p>PDF documents have a copy/paste issue. For best results, download this document and any referenced PDF</p>
+<p>documents in this guide and open them in a PDF viewer such as Adobe Acrobat.</p>
+<p>For commands that are in more than one line, copy each line one by one and check that the copied command</p>
+<p>matches the one in the document.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="information">Information<a href="#information" class="hash-link" aria-label="Direct link to Information" title="Direct link to Information" translate="no">​</a></h3>
+<p>This document references Kubernetes version 1.35 only</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="️-critical-information-read-before-proceeding">⚠️ Critical Information: Read Before Proceeding<a href="#️-critical-information-read-before-proceeding" class="hash-link" aria-label="Direct link to ⚠️ Critical Information: Read Before Proceeding" title="Direct link to ⚠️ Critical Information: Read Before Proceeding" translate="no">​</a></h2>
+<p>Before starting the installation, carefully review the following considerations. Skipping this section may</p>
+<p>result in errors, failed deployments, or misconfigurations.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-a-new-kubernetes-cluster-will-be-deployed">1. A New Kubernetes Cluster Will Be Deployed<a href="#1-a-new-kubernetes-cluster-will-be-deployed" class="hash-link" aria-label="Direct link to 1. A New Kubernetes Cluster Will Be Deployed" title="Direct link to 1. A New Kubernetes Cluster Will Be Deployed" translate="no">​</a></h3>
+<ul>
+<li class="">​   The installation process creates a brand-new Kubernetes cluster to keep the Cambria ecosystem isolated
+from other applications.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-default-installation-is-non-secure">2. Default Installation is Non-Secure<a href="#2-default-installation-is-non-secure" class="hash-link" aria-label="Direct link to 2. Default Installation is Non-Secure" title="Direct link to 2. Default Installation is Non-Secure" translate="no">​</a></h3>
+<ul>
+<li class="">
+<p>​   The guide covers installation with default settings in an open environment (not secure).</p>
+</li>
+<li class="">
+<p>​   If you require a secure or customized setup, you will need firewall and security experience for on-premise
+environments, which is not covered in this guide.</p>
+</li>
+<li class="">
+<p>​   Firewall information is provided in section Firewall Information</p>
+</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="3-understand-your-transcoding-requirements">3. Understand Your Transcoding Requirements<a href="#3-understand-your-transcoding-requirements" class="hash-link" aria-label="Direct link to 3. Understand Your Transcoding Requirements" title="Direct link to 3. Understand Your Transcoding Requirements" translate="no">​</a></h3>
+<ul>
+<li class="">​   Know your expected transcoding volume, input/output specs, and whether a GPU is needed.</li>
+<li class="">​   Refer to section On Premise Machine Information and Benchmark for guidelines on machine requirements.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="4-administrative-rights-required">4. Administrative Rights Required<a href="#4-administrative-rights-required" class="hash-link" aria-label="Direct link to 4. Administrative Rights Required" title="Direct link to 4. Administrative Rights Required" translate="no">​</a></h3>
+<ul>
+<li class="">​   Many of the steps in this guide require administrative rights / root access for adding permissions and
+performing other administrative functions of that sort.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="5-ubuntu-2404-recommended-as-node-host">5. Ubuntu 24.04 Recommended as Node Host<a href="#5-ubuntu-2404-recommended-as-node-host" class="hash-link" aria-label="Direct link to 5. Ubuntu 24.04 Recommended as Node Host" title="Direct link to 5. Ubuntu 24.04 Recommended as Node Host" translate="no">​</a></h3>
+<ul>
+<li class="">
+<p>​   For this Kubernetes setup, only Ubuntu 24.04 has been tested by the Capella team. Also, all instructions in
+this guide are only geared towards Ubuntu 24.04</p>
+</li>
+<li class="">
+<p>​   Other Linux distributions and versions not supported. If another Linux version or distribution is preferred,
+consult the Linux documentation for equivalent commands and procedures</p>
+</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="6-isolated-environment-recommended">6. Isolated Environment Recommended<a href="#6-isolated-environment-recommended" class="hash-link" aria-label="Direct link to 6. Isolated Environment Recommended" title="Direct link to 6. Isolated Environment Recommended" translate="no">​</a></h3>
+<ul>
+<li class="">
+<p>​   To avoid potential conflicts with other applications, it is recommended to use machines / nodes that will be
+dedicated to only performing tasks for this Kubernetes cluster deployment</p>
+</li>
+<li class="">
+<p>​   Any node part of this Kubernetes deployment cannot have other container services running (Eg. Docker)</p>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="document-overview">Document Overview<a href="#document-overview" class="hash-link" aria-label="Direct link to Document Overview" title="Direct link to Document Overview" translate="no">​</a></h2>
+<p>The purpose of this document is to provide a walkthrough of the installation and initial testing process of the Cambria</p>
+<p>Cluster and Cambria FTC applications in the Kubernetes environment. The basic view of the document is the following:</p>
+<ol>
+<li class="">Overview of the Cambria Cluster / FTC Environment in a Kubernetes Environment</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-preparation-for-the-installation-prerequisites">2. Preparation for the installation (Prerequisites)<a href="#2-preparation-for-the-installation-prerequisites" class="hash-link" aria-label="Direct link to 2. Preparation for the installation (Prerequisites)" title="Direct link to 2. Preparation for the installation (Prerequisites)" translate="no">​</a></h3>
+<ol start="3">
+<li class="">Create and configure the Kubernetes Cluster</li>
+<li class="">Install Cambria Cluster and Cambria FTC on the Kubernetes Cluster</li>
+<li class="">Verify the installation is working properly</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="6-test-the-cambria-cluster--ftc-applications">6. Test the Cambria Cluster / FTC applications<a href="#6-test-the-cambria-cluster--ftc-applications" class="hash-link" aria-label="Direct link to 6. Test the Cambria Cluster / FTC applications" title="Direct link to 6. Test the Cambria Cluster / FTC applications" translate="no">​</a></h3>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="7-update-the-cambria-cluster--ftc-applications-on-kubernetes-cluster">7. Update the Cambria Cluster / FTC applications on Kubernetes Cluster<a href="#7-update-the-cambria-cluster--ftc-applications-on-kubernetes-cluster" class="hash-link" aria-label="Direct link to 7. Update the Cambria Cluster / FTC applications on Kubernetes Cluster" title="Direct link to 7. Update the Cambria Cluster / FTC applications on Kubernetes Cluster" translate="no">​</a></h3>
+<ol start="8">
+<li class="">Delete a Kubernetes Cluster</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="9-quick-reference-of-kubernetes-installation">9. Quick Reference of Kubernetes Installation<a href="#9-quick-reference-of-kubernetes-installation" class="hash-link" aria-label="Direct link to 9. Quick Reference of Kubernetes Installation" title="Direct link to 9. Quick Reference of Kubernetes Installation" translate="no">​</a></h3>
+<ol start="10">
+<li class="">Quick Reference of Important Kubernetes Components (urls, template projects, test player, etc)</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="11-glossary-of-important-terms">11. Glossary of important terms<a href="#11-glossary-of-important-terms" class="hash-link" aria-label="Direct link to 11. Glossary of important terms" title="Direct link to 11. Glossary of important terms" translate="no">​</a></h3>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="overview-of-cambria-cluster--ftc-on-kubernetes">Overview of Cambria Cluster / FTC on Kubernetes<a href="#overview-of-cambria-cluster--ftc-on-kubernetes" class="hash-link" aria-label="Direct link to Overview of Cambria Cluster / FTC on Kubernetes" title="Direct link to Overview of Cambria Cluster / FTC on Kubernetes" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="deployment-information-cambria-cluster-and-cambria-ftc">Deployment Information: Cambria Cluster and Cambria FTC<a href="#deployment-information-cambria-cluster-and-cambria-ftc" class="hash-link" aria-label="Direct link to Deployment Information: Cambria Cluster and Cambria FTC" title="Direct link to Deployment Information: Cambria Cluster and Cambria FTC" translate="no">​</a></h3>
+<p>There are two major applications involved in this Kubernetes installation: Cambria Cluster and Cambria FTC.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="cambria-cluster">Cambria Cluster<a href="#cambria-cluster" class="hash-link" aria-label="Direct link to Cambria Cluster" title="Direct link to Cambria Cluster" translate="no">​</a></h3>
+<p>Recommended deployment is at least 3 nodes with 3 replicas and an external LoadBalancer service. Each node</p>
+<p>runs one Cambria Cluster pod. One pod acts as the leader, while the others serve as replicas that can replace</p>
+<p>the leader if needed.</p>
+<p>Each Cambria Cluster pod includes:</p>
+<ul>
+<li class="">​ Cambria Cluster application</li>
+<li class="">​ Leader Elector tool, which selects the active leader pod</li>
+</ul>
+<p>Each active Cambria Cluster pod also has a corresponding PostgreSQL database pod. Data is replicated across</p>
+<p>the database pods to help preserve Cluster data if a pod or database issue occurs.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="cambria-ftc">Cambria FTC<a href="#cambria-ftc" class="hash-link" aria-label="Direct link to Cambria FTC" title="Direct link to Cambria FTC" translate="no">​</a></h3>
+<p>Cambria FTC deployments consist of one or more encoding-focused nodes, typically using different instance</p>
+<p>types than the Cambria Cluster nodes. Each Cambria FTC pod runs on its own node and is dedicated to encoding</p>
+<p>tasks.</p>
+<p>Each Cambria FTC pod includes:</p>
+<ul>
+<li class="">
+<p>​ Cambria FTC application</p>
+</li>
+<li class="">
+<p>​ Auto-Connect FTC tool, which finds the Cambria Cluster pod and connects the FTC pod to it. If no
+Cambria Cluster is found within about 20 minutes, it deletes its node pool or recycles its node.</p>
+</li>
+<li class="">
+<p>​ Pgcluster database, which stores the encoder’s job data and related runtime information while the pod
+is running</p>
+</li>
+</ul>
+<p>Each Kubernetes node runs either a Cambria Cluster deployment or a Cambria FTC deployment.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="resource-usage">Resource Usage<a href="#resource-usage" class="hash-link" aria-label="Direct link to Resource Usage" title="Direct link to Resource Usage" translate="no">​</a></h2>
+<p>The resources used and their quantities will vary depending on requirements and different</p>
+<p>environments. Below is general information about some of the major resource usage:</p>
+<p>NodeBalancers      0-3 NodeBalancers (Manager WebUI, Manager Web Server, Grafana)</p>
+<p>0-1 NodeBalancer (Ingress)</p>
+<p>Nodes              X Cambria Manager Instances (Default is 3)</p>
+<p>Y Cambria FTC Instances (Depends on max FTC instance configuration; Default is 20)</p>
+<p>Networking         No specific networks are created</p>
+<p>Security           No firewalls are created.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="on-premise-machine-information-and-benchmark">On Premise Machine Information and Benchmark<a href="#on-premise-machine-information-and-benchmark" class="hash-link" aria-label="Direct link to On Premise Machine Information and Benchmark" title="Direct link to On Premise Machine Information and Benchmark" translate="no">​</a></h2>
+<p>Coming Soon!</p>
+<p>Currently, no real benchmarks have been recorded for on-premise Kubernetes specifically. However, Capella does</p>
+<p>record Windows benchmarks for some specific workflows. Find these in the document below:</p>
+<p><a href="https://www.capellasystems.net/cambria-ftc" target="_blank" rel="noopener noreferrer" class="">https://www.capellasystems.net/cambria-ftc</a></p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="cambria-application-access">Cambria Application Access<a href="#cambria-application-access" class="hash-link" aria-label="Direct link to Cambria Application Access" title="Direct link to Cambria Application Access" translate="no">​</a></h2>
+<p>The Cambria applications are accessible via the following methods:</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="option-1-external-access-via-tcp-load-balancer">Option 1: External Access via TCP Load Balancer<a href="#option-1-external-access-via-tcp-load-balancer" class="hash-link" aria-label="Direct link to Option 1: External Access via TCP Load Balancer" title="Direct link to Option 1: External Access via TCP Load Balancer" translate="no">​</a></h3>
+<p>The default Cambria installation configures the Cambria applications to be exposed through load balancers.</p>
+<p>There is one for the Cambria Manager WebUI + License Manager, and one for the web / REST API server. The</p>
+<p>load balancers are publicly available and can be accessed either through its public ip address or domain name,</p>
+<p>and the application&#x27;s TCP port.</p>
+<p>Example:</p>
+<p>Cambria Manager WebUI:</p>
+<p><a href="https://192.168.1.33:8161" target="_blank" rel="noopener noreferrer" class="">https://192.168.1.33:8161</a></p>
+<p>Cambria REST API:</p>
+<p><a href="https://192.168.1.34:8650/CambriaFC/v1/SystemInfo" target="_blank" rel="noopener noreferrer" class="">https://192.168.1.34:8650/CambriaFC/v1/SystemInfo</a></p>
+<p>External access in this way can be turned on / off via a configuration variable. See Deploy Cambria Cluster, FTC,</p>
+<p>and Monitoring. If this feature is disabled, another method of access will need to be configured.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="option-2-http-ingress-via-reverse-proxy">Option 2: HTTP Ingress via Reverse Proxy<a href="#option-2-http-ingress-via-reverse-proxy" class="hash-link" aria-label="Direct link to Option 2: HTTP Ingress via Reverse Proxy" title="Direct link to Option 2: HTTP Ingress via Reverse Proxy" translate="no">​</a></h3>
+<p>In cases where the external access via TCP load balancer is not acceptable or for using a purchased domain</p>
+<p>name from servicers such as GoDaddy, the Cambria installation provides the option to expose an ingress.</p>
+<p>Similar to the external access load balancers, the Cambria Manager WebUI and web / REST API server are</p>
+<p>exposed. However, only one ip address / domain name is needed in this case.</p>
+<p>How it works is that the Cambria WebUI is exposed through the subdomain webui, the Cambria web server</p>
+<p>through the subdomain api, and Grafana dashboard through the subdomain monitoring. The following is an</p>
+<p>example with the domain mydomain.com</p>
+<p>Cambria Manager WebUI:</p>
+<p><a href="https://webui.mydomain.com" target="_blank" rel="noopener noreferrer" class="">https://webui.mydomain.com</a></p>
+<p>Cambria REST API:</p>
+<p><a href="https://api.mydomain.com" target="_blank" rel="noopener noreferrer" class="">https://api.mydomain.com</a></p>
+<p>Grafana Dashboard:</p>
+<p><a href="https://monitoring.mydomain.com" target="_blank" rel="noopener noreferrer" class="">https://monitoring.mydomain.com</a></p>
+<p>Capella provides a default ingress hostname for testing purposes only. In production, the default hostname, ssl</p>
+<p>certificate, and other such information needs to be configured. More information about ingress configuration is</p>
+<p>explained later in this guide.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="firewall-information">Firewall Information<a href="#firewall-information" class="hash-link" aria-label="Direct link to Firewall Information" title="Direct link to Firewall Information" translate="no">​</a></h2>
+<p>By default, this guide creates a kubernetes cluster with default settings which do not include a</p>
+<p>Firewall. For custom / non-default configurations, or to explore with a more restrictive network based on the</p>
+<p>default virtual network created, the following is a list of known ports that the Cambria applications use:</p>
+<p>Port(s)            Protocol   Traffic          Description</p>
+<p>8650               TCP        Inbound          Cambria Cluster REST API</p>
+<p>8161               TCP        Inbound          Cambria Cluster WebUI</p>
+<p>8678               TCP        Inbound          Cambria License Manager Web Server</p>
+<p>8481               TCP        Inbound          Cambria License Manager WebUI</p>
+<p>9100               TCP        Inbound          Prometheus System Exporter for Cambria Cluster</p>
+<p>8648               TCP        Inbound          Cambria FTC REST API</p>
+<p>3100               TCP        Inbound          Loki Logging Service</p>
+<p>3000               TCP        Inbound          Grafana Dashboard</p>
+<p>443                TCP        Inbound          Capella Ingress</p>
+<p>ALL                TCP/UDP    Outbound         Expose all Outbound Traffic</p>
+<p>6400               TCP        Inbound          Node Control Plan API</p>
+<p>Also, for Cambria licensing, any Cambria Cluster and Cambria FTC machine requires that at least the following</p>
+<p>domains be exposed in your firewall (both inbound and outbound traffic):</p>
+<p>Domain                                  Port(s)     Protocol          Traffic       Description</p>
+<p>api.cryptlex.com                        443         TCP               In/Out        License Server</p>
+<p>cryptlexapi.capellasystems.net          8485        TCP               In/Out        License Cache Server</p>
+<p>cpfs.capellasystems.net                 8483        TCP               In/Out        License Backup Server</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="pre-requisites">Pre-requisites<a href="#pre-requisites" class="hash-link" aria-label="Direct link to Pre-requisites" title="Direct link to Pre-requisites" translate="no">​</a></h2>
+<p>The following steps need to be completed before the deployment process.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-x11-forwarding-for-user-interface">1. X11 Forwarding for User Interface<a href="#1-x11-forwarding-for-user-interface" class="hash-link" aria-label="Direct link to 1. X11 Forwarding for User Interface" title="Direct link to 1. X11 Forwarding for User Interface" translate="no">​</a></h3>
+<p>If using SSH to access the Kubernetes Host and the SSH client machine is either Windows or MAC, there</p>
+<p>are some special tools that need to be installed in order to be able to use the user interface from Capella&#x27;s terraform</p>
+<p>installer. If using Linux, the machine must have a graphical user interface (GUI).</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="11-option-1-microsoft-windows-tools">1.1. Option 1: Microsoft Windows Tools<a href="#11-option-1-microsoft-windows-tools" class="hash-link" aria-label="Direct link to 1.1. Option 1: Microsoft Windows Tools" title="Direct link to 1.1. Option 1: Microsoft Windows Tools" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Download and install the X11 Forwarding Tool Xming:
+<a href="https://github.com/marchaesen/vcxsrv/releases/download/21.1.16.1/vcxsrv-64.21.1.16.1.installer.noadmin.exe" target="_blank" rel="noopener noreferrer" class="">https://github.com/marchaesen/vcxsrv/releases/download/21.1.16.1/vcxsrv-64.21.1.16.1.installer.noadmin.exe</a></p>
+</li>
+<li class="">
+<p>Also, download and install PuTTY or similar tool that allows X11 Forwarding SSH:
+<a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html" target="_blank" rel="noopener noreferrer" class="">https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html</a></p>
+</li>
+<li class="">
+<p>Open XLaunch and do the following:</p>
+</li>
+</ol>
+<p>a.​ Window 1: Choose Multiple windows and set Display number to 0</p>
+<p>b.​ Window 2: Choose to Start no client</p>
+<p>c.​ Window 3: Enable all checkboxes: Clipboard, Primary Selection, Native opengl, and Disable access</p>
+<p>control</p>
+<p>d.​ Window 4: Click on Save configuration and save this somewhere to reuse in the future</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="12-option-2-apple-macos-tools">1.2. Option 2: Apple MacOS Tools<a href="#12-option-2-apple-macos-tools" class="hash-link" aria-label="Direct link to 1.2. Option 2: Apple MacOS Tools" title="Direct link to 1.2. Option 2: Apple MacOS Tools" translate="no">​</a></h3>
+<ol>
+<li class="">Download and install the X11 Forwarding Tool XQuartz:
+<a href="https://github.com/XQuartz/XQuartz/releases/download/XQuartz-2.8.5/XQuartz-2.8.5.pkg" target="_blank" rel="noopener noreferrer" class="">https://github.com/XQuartz/XQuartz/releases/download/XQuartz-2.8.5/XQuartz-2.8.5.pkg</a></li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-enable-ipv6-on-host-machines">2. Enable IPv6 on Host Machines<a href="#2-enable-ipv6-on-host-machines" class="hash-link" aria-label="Direct link to 2. Enable IPv6 on Host Machines" title="Direct link to 2. Enable IPv6 on Host Machines" translate="no">​</a></h3>
+<p>For all on-premise machines that will be part of the Kubernetes process, IPv6 must be enabled. Run the following on</p>
+<p>each of the machines:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo sysctl -w net.ipv6.conf.all.disable_ipv6=0 &amp;&amp; \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo sysctl -w net.ipv6.conf.default.disable_ipv6=0 &amp;&amp; \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo sysctl -w net.ipv6.conf.lo.disable_ipv6=0 &amp;&amp; \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo sed -i &#x27;/disable-ipv6/d&#x27; /etc/sysctl.conf &amp;&amp; \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo sysctl --system</span><br></span></code></pre></div></div>
+<p>Restart the machine</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo reboot</span><br></span></code></pre></div></div>
+<ol start="3">
+<li class="">Install Tools: Canonical
+For all on-premise machines that will be part of the Kubernetes process, Canonical Kubernetes must be installed. Run</li>
+</ol>
+<p>the following on each of the machines:</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-try-to-remove-any-previous-canonical-installation">1. Try to remove any previous canonical installation:<a href="#1-try-to-remove-any-previous-canonical-installation" class="hash-link" aria-label="Direct link to 1. Try to remove any previous canonical installation:" title="Direct link to 1. Try to remove any previous canonical installation:" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo snap remove k8s --purge</span><br></span></code></pre></div></div>
+<p>And also remove any saved credentials from previous installations:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo rm -rf /etc/k8sd/* &amp;&amp; sudo rm -rf /var/lib/k8sd/*</span><br></span></code></pre></div></div>
+<p>Skip this step if no previous canonical installation was found. Then, reboot the machine:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo reboot</span><br></span></code></pre></div></div>
+<ol start="2">
+<li class="">Install canonical</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo snap install k8s --classic --channel=1.35-classic/stable</span><br></span></code></pre></div></div>
+<p>Sample response:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">k8s (1.35-classic/stable) v1.35.0 from Canonical✓ installed</span><br></span></code></pre></div></div>
+<ol start="4">
+<li class="">
+<p>Download Cambria FTC Package
+Run the following steps in the Kubernetes Host.</p>
+</li>
+<li class="">
+<p>Install system tools:</p>
+</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo apt update &amp;&amp; \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo DEBIAN_FRONTEND=noninteractive apt -o Dpkg::Options::=&quot;--force-confold&quot; -y upgrade &amp;&amp; \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo DEBIAN_FRONTEND=noninteractive apt -o Dpkg::Options::=&quot;--force-confold&quot; -y install curl unzip libice6</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">libsm6 dbus libgtk-3-0</span><br></span></code></pre></div></div>
+<ol start="2">
+<li class="">Download the Cambria Cluster On-Premise Kubernetes package:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">curl -o CambriaClusterKubernetesOnPremise_5_8_0.zip -L</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">&quot;https://www.dropbox.com/scl/fi/5heuqea49m0c6lc5iibia/CambriaClusterKubernetesOnPremise_5_8_0.zip?rlkey=svivfbl73xq7y89abi3ee1g8v&amp;st=a1anzuv8&amp;dl=1&quot;</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="3-unpack-and-make-tools-executable">3. Unpack and make tools executable:<a href="#3-unpack-and-make-tools-executable" class="hash-link" aria-label="Direct link to 3. Unpack and make tools executable:" title="Direct link to 3. Unpack and make tools executable:" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">unzip -o CambriaClusterKubernetesOnPremise_5_8_0.zip &amp;&amp; chmod +x ./bin/*.sh ./bin/TerraformVariableEditor</span><br></span></code></pre></div></div>
+<ol start="4">
+<li class="">Install tools needed for deployment:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">./bin/setupTools.sh &amp;&amp; ./bin/installLogcli.sh &amp;&amp; ./bin/installTerraformDocs.sh</span><br></span></code></pre></div></div>
+<ol start="5">
+<li class="">Verify the tools are installed:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl version --client &amp;&amp; helm version &amp;&amp; terraform --version &amp;&amp; terraform-docs --version</span><br></span></code></pre></div></div>
+<h1>Installation</h1>
+<ol>
+<li class="">Create Kubernetes Cluster
+1.1. Create Cluster Base</li>
+</ol>
+<p>Only run these steps on the machine that will be the Kubernetes Host.</p>
+<ol>
+<li class="">Create the Canonical Cluster:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s bootstrap</span><br></span></code></pre></div></div>
+<p>Sample response:</p>
+<p>Bootstrapping the cluster. This may take a few seconds, please wait.</p>
+<p>Bootstrapped a new Kubernetes cluster with node address &quot;10.0.0.30:6400&quot;.</p>
+<p>The node will be &#x27;Ready&#x27; to host workloads after the CNI is deployed successfully.</p>
+<p>For any issues with this step, consult Troubleshooting for more information</p>
+<ol start="2">
+<li class="">Verify the installation:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl get nodes</span><br></span></code></pre></div></div>
+<p>Sample response:</p>
+<p>NAME               STATUS ROLES            AGE VERSION</p>
+<p>prodeski7-vpro1-linux Ready control-plane,worker 14m v1.33.4</p>
+<p>1.2. Add Control Plane Nodes</p>
+<p>By default, the Kubernetes host is a control plane node. To add more nodes as Control Plane Nodes, follow these</p>
+<p>steps:</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="important-high-availability">Important: High Availability<a href="#important-high-availability" class="hash-link" aria-label="Direct link to Important: High Availability" title="Direct link to Important: High Availability" translate="no">​</a></h3>
+<p>To enable high availability, 3 control plane nodes must be active in a Canonical Kubernetes cluster. To verify that</p>
+<p>high availability is enabled, run the following command:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s status</span><br></span></code></pre></div></div>
+<p>Sample response:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">cluster status:         ready</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">control plane nodes:    10.0.0.11:6400 (voter), 10.0.0.33:6400 (voter), 10.0.0.47:6400 (voter)</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">high availability:      yes</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">datastore:              k8s-dqlite</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">network:                enabled</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">dns:                     enabled at 10.151.182.107</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">ingress:                 ingress</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">load-balancer:           disabled</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">local-storage:           enabled at /var/snap/k8s/common/rawfile-storage</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">gateway:                  enabled</span><br></span></code></pre></div></div>
+<ol>
+<li class="">
+<p>Make sure the machine / node to add already has Canonical installed. If unsure, run through the steps in Enable
+IPv6 on Host Machines and Install Tools: Canonical</p>
+</li>
+<li class="">
+<p>In the Kubernetes host, run this command:</p>
+</li>
+</ol>
+<p><code>&lt;node-hostname&gt;</code>: the hostname of the machine. This hostname must be DNS reachable by the Kubernetes host</p>
+<p>node</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s get-join-token &lt;node-hostname&gt;</span><br></span></code></pre></div></div>
+<p>This should return a base64 encoded token</p>
+<ol start="2">
+<li class="">On the machine to add, run this command:</li>
+</ol>
+<p><code>&lt;token&gt;</code>: the base64 token from the command in the previous step</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s join-cluster &lt;token&gt;</span><br></span></code></pre></div></div>
+<p>Sample response:</p>
+<p>Joining the cluster. This may take a few seconds, please wait.</p>
+<p>Cluster services have started on &quot;local-machine-2&quot;.</p>
+<p>Please allow some time for initial Kubernetes node registration.</p>
+<p>For any issues with this step, consult Troubleshooting for more information</p>
+<p>1.3. Add Worker Nodes</p>
+<p>By default, the Kubernetes host is a worker node. Also, any node that was added as a control plane node is also a</p>
+<p>worker node. To add more nodes as &quot;worker nodes&quot; that are not &quot;control plane nodes&quot;, follow these steps:</p>
+<ol>
+<li class="">Make sure the machine / node to add already has Canonical installed. If unsure, run through the steps in</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="pre-requisites-1">Pre-requisites<a href="#pre-requisites-1" class="hash-link" aria-label="Direct link to Pre-requisites" title="Direct link to Pre-requisites" translate="no">​</a></h2>
+<ol>
+<li class="">In the Kubernetes Host, run this command:</li>
+</ol>
+<p><code>&lt;node-hostname&gt;</code>: the hostname of the machine. This hostname must be DNS reachable by the Kubernetes host</p>
+<p>node and make sure the hostname is all lowercase</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s get-join-token &lt;node-hostname&gt; --worker</span><br></span></code></pre></div></div>
+<p>This should return a base64 encoded token</p>
+<ol start="2">
+<li class="">On the machine to add, run this command:</li>
+</ol>
+<p><code>&lt;token&gt;</code>: the base64 token from the command in the previous step</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s join-cluster &lt;token&gt;</span><br></span></code></pre></div></div>
+<p>1.4. Add Cambria Cluster Manager Node Labels</p>
+<p>For any node that will be designated as the Cambria Cluster node (management node), do the following:</p>
+<ol>
+<li class="">In the Kubernetes Host node, run the following command to add the &#x27;capella-manager=&quot;true&quot;&#x27; label to the worker
+node (make sure the node-name is all lowercase):</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl label node &lt;node-name&gt; capella-manager=&quot;true&quot;</span><br></span></code></pre></div></div>
+<ol start="2">
+<li class="">Verify that the node has the label &quot;capella-manager&quot;:&quot;true&quot;</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl get node/&lt;node-name&gt; -o=jsonpath=&quot;{.metadata.labels}{&#x27;\n&#x27;}&quot;</span><br></span></code></pre></div></div>
+<p>Sample response:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">{&quot;beta.kubernetes.io/arch&quot;:&quot;amd64&quot;,&quot;beta.kubernetes.io/os&quot;:&quot;linux&quot;,&quot;capella-manager&quot;:&quot;true&quot;,&quot;hostname&quot;:&quot;local-m</span><br></span></code></pre></div></div>
+<p>achine-2&quot;,&quot;k8sd.io/role&quot;:&quot;control-plane&quot;,&quot;kubernetes.io/arch&quot;:&quot;amd64&quot;,&quot;kubernetes.io/hostname&quot;:&quot;local-machine-2&quot;</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">,&quot;kubernetes.io/os&quot;:&quot;linux&quot;,&quot;node-role.kubernetes.io/control-plane&quot;:&quot;&quot;,&quot;node-role.kubernetes.io/worker&quot;:&quot;&quot;}</span><br></span></code></pre></div></div>
+<p>1.5. Add Cambria FTC Worker Node Labels</p>
+<p>For any node that will be designated as the Cambria FTC node (worker node / encoding node), do the following:</p>
+<ol>
+<li class="">In the Kubernetes Host node, run the following command to add the &#x27;capella-worker=&quot;true&quot;&#x27; label to the worker
+node:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl label node &lt;node-name&gt; capella-worker=&quot;true&quot;</span><br></span></code></pre></div></div>
+<ol start="2">
+<li class="">Verify that the node has the label &quot;capella-manager&quot;:&quot;true&quot;</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl get node/&lt;node-name&gt; -o=jsonpath=&quot;{.metadata.labels}{&#x27;\n&#x27;}&quot;</span><br></span></code></pre></div></div>
+<p>Sample response:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">{&quot;beta.kubernetes.io/arch&quot;:&quot;amd64&quot;,&quot;beta.kubernetes.io/os&quot;:&quot;linux&quot;,&quot;capella-worker&quot;:&quot;true&quot;,&quot;hostname&quot;:&quot;local-mac</span><br></span></code></pre></div></div>
+<p>hine-3&quot;,&quot;k8sd.io/role&quot;:&quot;control-plane&quot;,&quot;kubernetes.io/arch&quot;:&quot;amd64&quot;,&quot;kubernetes.io/hostname&quot;:&quot;local-machine-3&quot;,&quot;</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubernetes.io/os&quot;:&quot;linux&quot;,&quot;node-role.kubernetes.io/control-plane&quot;:&quot;&quot;,&quot;node-role.kubernetes.io/worker&quot;:&quot;&quot;}</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="16-enable-load-balancers">1.6. Enable Load Balancers<a href="#16-enable-load-balancers" class="hash-link" aria-label="Direct link to 1.6. Enable Load Balancers" title="Direct link to 1.6. Enable Load Balancers" translate="no">​</a></h3>
+<p>In order to have access to the Cambria applications, load balancers need to be enabled in the Kubernetes cluster.</p>
+<p>Follow these steps in the Kubernetes host:</p>
+<ol>
+<li class="">In the Kubernetes Host, enable load balancers:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s enable load-balancer</span><br></span></code></pre></div></div>
+<p>Wait about a minute or two for the setting to be applied.</p>
+<p>Check that the load balancer setting is enabled:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s status</span><br></span></code></pre></div></div>
+<p>Sample response:</p>
+<p>cluster status:      ready</p>
+<p>control plane nodes: 10.0.0.11:6400 (voter), 10.0.0.33:6400 (spare)</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">high availability:   no</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">datastore:           etcd</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">network:             enabled</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">dns:                 enabled at 10.153.121.113</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">ingress:             disabled</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">load-balancer:       enabled, L2 mode</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">local-storage:       enabled at /var/snap/k8s/common/rawfile-storage</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">gateway              enabled</span><br></span></code></pre></div></div>
+<p>If the load balancer is still not enabled, wait another minute. If after this waiting period, there is still an issue, consult</p>
+<p>Troubleshooting for more information</p>
+<ol start="2">
+<li class="">Set the load-balancer mode to l2 (if not already in that mode):</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s set load-balancer.l2-mode=true</span><br></span></code></pre></div></div>
+<ol start="3">
+<li class="">Select a CIDR to dedicate to the load balancers. This CIDR is a list of addresses that will be reserved for use with
+the Kubernetes Cluster.</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="important-cidr-selection-guideline">Important: CIDR Selection Guideline<a href="#important-cidr-selection-guideline" class="hash-link" aria-label="Direct link to Important: CIDR Selection Guideline" title="Direct link to Important: CIDR Selection Guideline" translate="no">​</a></h3>
+<p>Make sure to select a CIDR where the IP addresses won&#x27;t conflict with existing or future resources outside of the</p>
+<p>Kubernetes cluster. The current minimum required CIDR is /29 and is the lowest the Capella team has tested.</p>
+<p>10.0.0.248/29: the CIDR for your load-balancer pool</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s set load-balancer.cidrs=10.0.0.248/29</span><br></span></code></pre></div></div>
+<ol start="4">
+<li class="">Verify that the configuration is correct:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s get load-balancer</span><br></span></code></pre></div></div>
+<p>Sample response:</p>
+<p>enabled: true</p>
+<p>cidrs:</p>
+<ul>
+<li class="">10.0.0.248/29</li>
+</ul>
+<p>l2-mode: true</p>
+<p>l2-interfaces: []</p>
+<p>bgp-mode: false</p>
+<p>bgp-local-asn: 0</p>
+<p>bgp-peer-address: &quot;&quot;</p>
+<p>bgp-peer-asn: 0</p>
+<p>bgp-peer-port: 0</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="17-enable-ingress">1.7. Enable Ingress<a href="#17-enable-ingress" class="hash-link" aria-label="Direct link to 1.7. Enable Ingress" title="Direct link to 1.7. Enable Ingress" translate="no">​</a></h3>
+<p>The ingress in the Kubernetes Cluster is used for allowing access to the Cambria (and other) applications by using a</p>
+<p>registered domain and TLS certificates. The Canonical Kubernetes setup uses Cilium as the controller. For more</p>
+<p>information, see <a href="https://docs.cilium.io/en/stable/network/servicemesh/ingress/" target="_blank" rel="noopener noreferrer" class="">https://docs.cilium.io/en/stable/network/servicemesh/ingress/</a></p>
+<ol>
+<li class="">In the Kubernetes Host, make sure that the load-balancer configuration is enabled in the cluster. See 3.6. Load
+Balancers</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-enable-the-ingress-controller">2. Enable the ingress controller:<a href="#2-enable-the-ingress-controller" class="hash-link" aria-label="Direct link to 2. Enable the ingress controller:" title="Direct link to 2. Enable the ingress controller:" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s enable ingress</span><br></span></code></pre></div></div>
+<p>Sample response:</p>
+<p>Enabling ingress on the cluster. This may take a few seconds, please wait.</p>
+<p>ingress enabled.</p>
+<ol start="3">
+<li class="">Verify the ingress is enabled:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s get ingress</span><br></span></code></pre></div></div>
+<p>Sample response:</p>
+<p>enabled: true</p>
+<p>default-tls-secret: &quot;&quot;</p>
+<p>enable-proxy-protocol: false</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="18-enable-volumes">1.8. Enable Volumes<a href="#18-enable-volumes" class="hash-link" aria-label="Direct link to 1.8. Enable Volumes" title="Direct link to 1.8. Enable Volumes" translate="no">​</a></h3>
+<p>The applications in the Kubernetes deployment need volumes to store application data and other important</p>
+<p>information. For this, the deployment uses Longhorn. It sets up volumes in a distributed way in order to avoid losing</p>
+<p>volumes in case of machine failure / downtime.</p>
+<p>On the Kubernetes Host and on each Control Plane Node that is part of the Kubernetes cluster, run the following</p>
+<p>commands:</p>
+<ol>
+<li class="">Install multipath-tools:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo apt install multipath-tools</span><br></span></code></pre></div></div>
+<ol start="2">
+<li class="">Install Loghorn pre-requisites:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">curl -L https://github.com/longhorn/cli/releases/download/v1.10.1/longhornctl-linux-amd64 -o longhornctl</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">chmod +x longhornctl</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">export KUBECONFIG=/etc/kubernetes/admin.conf</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl create namespace longhorn-system</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo -E ./longhornctl check preflight</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo -E ./longhornctl install preflight</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo -E ./longhornctl check preflight</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="3-deploy-loghorn">3. Deploy Loghorn<a href="#3-deploy-loghorn" class="hash-link" aria-label="Direct link to 3. Deploy Loghorn" title="Direct link to 3. Deploy Loghorn" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s helm repo add longhorn https://charts.longhorn.io</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s helm repo update</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s helm upgrade --install longhorn longhorn/longhorn -n longhorn-system --create-namespace</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl apply -f config/longhorn-storageclass.yaml</span><br></span></code></pre></div></div>
+<p>Wait about a minute for pods to be deployed and running</p>
+<ol start="3">
+<li class="">Check that the pods are all running:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl -n longhorn-system get pods</span><br></span></code></pre></div></div>
+<p>Sample output:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">NAME                                READY STATUS RESTARTS             AGE</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">csi-attacher-5d68b48d9-ks6tl               1/1      Running 0          26s</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">csi-attacher-5d68b48d9-mfgbv                 1/1      Running 0          26s</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">csi-attacher-5d68b48d9-r8gk8                 1/1     Running 0           26s</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">csi-provisioner-6fcc6478db-5tgtt            1/1     Running 0           26s</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">csi-provisioner-6fcc6478db-swfdl            1/1     Running 0           26s</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">csi-provisioner-6fcc6478db-zdhfs            1/1      Running 0          26s</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">csi-resizer-6c558c9fbc-7g9sb               1/1     Running 0           26s</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">csi-resizer-6c558c9fbc-l7kb8              1/1      Running 0          26s</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">csi-resizer-6c558c9fbc-lxngx              1/1      Running 0          26s</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">csi-snapshotter-874b9f887-42wpm                1/1      Running 0          26s</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">csi-snapshotter-874b9f887-bxmp4                1/1      Running 0          26s</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">csi-snapshotter-874b9f887-s5hrg               1/1     Running 0           26s</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">engine-image-ei-db6c2b6f-w4bzw                 1/1      Running 0          61s</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">engine-image-ei-db6c2b6f-x5xxd                1/1      Running 0          61s</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">engine-image-ei-db6c2b6f-zbxhk                1/1     Running 0           61s</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">instance-manager-7d1356e1bbb88ecbab52458680778e6e 1/1            Running 0           27s</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">instance-manager-ee2bc6d5edfde3abde32a835adc247d2 1/1           Running 0           31s</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">instance-manager-fe1e44949f93985cef7421640d3d632b 1/1           Running 0           21s</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">longhorn-csi-plugin-gm6w7                  3/3      Running 0          26s</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">longhorn-csi-plugin-qh2vg                 3/3     Running 0           26s</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">longhorn-csi-plugin-vssqb                3/3      Running 0          26s</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">longhorn-driver-deployer-558944b5fd-dzlm4          1/1    Running 0           90s</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">longhorn-manager-b68lp                     2/2     Running 0           90s</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">longhorn-manager-fddcd                    2/2      Running 0          90s</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">longhorn-manager-qtqdx                     2/2     Running 1 (72s ago) 90s</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">longhorn-ui-74f8bdddf-p6sdg                 1/1     Running 0           90s</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">longhorn-ui-74f8bdddf-ttj6b               1/1      Running 0          90s</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-deploy-cambria-cluster-ftc-and-monitoring">2. Deploy Cambria Cluster, FTC, and Monitoring<a href="#2-deploy-cambria-cluster-ftc-and-monitoring" class="hash-link" aria-label="Direct link to 2. Deploy Cambria Cluster, FTC, and Monitoring" title="Direct link to 2. Deploy Cambria Cluster, FTC, and Monitoring" translate="no">​</a></h3>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="21-configure-the-kubernetes-cluster">2.1. Configure the Kubernetes Cluster<a href="#21-configure-the-kubernetes-cluster" class="hash-link" aria-label="Direct link to 2.1. Configure the Kubernetes Cluster" title="Direct link to 2.1. Configure the Kubernetes Cluster" translate="no">​</a></h3>
+<ol>
+<li class="">SSH into the Kubernetes host using one of the following methods (depending on the OS being used as the SSH
+client):</li>
+</ol>
+<p>Option 1: Windows</p>
+<ol>
+<li class="">
+<p>Open PuTTY or similar tool. Enable X11 Forwarding in the configuration. On PuTTY, this can be found in
+Connection &gt; SSH &gt; X11 &gt; X11 forwarding</p>
+</li>
+<li class="">
+<p>SSH into the instance with the created user. Usually, the user is root</p>
+</li>
+</ol>
+<p>Option 2: Unix (Linux, MacOS)</p>
+<ol>
+<li class="">Open a terminal window and ssh into the Linode instance using -Y option and one of the created users. This
+is usually root.</li>
+</ol>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">ssh -Y -i &quot;mysshkey&quot; root@123.123.123.123</span><br></span></code></pre></div></div>
+<ol start="2">
+<li class="">Run the terraform editor UI:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">./bin/TerraformVariableEditor</span><br></span></code></pre></div></div>
+<ol start="3">
+<li class="">
+<p>Click on Open Terraform File and choose the CambriaClusterValues_SENSITIVE_VALUES.tf file from the
+values directory.</p>
+</li>
+<li class="">
+<p>Using the UI, edit the fields accordingly. Reference the following table for values that should be changed:</p>
+</li>
+</ol>
+<p>Terraform UI Editor                             Explanation</p>
+<p>pg_cluster_password                             The password for the PostgreSQL database that Cambria Cluster</p>
+<p>uses. General password rules apply</p>
+<p>cambria_cluster_api_token                       A token needed for making calls to the Cambria FTC web server.</p>
+<p>General token rules apply (Eg. 1234-5678-90abcdefg)</p>
+<p>cambria_cluster_webui_user                      This is the login credentials for all of the Cambria WebUIs for the</p>
+<p>kubernetes cluster. Each user is listed in the form:</p>
+<p>role,username,password</p>
+<p>Allowed roles:</p>
+<ol>
+<li class="">
+<p>admin - can view/create/edit/delete anything on the WebUI. Can
+also create/manage WebUI users.</p>
+</li>
+<li class="">
+<p>superuser - can view/create/edit/delete anything on the WebUI.</p>
+</li>
+<li class="">
+<p>user - can only view anything on the WebUI.</p>
+</li>
+</ol>
+<p>For multiple users, separate each by a comma. Example:</p>
+<p>admin,admin,changethispassword1234,user,guest,password123</p>
+<p>argo_event_webhook_source_bearer_token          A token needed for making specific argo events calls. General token</p>
+<p>rules apply (Eg. 1234-5678-90abcdefg)</p>
+<p>ftc_license_key                                 This is the Cambria FTC license key that Capella should have</p>
+<p>provided. The license key should start with a &#x27;2&#x27; in this case. Only</p>
+<p>one license key is needed here (Eg.</p>
+<p>2AB122-11123A-ABC890-DEF345-ABC321-543A21)</p>
+<p>grafana_admin_password                          The password for Grafana Dashboard. General password rules apply</p>
+<p>loki_s3_access_key                              The recommended log storage solution is AWS S3 or compatible S3</p>
+<p>storage. If using this solution, this is the ACCESS_KEY or</p>
+<p>AWS_ACCESS_KEY_ID</p>
+<p>loki_s3_secret_key                              The recommended log storage solution is AWS S3 or compatible S3</p>
+<p>storage. If using this solution, this is the SECRET_KEY or</p>
+<p>AWS_SECRET_ACCESS_KEY</p>
+<ol start="5">
+<li class="">
+<p>Once done, click on Save Changes and wait for the message Changes were saved to appear.</p>
+</li>
+<li class="">
+<p>Click on Open Terraform File and choose the CambriaClusterValues_IMPORTANT_VALUES.tf file.</p>
+</li>
+<li class="">
+<p>Using the UI, edit the fields accordingly. Reference the following table for values that should be changed:</p>
+</li>
+</ol>
+<p>Terraform UI Editor                          Explanation</p>
+<p>max_ftc_instances                            The maximum number of encoders that the kubernetes cluster can</p>
+<p>have up and running</p>
+<p>cambria_cluster_replicas                     The maximum number of Cambria management + replica machines to</p>
+<p>have up and running.</p>
+<p>host_name                                    One way to expose the main Cambria applications is to use an ingress.</p>
+<p>This information is needed to connect a real domain and TLS certificate</p>
+<p>acme_registration_email                      to the ingress. The default values are only usable under a test</p>
+<p>environment.</p>
+<p>acme_server</p>
+<p>loki_storage_type                            This is for deciding what type of storage to use for Loki logs. It is</p>
+<p>recommended to use an S3 compatible storage like AWS S3. For testing</p>
+<p>purposes only, there is a filesystem version of the Loki log storage</p>
+<p>deployment. For this, change this to local</p>
+<p>loki_local_storage_size_gi                   This option is only used for the local loki_storage_type. This is how</p>
+<p>many GB the Loki log volume should be. Volumes can fill up quickly so</p>
+<p>testing different volume sizes may be required.</p>
+<p>loki_s3_bucket_name                          This option should be changed if using the s3_embedcred</p>
+<p>loki_storage_type. This is the name of the S3 compatible bucket to</p>
+<p>write logs to</p>
+<p>loki_s3_region                               This option should be changed if using the s3_embedcred</p>
+<p>loki_storage_type. This is the region where the S3 bucket is located</p>
+<p>loki_log_retention_period                    This is the number of days to retain Loki logs in the storage device. By</p>
+<p>default, this is set to 7 days.</p>
+<ol start="8">
+<li class="">Once done, click on Save Changes and wait for the message Changes were saved to appear.</li>
+<li class="">(Optional) Skip this section if no optional values are needed. Click on Open Terraform File and choose the
+CambriaClusterValues_OPTIONAL_VALUES.tf file. Using the UI, edit the fields accordingly. Reference the</li>
+</ol>
+<p>following table for values that should be changed:</p>
+<p>Terraform UI Editor                       Explanation</p>
+<p>workersUseGPU                             [ BETA ] This must be set to true if planning to use NVENC capabilities</p>
+<p>on the encoding machines. This is set to false by default.</p>
+<p>nbGPUs                                    The max number of GPUs to use from the encoding machines if GPU</p>
+<p>functionality is enabled. This value should not exceed the amount of</p>
+<p>GPUs available</p>
+<p>ftc_enable_scriptable_workflow            This is used to enable / disable the FTC scriptable workflow feature. By</p>
+<p>default, this is disabled.</p>
+<p>enable_manager_webui                      If enabled, this allows users to use Cambria Clusterr&#x27;s Web UI.</p>
+<p>Otherwise, only the REST API server can be used to interact with Cambria</p>
+<p>Cluster.</p>
+<p>ftc_encoding_slots                        When a Cambria FTC worker node is connected to Cambria Cluster, this is</p>
+<p>the max number of encoding jobs it can run concurrently by default.</p>
+<p>expose_capella_service_externally         This option tells the deployment to create load balancers to publicly</p>
+<p>expose the Capella application</p>
+<p>ftc_license_mode                          The license mode for Cambria Cluster and FTC instances. Do not change</p>
+<p>this value unless instructed by Capella.</p>
+<p>enable_eventing                           This enables / disables the argo-events event-based system. By default,</p>
+<p>this is enabled (true).</p>
+<p>install_monitoring                        This controls whether monitoring features (prometheus, grafana) should</p>
+<p>be installed. Do not change this value unless instructed by Capella.</p>
+<p>install_loki                              This controls whether the Loki logs feature should be installed. Do not</p>
+<p>change this value unless instructed by Capella.</p>
+<p>expose_grafana                            This option tells the deployment to make the Grafana dashboard</p>
+<p>accessible publicly via a load balancer</p>
+<p>loki_replicas                             This option should only be changed if using the s3_embedcred</p>
+<p>loki_storage_type. This is the number of Loki pod replicas to use for</p>
+<p>handling log requests. At least 2 replicas need to be active for Loki to</p>
+<p>work properly. Also, there should be at least the same amount of nodes</p>
+<p>running to cover the number of replicas specified here.</p>
+<p>loki_max_unavailable                      This option should only be changed if using the s3_embedcred</p>
+<p>loki_storage_type. This is how many Loki pods can be taken down when</p>
+<p>performing upgrades. For simplicity, this value should be loki_replicas + 1</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="10-once-done-click-on-save-changes-and-close-the-ui">10. Once done, click on Save Changes and close the UI<a href="#10-once-done-click-on-save-changes-and-close-the-ui" class="hash-link" aria-label="Direct link to 10. Once done, click on Save Changes and close the UI" title="Direct link to 10. Once done, click on Save Changes and close the UI" translate="no">​</a></h3>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="11-close-the-terraformvariableeditor-window">11. Close the TerraformVariableEditor window<a href="#11-close-the-terraformvariableeditor-window" class="hash-link" aria-label="Direct link to 11. Close the TerraformVariableEditor window" title="Direct link to 11. Close the TerraformVariableEditor window" translate="no">​</a></h3>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="22-deploy-applications">2.2. Deploy Applications<a href="#22-deploy-applications" class="hash-link" aria-label="Direct link to 2.2. Deploy Applications" title="Direct link to 2.2. Deploy Applications" translate="no">​</a></h3>
+<ol>
+<li class="">Save the configured values to a .tfvars file:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">terraform-docs tfvars hcl . --description --sort=false --output-file=cambriaftc.auto.tfvars --output-mode=replace</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--output-template=&quot;{{ .Content }}&quot;</span><br></span></code></pre></div></div>
+<ol start="2">
+<li class="">Run the following commands to create a terraform plan. Follow the prompts on the terminal window:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo terraform init &amp;&amp; sudo terraform plan</span><br></span></code></pre></div></div>
+<ol start="3">
+<li class="">Run the following command to create the kubernetes cluster:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo terraform apply -auto-approve</span><br></span></code></pre></div></div>
+<p>Also, as a result of an issue with the ingress deployment, this command will need to run after the deployment</p>
+<p>completes so that the ingress installs properly:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo terraform apply -auto-approve -replace=null_resoure.config_ingress[0]</span><br></span></code></pre></div></div>
+<ol start="4">
+<li class="">If deployment completes successfully, Store the following files in a private location:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">-​   terraform.tfstate</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">-​   cambriaftc.auto.tfvars</span><br></span></code></pre></div></div>
+<p>These files are needed in order to make any changes to the created kubernetes cluster.</p>
+<h1>Installation Verification</h1>
+<ol>
+<li class="">Verify Cambria Cluster Deployment
+Important: The components below are only a subset of the whole installation. These are the components</li>
+</ol>
+<p>considered as key to a proper deployment.</p>
+<ol>
+<li class="">Run the following command:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl get all -n capella-manager</span><br></span></code></pre></div></div>
+<ol start="2">
+<li class="">Verify the following information:</li>
+</ol>
+<p>Resources            Content</p>
+<p>Deployments          - 1 cambriaclusterapp deployment with all items active</p>
+<ul>
+<li class="">1 cambriaclusterwebui deployment with all items active</li>
+</ul>
+<p>Pods                 - X pods with cambriaclusterapp in the name (X = # of replicas specified in config file)</p>
+<p>with all items active / Running</p>
+<ul>
+<li class="">1 pod with cambriaclusterwebui in the name</li>
+</ul>
+<p>Services             - 1 service named cambriaclusterservice. If exposeStreamServiceExternally is true,</p>
+<p>this should have an EXTERNAL-IP</p>
+<ul>
+<li class="">1 service named cambriaclusterwebuiservice. If exposeStreamServiceExternally is</li>
+</ul>
+<p>true, this should have an EXTERNAL-IP</p>
+<ol start="3">
+<li class="">If any of the above are not in an expected state, wait a few more minutes in case some resources take longer than
+expected to complete. If after a few minutes there are still resources in an unexpected state, contact the Capella</li>
+</ol>
+<p>support team.</p>
+<ol start="4">
+<li class="">Run the following command for the pgcluster configuration:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl get all -n capella-database</span><br></span></code></pre></div></div>
+<ol start="5">
+<li class="">Verify the following information:</li>
+</ol>
+<p>Resources            Content</p>
+<p>Pods                 - X pods with pgcluster in the name (X = # of replicas specified in config file) with all items</p>
+<p>active / Running</p>
+<p>Services             - 3 services with pgcluster in the name with a CLUSTER-IP assigned</p>
+<ol start="2">
+<li class="">Verify Cambria FTC Deployment
+Important: The components below are only a subset of the whole installation. These are the components</li>
+</ol>
+<p>considered as key to a proper deployment.</p>
+<ol>
+<li class="">Run the following command:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl get all -n capella-worker</span><br></span></code></pre></div></div>
+<ol start="2">
+<li class="">Verify the following information:</li>
+</ol>
+<p>Resources                Content</p>
+<p>Pods                     - X pods with cambriaftcapp in the name (X = Max # of FTCs specified in the</p>
+<p>config file)</p>
+<p>Note:</p>
+<p>Y of the pods should be in an active / running state and all containers running (Y =</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain"># of Cambria FTC nodes active)</span><br></span></code></pre></div></div>
+<p>Deployments              - 1 cambriaftcapp deployment.</p>
+<ol start="3">
+<li class="">If any of the above are not in an expected state, wait a few more minutes in case some resources take longer than
+expected to complete. If after a few minutes there are still resources in an unexpected state, contact the Capella</li>
+</ol>
+<p>support team.</p>
+<ol start="3">
+<li class="">Verify Applications are Accessible</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="31-cambria-cluster-webui">3.1. Cambria Cluster WebUI<a href="#31-cambria-cluster-webui" class="hash-link" aria-label="Direct link to 3.1. Cambria Cluster WebUI" title="Direct link to 3.1. Cambria Cluster WebUI" translate="no">​</a></h3>
+<p>Skip this step if the WebUI was set to disabled in the Helm values configuration yaml file or the ingress</p>
+<p>will be used instead. For any issues, contact the Capella support team.</p>
+<ol>
+<li class="">Get the WebUI address. A web browser is required to access the WebUI:</li>
+</ol>
+<p>Option 1: External Url if External Access is Enabled</p>
+<p>Run the following command:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl get svc/cambriaclusterwebuiservice -n capella-manager</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">-o=jsonpath=&quot;{&#x27;https://&#x27;}{.status.loadBalancer.ingress[0].ip}{&#x27;:8161&#x27;}{&#x27;\n&#x27;}&quot;</span><br></span></code></pre></div></div>
+<p>The response should look something like this:</p>
+<p><a href="https://192.122.45.33:8161" target="_blank" rel="noopener noreferrer" class="">https://192.122.45.33:8161</a></p>
+<p>Option 2: Non-External Url Access</p>
+<p>Run the following command to temporarily expose the WebUI via port-forwarding:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl port-forward -n capella-manager svc/cambriaclusterwebuiservice 8161:8161</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--address=0.0.0.0</span><br></span></code></pre></div></div>
+<p>The url depends on the location of the web browser. If the web browser and the port-forward are on the</p>
+<p>same machine, use localhost. Otherwise, use the ip address of the machine with the port-forward:</p>
+<p>https://<code>&lt;server&gt;</code>:8161</p>
+<ol start="2">
+<li class="">
+<p>In a web browser, enter the above url. This should trigger an &quot;Unsafe&quot; page similar to the one below:</p>
+</li>
+<li class="">
+<p>Click on Advanced and Proceed to [ EXTERNAL IP ] (unsafe). This will show the login page.</p>
+</li>
+<li class="">
+<p>Log in using the credentials created in the Installation section</p>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="32-cambria-cluster-rest-api">3.2. Cambria Cluster REST API<a href="#32-cambria-cluster-rest-api" class="hash-link" aria-label="Direct link to 3.2. Cambria Cluster REST API" title="Direct link to 3.2. Cambria Cluster REST API" translate="no">​</a></h3>
+<p>Skip this step if the ingress will be used instead of external access or any other type of access. For any</p>
+<p>issues, contact the Capella support team.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-get-the-rest-api-address">1. Get the REST API address:<a href="#1-get-the-rest-api-address" class="hash-link" aria-label="Direct link to 1. Get the REST API address:" title="Direct link to 1. Get the REST API address:" translate="no">​</a></h3>
+<p>Option 1: External Url if External Access is Enabled</p>
+<p>Run the following command:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl get svc/cambriaclusterservice -n capella-manager</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">-o=jsonpath=&quot;{&#x27;https://&#x27;}{.status.loadBalancer.ingress[0].ip}{&#x27;:8650&#x27;}{&#x27;\n&#x27;}&quot;</span><br></span></code></pre></div></div>
+<p>The response should look something like this:</p>
+<p><a href="https://192.122.45.33:8650" target="_blank" rel="noopener noreferrer" class="">https://192.122.45.33:8650</a></p>
+<p>Option 2: Non-External Url Access</p>
+<p>Run the following command to temporarily expose the REST API via port-forwarding:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl port-forward -n capella-manager svc/cambriaclusterservice 8650:8650</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--address=0.0.0.0</span><br></span></code></pre></div></div>
+<p>The url depends on the location of the port-forward. If the web browser and the port-forward are on the</p>
+<p>same machine, use localhost. Otherwise, use the ip address of the machine with the port-forward:</p>
+<p>https://<code>&lt;server&gt;</code>:8650</p>
+<ol start="2">
+<li class="">Run the following API query to check if the REST API is active:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">curl -k -X GET https://&lt;server&gt;:8650/CambriaFC/v1/SystemInfo</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="33-cambria-license">3.3. Cambria License<a href="#33-cambria-license" class="hash-link" aria-label="Direct link to 3.3. Cambria License" title="Direct link to 3.3. Cambria License" translate="no">​</a></h3>
+<p>The Cambria license needs to be active in all entities where the Cambria application is deployed. Run the following</p>
+<p>steps to check the cambria license. Access to a web browser is required:</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-get-the-url-for-the-license-manager-webui">1. Get the url for the License Manager WebUI:<a href="#1-get-the-url-for-the-license-manager-webui" class="hash-link" aria-label="Direct link to 1. Get the url for the License Manager WebUI:" title="Direct link to 1. Get the url for the License Manager WebUI:" translate="no">​</a></h3>
+<p>Option 1: External Url if External Access is Enabled</p>
+<p>Run the following command:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl get svc/cambriaclusterwebuiservice -n capella-manager</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">-o=jsonpath=&quot;{&#x27;https://&#x27;}{.status.loadBalancer.ingress[0].ip}{&#x27;:8481&#x27;}{&#x27;\n&#x27;}&quot;</span><br></span></code></pre></div></div>
+<p>The response should look something like this:</p>
+<p><a href="https://192.122.45.33:8481" target="_blank" rel="noopener noreferrer" class="">https://192.122.45.33:8481</a></p>
+<p>Option 2: Non-External Url Access</p>
+<p>Run the following command to temporarily expose the License WebUI via port-forwarding:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl port-forward -n capella-manager svc/cambriaclusterwebuiservice 8481:8481</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--address=0.0.0.0</span><br></span></code></pre></div></div>
+<p>The url depends on the location of the port-forward. If the web browser and the port-forward are on the same</p>
+<p>machine, use localhost. Otherwise, use the ip address of the machine with the port-forward:</p>
+<p>https://<code>&lt;server&gt;</code>:8481</p>
+<ol start="2">
+<li class="">
+<p>In a web browser, enter the above url. This should trigger an &quot;Unsafe&quot; page similar to the one below:</p>
+</li>
+<li class="">
+<p>Click on Advanced and Proceed to [ EXTERNAL IP ] (unsafe). This will show the login page.</p>
+</li>
+<li class="">
+<p>Log in using the same credentials as the Cambria Cluster Web UI. These credentials can also be found by running
+the following command:</p>
+</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">./bin/getFtcInfo.sh</span><br></span></code></pre></div></div>
+<ol start="5">
+<li class="">Verify that the License Status is valid for at least either the Primary or Backup. Preferably, both Primary and
+Backup should be valid. If there are issues with the license, wait a few minutes as sometimes it takes a few minutes</li>
+</ol>
+<p>to properly update. If still facing issues, contact the Capella support team.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="34-cambria-monitoring-grafana-web-ui">3.4. Cambria Monitoring: Grafana Web UI<a href="#34-cambria-monitoring-grafana-web-ui" class="hash-link" aria-label="Direct link to 3.4. Cambria Monitoring: Grafana Web UI" title="Direct link to 3.4. Cambria Monitoring: Grafana Web UI" translate="no">​</a></h3>
+<p>Skip this step if the ingress will be used instead of external access or any other type of access. For any</p>
+<p>issues, contact the Capella support team.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-get-the-grafana-web-ui-address">1. Get the Grafana Web UI address:<a href="#1-get-the-grafana-web-ui-address" class="hash-link" aria-label="Direct link to 1. Get the Grafana Web UI address:" title="Direct link to 1. Get the Grafana Web UI address:" translate="no">​</a></h3>
+<p>Option 1: External Url if External Access is Enabled</p>
+<p>Run the following command:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl get svc/grafanalbservice -n monitoring</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">-o=jsonpath=&quot;{&#x27;http://&#x27;}{.status.loadBalancer.ingress[0].ip}{&#x27;:3000&#x27;}{&#x27;\n&#x27;}&quot;</span><br></span></code></pre></div></div>
+<p>The response should look something like this:</p>
+<p><a href="http://192.122.45.33:3000" target="_blank" rel="noopener noreferrer" class="">http://192.122.45.33:3000</a></p>
+<p>Option 2: Non-External Url Access</p>
+<p>Run the following command to temporarily expose the Grafana Web UI via port-forwarding:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl port-forward -n monitoring svc/grafanalbservice 3000:3000 --address=0.0.0.0</span><br></span></code></pre></div></div>
+<p>The url depends on the location of the port-forward. If the web browser and the port-forward are on the same</p>
+<p>machine, use localhost. Otherwise, use the ip address of the machine with the port-forward:</p>
+<p>http://<code>&lt;server&gt;</code>:3000</p>
+<ol start="2">
+<li class="">
+<p>In a web browser, enter the above url. This should trigger an &quot;Unsafe&quot; page similar to the one below:</p>
+</li>
+<li class="">
+<p>Click on Advanced and Proceed to [ EXTERNAL IP ] (unsafe). This will show the login page.</p>
+</li>
+<li class="">
+<p>Log in using the credentials specified in your values file. You can also get the credentials by running this command:</p>
+</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">./bin/getFtcInfo.sh</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="35-cambria-ingress">3.5. Cambria Ingress<a href="#35-cambria-ingress" class="hash-link" aria-label="Direct link to 3.5. Cambria Ingress" title="Direct link to 3.5. Cambria Ingress" translate="no">​</a></h3>
+<p>Skip this step if not planning to test with Cambria&#x27;s ingress. For any issues, contact the Capella support</p>
+<p>team.</p>
+<p>3.5.1. Get the Ingress Endpoints</p>
+<p>There are two ways to use the ingress:</p>
+<p>Option 1: Using Default Testing Ingress</p>
+<p>Only use this option for testing purposes. Skip to option 2 for production. In order to use the</p>
+<p>ingress in the testing state, the hostname needs to be DNS resolvable on the machines that will need</p>
+<p>access to the Cambria applications.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-get-the-ingress-hosts-and-address">1. Get the ingress HOSTS and ADDRESS:<a href="#1-get-the-ingress-hosts-and-address" class="hash-link" aria-label="Direct link to 1. Get the ingress HOSTS and ADDRESS:" title="Direct link to 1. Get the ingress HOSTS and ADDRESS:" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl get ingress -A</span><br></span></code></pre></div></div>
+<p>The response should look similar to the following:</p>
+<p>NAMESPACE           NAME                     CLASS HOSTS                      ADDRESS     PORTS</p>
+<p>AGE</p>
+<p>default         cambriaclusterciliumingress   cilium api.myhost.com,webui.myhost.com</p>
+<p>55.99.103.99 80, 443 5d17h</p>
+<p>kubernetes-dashboard kubernetesciliumingress        cilium dashboard.myhost.com</p>
+<p>55.99.103.99 80, 443 5d17h</p>
+<p>monitoring        cambriamonitoringciliumingress cilium monitoring.myhost.com         55.99.103.99</p>
+<p>80, 443 15h</p>
+<ol start="2">
+<li class="">In your local server(s) or any other server(s) that need to access the ingress, edit the hosts file (in
+Linux, usually /etc/hosts) and add the following lines (Example):</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">55.99.103.99         api.myhost.com</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">55.99.103.99         webui.myhost.com</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">55.99.103.99         monitoring.myhost.com</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">55.99.103.99        dashboard.myhost.com</span><br></span></code></pre></div></div>
+<p>Option 2: Using Publicly Registered Domain (Production)</p>
+<p>Contact Capella if unable to set up a purchased domain with the ingress. If the domain is set up,</p>
+<p>the endpoints needed are the following:</p>
+<p>Example with mydomain.com as the domain:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">REST API:                https://api.myhost.com</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">WebUI:                   https://webui.myhost.com</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">Grafana Dashboard:       https://monitoring.myhost.com</span><br></span></code></pre></div></div>
+<p>Kubernetes Dashboard: <a href="https://dashboard.myhost.com" target="_blank" rel="noopener noreferrer" class="">https://dashboard.myhost.com</a></p>
+<p>3.5.2. Test Ingress Endpoints</p>
+<p>If using the test ingress, these steps can only be verified in the machine(s) where the hosts file was</p>
+<p>modified. This is because the test ingress is not publicly DNS resolvable and so only those whose</p>
+<p>hosts file (or DNS) have been configured to resolve the test ingress will be able to access the</p>
+<p>Capella applications in this way.</p>
+<ol>
+<li class="">Test Cambria Cluster WebUI with the ingress that starts with webui. Run steps 2-4 of Cambria Cluster
+WebUI.</li>
+</ol>
+<p>Example:</p>
+<p><a href="https://webui.myhost.com" target="_blank" rel="noopener noreferrer" class="">https://webui.myhost.com</a></p>
+<ol start="2">
+<li class="">Test Cambria REST API with the ingress that starts with api. Run step 2 of Cambrai Cluster REST API.</li>
+</ol>
+<p>Example:</p>
+<p><a href="https://api.myhost.com/CambriaFC/v1/SystemInfo" target="_blank" rel="noopener noreferrer" class="">https://api.myhost.com/CambriaFC/v1/SystemInfo</a></p>
+<ol start="3">
+<li class="">Test Grafana Dashboard with the ingress that starts with monitoring. Run steps 2-4 of Cambria Monitoring:
+Grafana Web UI.</li>
+</ol>
+<p>Example:</p>
+<p><a href="https://monitoring.myhost.com" target="_blank" rel="noopener noreferrer" class="">https://monitoring.myhost.com</a></p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="4-test-the-kubernetes-dashboard-with-the-ingress-that-starts-with-dashboard">4. Test the Kubernetes Dashboard with the ingress that starts with dashboard.<a href="#4-test-the-kubernetes-dashboard-with-the-ingress-that-starts-with-dashboard" class="hash-link" aria-label="Direct link to 4. Test the Kubernetes Dashboard with the ingress that starts with dashboard." title="Direct link to 4. Test the Kubernetes Dashboard with the ingress that starts with dashboard." translate="no">​</a></h3>
+<p>Example:</p>
+<p><a href="https://dashboard.myhost.com" target="_blank" rel="noopener noreferrer" class="">https://dashboard.myhost.com</a></p>
+<p>You can get the bearer token that is needed to login by running the following command:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl -n kubernetes-dashboard create token admin-user</span><br></span></code></pre></div></div>
+<h1>Testing Cambria FTC / Cluster</h1>
+<p>The following guide provides information on how to get started testing the Cambria FTC / Cluster software:</p>
+<p><a href="https://www.dropbox.com/scl/fi/4c03qwdg7xeb7hvfy24k1/Cambria_Cluster_and_FTC_5_8_0_Kubernetes_User_Guide.pdf?rlkey=jhwtqvbf409lquxg7k2awkq9h&amp;st=vefbg1rj&amp;dl=0" target="_blank" rel="noopener noreferrer" class="">https://www.dropbox.com/scl/fi/4c03qwdg7xeb7hvfy24k1/Cambria_Cluster_and_FTC_5_8_0_Kubernetes_User_Guide.pdf?rlkey=jhwtqvbf409lquxg7k2awkq9h&amp;st=vefbg1rj&amp;dl=0</a></p>
+<h1>Upgrading / Updating</h1>
+<p>Upgrade Kubernetes Cluster</p>
+<p>This option is only used for upgrading the Kubernetes cluster to a new version. Skip this step if you only need to</p>
+<p>upgrade Cambria FTC / Cluster.</p>
+<p>Important: Node Upgrade</p>
+<p>The steps in this section need to be run on every node that is part of the Kubernetes Cluster. Just upgrading the</p>
+<p>Kubernetes Host will not automatically upgrade the other worker nodes.</p>
+<ol>
+<li class="">If not already known, get the name of the Canonical Kubernetes version to upgrade to:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo snap info k8s</span><br></span></code></pre></div></div>
+<ol start="2">
+<li class="">Using the name of the Canonical Kubernetes version, run this command to perform the upgrade:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo snap refresh --channel=1.35-classic/stable k8s</span><br></span></code></pre></div></div>
+<ol start="3">
+<li class="">Verify the upgrade went through and the Kubernetes Cluster is ready:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo snap info k8s &amp;&amp; sudo k8s status --wait-ready</span><br></span></code></pre></div></div>
+<p>You should see the new Kubernetes version (example):</p>
+<p>name:     k8s</p>
+<p>...</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">snap-id:    ADBD1SffBBNas2dFNbaxdb6osBvA5Hm</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">tracking:   1.35-classic/stable</span><br></span></code></pre></div></div>
+<p>refresh-date: 5 days ago, at 10:37 PDT</p>
+<p>...</p>
+<p>Upgrade Cambria FTC / Cluster and Dependencies</p>
+<p>This is the default way to perform an upgrade for anything from updating license keys, Cambria version, etc.</p>
+<p>Important</p>
+<p>in cases where the Cambria installation / upgrade isn&#x27;t working and is in an unrecoverable state, run this command</p>
+<p>in the Kubernetes Host before running the steps in this section:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s helm uninstall capella-cluster --wait</span><br></span></code></pre></div></div>
+<p>WARNING: THIS COMMAND WiLL DELETE THE CAMBRIA DATABASE. PLEASE SAVE ANY PROJECT FILES, CONFIG</p>
+<p>FILES, CREDENTIALS, ETC BEFORE RUNNING IT</p>
+<ol>
+<li class="">
+<p>Verify that you have access to the Kubernetes Host server and also to the Cambria Cluster Package. See
+sections Download Cambria FTC Package and Create Cluster Base for more information</p>
+</li>
+<li class="">
+<p>Download / Paste your cambriaftc.auto.tfvars and terraform.tfstate files that were used for the Kubernetes
+cluster deployment to the Kubernetes Host (if not already there)</p>
+</li>
+<li class="">
+<p>In the Kubernetes Host, run the following command to update the Cambria Cluster config variables with the
+values from the .tfvars file:</p>
+</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">./bin/updateTfValuesFromTfvars.sh cambriaftc.auto.tfvars</span><br></span></code></pre></div></div>
+<ol start="4">
+<li class="">
+<p>Follow the steps in section Deploy Cambria Cluster, FTC, and Monitoring to edit the configuration files and re-deploy
+the applications with the new changes</p>
+</li>
+<li class="">
+<p>Skip this step if you ran the steps in the Important section. Restart the Cambria Cluster and FTC
+deployments:</p>
+</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl rollout restart deployment cambriaclusterwebui cambriaclusterapp -n capella-manager</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl rollout restart deployment cambriaftcapp -n capella-worker</span><br></span></code></pre></div></div>
+<ol start="6">
+<li class="">Re-verify Cambria FTC / Cluster are properly upgraded / updated (See section Installation Verification)</li>
+</ol>
+<h1>Resource Cleanup / Deletion</h1>
+<p>Many resources are created in a Kubernetes environment. It is important that each step is followed carefully</p>
+<ol>
+<li class="">
+<p>Delete Cambria Deployment</p>
+</li>
+<li class="">
+<p>Verify that you have access to the Kubernetes Host server and also to the Cambria Cluster Package. See
+sections Download Cambria FTC Package and Create Cluster Base for more information</p>
+</li>
+<li class="">
+<p>Download / Paste your cambriaftc.auto.tfvars and terraform.tfstate files that were used for the Kubernetes
+cluster deployment to the Kubernetes Host (if not already there)</p>
+</li>
+<li class="">
+<p>In the Kubernetes Host, run the following command to update the Cambria Cluster config variables with the
+values from the .tfvars file:</p>
+</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">./bin/updateTfValuesFromTfvars.sh cambriaftc.auto.tfvars</span><br></span></code></pre></div></div>
+<ol start="4">
+<li class="">Run the following command to destroy the kubernetes cluster:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo terraform init &amp;&amp; sudo terraform apply -destroy -auto-approve</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-remove-kubernetes-nodes">2. Remove Kubernetes Nodes<a href="#2-remove-kubernetes-nodes" class="hash-link" aria-label="Direct link to 2. Remove Kubernetes Nodes" title="Direct link to 2. Remove Kubernetes Nodes" translate="no">​</a></h3>
+<ol>
+<li class="">In the Kubernetes Host, get a list of all of the nodes in the cluster:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl get nodes</span><br></span></code></pre></div></div>
+<ol start="2">
+<li class="">Choose the name of the node to remove and run this command:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s remove-node &lt;node-name&gt;</span><br></span></code></pre></div></div>
+<ol start="3">
+<li class="">In the node that was removed, run this command to remove k8s:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo snap remove k8s --purge</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="4-remove-any-saved-credentials-from-k8s">4. Remove any saved credentials from k8s:<a href="#4-remove-any-saved-credentials-from-k8s" class="hash-link" aria-label="Direct link to 4. Remove any saved credentials from k8s:" title="Direct link to 4. Remove any saved credentials from k8s:" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo rm -rf /etc/k8sd/* &amp;&amp; sudo rm -rf /var/lib/k8sd/*</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="5-reboot-the-machine-to-refresh-it">5. Reboot the machine to refresh it:<a href="#5-reboot-the-machine-to-refresh-it" class="hash-link" aria-label="Direct link to 5. Reboot the machine to refresh it:" title="Direct link to 5. Reboot the machine to refresh it:" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo reboot</span><br></span></code></pre></div></div>
+<ol start="6">
+<li class="">
+<p>Repeat steps 1-5 for all of the nodes to remove</p>
+</li>
+<li class="">
+<p>Delete Kubernetes Cluster
+To remove the kubernetes cluster completely, do the following:</p>
+</li>
+<li class="">
+<p>It is recommended to remove all kubernetes nodes from the cluster first</p>
+</li>
+<li class="">
+<p>Run this command to remove k8s from the Kubernetes Host:</p>
+</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo snap remove k8s --purge</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="3-remove-any-saved-credentials-from-k8s">3. Remove any saved credentials from k8s:<a href="#3-remove-any-saved-credentials-from-k8s" class="hash-link" aria-label="Direct link to 3. Remove any saved credentials from k8s:" title="Direct link to 3. Remove any saved credentials from k8s:" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo rm -rf /etc/k8sd/* &amp;&amp; sudo rm -rf /var/lib/k8sd/*</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="4-reboot-the-machine-to-refresh-the-system">4. Reboot the machine to refresh the system:<a href="#4-reboot-the-machine-to-refresh-the-system" class="hash-link" aria-label="Direct link to 4. Reboot the machine to refresh the system:" title="Direct link to 4. Reboot the machine to refresh the system:" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo reboot</span><br></span></code></pre></div></div>
+<p>Quick Reference: Helpful Commands/Info for After</p>
+<h1>Installation</h1>
+<p>This section provides helpful commands and other information that may be useful after the installation process</p>
+<p>such as how to get the WebUI address, what ports are available to use for incoming sources, etc.</p>
+<p>Get Longhorn UI URL</p>
+<p>In the Kubernetes Host, expose the longhorn-frontend</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl -n longhorn-system port-forward service/longhorn-frontend 8080:80 --address=0.0.0.0</span><br></span></code></pre></div></div>
+<p>In a web browser, go to the following url:</p>
+<p>http://<code>&lt;kubernetes-host&gt;</code>:8080</p>
+<p>The UI should look like this:</p>
+<p>Get Kubernetes Dashboard URL</p>
+<p>This is only available through the ingress. See Enable Cambria Ingress for how to set this up</p>
+<ol>
+<li class="">
+<p>Go to the kubernetes dashboard using the ingress (Eg. <a href="https://dashboard.myhost.com" target="_blank" rel="noopener noreferrer" class="">https://dashboard.myhost.com</a>)</p>
+</li>
+<li class="">
+<p>In the Kubernetes Host, run this command to get a Bearer Token:</p>
+</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl -n kubernetes-dashboard create token admin-user</span><br></span></code></pre></div></div>
+<p>Get Cambria Cluster WebUI URL (via kubectl)</p>
+<ol>
+<li class="">Run the following command to get the webui address:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl get service/cambriaclusterwebuiservice -n capella-manager</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">-o=jsonpath=&quot;{&#x27;https://&#x27;}{.status.loadBalancer.ingress[0].ip}{&#x27;:8161&#x27;}&quot;</span><br></span></code></pre></div></div>
+<ol start="2">
+<li class="">To log in to the WebUI, the credentials are located in the my-values.tfvars file that was created during
+installation. The variable is cambria_cluster_web_ui_user. See Configure the Kubernetes Cluster for more</li>
+</ol>
+<p>information</p>
+<p>Get Cambria Cluster WebUI URL (via Kubernetes Dashboard)</p>
+<ol>
+<li class="">
+<p>In the Kubernetes Dashboard for the cluster, go to Services and look for the cambriaclusterwebuiservice
+service. Copy the IP address of one of the External Endpoints</p>
+</li>
+<li class="">
+<p>The WebUI address should be https://[ EXTERNAL IP ]:8161. To log in to the WebUI, the credentials can be
+retrieved by running the following:</p>
+</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">./bin/getFtcInfo.sh</span><br></span></code></pre></div></div>
+<p>Get Cambria Cluster REST API URL (via kubectl)</p>
+<ol>
+<li class="">Run the following command to get the base REST API Web Address:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl get service/cambriaclusterservice -n capella-manager</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">-o=jsonpath=&quot;{&#x27;https://&#x27;}{.status.loadBalancer.ingress[0].hostname}{&#x27;:8650&#x27;}&quot;</span><br></span></code></pre></div></div>
+<p>The REST API url should look similar to this:</p>
+<p><a href="https://23-45-226-151.ip.linodeusercontent.com:8650/CambriaFC/v1/Jobs?usertoken=12345678-1234-43f8-b4fc-53afd3893d5f" target="_blank" rel="noopener noreferrer" class="">https://23-45-226-151.ip.linodeusercontent.com:8650/CambriaFC/v1/Jobs?usertoken=12345678-1234-43f8-b4fc-53afd3893d5f</a></p>
+<p>Get Cambria Cluster REST API URL (via Kubernetes Dashboard)</p>
+<ol>
+<li class="">In the Kubernetes Dashboard for the cluster, go to Services and look for the cambriaclusterservice
+service. Copy the IP address of one of the External Endpoints</li>
+</ol>
+<p>The REST API should look similar to this:</p>
+<p><a href="https://23-45-226-151.ip.linodeusercontent.com:8650/CambriaFC/v1/Jobs?usertoken=12345678-1234-43f8-b4fc-53afd3893d5f" target="_blank" rel="noopener noreferrer" class="">https://23-45-226-151.ip.linodeusercontent.com:8650/CambriaFC/v1/Jobs?usertoken=12345678-1234-43f8-b4fc-53afd3893d5f</a></p>
+<p>Get Cambria FTC Instance External IP</p>
+<ol>
+<li class="">
+<p>In the Cambria Cluster WebUI, go to the Machines tab and copy the name of the machine (pod)</p>
+</li>
+<li class="">
+<p>Run the following commands with the name of the machine (aka. <code>&lt;pod-name&gt;</code>):</p>
+</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain"># Replace &lt;pod-name&gt; with your pod name</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl get pod/&lt;pod-name&gt; -n capella-worker -o=jsonpath={.spec.nodeName}</span><br></span></code></pre></div></div>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain"># Replace &lt;node-name&gt; with the result from the above command</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl get node/&lt;node-name&gt; -n capella-worker -o=jsonpath={.status.addresses[1].address}</span><br></span></code></pre></div></div>
+<p>Add Label to Specific Node</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl label node/&lt;node-name&gt; &quot;&lt;label-name&gt;=&lt;label-value&gt;&quot;</span><br></span></code></pre></div></div>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl label node/my-node &quot;capella-worker=true&quot;</span><br></span></code></pre></div></div>
+<p>Remove Label for Specific Node</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl label node/&lt;node-name&gt; &quot;&lt;label-name&gt;-&quot;</span><br></span></code></pre></div></div>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl label node/my-node &quot;capella-worker-&quot;</span><br></span></code></pre></div></div>
+<p>Get Leader Cambria Cluster Pod Name</p>
+<p>Run the following command to get the name of the Cambria Cluster leader pod:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8 kubectl get lease -n capella-manager -o=jsonpath=&quot;{.items[0].spec.holderIdentity}&quot;</span><br></span></code></pre></div></div>
+<p>Remote Access a Kubernetes Pod</p>
+<p>The general command for remote accessing a pod is:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl exec -it &lt;pod-name&gt; -n &lt;namespace&gt; -- /bin/bash</span><br></span></code></pre></div></div>
+<p>Example with Cambria FTC:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl exec -it cambriaftcapp-5c79586784-wbfvf -n capella-worker -- /bin/bash</span><br></span></code></pre></div></div>
+<p>Extract Cambria Cluster | Cambria FTC | Cambria License Logs</p>
+<p>In a machine that has kubectl and the kubeconfig file for your Kubernetes cluster, open a terminal window and</p>
+<p>make sure to set the KUBECONFIG environment variable to the path of your kubeconfig file. Then run one or</p>
+<p>more of the following commands depending on what types of logs you need (or that Capella needs). You will get</p>
+<p>a folder full of logs. Compress these logs into one zip file and send it to Capella:</p>
+<p><code>&lt;pod-name&gt;</code>: the name of the pod to grab logs from (Eg. cambriaftcapp-5c79586784-wbfvf)</p>
+<p>Cambria FTC:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl cp &lt;pod-name&gt;:/opt/capella/Cambria/Logs ./CambriaFTCLogs -n capella-worker</span><br></span></code></pre></div></div>
+<p>Cambria Cluster:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl cp &lt;pod-name&gt;:/opt/capella/CambriaCluster/Logs ./CambriaClusterLogs -n</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">capella-manager</span><br></span></code></pre></div></div>
+<p>Cambria License Manager (Cambria FTC):</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl cp &lt;pod-name&gt;:/opt/capella/CambriaLicenseManager/Logs ./CambriaFTCLicLogs -n</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">capella-worker</span><br></span></code></pre></div></div>
+<p>Cambria License Manager (Cambria Cluster):</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl cp &lt;pod-name&gt;:/opt/capella/CambriaLicenseManager/Logs ./CambriaClusterLicLogs -n</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">capella-manager</span><br></span></code></pre></div></div>
+<p>Copy File(s) to Cambria FTC / Cluster Pod</p>
+<p>In some cases, you might need to copy files to a Cambria FTC / Cluster pod. For example, you have an MP4 file</p>
+<p>you want to use as a source directly from the encoding machine’s file system. In this case, to copy the file over</p>
+<p>to the Cambria FTC / Cluster pod, do the following:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl cp &lt;host-file-path&gt; &lt;pod-name&gt;:&lt;path-inside-container&gt; -n &lt;namespace&gt;</span><br></span></code></pre></div></div>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain"># Copy file to Cambria FTC pod</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl cp /mnt/n/MySource.mp4 cambriaftcapp-7c55887db9-t42v7:/var/media/MySource.mp4</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">-n capella-worker</span><br></span></code></pre></div></div>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain"># Copy file to Cambria Cluster pod</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl cp C:\MyKeys\MyKeyFile.key</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">cambriaclusterapp-695dcc848f-vjpc7:/var/keys/MyKeyFile.key -n default</span><br></span></code></pre></div></div>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain"># Copy directory to Cambria FTC container</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl cp /mnt/n/MyMediaFiles cambriaftcapp-7c55887db9-t42v7:/var/temp/mediafiles -n</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">capella-worker</span><br></span></code></pre></div></div>
+<p>Restart / Re-create Pods</p>
+<p>Kubectl does not currently have a way to restart pods. Instead, a pod will need to be “restarted” by deleting the pod</p>
+<p>which causes a new pod to be created / existing pod to take over the containers.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl delete pod &lt;pod-name&gt; -n &lt;namespace&gt;</span><br></span></code></pre></div></div>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain"># Delete Cambria FTC Container</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s kubectl delete pod cambriaftcapp-7c55887db9-t42v7 -n capella-worker</span><br></span></code></pre></div></div>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain"># Delete Cambria Cluster Container</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8 kubectl delete pod cambriaclusterapp-695dcc848f-vjpc7 -n default</span><br></span></code></pre></div></div>
+<h1>Troubleshooting</h1>
+<p>Canonical Installation Bootstrap Problem</p>
+<p>When trying to run this command:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s bootstrap</span><br></span></code></pre></div></div>
+<p>And you get this error:</p>
+<p>bootstrap config verification failed: pre-init checks failed for node: The path &#x27;/run/containerd&#x27; required for the</p>
+<p>containerd socket already exists. This may mean that another service is already using that path, and it conflicts</p>
+<p>with the k8s snap. Please make sure that there is no other service installed that uses the same path, and remove</p>
+<p>the existing directory.(dev-only): You can change the default k8s containerd base path with the containerd-base-dir</p>
+<p>option in the bootstrap / join-cluster config file.</p>
+<p>In this case, it means another container-based service is installed in the machine. For this on-premise installation to</p>
+<p>work, no other services like Docker should be installed / running.</p>
+<p>Failed to Join Cluster (Join Token Name)</p>
+<p>If when trying to connect a node to the Kubernetes Cluster and you get this error:</p>
+<p>Error: Failed to join the cluster using the provided token.</p>
+<p>The error was: failed after potential retry: wait check failed: failed to POST /k8sd/cluster/join: failed to join k8sd</p>
+<p>cluster as control plane: 1 join attempts were unsuccessful. Last error: Joining server certificate SAN does not</p>
+<p>contain join token name</p>
+<p>This can mean one of the following:</p>
+<p>a. The token provided is incorrect, old, or expired</p>
+<p>b. The hostname provided to the Kubernetes host is incorrect</p>
+<p>Both of these conditions need to be false in order for the node to join the Kubernetes cluster successfully</p>
+<p>Failed to Join Cluster (Cluster Certificate Token Does Not Match)</p>
+<p>If when trying to connect a node to the Kubernetes Cluster and you get this error:</p>
+<p>Error: Failed to join the cluster using the provided token.</p>
+<p>The error was: failed after potential retry: wait check failed: failed to POST /k8sd/cluster/join: failed to join k8sd</p>
+<p>cluster as control plane: Cluster certificate token does not match that of cluster member. Expected:</p>
+<p>&quot;xxxxxxxxxxxxxx&quot;, actual: &quot;yyyyyyyyyyyyyyyyyyyy&quot;</p>
+<p>In this case, most likely there are old credentials still in the system that need to be cleaned up. Run these two</p>
+<p>commands:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo rm -rf /etc/k8sd/* &amp;&amp; sudo rm -rf /var/lib/k8sd/*</span><br></span></code></pre></div></div>
+<p>Failed to Deploy Load Balancer</p>
+<p>If when trying to enable the load balancer, you keep getting this error after more than two minutes:</p>
+<p>Failed to deploy MetalLB, the error was: failed to enable LoadBalancer: failed to apply MetalLB LoadBalancer</p>
+<p>configuration: failed to upgrade metallb-loadbalancer: failed to create resource: Internal error occurred: failed</p>
+<p>calling webhook &quot;l2advertisementvalidationwebhook.metallb.io&quot;: failed to call webhook: Post</p>
+<p>&quot;<a href="https://metallb-webhook-service.metallb-system.svc:443/validate-metallb-io-v1beta1-l2advertisement?timeout=1" target="_blank" rel="noopener noreferrer" class="">https://metallb-webhook-service.metallb-system.svc:443/validate-metallb-io-v1beta1-l2advertisement?timeout=1</a></p>
+<p>0s&quot;: dial tcp 10.152.183.245:443: connect: operation not permitted</p>
+<p>This could be an issue with IPv6. Make sure that IPv6 is enabled on the machine. This is required for the load balancer</p>
+<p>setting to work. See Enable IPv6 on Host Machines for enabling IPv6.</p>
+<p>Once this is done, if the load-balancer is &#x27;enabled&#x27;, disable it with this command:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo k8s disable load-balancer</span><br></span></code></pre></div></div>
+<p>And then repeat the steps in Enable Load Balancers to re-enable it.</p>
+<h1>Glossary</h1>
+<p>This glossary provides a brief definition / description of some of the more common terms found in this guide.</p>
+<p>Kubernetes Terms</p>
+<p>For Kubernetes terms, please refer to the Kubernetes Glossary:</p>
+<p><a href="https://kubernetes.io/docs/reference/glossary/?fundamental=true" target="_blank" rel="noopener noreferrer" class="">https://kubernetes.io/docs/reference/glossary/?fundamental=true</a></p>
+<p>Third-Party Tools</p>
+<p>Argo: the Argo third-party system is a collection of tools for orchestrating parallel jobs in a Kubernetes</p>
+<p>environment.</p>
+<p>Argo-Events: an Argo tool that triggers specific Kubernetes functions based on events from other</p>
+<p>dependencies such as webhook, s3, etc.</p>
+<p>Cert-Manager: the cert-manager addon automates the process of retrieving and managing TLS certificates.</p>
+<p>These certificates are periodically renewed to keep the certificates up to date and valid.</p>
+<p>Helm: the Helm third-party tool is used for deploying / managing (install, update, delete) deployments for</p>
+<p>Kubernetes Cluster applications.</p>
+<p>Capella Applications</p>
+<p>cambriaclusterapp: the Cambria Cluster application container. This container exists in all</p>
+<p>cambriaclusterapp-xyz pods.</p>
+<p>cambriaftautoscale: this container is used like a load balancer. It spawns new nodes with Cambria FTC</p>
+<p>specific content whenever Cambria Cluster has jobs in the queue.</p>
+<p>cambriaftcapp: the Cambria FTC application container. This container exists in all cambriaftcapp-xyz pods.</p>
+<p>cambriaftcconnect: this container is used for automatically connecting Cambria FTC instances to Cambria</p>
+<p>Cluster. This container exists in all cambriaftcapp-xyz pods.</p>
+<p>cambrialeaderelector: this container is used for Cambria Cluster replication in that it decides which of the</p>
+<p>Cambria Cluster instances is the primary instance. This container exists in all cambriaclusterapp-xyz pods.</p>
+<p>pgcluster-capella: this type of pod holds the PostgreSQL database that Cambria Cluster uses / interacts with.</p></div></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#on-premise-kubernetes-help-documentation" class="table-of-contents__link toc-highlight">On Premise Kubernetes Help Documentation</a></li><li><a href="#document-history" class="table-of-contents__link toc-highlight">Document History</a><ul><li><a href="#important-limitations-and-security-information" class="table-of-contents__link toc-highlight">Important: Limitations and Security Information</a></li><li><a href="#important-before-you-begin" class="table-of-contents__link toc-highlight">Important: Before You Begin</a></li><li><a href="#information" class="table-of-contents__link toc-highlight">Information</a></li></ul></li><li><a href="#️-critical-information-read-before-proceeding" class="table-of-contents__link toc-highlight">⚠️ Critical Information: Read Before Proceeding</a><ul><li><a href="#1-a-new-kubernetes-cluster-will-be-deployed" class="table-of-contents__link toc-highlight">1. A New Kubernetes Cluster Will Be Deployed</a></li><li><a href="#2-default-installation-is-non-secure" class="table-of-contents__link toc-highlight">2. Default Installation is Non-Secure</a></li><li><a href="#3-understand-your-transcoding-requirements" class="table-of-contents__link toc-highlight">3. Understand Your Transcoding Requirements</a></li><li><a href="#4-administrative-rights-required" class="table-of-contents__link toc-highlight">4. Administrative Rights Required</a></li><li><a href="#5-ubuntu-2404-recommended-as-node-host" class="table-of-contents__link toc-highlight">5. Ubuntu 24.04 Recommended as Node Host</a></li><li><a href="#6-isolated-environment-recommended" class="table-of-contents__link toc-highlight">6. Isolated Environment Recommended</a></li></ul></li><li><a href="#document-overview" class="table-of-contents__link toc-highlight">Document Overview</a><ul><li><a href="#2-preparation-for-the-installation-prerequisites" class="table-of-contents__link toc-highlight">2. Preparation for the installation (Prerequisites)</a></li><li><a href="#6-test-the-cambria-cluster--ftc-applications" class="table-of-contents__link toc-highlight">6. Test the Cambria Cluster / FTC applications</a></li><li><a href="#7-update-the-cambria-cluster--ftc-applications-on-kubernetes-cluster" class="table-of-contents__link toc-highlight">7. Update the Cambria Cluster / FTC applications on Kubernetes Cluster</a></li><li><a href="#9-quick-reference-of-kubernetes-installation" class="table-of-contents__link toc-highlight">9. Quick Reference of Kubernetes Installation</a></li><li><a href="#11-glossary-of-important-terms" class="table-of-contents__link toc-highlight">11. Glossary of important terms</a></li></ul></li><li><a href="#overview-of-cambria-cluster--ftc-on-kubernetes" class="table-of-contents__link toc-highlight">Overview of Cambria Cluster / FTC on Kubernetes</a><ul><li><a href="#deployment-information-cambria-cluster-and-cambria-ftc" class="table-of-contents__link toc-highlight">Deployment Information: Cambria Cluster and Cambria FTC</a></li><li><a href="#cambria-cluster" class="table-of-contents__link toc-highlight">Cambria Cluster</a></li><li><a href="#cambria-ftc" class="table-of-contents__link toc-highlight">Cambria FTC</a></li></ul></li><li><a href="#resource-usage" class="table-of-contents__link toc-highlight">Resource Usage</a></li><li><a href="#on-premise-machine-information-and-benchmark" class="table-of-contents__link toc-highlight">On Premise Machine Information and Benchmark</a></li><li><a href="#cambria-application-access" class="table-of-contents__link toc-highlight">Cambria Application Access</a><ul><li><a href="#option-1-external-access-via-tcp-load-balancer" class="table-of-contents__link toc-highlight">Option 1: External Access via TCP Load Balancer</a></li><li><a href="#option-2-http-ingress-via-reverse-proxy" class="table-of-contents__link toc-highlight">Option 2: HTTP Ingress via Reverse Proxy</a></li></ul></li><li><a href="#firewall-information" class="table-of-contents__link toc-highlight">Firewall Information</a></li><li><a href="#pre-requisites" class="table-of-contents__link toc-highlight">Pre-requisites</a><ul><li><a href="#1-x11-forwarding-for-user-interface" class="table-of-contents__link toc-highlight">1. X11 Forwarding for User Interface</a></li><li><a href="#11-option-1-microsoft-windows-tools" class="table-of-contents__link toc-highlight">1.1. Option 1: Microsoft Windows Tools</a></li><li><a href="#12-option-2-apple-macos-tools" class="table-of-contents__link toc-highlight">1.2. Option 2: Apple MacOS Tools</a></li><li><a href="#2-enable-ipv6-on-host-machines" class="table-of-contents__link toc-highlight">2. Enable IPv6 on Host Machines</a></li><li><a href="#1-try-to-remove-any-previous-canonical-installation" class="table-of-contents__link toc-highlight">1. Try to remove any previous canonical installation:</a></li><li><a href="#3-unpack-and-make-tools-executable" class="table-of-contents__link toc-highlight">3. Unpack and make tools executable:</a></li><li><a href="#important-high-availability" class="table-of-contents__link toc-highlight">Important: High Availability</a></li></ul></li><li><a href="#pre-requisites-1" class="table-of-contents__link toc-highlight">Pre-requisites</a><ul><li><a href="#16-enable-load-balancers" class="table-of-contents__link toc-highlight">1.6. Enable Load Balancers</a></li><li><a href="#important-cidr-selection-guideline" class="table-of-contents__link toc-highlight">Important: CIDR Selection Guideline</a></li><li><a href="#17-enable-ingress" class="table-of-contents__link toc-highlight">1.7. Enable Ingress</a></li><li><a href="#2-enable-the-ingress-controller" class="table-of-contents__link toc-highlight">2. Enable the ingress controller:</a></li><li><a href="#18-enable-volumes" class="table-of-contents__link toc-highlight">1.8. Enable Volumes</a></li><li><a href="#3-deploy-loghorn" class="table-of-contents__link toc-highlight">3. Deploy Loghorn</a></li><li><a href="#2-deploy-cambria-cluster-ftc-and-monitoring" class="table-of-contents__link toc-highlight">2. Deploy Cambria Cluster, FTC, and Monitoring</a></li><li><a href="#21-configure-the-kubernetes-cluster" class="table-of-contents__link toc-highlight">2.1. Configure the Kubernetes Cluster</a></li><li><a href="#10-once-done-click-on-save-changes-and-close-the-ui" class="table-of-contents__link toc-highlight">10. Once done, click on Save Changes and close the UI</a></li><li><a href="#11-close-the-terraformvariableeditor-window" class="table-of-contents__link toc-highlight">11. Close the TerraformVariableEditor window</a></li><li><a href="#22-deploy-applications" class="table-of-contents__link toc-highlight">2.2. Deploy Applications</a></li><li><a href="#31-cambria-cluster-webui" class="table-of-contents__link toc-highlight">3.1. Cambria Cluster WebUI</a></li><li><a href="#32-cambria-cluster-rest-api" class="table-of-contents__link toc-highlight">3.2. Cambria Cluster REST API</a></li><li><a href="#1-get-the-rest-api-address" class="table-of-contents__link toc-highlight">1. Get the REST API address:</a></li><li><a href="#33-cambria-license" class="table-of-contents__link toc-highlight">3.3. Cambria License</a></li><li><a href="#1-get-the-url-for-the-license-manager-webui" class="table-of-contents__link toc-highlight">1. Get the url for the License Manager WebUI:</a></li><li><a href="#34-cambria-monitoring-grafana-web-ui" class="table-of-contents__link toc-highlight">3.4. Cambria Monitoring: Grafana Web UI</a></li><li><a href="#1-get-the-grafana-web-ui-address" class="table-of-contents__link toc-highlight">1. Get the Grafana Web UI address:</a></li><li><a href="#35-cambria-ingress" class="table-of-contents__link toc-highlight">3.5. Cambria Ingress</a></li><li><a href="#1-get-the-ingress-hosts-and-address" class="table-of-contents__link toc-highlight">1. Get the ingress HOSTS and ADDRESS:</a></li><li><a href="#4-test-the-kubernetes-dashboard-with-the-ingress-that-starts-with-dashboard" class="table-of-contents__link toc-highlight">4. Test the Kubernetes Dashboard with the ingress that starts with dashboard.</a></li><li><a href="#2-remove-kubernetes-nodes" class="table-of-contents__link toc-highlight">2. Remove Kubernetes Nodes</a></li><li><a href="#4-remove-any-saved-credentials-from-k8s" class="table-of-contents__link toc-highlight">4. Remove any saved credentials from k8s:</a></li><li><a href="#5-reboot-the-machine-to-refresh-it" class="table-of-contents__link toc-highlight">5. Reboot the machine to refresh it:</a></li><li><a href="#3-remove-any-saved-credentials-from-k8s" class="table-of-contents__link toc-highlight">3. Remove any saved credentials from k8s:</a></li><li><a href="#4-reboot-the-machine-to-refresh-the-system" class="table-of-contents__link toc-highlight">4. Reboot the machine to refresh the system:</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Company</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://www.capellasystems.net/about-capella" target="_blank" rel="noopener noreferrer" class="footer__link-item">About<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://www.capellasystems.net/newsfeed" target="_blank" rel="noopener noreferrer" class="footer__link-item">Newsfeed<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://www.capellasystems.net/contact-us" target="_blank" rel="noopener noreferrer" class="footer__link-item">Contact Us<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://documents.capellasystems.net/docs/Cambria%20Stream/Installation%20Guides/Kubernetes/AWS/AWS_Kubernetes_Documentation" target="_blank" rel="noopener noreferrer" class="footer__link-item">Cambria Stream<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://documents.capellasystems.net/docs/Cambria_FTC/Installation%20Guides/Kubernetes/AWS/" target="_blank" rel="noopener noreferrer" class="footer__link-item">Cambria FTC<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Other</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://www.capellasystems.net/terms-of-use" target="_blank" rel="noopener noreferrer" class="footer__link-item">Terms of Use<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://www.capellasystems.net/online-privacy-policy" target="_blank" rel="noopener noreferrer" class="footer__link-item">Privacy Policy<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 Capella Systems</div></div></div></footer></div>
+</body>
+</html>
