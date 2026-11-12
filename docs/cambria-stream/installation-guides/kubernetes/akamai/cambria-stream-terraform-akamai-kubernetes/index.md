@@ -1,4 +1,4 @@
-# Cambria Stream / Stream Manager 5.9.0 — Terraform
+# Cambria Stream / Stream Manager 5.9.0 Terraform
 
 ## Akamai Cloud Kubernetes Help Documentation
 
