@@ -1,0 +1,925 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-cambria-stream/installation-guides/kubernetes/aws/cambria-stream-aws-kubernetes/index" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.9.2">
+<title data-rh="true">Cambria Stream / Stream Manager 5.9.0 | Capella Documents</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://documents.capellasystems.net/img/capellalogo.png"><meta data-rh="true" name="twitter:image" content="https://documents.capellasystems.net/img/capellalogo.png"><meta data-rh="true" property="og:url" content="https://documents.capellasystems.net/docs/cambria-stream/installation-guides/kubernetes/aws/cambria-stream-aws-kubernetes/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Cambria Stream / Stream Manager 5.9.0 | Capella Documents"><meta data-rh="true" name="description" content="AWS Kubernetes Help Documentation"><meta data-rh="true" property="og:description" content="AWS Kubernetes Help Documentation"><link data-rh="true" rel="icon" href="/img/capellalogo.png"><link data-rh="true" rel="canonical" href="https://documents.capellasystems.net/docs/cambria-stream/installation-guides/kubernetes/aws/cambria-stream-aws-kubernetes/"><link data-rh="true" rel="alternate" href="https://documents.capellasystems.net/docs/cambria-stream/installation-guides/kubernetes/aws/cambria-stream-aws-kubernetes/" hreflang="en"><link data-rh="true" rel="alternate" href="https://documents.capellasystems.net/docs/cambria-stream/installation-guides/kubernetes/aws/cambria-stream-aws-kubernetes/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Installation Guides","item":"https://documents.capellasystems.net/docs/cambria-stream/installation-guides"},{"@type":"ListItem","position":2,"name":"Kubernetes","item":"https://documents.capellasystems.net/docs/cambria-stream/installation-guides/kubernetes"},{"@type":"ListItem","position":3,"name":"AWS","item":"https://documents.capellasystems.net/docs/cambria-stream/installation-guides/kubernetes/aws"},{"@type":"ListItem","position":4,"name":"Cambria Stream / Stream Manager 5.9.0","item":"https://documents.capellasystems.net/docs/cambria-stream/installation-guides/kubernetes/aws/cambria-stream-aws-kubernetes/"}]}</script><link rel="preconnect" href="https://www.google-analytics.com">
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WQ8DZ3HYRX"></script>
+<script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-WQ8DZ3HYRX",{anonymize_ip:!0})</script><link rel="stylesheet" href="/assets/css/styles.b5f02841.css">
+<script src="/assets/js/runtime~main.fa6de1fc.js" defer="defer"></script>
+<script src="/assets/js/main.c8cb456d.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/capellalogo.png" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/capellalogo.png" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Capella Documentation</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a class="navbar__item navbar__link" href="/docs/cambria-ftc/ftc-overview">Cambria FTC</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/docs/cambria-stream/installation-guides">Cambria Stream</a><a href="https://www.capellasystems.net" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Capella Website<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="navbarSearchContainer_Bca1"><div class="search-bar-wrapper"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input searchInput_YFbd" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div><span class="search-shortcut-hint"><kbd class="search-kbd">Ctrl</kbd><span class="search-plus">+</span><kbd class="search-kbd">K</kbd></span></div></div><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" href="/docs/cambria-stream/installation-guides"><span title="Installation Guides" class="categoryLinkLabel_W154">Installation Guides</span></a><button aria-label="Collapse sidebar category &#x27;Installation Guides&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/docs/cambria-stream/installation-guides/kubernetes"><span title="Kubernetes" class="categoryLinkLabel_W154">Kubernetes</span></a><button aria-label="Collapse sidebar category &#x27;Kubernetes&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/docs/cambria-stream/installation-guides/kubernetes/aws"><span title="AWS" class="categoryLinkLabel_W154">AWS</span></a><button aria-label="Collapse sidebar category &#x27;AWS&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/cambria-stream/installation-guides/kubernetes/aws/Cambria-Stream-Solo-Linux-Installation-Guide/"><span title="Capella Cambria Stream Solo 5.9.0" class="linkLabel_WmDU">Capella Cambria Stream Solo 5.9.0</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/cambria-stream/installation-guides/kubernetes/aws/aws-kubernetes-documentation/"><span title="AWS Kubernetes Documentation" class="linkLabel_WmDU">AWS Kubernetes Documentation</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/docs/cambria-stream/installation-guides/kubernetes/aws/cambria-stream-aws-kubernetes/"><span title="Cambria Stream / Stream Manager 5.9.0" class="linkLabel_WmDU">Cambria Stream / Stream Manager 5.9.0</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/cambria-stream/installation-guides/kubernetes/aws/cambria-stream-terraform-aws-kubernetes/"><span title="Cambria Stream / Stream Manager 5.9.0" class="linkLabel_WmDU">Cambria Stream / Stream Manager 5.9.0</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/cambria-stream/installation-guides/kubernetes/aws/linux-help-documentation/"><span title="Linux Help Documentation" class="linkLabel_WmDU">Linux Help Documentation</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/docs/cambria-stream/installation-guides/kubernetes/akamai"><span title="Akamai" class="categoryLinkLabel_W154">Akamai</span></a><button aria-label="Expand sidebar category &#x27;Akamai&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/docs/cambria-stream/installation-guides/kubernetes/oracle"><span title="Oracle" class="categoryLinkLabel_W154">Oracle</span></a><button aria-label="Expand sidebar category &#x27;Oracle&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/docs/cambria-stream/installation-guides/windows"><span title="Windows" class="categoryLinkLabel_W154">Windows</span></a><button aria-label="Expand sidebar category &#x27;Windows&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/docs/cambria-stream/release-notes"><span title="Release Notes" class="categoryLinkLabel_W154">Release Notes</span></a><button aria-label="Expand sidebar category &#x27;Release Notes&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/docs/cambria-stream/api"><span title="API" class="categoryLinkLabel_W154">API</span></a><button aria-label="Expand sidebar category &#x27;API&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/docs/cambria-stream/tutorials"><span title="[object Object]" class="categoryLinkLabel_W154">Tutorials<button style="margin-left:5px;cursor:pointer;margin-bottom:-2px;z-index:1000;background:transparent;padding:0;display:inline-flex;align-items:center;justify-content:center;border:none;color:var(--ifm-color-primary)" title="Sort A-Z"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down-az lucide-arrow-down-a-z tutorial-sort-icon" aria-hidden="true"><path d="m3 16 4 4 4-4"></path><path d="M7 20V4"></path><path d="M20 8h-5"></path><path d="M15 10V6.5a2.5 2.5 0 0 1 5 0V10"></path><path d="M15 14h5l-5 6h5"></path></svg></button></span></a><button aria-label="Expand sidebar category &#x27;,[object Object],&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/cambria-stream/customer-faqs"><span title="FAQs" class="linkLabel_WmDU">FAQs</span></a></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/docs/cambria-stream/installation-guides"><span>Installation Guides</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/docs/cambria-stream/installation-guides/kubernetes"><span>Kubernetes</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/docs/cambria-stream/installation-guides/kubernetes/aws"><span>AWS</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Cambria Stream / Stream Manager 5.9.0</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Cambria Stream / Stream Manager 5.9.0</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="aws-kubernetes-help-documentation">AWS Kubernetes Help Documentation<a href="#aws-kubernetes-help-documentation" class="hash-link" aria-label="Direct link to AWS Kubernetes Help Documentation" title="Direct link to AWS Kubernetes Help Documentation" translate="no">​</a></h2>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="document-history">Document History<a href="#document-history" class="hash-link" aria-label="Direct link to Document History" title="Direct link to Document History" translate="no">​</a></h2>
+<table><thead><tr><th>Version</th><th>Date</th><th>Description</th></tr></thead><tbody><tr><td>5.8.0</td><td>05/05/2026</td><td>Updated for release version 5.8.0.29952 (Linux)</td></tr><tr><td>5.9.0</td><td>11/05/2026</td><td>Updated for release version 5.9.0.35197 (Linux)</td></tr></tbody></table>
+<ul>
+<li class="">Download the online version of this document for the latest information and latest files. Always
+download the latest files</li>
+</ul>
+<p>Do not move forward with the installation process if you do not agree with the End User License
+Agreement (EULA) for our products. You can download and read the EULA for Cambria Stream, Cambria
+Stream Manager, and Cambria License Manager from the links below:</p>
+<p>Cambria Stream Manager | Cambria Stream | Cambria License Manager
+<a href="https://www.dropbox.com/s/1wg7ee7a59kzi8h/EULA_Cambria_License_Manager.pdf?dl=0https://www.dropbox.com/s/cdttx4flzb7nxp1/EULA_Cambria_Stream_Manager.pdf?dl=0" target="_blank" rel="noopener noreferrer" class="">https://www.dropbox.com/s/1wg7ee7a59kzi8h/EULA_Cambria_License_Manager.pdf?dl=0https://www.dropbox.com/s/cdttx4flzb7nxp1/EULA_Cambria_Stream_Manager.pdf?dl=0</a>
+<a href="https://www.dropbox.com/s/fla62h4o9kuqn7k/EULA_Cambria_Stream.pdf?dl=0" target="_blank" rel="noopener noreferrer" class="">https://www.dropbox.com/s/fla62h4o9kuqn7k/EULA_Cambria_Stream.pdf?dl=0</a></p>
+<blockquote>
+<p><strong>Important: Limitations and Security Information</strong></p>
+</blockquote>
+<p>Cambria Stream, Stream Manager, and License Manager are installed on Linux in containers. Limitations and
+security information can be found in the document below:</p>
+<p><a href="https://www.dropbox.com/scl/fi/bq6qhry0jg44ljoee78sg/Cambria_Stream_5_9_0_Limitations_and_Security_Information.pdf?rlkey=5dbtikprwve22dl704x7jm5kv&amp;st=eluhc74o&amp;dl=0" target="_blank" rel="noopener noreferrer" class="">https://www.dropbox.com/scl/fi/bq6qhry0jg44ljoee78sg/Cambria_Stream_5_9_0_Limitations_and_Security_Information.pdf?rlkey=5dbtikprwve22dl704x7jm5kv&amp;st=eluhc74o&amp;dl=0</a></p>
+<blockquote>
+<p><strong>Important: Before You Begin</strong></p>
+</blockquote>
+<p>PDF documents have a copy/paste issue. For best results, download this document and any referenced PDF
+documents in this guide and open them in a PDF viewer such as Adobe Acrobat.</p>
+<p>For commands that are in more than one line, copy each line one by one and check that the copied command
+matches the one in the document.</p>
+<p>The sections below provide instructions on creating a NEW basic Kubernetes cluster with Cambria Stream with
+default settings and more open security settings. For more granular control and non-default settings, consult AWS
+Cloud documentation.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="information">Information<a href="#information" class="hash-link" aria-label="Direct link to Information" title="Direct link to Information" translate="no">​</a></h3>
+<p>This document references Kubernetes version 1.36 only</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="️-critical-information-read-before-proceeding">⚠️ Critical Information: Read Before Proceeding<a href="#️-critical-information-read-before-proceeding" class="hash-link" aria-label="Direct link to ⚠️ Critical Information: Read Before Proceeding" title="Direct link to ⚠️ Critical Information: Read Before Proceeding" translate="no">​</a></h2>
+<p>Before starting the installation, carefully review the following considerations. Skipping this section may
+result in errors, failed deployments, or misconfigurations.</p>
+<ol>
+<li class="">A New Kubernetes Cluster Will Be Deployed</li>
+</ol>
+<ul>
+<li class="">​   The installation process creates a brand-new Kubernetes cluster to keep the Cambria ecosystem isolated
+from other applications.</li>
+</ul>
+<ol start="2">
+<li class="">Default Installation is Non-Secure</li>
+</ol>
+<ul>
+<li class="">​   The guide covers installation with default settings in an open environment (not secure).</li>
+<li class="">​   If you require a secure or customized setup, you will need AWS expertise, which is not covered in this
+guide.</li>
+</ul>
+<ol start="3">
+<li class="">Understand Your Transcoding Requirements</li>
+</ol>
+<ul>
+<li class="">​   Know your expected transcoding volume, input/output specs, and whether a GPU is needed.</li>
+</ul>
+<ol start="4">
+<li class="">Administrative Rights Required</li>
+</ol>
+<ul>
+<li class="">​   Many of the steps in this guide require administrative rights to AWS for adding permissions and performing
+other administrative functions of that sort.</li>
+</ul>
+<ol start="5">
+<li class="">Check AWS Account Quota</li>
+</ol>
+<ul>
+<li class="">​   Ensure the AWS account has sufficient quota to deploy Kubernetes resources.</li>
+</ul>
+<ol start="6">
+<li class="">A Separate Linux Machine is Required</li>
+</ol>
+<ul>
+<li class="">​   A dedicated Linux machine (preferably Ubuntu on an AWS EC2 machine) is needed to deploy Kubernetes.</li>
+<li class="">​   The machine needs to be able to assume AWS roles in order to perform aws-cli commands</li>
+<li class="">​   Keeping Kubernetes tools and configuration files on a dedicated system is strongly recommended.</li>
+</ul>
+<ol start="7">
+<li class="">Verify Region-Specific Resource Availability</li>
+</ol>
+<ul>
+<li class="">​   Not all AWS regions support the same resources (e.g., GPU availability varies by region).</li>
+<li class="">​   Consult AWS documentation to confirm available resources in your desired region.</li>
+</ul>
+<ol start="8">
+<li class="">Cloud Storage for Logs is Recommended</li>
+</ol>
+<ul>
+<li class="">​   It is highly recommended to use the S3 Loki configuration for log storage for production</li>
+<li class="">​   This is also recommended for testing but this guide does provide a Filesystem configuration that writes logs to
+volumes only</li>
+<li class="">​   The filesystem version of Loki will only retain 1 days worth of logs max and it is not as reliable as other
+method</li>
+</ul>
+<ol start="9">
+<li class="">S3 Loki Configuration Requires At Least 2 Nodes</li>
+</ol>
+<ul>
+<li class="">​   For S3 Loki configuration, it is required to at least have 2 nodes running on the kubernetes cluster at any
+given time.</li>
+<li class="">​   The S3 bucket that the logs are written to will need to have a lifecycle policy configured to manage log
+deletion</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="document-overview">Document Overview<a href="#document-overview" class="hash-link" aria-label="Direct link to Document Overview" title="Direct link to Document Overview" translate="no">​</a></h2>
+<ol>
+<li class="">Overview of Cambria Stream Manager and Cambria Stream on Kubernetes</li>
+<li class="">Prerequisites</li>
+<li class="">Installation</li>
+<li class="">Verification</li>
+<li class="">Testing Cambria Stream</li>
+<li class="">Updating / Upgrading</li>
+<li class="">Cleanup / Delete</li>
+<li class="">Resources / Useful Information</li>
+<li class="">Glossary</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="overview-of-cambria-stream-manager--stream-on-kubernetes">Overview of Cambria Stream Manager / Stream on Kubernetes<a href="#overview-of-cambria-stream-manager--stream-on-kubernetes" class="hash-link" aria-label="Direct link to Overview of Cambria Stream Manager / Stream on Kubernetes" title="Direct link to Overview of Cambria Stream Manager / Stream on Kubernetes" translate="no">​</a></h2>
+<p>For general information about the Kubernetes deployment and Cambria Stream / Stream Manager, see the following
+document. If this is your first time deploying or working with Cambria Stream, it is highly recommended to
+review this document.</p>
+<p><a href="https://www.dropbox.com/scl/fi/fecmfp2w3jn0u2qei1u5d/Cambria_Stream_5_9_0_AWS_Information.pdf?rlkey=iulcvf4xzm2ao3srce5hiy35g&amp;st=y80gfeih&amp;dl=0" target="_blank" rel="noopener noreferrer" class="">https://www.dropbox.com/scl/fi/fecmfp2w3jn0u2qei1u5d/Cambria_Stream_5_9_0_AWS_Information.pdf?rlkey=iulcvf4xzm2ao3srce5hiy35g&amp;st=y80gfeih&amp;dl=0</a></p>
+<h1>Prerequisites</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-user-information-needed-before-installation">1. User Information Needed Before Installation<a href="#1-user-information-needed-before-installation" class="hash-link" aria-label="Direct link to 1. User Information Needed Before Installation" title="Direct link to 1. User Information Needed Before Installation" translate="no">​</a></h2>
+<p>Required Information:</p>
+<ul>
+<li class="">AWS IAM role with IAM admin permissions (Sample:
+<a href="https://www.dropbox.com/scl/fi/myhken3c1cf2ccj4wdlm9/aws_iam_admin_permission_sample.json?rlkey=2hd98e5i2jc8zvblhjentrp3i&amp;st=046ui6ls&amp;dl=0" target="_blank" rel="noopener noreferrer" class="">https://www.dropbox.com/scl/fi/myhken3c1cf2ccj4wdlm9/aws_iam_admin_permission_sample.json?rlkey=2hd98e5i2jc8zvblhjentrp3i&amp;st=046ui6ls&amp;dl=0</a>)</li>
+<li class="">Cambria Stream Manager License Key (Eg. 2XXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX)</li>
+<li class="">Cambria Stream Worker License Key (Eg. 3XXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX)</li>
+<li class="">Region code where to deploy the Kubernetes Cluster (Eg. us-east-1)</li>
+</ul>
+<p>Other Important Information:</p>
+<ul>
+<li class="">Number of Cambria Stream Manager backup machines needed</li>
+<li class="">The machine specification for the Cambria Stream Manager nodes</li>
+<li class="">Number of Cambria Stream Worker machines needed</li>
+<li class="">The machine specification for the Cambria Stream encoder / packager nodes</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-prepare-linux-deployment-server">2. Prepare Linux Deployment Server<a href="#2-prepare-linux-deployment-server" class="hash-link" aria-label="Direct link to 2. Prepare Linux Deployment Server" title="Direct link to 2. Prepare Linux Deployment Server" translate="no">​</a></h2>
+<p>In order to deploy Cambria Stream, a Linux Deployment Server is required because this is where all of the tools,
+dependencies, and packages for the Cambria Stream Kubernetes deployment will be installed and/or stored.</p>
+<blockquote>
+<p><strong>Important: Linux Deployment Server Machine Information</strong></p>
+</blockquote>
+<p>The instructions in this document require IAM admin rights and IAM role assignment. For this purpose, it is
+required to use an AWS EC2 instance (unless you already have a way to assign IAM roles to a machine that is not
+an EC2 instance).</p>
+<p>Capella tests deployment with the t3.medium instance type</p>
+<p>Minimum Requirements:</p>
+<table><thead><tr><th>Requirement</th><th>Value</th></tr></thead><tbody><tr><td>Operating System (OS)</td><td>Ubuntu 24.04</td></tr><tr><td>CPU(s)</td><td>2</td></tr><tr><td>RAM</td><td>4 GB</td></tr><tr><td>Storage</td><td>10 GB</td></tr></tbody></table>
+<ol>
+<li class="">
+<p>If you already have a Linux Deployment Server, skip this step. On the AWS Dashboard, create a new Ubuntu AWS
+EC2 instance used for the terraform deployment.</p>
+</li>
+<li class="">
+<p>SSH into the Linux Deployment Server and install general tools:</p>
+</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo apt update &amp;&amp; \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo DEBIAN_FRONTEND=noninteractive apt -o Dpkg::Options::=&quot;--force-confold&quot; -y upgrade &amp;&amp; \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo DEBIAN_FRONTEND=noninteractive apt -o Dpkg::Options::=&quot;--force-confold&quot; -y install curl unzip</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="important">Important<a href="#important" class="hash-link" aria-label="Direct link to Important" title="Direct link to Important" translate="no">​</a></h3>
+<p>If during this step, a Configuring openssh-server menu shows up, choose keep the local version currently
+installed</p>
+<ol start="3">
+<li class="">You will also need to download the argo-rollouts tool for whenever upgrades are needed:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">curl -o kubectl-argo-rollouts -sL https://github.com/argoproj/argo-rollouts/releases/download/v1.8.3/kubectl-argo-rollouts-linux-amd64</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">chmod +x ./kubectl-argo-rollouts</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">sudo mv ./kubectl-argo-rollouts /usr/local/bin/</span><br></span></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="3-cambria-stream-package">3. Cambria Stream Package<a href="#3-cambria-stream-package" class="hash-link" aria-label="Direct link to 3. Cambria Stream Package" title="Direct link to 3. Cambria Stream Package" translate="no">​</a></h2>
+<ol>
+<li class="">Still on the Linux Deployment Server, download the package:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">curl -o CambriaStreamKubernetesAws.zip -L</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">&quot;https://www.dropbox.com/scl/fi/0ykpvux3er0hv0dwykh6o/CambriaStreamKubernetesAws_5_9_0.zip?rlkey=069stj8qw6lxa18xy97ohzs29&amp;st=1m57ltt9&amp;dl=1&quot;</span><br></span></code></pre></div></div>
+<ol start="2">
+<li class="">Unzip the package and make the shell scripts executable:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">unzip -o CambriaStreamKubernetesAws.zip &amp;&amp; chmod +x ./bin/*.sh</span><br></span></code></pre></div></div>
+<ol start="3">
+<li class="">Install the tools needed for deployment:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">./bin/setupTools.sh &amp;&amp; ./bin/setupToolsAws.sh &amp;&amp; ./bin/installLogcli.sh &amp;&amp; ./bin/installTerraformDocs.sh</span><br></span></code></pre></div></div>
+<ol start="4">
+<li class="">Verify the tools are installed:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl version --client &amp;&amp; helm version &amp;&amp; eksctl version &amp;&amp; aws --version &amp;&amp; kubectl argo rollouts version</span><br></span></code></pre></div></div>
+<p>&amp;&amp; terraform-docs --version &amp;&amp; logcli --version</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="4-set-aws-iam-role-on-linux-development-server">4. Set AWS IAM Role on Linux Development Server<a href="#4-set-aws-iam-role-on-linux-development-server" class="hash-link" aria-label="Direct link to 4. Set AWS IAM Role on Linux Development Server" title="Direct link to 4. Set AWS IAM Role on Linux Development Server" translate="no">​</a></h2>
+<ol>
+<li class="">
+<p>In the AWS EC2 Dashboard, find your Linux Development Server from the Instances list</p>
+</li>
+<li class="">
+<p>While the instance is selected, go to Actions &gt; Security &gt; Modify IAM role</p>
+</li>
+<li class="">
+<p>From the IAM role dropdown, select the IAM role and Update IAM role</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="5-create-and-configure-aws-permissions">5. Create and Configure AWS Permissions<a href="#5-create-and-configure-aws-permissions" class="hash-link" aria-label="Direct link to 5. Create and Configure AWS Permissions" title="Direct link to 5. Create and Configure AWS Permissions" translate="no">​</a></h2>
+<p>In order to create resources on AWS for the kubernetes cluster, certain policies and roles need to be created and
+configured.</p>
+<blockquote>
+<p><strong>Important: AWS Admin Rights</strong></p>
+</blockquote>
+<p>This section requires IAM administrative permission. The steps can be done manually using the AWS
+Dashboard. However, the aws-cli will be used in this guide. To follow the exact steps, the Linux Deployment
+Server (in this case, an EC2 machine with the admin IAM role) and the aws-cli will be required.</p>
+<p>Before continuing, the AWS account id must be temporarily set as an environment variable to run the commands in
+this section.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">export AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query &quot;Account&quot; --output text)</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="51-create-custom-policies">5.1. Create Custom Policies<a href="#51-create-custom-policies" class="hash-link" aria-label="Direct link to 5.1. Create Custom Policies" title="Direct link to 5.1. Create Custom Policies" translate="no">​</a></h3>
+<p>The eksctl tool used for creating the kubernetes cluster requires certain permissions. This section will configure those
+permissions that AWS doesn&#x27;t already manage as policies. For more details on eksctl policies, see
+<a href="https://eksctl.io/usage/minimum-iam-policies/" target="_blank" rel="noopener noreferrer" class="">https://eksctl.io/usage/minimum-iam-policies/</a></p>
+<ol>
+<li class="">Run the following command to create the EksAllAccess and IamLimitedAccess as mentioned in the eksctl
+documentation (If the policies already exist, you can skip this step.)</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">./bin/createEksctlCustomAwsPolicies.sh</span><br></span></code></pre></div></div>
+<p>If the policies were created successfully, a json description of each policy will be returned. Otherwise,
+verify the information is correct and retry.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="52-create-and-assign-eksctl-aws-role">5.2. Create and Assign Eksctl AWS Role<a href="#52-create-and-assign-eksctl-aws-role" class="hash-link" aria-label="Direct link to 5.2. Create and Assign Eksctl AWS Role" title="Direct link to 5.2. Create and Assign Eksctl AWS Role" translate="no">​</a></h3>
+<p>In order to deploy the kubernetes cluster and run eksctl commands, the user of the Linux deployment machine needs
+to be able to assume an AWS role with the minimum permissions per eksctl documentation:</p>
+<ol>
+<li class="">Create a new IAM role called eksctl-user with the following policies:</li>
+</ol>
+<ul>
+<li class="">AmazonEC2FullAccess</li>
+<li class="">AWSCloudFormationFullAccess</li>
+<li class="">EksAllAccess</li>
+<li class="">IamLimitedAccess</li>
+</ul>
+<p>Needs administrative role and instance profile creation permissions</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">./bin/createEksctlClusterUserRole.sh eksctl-user</span><br></span></code></pre></div></div>
+<p>If the user role was created successfully, a json description of the role and instance profile will be
+returned. Otherwise, verify the information is correct and retry.</p>
+<ol start="2">
+<li class="">
+<p>Assume the new role:</p>
+<p>a. In the AWS EC2 Dashboard, find your Linux Development Server from the Instances list</p>
+<p>b. While the instance is selected, go to Actions &gt; Security &gt; Modify IAM role</p>
+<p>c. From the IAM role dropdown, select the IAM role and Update IAM role</p>
+</li>
+</ol>
+<h1>Installation</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-create-kubernetes-cluster">1. Create Kubernetes Cluster<a href="#1-create-kubernetes-cluster" class="hash-link" aria-label="Direct link to 1. Create Kubernetes Cluster" title="Direct link to 1. Create Kubernetes Cluster" translate="no">​</a></h2>
+<p>The following section provides the basic steps needed to create a Kubernetes Cluster on AWS.</p>
+<p>Information: Recommendation For Getting Started</p>
+<ul>
+<li class="">
+<p>This example deployment creates an AWS EKS cluster with 1 Cambria Stream Manager node, 2 backup
+Cambria Stream Manager nodes, 2 Cambria Stream encoder nodes, and 1 Cambria Stream Router
+node</p>
+</li>
+<li class="">
+<p>Not all AWS regions have the same instance type availability. If changing the region, make sure to use
+available instance types for the region</p>
+</li>
+<li class="">
+<p>Variables used in this install method are environment variables. Recommendation is to save these values
+somewhere safe for future reference. These environment variables do not persist once the command prompt /
+terminal session is closed</p>
+</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="11-create-aws-eks-cluster-and-cambria-stream-manager-node-group">1.1. Create AWS EKS Cluster and Cambria Stream Manager Node Group<a href="#11-create-aws-eks-cluster-and-cambria-stream-manager-node-group" class="hash-link" aria-label="Direct link to 1.1. Create AWS EKS Cluster and Cambria Stream Manager Node Group" title="Direct link to 1.1. Create AWS EKS Cluster and Cambria Stream Manager Node Group" translate="no">​</a></h3>
+<ol>
+<li class="">Set environment variables for the cluster:</li>
+</ol>
+<p>--name=cambria-stream: the name for the Kubernetes Cluster</p>
+<p>--region=us-west-2: the AWS region where the Kubernetes Cluster will reside</p>
+<p>--version=1.36: the Kubernetes version. Recently tested version is 1.36</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">export CLUSTER_NAME=cambria-stream REGION=us-west-2 KUBEVERSION=1.36</span><br></span></code></pre></div></div>
+<ol start="2">
+<li class="">Use kubectl to create the EKS cluster:</li>
+</ol>
+<p>--nodes=3: the number of nodes for the manager application. The recommended value is 3.</p>
+<p>--instance-types=c7i.xlarge: the instance type for the manager application. The recommended type is c7i.xlarge.
+Must be a x86-64 machine.</p>
+<p>--node-ami-family=Ubuntu2404: what type of OS to install in the worker nodes. It is currently recommended to use
+the Ubuntu2404 image. Capella has also tested with AmazonLinux2, but this image does not work with GPU.</p>
+<p>--vpc-cidr=10.0.0.0/16: the ip range for the VPC. This will depend on many factors such as number of instances,
+instance types, workflows. Omit this flag for the default VPC CIDR from eksctl. The lowest CIDR tested by Capella is
+/19.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">eksctl create cluster \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--name=$CLUSTER_NAME \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--region=$REGION \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--version=$KUBEVERSION \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--kubeconfig=kubeconfig.yaml \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--node-private-networking --nodegroup-name=manager-nodes \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--with-oidc \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--node-ami-family=Ubuntu2404 --nodes=3 --instance-types=c7i.xlarge --vpc-cidr=10.0.0.0/16</span><br></span></code></pre></div></div>
+<ol start="3">
+<li class="">Set the kubeconfig as an environment variable:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">export KUBECONFIG=kubeconfig.yaml</span><br></span></code></pre></div></div>
+<ol start="4">
+<li class="">Verify that the cluster and manager nodes are accessible:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl get nodes</span><br></span></code></pre></div></div>
+<p>This should return something similar to the following. If it does not, verify the deployment information, credentials,
+permissions, etc:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">NAME                                      STATUS ROLES AGE VERSION</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">ip-10-0-12-44.us-west-2.compute.internal Ready &lt;none&gt; 118m v1.35.1</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">ip-10-0-16-207.us-west-2.compute.internal Ready &lt;none&gt; 118m v1.35.1</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">ip-10-0-22-84.us-west-2.compute.internal Ready &lt;none&gt; 118m v1.35.1</span><br></span></code></pre></div></div>
+<ol start="5">
+<li class="">Apply the following label to identify these nodes as Cambria Stream Manager nodes:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">eksctl set labels \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--cluster=$CLUSTER_NAME \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--region=$REGION \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--labels=&quot;capella-manager=true&quot; \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--nodegroup=manager-nodes</span><br></span></code></pre></div></div>
+<ol start="6">
+<li class="">(Optional) Only If you also want the Cambria Stream Manager nodes to be able to run live encoding / packaging
+programs, add the Cambria Stream label to the nodes in the manager node group:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">eksctl set labels \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--cluster=$CLUSTER_NAME \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--region=$REGION \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--labels=&quot;capella-worker=true&quot; \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--nodegroup=manager-nodes</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="12--beta--create-cambria-stream-router-node-group">1.2. [ BETA ] Create Cambria Stream Router Node Group<a href="#12--beta--create-cambria-stream-router-node-group" class="hash-link" aria-label="Direct link to 1.2. [ BETA ] Create Cambria Stream Router Node Group" title="Direct link to 1.2. [ BETA ] Create Cambria Stream Router Node Group" translate="no">​</a></h3>
+<ol>
+<li class="">Run the following command to create the Node Group for the stream router:</li>
+</ol>
+<p>--nodes=1: the number of nodes that will be able to run the worker application. The recommended value is 1.</p>
+<p>--instance-types=c7i.xlarge: the type of the worker application nodes. The recommended value is c6.4xlarge. Must
+be a x86-64 machine.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="important-1">Important<a href="#important-1" class="hash-link" aria-label="Direct link to Important" title="Direct link to Important" translate="no">​</a></h3>
+<p>Cambria Stream Router is a beta feature. What this does is it routes streaming traffic to Cambria Stream
+programs that use it. In this case, external streaming traffic is directed to the Stream Router node.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">eksctl create nodegroup \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--name=streamrouter-nodes \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--cluster=$CLUSTER_NAME \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--region=$REGION \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--node-ami-family=Ubuntu2404 \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--nodes=1 \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--instance-types=c7i.xlarge</span><br></span></code></pre></div></div>
+<ol start="2">
+<li class="">Apply the following label to identify this node as a Cambria Stream Router node:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">eksctl set labels \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--cluster=$CLUSTER_NAME \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--region=$REGION \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--labels=&quot;capella-streamrouter=true&quot; \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--nodegroup=streamrouter-nodes</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="13-create-cambria-stream-node-groups">1.3. Create Cambria Stream Node Group(s)<a href="#13-create-cambria-stream-node-groups" class="hash-link" aria-label="Direct link to 1.3. Create Cambria Stream Node Group(s)" title="Direct link to 1.3. Create Cambria Stream Node Group(s)" translate="no">​</a></h3>
+<ol>
+<li class="">Run the following command to create the Node Group for the worker application instances (replace the highlighted
+values to those of your specific environment):</li>
+</ol>
+<p>--nodes=1: the number of nodes that will be able to run the worker application. The recommended value is 1.</p>
+<p>--instance-types=c6a.4xlarge: the type of the worker application nodes. The recommended value is c6.4xlarge,
+based on the published benchmark. Must be a x86-64 machine.</p>
+<p>--node-ami-family=Ubuntu2404: what type of OS to install in the worker nodes. We currently recommend using
+the Ubuntu2404 image. Capella has also tested with AmazonLinux2, but this image does not work with GPU.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="important-2">Important<a href="#important-2" class="hash-link" aria-label="Direct link to Important" title="Direct link to Important" translate="no">​</a></h3>
+<p>By default, this section deploys the Cambria Stream nodes in a public subnet, allowing external sources to send
+signals directly to the nodes.</p>
+<p>If you are not using streaming protocols (Eg. RTP, SRT, etc) as incoming signal for Cambria Stream, or if the
+signals originate from within the same network as the AWS Kubernetes cluster, add the flag
+--node-private-network to the command below.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">eksctl create nodegroup \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--name=worker-nodes \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--cluster=$CLUSTER_NAME \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--region=$REGION \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--nodes=1 --instance-types=c6a.4xlarge --node-ami-family=Ubuntu2404</span><br></span></code></pre></div></div>
+<ol start="2">
+<li class="">Apply the following label to identify this node as a Cambria Stream (Encoder / Packager) node:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">eksctl set labels \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--cluster=$CLUSTER_NAME \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--region=$REGION \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--labels=&quot;capella-worker=true&quot; \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--nodegroup=worker-nodes</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="14-default-storage-class">1.4. Default Storage Class<a href="#14-default-storage-class" class="hash-link" aria-label="Direct link to 1.4. Default Storage Class" title="Direct link to 1.4. Default Storage Class" translate="no">​</a></h3>
+<p>Remove the default tag from all storage classes:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl get storageclass -o name | xargs -n 1 kubectl patch -p</span><br></span></code></pre></div></div>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">&#x27;{&quot;metadata&quot;:{&quot;annotations&quot;:{&quot;storageclass.kubernetes.io/is-default-class&quot;:null}}}&#x27;</span><br></span></code></pre></div></div>
+<p>Set the storage class gp2 as the default storage class:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl patch storageclass gp2 \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">-p &#x27;{&quot;metadata&quot;: {&quot;annotations&quot;: {&quot;storageclass.kubernetes.io/is-default-class&quot;: &quot;true&quot;}}}&#x27;</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="15-create-ebs-csi-driver">1.5. Create EBS CSI Driver<a href="#15-create-ebs-csi-driver" class="hash-link" aria-label="Direct link to 1.5. Create EBS CSI Driver" title="Direct link to 1.5. Create EBS CSI Driver" translate="no">​</a></h3>
+<ol>
+<li class="">Create the IAM Role that will interact with AWS EBS CSI Driver to use volumes in the AWS Kubernetes
+environment (replace highlighted values):</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">eksctl create iamserviceaccount \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--name=ebs-csi-controller-sa \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--namespace=kube-system \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--cluster=$CLUSTER_NAME \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--region=$REGION \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--role-only \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--attach-policy-arn=arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--approve \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--role-name=eksctl-ebs-csi-driver-role</span><br></span></code></pre></div></div>
+<ol start="2">
+<li class="">Add the AWS EBS CSI Driver to the Kubernetes Cluster (replace highlighted values):</li>
+</ol>
+<blockquote>
+<p><strong>Important: this step will install a plugin to handle volumes in AWS. This must be installed correctly and the</strong></p>
+</blockquote>
+<p>plugin must have an Active status before continuing. Otherwise, the Cambria product installation will always
+fail. If this step fails, consider re-creating the Kubernetes cluster from scratch as the safest option</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">eksctl create addon \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--name aws-ebs-csi-driver \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--cluster=$CLUSTER_NAME \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--region=$REGION \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--force \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--service-account-role-arn=arn:aws:iam::$AWS_ACCOUNT_ID:role/eksctl-ebs-csi-driver-role</span><br></span></code></pre></div></div>
+<ol start="3">
+<li class="">Run the following command multiple times to check on the state of the EBS CSI Driver plugin</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">eksctl get addon --name=aws-ebs-csi-driver --cluster=$CLUSTER_NAME --region=$REGION</span><br></span></code></pre></div></div>
+<p>DO NOT MOVE ON TO THE NEXT STEP UNTIL THE ABOVE PLUGIN SHOWS ‘ACTIVE’</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="2--beta--deploy-gpu-operator-for-nvenc">2. [ BETA ] Deploy GPU Operator for NVENC<a href="#2--beta--deploy-gpu-operator-for-nvenc" class="hash-link" aria-label="Direct link to 2. [ BETA ] Deploy GPU Operator for NVENC" title="Direct link to 2. [ BETA ] Deploy GPU Operator for NVENC" translate="no">​</a></h2>
+<p>This section is only required for a Kubernetes cluster that will use GPUs. Skip this step if GPUs will not be
+used in this Kubernetes cluster.</p>
+<blockquote>
+<p><strong>Important: BETA Feature</strong></p>
+</blockquote>
+<p>GPU can be used in Cambria Stream. However, this feature is still a work in progress and may not function as
+expected.</p>
+<p>In your command prompt / terminal, run the following commands to deploy the GPU Operator to the Kubernetes
+cluster:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">helm repo add nvidia https://helm.ngc.nvidia.com/nvidia &amp;&amp; \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">helm repo update &amp;&amp; \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">helm install nvidia-operator nvidia/gpu-operator \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--create-namespace \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--namespace gpu-operator</span><br></span></code></pre></div></div>
+<p>Wait at least 5 minutes for the GPU operator to install completely</p>
+<p>Run this command with &#x27;kubectl&#x27; and make sure that all of the pods are in a Running or Completed state:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl get pods -n gpu-operator</span><br></span></code></pre></div></div>
+<p>If any pod is still in an Init state or PodCreating state, wait another 5 minutes to see if the pods will complete their
+install process.</p>
+<p>For any pods that are in an errored state or that are still in an Init state after 10 minutes, do the following:</p>
+<p>a. Check that at least one node is one of the supported AWS GPU instances</p>
+<p>b. Use the following command to check the state of a failing pod (check the Events section):</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl describe pod &lt;your-pod-name&gt; -n gpu-operator</span><br></span></code></pre></div></div>
+<p>Either look up the error for a potential solution or send the entire Events section to the Capella support team for
+investigation.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="3-deploy-traefik-application-domain-name-access">3. Deploy Traefik: Application Domain-Name Access<a href="#3-deploy-traefik-application-domain-name-access" class="hash-link" aria-label="Direct link to 3. Deploy Traefik: Application Domain-Name Access" title="Direct link to 3. Deploy Traefik: Application Domain-Name Access" translate="no">​</a></h2>
+<p>By default, certain parts of the Cambria applications are exposed via an ingress. In order to access these, the
+traefik service needs to be created and attached to the ingress.</p>
+<ol>
+<li class="">Run the following commands to get the traefik Helm repository:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">helm repo add traefik https://traefik.github.io/charts &amp;&amp; helm repo update</span><br></span></code></pre></div></div>
+<ol start="2">
+<li class="">Run the following commands to deploy traefik to the Kubernetes cluster:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">helm upgrade --install traefik traefik/traefik \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--namespace traefik --create-namespace \</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">--set-string &quot;service.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-type=nlb&quot;</span><br></span></code></pre></div></div>
+<ol start="3">
+<li class="">Wait about a minute for the deployment to complete fully. Verify that the resources are created and in an active /
+online state:</li>
+</ol>
+<ul>
+<li class="">Pods should be in a Running STATUS and all containers in READY should be active</li>
+<li class="">Services should have a CLUSTER-IP assigned. The traefik service should have an EXTERNAL-IP</li>
+<li class="">All other resources (Eg. replicasets, deployments, statefulsets, etc) should have all desired resources active</li>
+</ul>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl get all -n traefik</span><br></span></code></pre></div></div>
+<p>If any resources are still not ready, wait about a minute for them to complete. If still not complete, contact the
+Capella support team.</p>
+<p>For Production / Using Publicly Registered Domain Name and TLS Certificate.
+Example with Namecheap Registered Domain:</p>
+<p>In AWS Route 53:</p>
+<p>1.​ Go to the Route 53 console and create a Hosted Zone for your domain (mydomain.com)
+2.​ After creating it, Route 53 will provide four Name Server (NS) addresses. They will look something
+like ns-123.awsdns-01.com. Copy these four addresses.</p>
+<p>In Namecheap Account:</p>
+<p>1.​ Go to your Namecheap domain&#x27;s Manage page.
+2.​ On the Domain tab, find the Nameservers section. Change the dropdown from Namecheap
+BasicDNS to Custom DNS.
+3.​ Paste the four Name Server addresses you copied from Route 53 into the fields provided. Click the
+green checkmark to save.</p>
+<p>Wait for DNS Switchover:</p>
+<p>This change can take anywhere from 30 minutes to 48 hours. During this time, control of the domain&#x27;s DNS is
+being transferred to AWS.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="create-the-alias-record-in-route-53">Create the Alias Record in Route 53:<a href="#create-the-alias-record-in-route-53" class="hash-link" aria-label="Direct link to Create the Alias Record in Route 53:" title="Direct link to Create the Alias Record in Route 53:" translate="no">​</a></h3>
+<p>1.​ Once the nameservers have updated, get the DNS name of the EKS cluster&#x27;s ingress:</p>
+<p>a.​ Using kubectl, run the following command:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl get svc/traefik -n traefik -o=jsonpath=&quot;{.status.loadBalancer.ingress[0].hostname}{&#x27;\n&#x27;}&quot;</span><br></span></code></pre></div></div>
+<p>b.​ You should see the DNS name of the ingress. Example:</p>
+<p>af14406933b624f5a825626a491236af-de6fb9599822dfc6.elb.us-west-2.amazonaws.com</p>
+<p>2.​ Navigate to the Route 53 service in the AWS Console.
+3.​ In the navigation pane, click Hosted zones. Select the hosted zone for the domain you want to use
+(e.g., yourdomain.com).
+4.​ Click Create record and configure the record as follows:</p>
+<table><thead><tr><th>Setting</th><th>Value</th></tr></thead><tbody><tr><td>Record name</td><td>Enter the subdomain monitoring (eg. monitoring for monitoring.mydomain.com)</td></tr></tbody></table>
+<p>Record type         Select A - Routes traffic to an IPv4 address and some AWS resources</p>
+<p>Alias Toggle        Enable this toggle</p>
+<p>Route traffic to    Select Alias to Network Load Balancer</p>
+<p>Region              Select the Network Load Balancer&#x27;s region</p>
+<p>Choose load         Select the load balancer that matches the DNS name from step 1
+balancer</p>
+<p>5.​ Repeat step 4 for the following subdomains:</p>
+<ul>
+<li class="">api</li>
+<li class="">webui</li>
+<li class="">licenseui</li>
+<li class="">monitoring</li>
+</ul>
+<p>If not working or unsure of how to do this, contact Capella support.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="4-deploy-third-party-dependency-kubernetes-tools">4. Deploy Third-Party Dependency Kubernetes Tools<a href="#4-deploy-third-party-dependency-kubernetes-tools" class="hash-link" aria-label="Direct link to 4. Deploy Third-Party Dependency Kubernetes Tools" title="Direct link to 4. Deploy Third-Party Dependency Kubernetes Tools" translate="no">​</a></h2>
+<p>There are a few tools that need to be deployed in order to make Cambria FTC / Cluster work properly.</p>
+<ol>
+<li class="">Run the following commands to deploy the pre-requisite tools for the kubernetes cluster:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">./bin/deployCambriaKubeDependencies.sh</span><br></span></code></pre></div></div>
+<ol start="2">
+<li class="">Verify that resources are created and in an active / online state:</li>
+</ol>
+<ul>
+<li class="">Pods should be in a Running STATUS and all containers in READY should be active</li>
+<li class="">Services should have a CLUSTER-IP assigned</li>
+<li class="">All other resources (Eg. replicasets, deployments, statefulsets, etc) should have all desired resources active</li>
+</ul>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl get all -n cnpg-system; kubectl get all -n argo-events; kubectl get all -n cert-manager</span><br></span></code></pre></div></div>
+<p>If any resources are still not ready, wait about a minute for them to complete. If still not working, contact the
+Capella support team.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="5-deploy-performance-metrics-and-logging-tools">5. Deploy Performance Metrics and Logging Tools<a href="#5-deploy-performance-metrics-and-logging-tools" class="hash-link" aria-label="Direct link to 5. Deploy Performance Metrics and Logging Tools" title="Direct link to 5. Deploy Performance Metrics and Logging Tools" translate="no">​</a></h2>
+<p>This section is required for logging and other performance information about the Cambria applications.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="51-performance-metrics-prometheus--grafana">5.1. Performance Metrics: Prometheus &amp; Grafana<a href="#51-performance-metrics-prometheus--grafana" class="hash-link" aria-label="Direct link to 5.1. Performance Metrics: Prometheus &amp; Grafana" title="Direct link to 5.1. Performance Metrics: Prometheus &amp; Grafana" translate="no">​</a></h3>
+<ol>
+<li class="">Deploy Prometheus and Grafana via Helm:</li>
+</ol>
+<p>prom-capellaPsw: this is the password to the Grafana dashboard</p>
+<blockquote>
+<p><strong>Note: keep the password somewhere safe as it is needed to log in to the Grafana dashboard</strong></p>
+</blockquote>
+<ol>
+<li class="">Install Prometheus:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">./bin/deployPrometheusGrafana.sh prom-capellaPsw</span><br></span></code></pre></div></div>
+<ol start="2">
+<li class="">Set the Grafana Ingress</li>
+</ol>
+<p>myhost.com: choose the ingress host. If not using, this can stay as is. Otherwise, change to the hostname that
+will be used with the Capella installation.</p>
+<p><a href="https://acme-staging-v02.api.letsencrypt.org/directory" target="_blank" rel="noopener noreferrer" class="">https://acme-staging-v02.api.letsencrypt.org/directory</a>: the ACME server. Do not change this value unless you
+have a real ACME server and are using a real domain</p>
+<p><a href="mailto:test@yourdomain.com" target="_blank" rel="noopener noreferrer" class="">test@yourdomain.com</a>: the email address for the ACME server. Do not change this value unless you have a real
+ACME server and real domain</p>
+<p>self-signed: whether to use self-signed certificate or use a real certificate. Do not change this value unless you
+have a real ACME server, certificate, and domain.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">./bin/applyMonitoringIngress.sh myhost.com https://acme-staging-v02.api.letsencrypt.org/directory</span><br></span></code></pre></div></div>
+<p><a href="mailto:test@yourdomain.com" target="_blank" rel="noopener noreferrer" class="">test@yourdomain.com</a> self-signed</p>
+<p>Wait a few minutes for the installation to complete.</p>
+<ol start="3">
+<li class="">Verify that all of the kubernetes resources to this point are in an active / running state, all containers up and
+running, and all other components ready:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl get all -n monitoring</span><br></span></code></pre></div></div>
+<ol start="4">
+<li class="">If using ingress or have a way to access Grafana internally, you can skip this step. To expose Grafana outside
+of the Kubernetes environment, run the following command:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl apply -f ./config/exposeGrafana.yaml</span><br></span></code></pre></div></div>
+<p>Wait a few minutes for the load balancer to be created</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="52-logging-loki-and-alloy">5.2. Logging: Loki and Alloy<a href="#52-logging-loki-and-alloy" class="hash-link" aria-label="Direct link to 5.2. Logging: Loki and Alloy" title="Direct link to 5.2. Logging: Loki and Alloy" translate="no">​</a></h3>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="option-1-aws-s3">Option 1: AWS S3<a href="#option-1-aws-s3" class="hash-link" aria-label="Direct link to Option 1: AWS S3" title="Direct link to Option 1: AWS S3" translate="no">​</a></h3>
+<ol>
+<li class="">Set the following environment variables:</li>
+</ol>
+<p>7d: the number of days to keep logs tracked (in number of days)</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">export LOG_RETENTION_PERIOD=7d</span><br></span></code></pre></div></div>
+<ol start="2">
+<li class="">
+<p>Create an AWS S3 bucket (if not already done so)</p>
+</li>
+<li class="">
+<p>Set up a Lifecycle Policy on the AWS S3 bucket. It is recommended that the bucket has a lifecycle
+policy to delete objects after X amount of days greater than or equal to the
+LOG_RETENTION_PERIOD.</p>
+<p>a.​ Go to the S3 bucket from step 2 on the AWS Dashboard and select the Management tab. In Lifecycle
+configuration, start with Create lifecycle rule
+b.​ For Lifecycle rule configuration, set a rule name (Eg. Delete after 8 days), set the rule scope to
+Apply to all objects in the bucket and acknowledge the warning.
+c.​ For Lifecycle rule actions, select Expire current versions of objects and Permanently delete
+noncurrent versions of objects
+d.​ For Expire current versions of objects, set the Days after object creation to the number of days
+(Eg. if log retention is set to 7 days, this value can be set to 7)
+e.​ For Permanently delete noncurrent versions of objects, set the value for Days after objects
+become noncurrent to 1
+f.​ Save the Lifecycle rule</p>
+</li>
+<li class="">
+<p>Set environment variables</p>
+</li>
+</ol>
+<p>LOKI_BUCKET=my-bucket-name: the S3 bucket from the previous step
+LOKI_REGION=us-west-2: the region of the S3 bucket
+LOKI_ROLE_NAME=capella-loki-storage-$CLUSTER_NAME: the name of the IAM role to use for Loki. It must
+start with eksctl-, be unique to the EKS cluster, and be less than or equal to 64 characters. Modify this value
+only if instructed
+REPLICAS=2: the number of nodes to replicate loki to. This value must be at least 2. For this value, this
+amount of nodes must be active on the kubernetes cluster to operate properly. Modify this value only if
+instructed</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">export LOKI_BUCKET=my-bucket-name</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">export LOKI_REGION=us-west-2</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">export LOKI_ROLE_NAME=eksctl-capella-loki-storage-$CLUSTER_NAME</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">export REPLICAS=2</span><br></span></code></pre></div></div>
+<ol start="5">
+<li class="">Create AWS role for Loki and attach the LokiStoragePolicy with the bucket name</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">./bin/createLokiStorageRole.sh</span><br></span></code></pre></div></div>
+<ol start="6">
+<li class="">Apply service account for Loki:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">./bin/applyLokiServiceAccount.sh</span><br></span></code></pre></div></div>
+<ol start="7">
+<li class="">Deploy Loki and Alloy:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">./bin/deployLokiAlloyS3.sh</span><br></span></code></pre></div></div>
+<p>Wait a few minutes for alloy / loki to be fully installed in the Kubernetes environment.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="option-2-using-filesystem">Option 2: Using Filesystem<a href="#option-2-using-filesystem" class="hash-link" aria-label="Direct link to Option 2: Using Filesystem" title="Direct link to Option 2: Using Filesystem" translate="no">​</a></h3>
+<p>Only skip this section if already using Loki&#x27;s S3 configuration. This is for TESTING PURPOSES ONLY.</p>
+<ol>
+<li class="">Set environment variables</li>
+</ol>
+<p>STORAGE_SIZE=100: this is the size (in GB) of the volume for Loki. This will depend on the load the
+kubernetes cluster will be under.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">export STORAGE_SIZE=100</span><br></span></code></pre></div></div>
+<ol start="2">
+<li class="">Deploy Loki and Alloy:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">./bin/deployLokiAlloyFilesystem.sh</span><br></span></code></pre></div></div>
+<p>Wait a few minutes for alloy / loki to be fully installed in the Kubernetes environment.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="6-deploy-cambria-stream-and-stream-manager-application">6. Deploy Cambria Stream and Stream Manager Application<a href="#6-deploy-cambria-stream-and-stream-manager-application" class="hash-link" aria-label="Direct link to 6. Deploy Cambria Stream and Stream Manager Application" title="Direct link to 6. Deploy Cambria Stream and Stream Manager Application" translate="no">​</a></h2>
+<ol>
+<li class="">Run the following command to create the configuration file:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">helm show values ./config/capella-stream-0.5.12.tgz &gt; ./cambriaStreamConfig.yaml</span><br></span></code></pre></div></div>
+<ol start="2">
+<li class="">Open the configuration file in your favorite text / document editor and edit the following values:</li>
+</ol>
+<p>Example using nano:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">nano cambriaStreamConfig.yaml</span><br></span></code></pre></div></div>
+<p>Below are the required values / values that should be modified. For adjusting other values, see section Cambria
+Stream Values.</p>
+<p>cambriaStreamConfig.yaml                               Explanation</p>
+<p>pgClusterPassword: &quot;xrtVeQ4nN82SSiYHoswqdURZ…&quot;         The password for the postgres database. It is recommended to
+change the default value to something more secure.</p>
+<p>cpLicenseKey: &quot;XXXXXX-XXX...&quot;                          The Cambria Stream product license. The Capella team should have
+provided this value for you which you.</p>
+<p>cpLicenseKeyManager: &quot;YYYYYY-YYY...&quot;                   The Cambria Stream Manager product license. The Capella team
+should have provided this value for you.</p>
+<p>cambriaStreamManagerAPIToken: &quot;12345678-123...&quot;        This is a token that is needed to make API calls to Capella’s Stream
+Manager web server. Change this to any string value.</p>
+<p>cambriaStreamManagerWebUIUser:                         This is the login credentials for Cambria Stream Manager’s Web UI.
+&quot;admin,defaultWebUIUser,RZvSSd3ffsElsCEEe9&quot;            Each user is listed in the form:</p>
+<p>role,username,password</p>
+<p>Allowed roles:
+admin - can do anything on the WebUI, including
+creating/managing WebUI users.
+superuser - can view/create/edit/delete anything on the WebUI.
+user - can only view anything on the WebUI.</p>
+<p>For multiple users, separate each by a comma. Example:</p>
+<p>Admin,admin,changethispassword1234,user,guest,password123</p>
+<p>cambriaABCWebUIUser:                                   This is the login credentials for Cambria Stream Manager’s Ad Break
+&quot;admin,defaultABCWebUIUser,RZvSSd3ffsElsCEEe9&quot;         Control. Each user is listed in the form:</p>
+<p>role,username,password</p>
+<p>Allowed roles:
+admin - can do anything on the WebUI, including
+creating/managing WebUI users.
+superuser - can view/create/edit/delete anything on the WebUI.
+user - can only view anything on the WebUI.</p>
+<p>For multiple users, separate each by a comma. Example:</p>
+<p>Admin,admin,changethispassword1234,user,guest,password123</p>
+<ol start="3">
+<li class="">Wait at least 5 minutes after installing prerequisites before moving on to this step. In a command
+line / terminal window, run the following command:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">helm upgrade --install capella-stream ./config/capella-stream-0.5.12.tgz --values cambriaStreamConfig.yaml</span><br></span></code></pre></div></div>
+<p>The result of running the command should look something like this:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">Release &quot;capella-stream&quot; does not exist. Installing it now.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">NAME: capella-stream</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">LAST DEPLOYED: Wed May 30 10:09:47 2023</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">NAMESPACE: default</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">STATUS: deployed</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">REVISION: 1</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">TEST SUITE: None</span><br></span></code></pre></div></div>
+<ol start="4">
+<li class="">At this point, several components are being deployed to the Kubernetes environment. Wait a few minutes for
+everything to be deployed.</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="7-aws-eks-firewall-management">7. AWS EKS Firewall Management<a href="#7-aws-eks-firewall-management" class="hash-link" aria-label="Direct link to 7. AWS EKS Firewall Management" title="Direct link to 7. AWS EKS Firewall Management" translate="no">​</a></h2>
+<p>Most ports are not exposed in the Kubernetes cluster. You will need to open ports in order to do things like stream
+from external sources, etc. Therefore, the Kubernetes cluster&#x27;s main security group will need to be modified to allow
+external access to Stream nodes and Stream Router nodes.</p>
+<ol>
+<li class="">
+<p>Go to the AWS Dashboard and to the Elastic Kubernetes Service section. Find the Kubernetes cluster and look
+into its details.</p>
+</li>
+<li class="">
+<p>Go to the Networking section and select the Cluster security group</p>
+</li>
+<li class="">
+<p>Edit the Inbound Rules with the following:</p>
+<p>a. AWS Required Ports:</p>
+</li>
+</ol>
+<p><a href="https://docs.aws.amazon.com/eks/latest/best-practices/network-security.html" target="_blank" rel="noopener noreferrer" class="">https://docs.aws.amazon.com/eks/latest/best-practices/network-security.html</a></p>
+<p>b. Capella Ports for Cambria Stream Deployment. See the Firewall section in this document:</p>
+<p><a href="https://www.dropbox.com/scl/fi/fecmfp2w3jn0u2qei1u5d/Cambria_Stream_5_9_0_AWS_Information.pdf?rlkey=iulcvf4xzm2ao3srce5hiy35g&amp;st=y80gfeih&amp;dl=0" target="_blank" rel="noopener noreferrer" class="">https://www.dropbox.com/scl/fi/fecmfp2w3jn0u2qei1u5d/Cambria_Stream_5_9_0_AWS_Information.pdf?rlkey=iulcvf4xzm2ao3srce5hiy35g&amp;st=y80gfeih&amp;dl=0</a></p>
+<h1>Verification</h1>
+<p>The easiest way to verify if the installation works is if you can access the main application components. To get the
+different applications available, run the following command in the Linux Deployment Server:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">./bin/getStreamInfo.sh</span><br></span></code></pre></div></div>
+<p>What to check?</p>
+<ul>
+<li class="">Cambria Stream Manager Web UI (Can access and login)</li>
+<li class="">Cambria Stream REST API (Can make API calls)</li>
+<li class="">Cambria Stream License Manager Web UI (Can access and login)</li>
+<li class="">Cambria Stream Ad Break Control (Can access and login)</li>
+<li class="">Grafana Web UI (Can access and login)</li>
+</ul>
+<p>For a more in-depth verification, follow the steps in this document:</p>
+<p><a href="https://www.dropbox.com/scl/fi/5dmlsnluh67k94z88ls2u/Cambria_Stream_5_9_0_Deployment_Verification_Guide.pdf?rlkey=xqn4qv4vj03i262xiq4nxqbwq&amp;st=ku497s54&amp;dl=0" target="_blank" rel="noopener noreferrer" class="">https://www.dropbox.com/scl/fi/5dmlsnluh67k94z88ls2u/Cambria_Stream_5_9_0_Deployment_Verification_Guide.pdf?rlkey=xqn4qv4vj03i262xiq4nxqbwq&amp;st=ku497s54&amp;dl=0</a></p>
+<h1>Testing Cambria Stream</h1>
+<p>Use the following guide to learn about Cambria Stream and get started testing:</p>
+<p><a href="https://www.dropbox.com/scl/fi/ne3t3efc490cnresayawl/Cambria_Stream_Manager_and_Cambria_Stream_5_9_0_User_Guide.pdf?rlkey=vvifcxd1rlgkdlcw21nbwjpec&amp;st=opsqx5wg&amp;dl=0" target="_blank" rel="noopener noreferrer" class="">https://www.dropbox.com/scl/fi/ne3t3efc490cnresayawl/Cambria_Stream_Manager_and_Cambria_Stream_5_9_0_User_Guide.pdf?rlkey=vvifcxd1rlgkdlcw21nbwjpec&amp;st=opsqx5wg&amp;dl=0</a></p>
+<h1>Updating / Upgrading</h1>
+<blockquote>
+<p><strong>Warning: In-Place Kubernetes Upgrades</strong></p>
+</blockquote>
+<p>For major upgrades like Kubernetes or Cambria Stream version upgrades, Capella highly recommends
+creating a new Kubernetes cluster with the new version as the current upgrade steps may not consistently
+work. In some cases, like Kubernetes version upgrade, the process is irreversible.</p>
+<p>If you would still like to proceed with an in-place upgrade, follow the steps below</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="option-1-upgrade-kubernetes-cluster">Option 1: Upgrade Kubernetes Cluster<a href="#option-1-upgrade-kubernetes-cluster" class="hash-link" aria-label="Direct link to Option 1: Upgrade Kubernetes Cluster" title="Direct link to Option 1: Upgrade Kubernetes Cluster" translate="no">​</a></h2>
+<p>This option is only used for upgrading the Kubernetes cluster to a new version. Skip this step if you only need to
+upgrade Cambria Stream / Stream Manager.</p>
+<ol>
+<li class="">Set the required environment variables, including the kubernetes version to target:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">export CLUSTER_NAME=cambria-stream REGION=us-west-2 KUBEVERSION=1.36</span><br></span></code></pre></div></div>
+<ol start="2">
+<li class="">Upgrade Control Plane:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">eksctl upgrade cluster --name=$CLUSTER_NAME --region=$REGION --version=$KUBEVERSION --approve</span><br></span></code></pre></div></div>
+<ol start="3">
+<li class="">Upgrade the Add-ons:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">eksctl utils update-aws-node --cluster=$CLUSTER_NAME --region=$REGION</span><br></span></code></pre></div></div>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">eksctl utils update-coredns --cluster=$CLUSTER_NAME --region=$REGION</span><br></span></code></pre></div></div>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">eksctl utils update-kube-proxy --cluster=$CLUSTER_NAME --region=$REGION</span><br></span></code></pre></div></div>
+<ol start="4">
+<li class="">Verify the components are running:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl get pods -n kube-system</span><br></span></code></pre></div></div>
+<ol start="5">
+<li class="">Upgrade the Cambria Stream Manager node group:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">eksctl upgrade nodegroup --cluster=$CLUSTER_NAME --region=$REGION</span><br></span></code></pre></div></div>
+<p>--kubernetes-version=$KUBEVERSION --name=manager-nodes</p>
+<ol start="6">
+<li class="">Upgrade the Cambria Stream node group:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">eksctl upgrade nodegroup --cluster=$CLUSTER_NAME --region=$REGION</span><br></span></code></pre></div></div>
+<p>--kubernetes-version=$KUBEVERSION --name=worker-nodes</p>
+<ol start="7">
+<li class="">Upgrade the Cambria Stream Router node group:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">eksctl upgrade nodegroup --cluster=$CLUSTER_NAME --region=$REGION</span><br></span></code></pre></div></div>
+<p>--kubernetes-version=$KUBEVERSION --name=streamrouter-nodes</p>
+<ol start="8">
+<li class="">Run through the steps in Verification to check that the Kubernetes cluster is still working</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="option-2-upgrade-cambria-stream-manager--stream-and-dependencies">Option 2: Upgrade Cambria Stream Manager / Stream and Dependencies<a href="#option-2-upgrade-cambria-stream-manager--stream-and-dependencies" class="hash-link" aria-label="Direct link to Option 2: Upgrade Cambria Stream Manager / Stream and Dependencies" title="Direct link to Option 2: Upgrade Cambria Stream Manager / Stream and Dependencies" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-important-information-regarding-cambria-stream-upgrade">1. Important Information Regarding Cambria Stream Upgrade<a href="#1-important-information-regarding-cambria-stream-upgrade" class="hash-link" aria-label="Direct link to 1. Important Information Regarding Cambria Stream Upgrade" title="Direct link to 1. Important Information Regarding Cambria Stream Upgrade" translate="no">​</a></h3>
+<p>The current way to update a Kubernetes Cluster is through a third-party tool called argo-rollouts. This process allows
+you to manually upgrade pods incrementally. There are four steps involved in the upgrade process:</p>
+<p>1.​ Upgrade X% of total Cambria Stream worker pods (workerRolloutStep1Weight value). That means if you
+have 5 pods and step 1 is to upgrade 10%, that means 1 pod will be upgraded.</p>
+<p>2.​ When the pods are upgraded successfully, argo-rollouts goes into a pause state. While in this state,
+argo-rollouts waits for the user to manually move on to the next step. This is so that the user can verify that
+the upgraded pods are working properly.</p>
+<p>3.​ Upgrade X% of total Cambria Stream worker pods (workerRolloutStep2Weight value). That means if you
+have 5 pods and step 3 is to upgrade to 40%, that means 2 pods will be upgraded. However, since 1 pod has
+already been upgraded from step 1, that means only 1 pod will be upgraded in this step.</p>
+<p>4.​ This is the same as step 2. In this case, argo-rollouts waits for the user to manually verify that the upgraded
+pods are working properly. After this step, the rest of the pods in the cluster are upgraded.</p>
+<p>Follow these steps to upgrade your Cambria Stream Manager, Cambria Stream, and/or Helm-managed
+Kubernetes environment:</p>
+<p>Before doing any upgrades, you will need to make sure you are fully aware of your current setup and save all
+configurations, programs, keys (such as DRM keys, AWS keys, etc), and previous yaml files (Eg.
+cambriaStreamConfig.yaml). There are some things to keep in mind:</p>
+<p>1.​ For upgrading to new Cambria Stream / Stream Manager versions, please use our newest Cambria Stream
+Kubernetes guide. This should have been provided for you. If you do not have a new version of the document,
+contact Capella’s support team: <a href="mailto:support@capellasystems.net" target="_blank" rel="noopener noreferrer" class="">support@capellasystems.net</a>
+2.​ Cambria Stream nodes may change. This means that the ip addresses, names, etc may also change. This is
+more likely the case when running the non-normal upgrade steps. In the case that the Cambria Stream nodes
+do change, you will need to manually re-configure your incoming streams to point to the new Cambria Stream
+nodes after the upgrade.
+3.​ Cambria Stream Manager WebUI and Cambria Stream Manager REST API urls may also change during the
+installation process. This is more likely to be the case if not running the normal upgrade process
+4.​ Upgrading is not currently seamless. Programs will need to be taken down during the upgrade process
+5.​ In the case that argo-rollouts does not work on upgrading the Cambria Stream environment, the Cambria
+Stream application will need to be uninstalled and then re-installed with the new information. In this case, the
+database will be wiped and all programs will be deleted. This is why it is important to save all
+programs, configuration files, keys, etc.</p>
+<p>To save all programs from the Cambria Stream WebUI:</p>
+<p>a.​ Select all of the programs in the Programs list
+b.​ Click on the Export Program button. This should prompt you to download the set of programs to a .lpef file</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-cambria-stream-upgrade-steps">2. Cambria Stream Upgrade Steps<a href="#2-cambria-stream-upgrade-steps" class="hash-link" aria-label="Direct link to 2. Cambria Stream Upgrade Steps" title="Direct link to 2. Cambria Stream Upgrade Steps" translate="no">​</a></h3>
+<p>This is the default way to perform an upgrade for anything from updating license keys, Cambria version, etc.</p>
+<ol>
+<li class="">
+<p>Review section Prerequisites to verify that those prerequisites have been met</p>
+</li>
+<li class="">
+<p>If not already done so, download / paste your cambriaStreamValues.yaml and kubeconfig.yaml file that
+was used for the Kubernetes cluster deployment</p>
+</li>
+<li class="">
+<p>Edit your cambriaStreamValues.yaml file with the values that need to be updated. See Cambria Stream
+Variables for more information on the variables that are allowed to be modified.</p>
+</li>
+<li class="">
+<p>Run the following command to upgrade:</p>
+</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">helm upgrade capella-stream ./config/capella-stream-0.5.12.tgz --values cambriaStreamConfig.yaml</span><br></span></code></pre></div></div>
+<ol start="6">
+<li class="">Refresh the Cambria Stream Manager deployments:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl rollout restart deployment -n capella-manager cambriastreammanagerwebui cambriastreammanagerapp</span><br></span></code></pre></div></div>
+<ol start="7">
+<li class="">Run this command in order to activate the argo-rollouts dashboard</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl argo rollouts dashboard</span><br></span></code></pre></div></div>
+<ol start="8">
+<li class="">In a web browser, go to the address http://<code>&lt;linux-server-ip-address&gt;</code>:3100/rollouts/capella-worker
+where <code>&lt;linux-server-ip-address&gt;</code> is the Kubernetes Host IP address. You should see a dashboard similar to
+the following:</li>
+</ol>
+<p>Make sure that the window says cambriastreamapp. If it does not, you will need to change the namespace.
+You can change this by going to the dropdown on the top right corner of this page and choosing the
+capella-worker namespace.</p>
+<ol start="9">
+<li class="">Click on the button next to Weight (the gray button). At this point, argo-rollouts is running step one of the
+four steps. When step one is done, you should see something similar to the following:</li>
+</ol>
+<blockquote>
+<p>[Image omitted from this Markdown build.]</p>
+</blockquote>
+<blockquote>
+<p><strong>Note: if it seems like it is taking a while for the UI to move on to the next step, click on the Promote button to</strong></p>
+</blockquote>
+<p>get to the next step.</p>
+<ol start="10">
+<li class="">
+<p>If the first set of nodes were upgraded correctly, verify that the upgraded node(s) are working properly.
+Once done, click the Promote button to move on to step 3 which will upgrade the next set of nodes.</p>
+</li>
+<li class="">
+<p>If the second set of nodes were upgraded correctly, verify that the upgraded node(s) are working properly.
+Once done, click the Promote All button to finish upgrading the rest of the Cambria Stream nodes.</p>
+</li>
+<li class="">
+<p>Run through the steps in Verification to check that the Kubernetes cluster is still working</p>
+</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">Cleanup / Delete</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">Many resources are created in a Kubernetes environment. It is important that each step is followed carefully:</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">1. Run the following commands to remove the Helm deployments:</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain"> helm uninstall capella-stream -n default --wait</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">2. If any volumes are remaining, run the following command:</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain"> kubectl get pv -o name | awk -F&#x27;/&#x27; &#x27;{print $2}&#x27; | xargs -I{} kubectl patch pv {} -p=&#x27;{&quot;spec&quot;:</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain"> {&quot;persistentVolumeReclaimPolicy&quot;: &quot;Delete&quot;}}&#x27;</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">3. Only if traefik ingress was deployed, do the following:</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain"> helm uninstall -n traefik traefik --wait &amp;&amp; kubectl delete namespace traefik</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">4. Set the kubernetes cluster name, region, and kubeconfig as environment variables (if not already done so):</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain"> export CLUSTER_NAME=cambria-stream</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain"> export REGION=us-west-2</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain"> export KUBECONFIG=kubeconfig.yaml</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">5. Delete the monitoring related components created:</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">s3: set this to s3 if the setup was s3 for Loki logs or local if the setup was filesystem for Loki logs</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain"> ./bin/quickDestroyMonitoring.sh s3</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">6. Delete the cluster:</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain"> eksctl delete cluster --name=$CLUSTER_NAME --region=$REGION --wait</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">Wait several minutes for the Kubernetes Cluster to delete completely.</span><br></span></code></pre></div></div>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">7. To verify that the cluster was deleted, go to the AWS Console and log in with the IAM user that has the EKS</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">permissions. Check the following:</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">a. Search for Elastic Kubernetes Service in the region that the Kubernetes Cluster is located. Make sure the deleted</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">cluster does not show up on the list</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">b. Search for CloudFormation in the region that the Kubernetes Cluster is located. Make sure there are no stacks</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">specific to the Kubernetes Cluster on the list</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">c. Important: Check in EC2 Volumes and Load Balancers to make sure no volumes or load balancers were leftover</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">from the kubernetes cluster. Most will have the name of the EKS cluster in the resource name</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">8. (Optional) If you also want to delete the role created for the EKS setup, do the following:</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">Requires IAM admin permissions</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">    a.​ Switch the Linux Deployment Server EC2 instance to assume an IAM admin role</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">    b.​ Run the following command with the name of the IAM role to delete:</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">         ./bin/deleteIamRole.sh eksctl-user</span><br></span></code></pre></div></div>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">Resources / Useful Information</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">Cambria Stream Values</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">Required Values</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">cambriaStreamConfig.yaml                          Explanation</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">pgClusterPassword: &quot;xrtVeQ4nN82SSiYHoswqdURZ…&quot;    The password for the postgres database. It is recommended to</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                                  change the default value to something more secure.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">cpLicenseKey: &quot;XXXXXX-XXX...&quot;                     The Cambria Stream product license. The Capella team should have</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                                  provided this value for you which you.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">cpLicenseKeyManager: &quot;YYYYYY-YYY...&quot;              The Cambria Stream Manager product license. The Capella team</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                                  should have provided this value for you.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">cambriaStreamManagerAPIToken: &quot;12345678-123...&quot;   This is a token that is needed to make API calls to Capella’s Stream</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                                  Manager web server. Change this to any string value.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">cambriaStreamManagerWebUIUser:                    This is the login credentials for Cambria Stream Manager’s Web UI.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">&quot;admin,defaultWebUIUser,RZvSSd3ffsElsCEEe9&quot;       Each user is listed in the form:</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                                  role,username,password</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                                  Allowed roles:</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                                  admin - can do anything on the WebUI, including</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                                  creating/managing WebUI users.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                                  superuser - can view/create/edit/delete anything on the WebUI.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                                  user - can only view anything on the WebUI.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                                  For multiple users, separate each by a comma. Example:</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                                  Admin,admin,changethispassword1234,user,guest,password123</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">cambriaABCWebUIUser:                              This is the login credentials for Cambria Stream Manager’s Ad Break</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">&quot;admin,defaultABCWebUIUser,RZvSSd3ffsElsCEEe9&quot;    Control. Each user is listed in the form:</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                                  role,username,password</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                                  Allowed roles:</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                                  admin - can do anything on the WebUI, including</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                                  creating/managing WebUI users.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                                  superuser - can view/create/edit/delete anything on the WebUI.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                                  user - can only view anything on the WebUI.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                                  For multiple users, separate each by a comma. Example:</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                                  Admin,admin,changethispassword1234,user,guest,password123</span><br></span></code></pre></div></div>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">Optional Values</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">cambriaStreamConfig.yaml               Explanation</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">workersUseGPU: false                   If working with GPUs / NVENC workflows, set this value to true. Otherwise, leave as</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                       false.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">nbGPUs: 1                              If workersUseGPU is set to true, set this to the number of GPUs that are available on</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                       the worker nodes.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                       Note: your Cambria Stream license must include support for multiple GPUs</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">webrtcPortRangeBegin: 50000            These settings are for WebRTC which affects program previews in Cambria Stream&#x27;s Ad</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">webrtcPortRangeEnd: 50009              Break Control UI.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                       For more than 9 programs, increase the port range.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">workerRtpPortRangeBegin: 5004          Port ranges to expose for the Cambria Stream nodes for incoming RTP streams.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">workerRtpPortRangeEnd: 5013</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                       Note that the Kubernetes firewall must still open these ports.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">workerSrtPortRangeBegin: 8000          Port ranges to expose for the Cambria Stream nodes for incoming SRT streams.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">workerSrtPortRangeEnd: 8009</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                       Note that the Kubernetes firewall must still open these ports.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">workerRistPortRangeBegin: 9000         Port ranges to expose for the Cambria Stream nodes for incoming RIST streams.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">workerRistPortRangeEnd: 9009</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                       Note that the Kubernetes firewall must still open these ports.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">workerRtmpPortRangeBegin: 1935         Port ranges to expose for the Cambria Stream nodes for incoming RTMP streams.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">workerRtmpPortRangeEnd: 1944</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                       Note that the Kubernetes firewall must still open these ports.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">enableManagerWebUI: true               To disable the Cambria application&#x27;s UI interface, set this value to false. Otherwise,</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                       keep the default value.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">maxWorkerInstances: 20                 The max number of Cambria Stream machines that can be spawned. By default, this is</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                       20, but we recommend starting out with 2 for testing.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">workerRolloutStep1Weight: 10           For upgrades, Capella uses argo-rollouts to incrementally upgrade nodes. The first</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">workerRolloutStep2Weight: 40           value is the percentage of all the nodes that should be upgraded first. The second</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                       value is the percentage of all the nodes that should be upgraded second. See the</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                       Upgrading Kubernetes Cluster section for more information.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">workerRolloutMaxUnavailable: 1         For upgrades, argo-rollouts will use this value to determine how many Cambria Stream</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                       worker pods can be offline at a time. It is recommended to set this value to a number</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                       higher than maxWorkerInstances.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">defaultMachineMaximumInstances: -1     This option allows users to configure the maximum number of channels a Cambria</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                       Stream node / machine can run (up to the amount in the Cambria license).</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">externalAccess:                        Set to true if you want to be able to access Cambria Stream Manager externally.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain"> exposeStreamServiceExternally: true   Otherwise, set to false</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain"> enableIngress: true                   This allows the use of an application ingress to access the Cambria applications such as</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                       the Web UI, API, Grafana, etc. By default, this is set to true.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain"> apiExtraIngressAnnotations: {}        If enableIngress is set to true, ingress routes are created for Cambria&#x27;s Web UI and</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain"> webuiExtraIngressAnnotations: {}      API.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                       These specific values allow extra annotations to these ingress routes. By default, no</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                       extra annotations are added to the ingress routes.</span><br></span></code></pre></div></div>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">cambriaStreamConfig.yaml                          Explanation</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">  managerExtraServiceAnnotations: {}              If exposeStreamServiceExternally is set to true, load balancers are created to</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">  webuiExtraServiceAnnotations: {}                expose Cambria Web UI and API applications externally.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                                  These specific values allow extra annotations to these load balancers. By default,</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                                  no extra annotations are added to the load balancers.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain"> hostName: myhost.com                             These fields are for use with the ingress. The default values can be used for</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain"> acmeRegistrationEmail: test@example.com          testing purposes. For production, these values must be changed to a valid</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain"> acmeServer:                                      registered domain name, email, and TLS certificate server.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">https://acme-staging-v02.api.letsencrypt.org/di</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">rectory</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">  ingressUseSelfSigned: true                      For testing purposes, the ingress will use a self-signed certificate for the</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                                  application servers. For production (and if you have your own valid certificate), set</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">                                                  this to false</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">streamRouter:                                     Port ranges to expose for the Cambria Stream router.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">  rtpPortBegin: 15004</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">  rtpPortCount: 21                                Note that the Kubernetes firewall must still open these ports.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">  srtPortBegin: 18000</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">  srtPortCount: 10</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">  ristPortBegin: 19000</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">  ristPortCount: 10</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">webui:                                            This is used for exposing important information to an operator of the Cambria</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain"> userText: &quot;Staging Cluster for project XYZ&quot;      Web UI (Eg. API usertoken)</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">Enable Firewall Ports for Incoming Streams</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">In order to stream to the Cambria Stream machines, the AWS firewall needs to have ports open to allow those</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">incoming streams to reach the Cambria Stream instances. You will first need to identify which machines to open ports</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">for.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">1. Log in to the AWS Console with the IAM User that has the EKS credentials and go to the Elastic Kubernetes</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">Service application. Click on your Kubernetes Cluster</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">2. In the Cambria Stream Manager Web UI, go to the machine tab and select one of the machines (Pods) that will be</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">used for Cambria Stream. Get the name of the machine (Pod) that you want to use for Cambria Stream.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">3. Back in the AWS Kubernetes dashboard, go to Resources &gt; Workloads &gt; Pods. Set the Namespace to</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">capella-worker. Look for the Cambria Stream pod name in this list.</span><br></span></code></pre></div></div>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">4. Click on the Pod that has the same name as the machine. Click on the Node and then click on the Instance</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">Save the port configuration when finished. Verify that the ports are open correctly and are visible in the Incoming</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">Rules section.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">In most cases, all of the Cambria Stream pods will share the same security group. However, if any Cambria Stream</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">has a different security group, repeat steps 3-5 for every other machine (Pod) that will be using Cambria Stream in a</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">different security group.</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">Cambria Stream Manager WebUI</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">1. Run this command to get the webui address:</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain"> kubectl get service/cambriastreammanagerwebuiservice -n capella-manager</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain"> -o=jsonpath=&quot;{&#x27;https://&#x27;}{.status.loadBalancer.ingress[0].hostname}{&#x27;:8171&#x27;}&quot;</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">2. To log in to the WebUI, the credentials are located in the values file</span><br></span></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="cambria-stream-manager-rest-api">Cambria Stream Manager REST API<a href="#cambria-stream-manager-rest-api" class="hash-link" aria-label="Direct link to Cambria Stream Manager REST API" title="Direct link to Cambria Stream Manager REST API" translate="no">​</a></h2>
+<ol>
+<li class="">Run the following command to get the base REST API Web Address:</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl get service/cambriastreamservice -n capella-manager</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">-o=jsonpath=&quot;{&#x27;https://&#x27;}{.status.loadBalancer.ingress[0].hostname}{&#x27;:8758&#x27;}&quot;</span><br></span></code></pre></div></div>
+<p>The REST API url should look similar to this:</p>
+<p><a href="https://a7e4559218cg923a8dfc85d689bd9713-329199856.us-west-1.elb.amazonaws.com:8758/CambriaLM/v1/Events?usertoken=12345678-1234-43f8-b4fc-53afd3893d5f" target="_blank" rel="noopener noreferrer" class="">https://a7e4559218cg923a8dfc85d689bd9713-329199856.us-west-1.elb.amazonaws.com:8758/CambriaLM/v1/Events?usertoken=12345678-1234-43f8-b4fc-53afd3893d5f</a></p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="cambria-stream-instance-external-ip">Cambria Stream Instance External IP<a href="#cambria-stream-instance-external-ip" class="hash-link" aria-label="Direct link to Cambria Stream Instance External IP" title="Direct link to Cambria Stream Instance External IP" translate="no">​</a></h2>
+<ol>
+<li class="">
+<p>In the Cambria Stream Manager WebUI, go to the Machines tab and copy the name of the machine (pod)</p>
+</li>
+<li class="">
+<p>Run the following commands with the name of the machine (aka. <code>&lt;pod-name&gt;</code>):</p>
+</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain"># Replace &lt;pod-name&gt; with your pod name</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl get pod/&lt;pod-name&gt; -n capella-worker -o=jsonpath={.spec.nodeName}</span><br></span></code></pre></div></div>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain"># Replace &lt;node-name&gt; with the result from the above command</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl get node/&lt;node-name&gt; -o=jsonpath={.status.addresses[1].address}</span><br></span></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="leader-cambria-stream-manager-pod">Leader Cambria Stream Manager Pod<a href="#leader-cambria-stream-manager-pod" class="hash-link" aria-label="Direct link to Leader Cambria Stream Manager Pod" title="Direct link to Leader Cambria Stream Manager Pod" translate="no">​</a></h2>
+<p>Run the following command to get the name of the Cambria Stream Manager leader pod:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl get lease -n capella-manager -o=jsonpath=&quot;{.items[0].spec.holderIdentity}&quot;</span><br></span></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="remote-access-to-kubernetes-pod">Remote Access to Kubernetes Pod<a href="#remote-access-to-kubernetes-pod" class="hash-link" aria-label="Direct link to Remote Access to Kubernetes Pod" title="Direct link to Remote Access to Kubernetes Pod" translate="no">​</a></h2>
+<p>The general command for remote accessing a pod is:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl exec -it &lt;pod name&gt; -n &lt;namespace&gt; -- /bin/bash</span><br></span></code></pre></div></div>
+<p>Example with Cambria Stream:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl exec -it cambriastreamapp-5c79586784-wbfvf -n capella-worker -- /bin/bash</span><br></span></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="extracting-cambria-stream-manager--cambria-stream--cambria-license-logs">Extracting Cambria Stream Manager | Cambria Stream | Cambria License Logs<a href="#extracting-cambria-stream-manager--cambria-stream--cambria-license-logs" class="hash-link" aria-label="Direct link to Extracting Cambria Stream Manager | Cambria Stream | Cambria License Logs" title="Direct link to Extracting Cambria Stream Manager | Cambria Stream | Cambria License Logs" translate="no">​</a></h2>
+<p>In a machine that has kubectl and the kubeconfig file for your Kubernetes cluster, open a terminal window and make
+sure to set the KUBECONFIG environment variable to the path of your kubeconfig file. Then run one or more of the
+following commands depending on what types of logs you need (or that Capella needs). You will get a folder full of
+logs. Compress these logs into one zip file and send it to Capella:</p>
+<p><code>&lt;pod-name&gt;</code>: the name of the pod to grab logs from (Eg. cambriastreamapp-5c79586784-wbfvf)</p>
+<p>Cambria Stream:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl cp &lt;pod name&gt;:/opt/capella/CambriaStream/Logs ./CambriaStrmLogs -n capella-worker</span><br></span></code></pre></div></div>
+<p>Cambria Stream Manager:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl cp &lt;pod-name&gt;:/opt/capella/CambriaStreamManager/Logs ./CambriaStrmManLogs -n capella-manager</span><br></span></code></pre></div></div>
+<p>Cambria License Manager (Cambria Stream):</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl cp &lt;pod-name&gt;:/opt/capella/CambriaLicenseManager/Logs ./CambriaStrLicLogs -n capella-worker</span><br></span></code></pre></div></div>
+<p>Cambria License Manager (Cambria Stream Manager):</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl cp &lt;pod-name&gt;:/opt/capella/CambriaLicenseManager/Logs ./CambriaStrmManLicLogs -n capella-manager</span><br></span></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="copy-files-to-cambria-stream-pod">Copy File(s) to Cambria Stream Pod<a href="#copy-files-to-cambria-stream-pod" class="hash-link" aria-label="Direct link to Copy File(s) to Cambria Stream Pod" title="Direct link to Copy File(s) to Cambria Stream Pod" translate="no">​</a></h2>
+<p>In some cases, you might need to copy files to a Cambria Stream pod. For example, you have an MP4 file you want
+to use as a failover source for your stream. In this case, to copy the file over to the Cambria Stream pod, do the
+following:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl cp &lt;host-file-path&gt; [ Pod name ]:[ Path Inside Pod to Copy File ] -n capella-worker</span><br></span></code></pre></div></div>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain"># Copy file to Cambria Stream pod</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl cp /mnt/n/MyFailoverSource.mp4 cambriastreamapp-7c55887db9-t42v7:/var/media/MyFailoverSource.mp4 -n capella-worker</span><br></span></code></pre></div></div>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain"># Copy file to Cambria Stream Manager pod</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl cp C:\MyKeys\MyKeyFile.key cambriastreammanagerapp-695dcc848f-vjpc7:/var/keys/MyKeyFile.key -n capella-manager</span><br></span></code></pre></div></div>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain"># Copy directory to Cambria Stream container</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl cp /mnt/n/MyMediaFiles cambriastreamapp-7c55887db9-t42v7:/var/temp/mediafiles -n capella-worker</span><br></span></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="restarting--re-creating-pods">Restarting / Re-creating Pods<a href="#restarting--re-creating-pods" class="hash-link" aria-label="Direct link to Restarting / Re-creating Pods" title="Direct link to Restarting / Re-creating Pods" translate="no">​</a></h2>
+<p>Kubectl does not currently have a way to restart pods. Instead, a pod will need to be “restarted” by deleting the pod
+which causes a new pod to be created / existing pod to take over the containers.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl delete pod &lt;pod-name&gt; -n &lt;namespace&gt;</span><br></span></code></pre></div></div>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain"># Delete Cambria Stream Container</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl delete pod cambriastreamapp-7c55887db9-t42v7 -n capella-worker</span><br></span></code></pre></div></div>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain"># Delete Cambria Stream Manager Container</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">kubectl delete pod cambriastreammanagerapp-695dcc848f-vjpc7 -n capella-manager</span><br></span></code></pre></div></div>
+<h1>Glossary</h1>
+<p>This glossary provides a brief definition / description of some of the more common terms found in this guide.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="kubernetes">Kubernetes<a href="#kubernetes" class="hash-link" aria-label="Direct link to Kubernetes" title="Direct link to Kubernetes" translate="no">​</a></h2>
+<p>For Kubernetes terms, please refer to the Kubernetes Glossary:
+<a href="https://kubernetes.io/docs/reference/glossary/?fundamental=true" target="_blank" rel="noopener noreferrer" class="">https://kubernetes.io/docs/reference/glossary/?fundamental=true</a></p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="aws">AWS<a href="#aws" class="hash-link" aria-label="Direct link to AWS" title="Direct link to AWS" translate="no">​</a></h2>
+<p>CloudFormation: this AWS service is used to facilitate dependent multi-service deployment in the form of
+stacks. The eksctl tool creates a CloudFormation stack to manage Kubernetes Cluster components.</p>
+<p>Elastic Kubernetes Service (EKS): this AWS service allows users to create, delete, update, and manage
+Kubernetes clusters.</p>
+<p>IAM: this AWS service is for creating, deleting, updating, and managing credentialing and permissions for other
+AWS services. In this case, IAM is used to get permissions to perform functions to the different services that
+interact with EKS Clusters.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="third-party-tools">Third-Party Tools<a href="#third-party-tools" class="hash-link" aria-label="Direct link to Third-Party Tools" title="Direct link to Third-Party Tools" translate="no">​</a></h2>
+<p>Argo: the Argo third-party system is a collection of tools for orchestrating parallel jobs in a Kubernetes
+environment.</p>
+<p>Argo-Rollouts: an Argo tool used for upgrading containers in a Kubernetes Cluster in a rollout fashion (Eg.
+upgrade 50% of the containers first, then 80% of the containers, then 100% of the containers).</p>
+<p>Argo-Events: an Argo tool that triggers specific Kubernetes functions based on events from other
+dependencies such as webhook, s3, etc.</p>
+<p>AWSCLIv2: the awscli tool is a command line tool to interact with AWS services like S3, EC2, etc. This is used
+by the eksctl tool to interact with AWS EKS, IAM, etc.</p>
+<p>Cert-Manager: the cert-manager addon automates the process of retrieving and managing TLS certificates.
+These certificates are periodically renewed to keep the certificates up to date and valid.</p>
+<p>Eksctl: the eksctl command line tool is used for creating, deleting, and updating AWS Kubernetes Clusters
+(AWS EKS Service).</p>
+<p>Helm: the Helm third-party tool is used for deploying / managing (install, update, delete) deployments for
+Kubernetes Cluster applications.</p>
+<p>Traefik: the traefik addon is an ingress server using Traefik as a load balancer to route traffic to ingress and ingress
+routes. In this case, traefik is used for applying domain name use to the Kubernetes services (REST API, WebUI, etc).</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="capella-applications">Capella Applications<a href="#capella-applications" class="hash-link" aria-label="Direct link to Capella Applications" title="Direct link to Capella Applications" translate="no">​</a></h2>
+<p>cambrialeaderelector: this container is used for Cambria Stream Manager replication in that it decides which
+of the Cambria Stream Manager instances is the primary instance. This container exists in all
+cambriastreammanagerapp-xyz pods.</p>
+<p>cambriastreamapp: the Cambria Stream application container. This container exists in all
+cambriastreamapp-xyz pods.</p>
+<p>cambriastreammanagerapp: the Cambria Stream Manager application container. This container exists in all
+cambriastreammanagerapp-xyz pods.</p>
+<p>pgcluster-capella: this type of pod holds the PostgreSQL database that Cambria Stream Manager uses /
+interacts with.</p>
+<p>cambriaworkerconnect: this container is used for automatically connecting Cambria Stream instances to
+Cambria Stream Manager. This container exists in all cambriastreamapp-xyz pods.</p></div></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/cambria-stream/installation-guides/kubernetes/aws/aws-kubernetes-documentation/"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">AWS Kubernetes Documentation</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/cambria-stream/installation-guides/kubernetes/aws/cambria-stream-terraform-aws-kubernetes/"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Cambria Stream / Stream Manager 5.9.0</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#aws-kubernetes-help-documentation" class="table-of-contents__link toc-highlight">AWS Kubernetes Help Documentation</a></li><li><a href="#document-history" class="table-of-contents__link toc-highlight">Document History</a><ul><li><a href="#information" class="table-of-contents__link toc-highlight">Information</a></li></ul></li><li><a href="#️-critical-information-read-before-proceeding" class="table-of-contents__link toc-highlight">⚠️ Critical Information: Read Before Proceeding</a></li><li><a href="#document-overview" class="table-of-contents__link toc-highlight">Document Overview</a></li><li><a href="#overview-of-cambria-stream-manager--stream-on-kubernetes" class="table-of-contents__link toc-highlight">Overview of Cambria Stream Manager / Stream on Kubernetes</a></li><li><a href="#1-user-information-needed-before-installation" class="table-of-contents__link toc-highlight">1. User Information Needed Before Installation</a></li><li><a href="#2-prepare-linux-deployment-server" class="table-of-contents__link toc-highlight">2. Prepare Linux Deployment Server</a><ul><li><a href="#important" class="table-of-contents__link toc-highlight">Important</a></li></ul></li><li><a href="#3-cambria-stream-package" class="table-of-contents__link toc-highlight">3. Cambria Stream Package</a></li><li><a href="#4-set-aws-iam-role-on-linux-development-server" class="table-of-contents__link toc-highlight">4. Set AWS IAM Role on Linux Development Server</a></li><li><a href="#5-create-and-configure-aws-permissions" class="table-of-contents__link toc-highlight">5. Create and Configure AWS Permissions</a><ul><li><a href="#51-create-custom-policies" class="table-of-contents__link toc-highlight">5.1. Create Custom Policies</a></li><li><a href="#52-create-and-assign-eksctl-aws-role" class="table-of-contents__link toc-highlight">5.2. Create and Assign Eksctl AWS Role</a></li></ul></li><li><a href="#1-create-kubernetes-cluster" class="table-of-contents__link toc-highlight">1. Create Kubernetes Cluster</a><ul><li><a href="#11-create-aws-eks-cluster-and-cambria-stream-manager-node-group" class="table-of-contents__link toc-highlight">1.1. Create AWS EKS Cluster and Cambria Stream Manager Node Group</a></li><li><a href="#12--beta--create-cambria-stream-router-node-group" class="table-of-contents__link toc-highlight">1.2. [ BETA ] Create Cambria Stream Router Node Group</a></li><li><a href="#important-1" class="table-of-contents__link toc-highlight">Important</a></li><li><a href="#13-create-cambria-stream-node-groups" class="table-of-contents__link toc-highlight">1.3. Create Cambria Stream Node Group(s)</a></li><li><a href="#important-2" class="table-of-contents__link toc-highlight">Important</a></li><li><a href="#14-default-storage-class" class="table-of-contents__link toc-highlight">1.4. Default Storage Class</a></li><li><a href="#15-create-ebs-csi-driver" class="table-of-contents__link toc-highlight">1.5. Create EBS CSI Driver</a></li></ul></li><li><a href="#2--beta--deploy-gpu-operator-for-nvenc" class="table-of-contents__link toc-highlight">2. [ BETA ] Deploy GPU Operator for NVENC</a></li><li><a href="#3-deploy-traefik-application-domain-name-access" class="table-of-contents__link toc-highlight">3. Deploy Traefik: Application Domain-Name Access</a><ul><li><a href="#create-the-alias-record-in-route-53" class="table-of-contents__link toc-highlight">Create the Alias Record in Route 53:</a></li></ul></li><li><a href="#4-deploy-third-party-dependency-kubernetes-tools" class="table-of-contents__link toc-highlight">4. Deploy Third-Party Dependency Kubernetes Tools</a></li><li><a href="#5-deploy-performance-metrics-and-logging-tools" class="table-of-contents__link toc-highlight">5. Deploy Performance Metrics and Logging Tools</a><ul><li><a href="#51-performance-metrics-prometheus--grafana" class="table-of-contents__link toc-highlight">5.1. Performance Metrics: Prometheus &amp; Grafana</a></li><li><a href="#52-logging-loki-and-alloy" class="table-of-contents__link toc-highlight">5.2. Logging: Loki and Alloy</a></li><li><a href="#option-1-aws-s3" class="table-of-contents__link toc-highlight">Option 1: AWS S3</a></li><li><a href="#option-2-using-filesystem" class="table-of-contents__link toc-highlight">Option 2: Using Filesystem</a></li></ul></li><li><a href="#6-deploy-cambria-stream-and-stream-manager-application" class="table-of-contents__link toc-highlight">6. Deploy Cambria Stream and Stream Manager Application</a></li><li><a href="#7-aws-eks-firewall-management" class="table-of-contents__link toc-highlight">7. AWS EKS Firewall Management</a></li><li><a href="#option-1-upgrade-kubernetes-cluster" class="table-of-contents__link toc-highlight">Option 1: Upgrade Kubernetes Cluster</a></li><li><a href="#option-2-upgrade-cambria-stream-manager--stream-and-dependencies" class="table-of-contents__link toc-highlight">Option 2: Upgrade Cambria Stream Manager / Stream and Dependencies</a><ul><li><a href="#1-important-information-regarding-cambria-stream-upgrade" class="table-of-contents__link toc-highlight">1. Important Information Regarding Cambria Stream Upgrade</a></li><li><a href="#2-cambria-stream-upgrade-steps" class="table-of-contents__link toc-highlight">2. Cambria Stream Upgrade Steps</a></li></ul></li><li><a href="#cambria-stream-manager-rest-api" class="table-of-contents__link toc-highlight">Cambria Stream Manager REST API</a></li><li><a href="#cambria-stream-instance-external-ip" class="table-of-contents__link toc-highlight">Cambria Stream Instance External IP</a></li><li><a href="#leader-cambria-stream-manager-pod" class="table-of-contents__link toc-highlight">Leader Cambria Stream Manager Pod</a></li><li><a href="#remote-access-to-kubernetes-pod" class="table-of-contents__link toc-highlight">Remote Access to Kubernetes Pod</a></li><li><a href="#extracting-cambria-stream-manager--cambria-stream--cambria-license-logs" class="table-of-contents__link toc-highlight">Extracting Cambria Stream Manager | Cambria Stream | Cambria License Logs</a></li><li><a href="#copy-files-to-cambria-stream-pod" class="table-of-contents__link toc-highlight">Copy File(s) to Cambria Stream Pod</a></li><li><a href="#restarting--re-creating-pods" class="table-of-contents__link toc-highlight">Restarting / Re-creating Pods</a></li><li><a href="#kubernetes" class="table-of-contents__link toc-highlight">Kubernetes</a></li><li><a href="#aws" class="table-of-contents__link toc-highlight">AWS</a></li><li><a href="#third-party-tools" class="table-of-contents__link toc-highlight">Third-Party Tools</a></li><li><a href="#capella-applications" class="table-of-contents__link toc-highlight">Capella Applications</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Company</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://www.capellasystems.net/about-capella" target="_blank" rel="noopener noreferrer" class="footer__link-item">About<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://www.capellasystems.net/newsfeed" target="_blank" rel="noopener noreferrer" class="footer__link-item">Newsfeed<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://www.capellasystems.net/contact-us" target="_blank" rel="noopener noreferrer" class="footer__link-item">Contact Us<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://documents.capellasystems.net/docs/Cambria%20Stream/Installation%20Guides/Kubernetes/AWS/AWS_Kubernetes_Documentation" target="_blank" rel="noopener noreferrer" class="footer__link-item">Cambria Stream<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://documents.capellasystems.net/docs/Cambria_FTC/Installation%20Guides/Kubernetes/AWS/" target="_blank" rel="noopener noreferrer" class="footer__link-item">Cambria FTC<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Other</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://www.capellasystems.net/terms-of-use" target="_blank" rel="noopener noreferrer" class="footer__link-item">Terms of Use<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://www.capellasystems.net/online-privacy-policy" target="_blank" rel="noopener noreferrer" class="footer__link-item">Privacy Policy<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 Capella Systems</div></div></div></footer></div>
+</body>
+</html>
