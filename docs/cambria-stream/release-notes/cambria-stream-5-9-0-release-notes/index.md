@@ -19,7 +19,7 @@ Real-time Performance Benchmarks:
 
 Cambria Stream projects can be configured in a variety of ways; this generally results in differences in resource usage.
 
-On Premise Machine Configuration: HP Z4
+### On Premise Machine Configuration: HP Z4
 
 | Item | Value |
 |---|---|
@@ -27,7 +27,7 @@ On Premise Machine Configuration: HP Z4
 | Processor | Intel Core i9-7940X @ 3.10GHz (14-core Skylake-X) |
 | Memory | 32 GB (4x8 GB) DDR4-2666 |
 
-On Premise Packaging Only:
+### On Premise Packaging Only:
 
 25 Programs, packaging to HLS, 3-layers per program (1080p720p/480p)
 
@@ -35,7 +35,7 @@ On Premise Packaging Only:
 |---|---|
 | CPU Utilization | 50% and 30% with previews disabled |
 
-On Premise Encoding+Packaging:
+### On Premise Encoding+Packaging:
 
 3 Programs, encoding to HLS, 4-layers per program (1080p720p/480p/360p)
 
@@ -47,38 +47,21 @@ Additional Cloud Benchmark information can be found in the Kubernetes installati
 
 ## Recommended System for Cambria Stream and Cambria Stream Manager
 
-**System Recommendation:**
+System Recommendation:
 
-This is the suggested configuration for Cambria Stream, though most reasonably modern
-
-machines should be able to serve as a Stream Manager. A single machine can run both
-
-Cambria Stream and Stream Manager, and installing Cambria Stream Manager will
-
-automatically install Cambria Stream. If the same machine will be used to run live streaming
-
-channels, a more powerful system may be required depending on the number of concurrent
-
-channels.
+This is the suggested configuration for Cambria Stream, though most reasonably modern machines should be able to serve as a Stream Manager. A single machine can run both Cambria Stream and Stream Manager, and installing Cambria Stream Manager will automatically install Cambria Stream. If the same machine will be used to run live streaming channels, a more powerful system may be required depending on the number of concurrent channels.
 
 (Cambria Stream + Stream Manager) or (Cambria Stream only)
 
 | Item | Value |
 |---|---|
-
-Model                       HP Z4
-
-Operating System            Linux (Ubuntu 24.04)
-
-Processor                   Intel Core i9-7940X @ 3.10GHz (14-core Skylake-X)
-
-Memory                      32 GB (4x8 GB) DDR4-2666
-
-Video Card                  Supports Direct3D acceleration
-
-Network Adapter             Gigabit Ethernet (Wired Connection)
-
-System Hard Drive           512 GB HP Z Turbo Drive M.2 NVMe SSD
+| Model | HP Z4 |
+| Operating System | Linux (Ubuntu 24.04) |
+| Processor | Intel Core i9-7940X @ 3.10GHz (14-core Skylake-X) |
+| Memory | 32 GB (4x8 GB) DDR4-2666 |
+| Video Card | Supports Direct3D acceleration |
+| Network Adapter | Gigabit Ethernet (Wired Connection) |
+| System Hard Drive | 512 GB HP Z Turbo Drive M.2 NVMe SSD |
 
 For Cloud, additional machine suggestions can be found in the Kubernetes installation guides
 
@@ -112,164 +95,116 @@ https://www.dropbox.com/scl/fi/ne3t3efc490cnresayawl/Cambria_Stream_Manager_and_
 
 ## Windows OS: System Settings
 
-**Machine Administrator for Installation:**
+### Machine Administrator for Installation:
 
-It is required that machine administrator account be used for the Cambria software installation.
+It is required that machine administrator account be used for the Cambria software installation. Installation is done through running the setup.exe from the Cambria Stream / Stream Manager installer package for Windows. After installation, a non-administrator account can be used for normal operation.
 
-Installation is done through running the setup.exe from the Cambria Stream / Stream Manager
+### Service Credentials:
 
-installer package for Windows. After installation, a non-administrator account can be used for
+After installation check the Capella Cambria Stream Service and Capella Cambria Stream Manager service! These services will need to have the appropriate access rights to read from network file locations if you are using the source file option. Here are the instructions on how to modify service credentials.
 
-normal operation.
+a. Open the Services panel (Control Panel>Administrative Tools>Services)  
+b. Open Properties panel for Capella Cambria Stream/Stream Manager Service  
+c. In the Log On tab, select “This account:”  
+d. Enter the full domain account and password. (ie. Yourname@company.com)  
+e. This domain account must have access rights to the locations you will be reading from  
+f. Restart the service as prompted
 
-**Service Credentials:**
-
-After installation check the Capella Cambria Stream Service and Capella Cambria Stream Manager
-
-service! These services will need to have the appropriate access rights to read from network file
-
-locations if you are using the source file option. Here are the instructions on how to modify service
-
-credentials.
-
-   a. Open the Services panel (Control Panel>Administrative Tools>Services)
-   b. Open Properties panel for Capella Cambria Stream/Stream Manager Service
-   c. In the Log On tab, select “This account:”
-   d. Enter the full domain account and password. (ie. Yourname@company.com)
-   e. This domain account must have access rights to the locations you will be reading from
-   f. Restart the service as prompted
 ## Basic Workflows Supported:
 
 ### Encode Mode:
 
 **Input:**
 
-SDI*
-
-RTP
-
-SRT
-
-- Caller and Listener workflows supported
-- Passphrase support
-- Stream ID validation support where configured
-RIST
-
-- Caller and Listener workflows supported
-Zixi
-
-NDI via NDI Discovery Server
-
-- Uncompressed NDI
-- NDI HX1
-- NDI HX2
-- NDI HX3
-RTMP
-
-Media File
-
-HLS/TS
+- SDI*
+- RTP
+- SRT
+  - Caller and Listener workflows supported
+  - Passphrase support
+  - Stream ID validation support where configured
+- RIST
+  - Caller and Listener workflows supported
+- Zixi
+- NDI via NDI Discovery Server
+  - Uncompressed NDI
+  - NDI HX1
+  - NDI HX2
+  - NDI HX3
+- RTMP
+- Media File
+- HLS/TS
 
 **Targets:**
 
-CMAF
-
-DASH
-
-HLS/TS
-
-HLS (MP4 / fMP4)
-
-SRT
-
-RIST
-
-RTP
-
-Zixi
-
-File/TS
-
-RTMP
+- CMAF
+- DASH
+- HLS/TS
+- HLS (MP4 / fMP4)
+- SRT
+- RIST
+- RTP
+- Zixi
+- File/TS
+- RTMP
 
 **Codec / encoder options:**
 
-H.264
-
-HEVC
-
-H.264 (VPU)**
-
-HEVC (VPU)**
+- H.264
+- HEVC
+- H.264 (VPU)**
+- HEVC (VPU)**
 
 ### Passthrough Mode:
 
 **Sources:**
 
-RTP/TS
-
-SRT/TS
-
-RIST/TS
-
-RTMP
-
-Zixi
-
-Playlist
+- RTP/TS
+- SRT/TS
+- RIST/TS
+- RTMP
+- Zixi
+- Playlist
 
 **ABR In + ABR Out:**
 
-HLS/TS Push
+- HLS/TS Push
+  - Supported for AWS MediaLive and compatible HLS/TS push senders
 
-- Supported for AWS MediaLive and compatible HLS/TS push senders
 **Targets:**
 
 **Multi Streams In + ABR Out:**
 
-CMAF
-
-DASH
-
-HLS
+- CMAF
+- DASH
+- HLS
 
 **ABR In + ABR Out:**
 
-CMAF
-
-DASH
-
-HLS
+- CMAF
+- DASH
+- HLS
 
 **Single Stream In + Single Stream Out:**
 
-RTMP Server
-
-RTP/UDP
-
-SRT/TS
-
-RIST/TS
-
-Zixi/TS
-
-File/TS
+- RTMP Server
+- RTP/UDP
+- SRT/TS
+- RIST/TS
+- Zixi/TS
+- File/TS
 
 ### Direct Capture Mode:
 
 **Sources:**
 
-RTP
-
-SRT
-
-Zixi
-
-SDI via AJA*
+- RTP
+- SRT
+- Zixi
+- SDI via AJA*
 
 **Target:**
 
-File/TS
+- File/TS
 
 ### Encode and ABR Out:
 
@@ -278,12 +213,9 @@ File/TS
 1. Video + Audio Input and Output
 2. Video Only Input + Audio Only Input
 3. DRM Support (CPIX, Irdeto, Axinom) -> [Widevine, FairPlay, PlayReady]
-DASH (Widevine, PlayReady)
-
-HLS (FairPlay)
-
-CMAF (Widevine, PlayReady, FairPlay)
-
+   - DASH (Widevine, PlayReady)
+   - HLS (FairPlay)
+   - CMAF (Widevine, PlayReady, FairPlay)
 4. CMAF CTE (Only for CMAF Support)
 5. Stream Primary / Backup workflows
 6. Publish Types: Akamai, AWS S3, AWS MediaStore, WebDAV, and File
@@ -291,16 +223,13 @@ CMAF (Widevine, PlayReady, FairPlay)
 8. Ad Types: Yospace, AWS Cue Out/Cue In
 9. File playlist input support (only x264 and HEVC codecs supported)
 10. HEVC Main10 ingest and output support
-11. VPU encoding support for H.264 and HEVC on supported Kubernetes NETINT VPU
-deployments**
-
-12. HLS/TS Push ingest support for ABR In + ABR Out, including AWS MediaLive-
-compatible workflows
-
+11. VPU encoding support for H.264 and HEVC on supported Kubernetes NETINT VPU deployments**
+12. HLS/TS Push ingest support for ABR In + ABR Out, including AWS MediaLive-compatible workflows
 13. HDR10/PQ/HLG ingest support
 14. Dolby Vision ingest and output as HDR10 and SDR
 15. CMAF subtitle support for WebVTT and IMSC1
 16. HLS/fMP4 TTML subtitle support using the IMSC1 profile
+
 ### Single Stream Out:
 
 **Supported Cases:**
@@ -316,6 +245,7 @@ compatible workflows
 9. RIST input and output, including Caller and Listener modes
 10. SRT passphrase support
 11. SRT Stream ID validation support where configured
+
 ### Direct Capture:
 
 **Supported Cases:**
@@ -324,69 +254,61 @@ compatible workflows
 2. Direct Capture from SRT to File/TS
 3. Direct Capture from Zixi to File/TS
 4. Input/output status indicators and signal lost/recovered activity logging
+
 ### Supported Formats for Playlist Feature:
 
 **Video:**
 
 - x264
 - HEVC
+
 **Audio:**
 
 - AAC
 - AC-3 (Dolby Digital)
 - E-AC-3 (Dolby Digital Plus)
+
 **Container:**
 
 - MP4
 - TS
+
 Note: other codecs / formats may work, but they are not officially supported
 
 ### Input Stream Requirements for Packaging Only Programs:
 
 - Closed, fixed length GOP
-- GOP boundary matched with segment duration configured in Stream ABR out target
-settings
-
+- GOP boundary matched with segment duration configured in Stream ABR out target settings
 - PTS must be matched across streams
-- For HLS/TS Push ingest, video/audio timing and media sequence alignment must be valid
-across the incoming playlists
+- For HLS/TS Push ingest, video/audio timing and media sequence alignment must be valid across the incoming playlists
 
 ## Known Limitations:
 
-1. ABR output layers are synced by incoming stream's PTS so PTS needs to be matched
-among streams. Encoding output does not have this source requirement.
+1. ABR output layers are synced by incoming stream's PTS so PTS needs to be matched among streams. Encoding output does not have this source requirement.
 
-2. Each Video and Audio layer must have unique bitrate. No two video layers can have the
-same bitrate. No two audio layers can have the same bitrate.
+2. Each Video and Audio layer must have unique bitrate. No two video layers can have the same bitrate. No two audio layers can have the same bitrate.
 
-3. If using Yospace, make sure to match video/audio layers to Yospace endpoint
-configuration.
+3. If using Yospace, make sure to match video/audio layers to Yospace endpoint configuration.
 
-4. Ad insertion is passthrough. This means ad breaks need to be inserted in the source. The
-exception is for ESAM markers.
+4. Ad insertion is passthrough. This means ad breaks need to be inserted in the source. The exception is for ESAM markers.
 
 5. CMAF CTE only uploads to the DASH endpoint. HLS playback does not work in this case.
-6. If using CMAF CTE, the LP machine and player machine clocks need to be synced in order
-to work properly.
 
-7. Inaccurate RTP source streams may cause CMAF CTE to stop playing back on the player
-end.
+6. If using CMAF CTE, the LP machine and player machine clocks need to be synced in order to work properly.
+
+7. Inaccurate RTP source streams may cause CMAF CTE to stop playing back on the player end.
 
 8. HLS video/audio output from LP is split.
-9. If an ABR project is distributed to run on an LP machine that only contains the license to
-run a Single Stream project, a slot instance will be used but the project will not work.
 
-10. LPM/LP running on Linux has certain feature limitations compared to Windows. These
-limitations are documented in the Linux Cambria Stream guide.
+9. If an ABR project is distributed to run on an LP machine that only contains the license to run a Single Stream project, a slot instance will be used but the project will not work.
 
-11. NDI input support requires NDI Discovery Server configuration. mDNS/local auto-
-discovery is not the supported workflow for Stream NDI ingest.
+10. LPM/LP running on Linux has certain feature limitations compared to Windows. These limitations are documented in the Linux Cambria Stream guide.
+
+11. NDI input support requires NDI Discovery Server configuration. mDNS/local auto-discovery is not the supported workflow for Stream NDI ingest.
 
 12. VPU encoding requires a supported Kubernetes deployment with NETINT VPU hardware.
-13. AJA SDI support on on-premises Kubernetes requires `aja_enabled=true`,
-`aja_allow_privileged=true`, `aja_acknowledge_risk=true`, and a valid
 
-`aja_device_path`.
+13. AJA SDI support on on-premises Kubernetes requires `aja_enabled=true`, `aja_allow_privileged=true`, `aja_acknowledge_risk=true`, and a valid `aja_device_path`.
 
 ## API documentation:
 
@@ -401,16 +323,9 @@ https://www.dropbox.com/scl/fi/s4k02b1fi1f1s3kzhi9no/REST_API_Live_and_Stream_2_
 ## New Features:
 
 Please note that some of these features are in a beta state.
-
-```text
-
-
-```
-
 ### New Features added for 5.9 (includes new features of 5.7)
 
 ```text
-
 Module            Feature                                                            Capella
                                                                                      Reference #
     Cambria       HTTP and S3 Slates                                                 22012
@@ -453,6 +368,7 @@ Audio
                   audio tracks and channels for RTP, SRT, RIST, Zixi, NDI, and
                   media-file sources. Missing tracks or channels produce silent
                   audio and a warning in the Cambria Stream logs.
+
 
 
 
@@ -509,6 +425,7 @@ Kubernetes      AJA on On-Premises Kubernetes                                   
                 installation is still in beta.
 
 
+
 Kubernetes      AWS Terraform Deployment                                           22210
 
                 Adds Cambria Stream-specific Terraform configuration for AWS
@@ -528,16 +445,12 @@ Prometheus      Prometheus Base URL                                             
                 Kubernetes deployments now provide
                 the prometheusBaseUrl Helm variable for specifying the
                 Prometheus URL used by Cambria Stream Manager charts.
-
-
-
-
 ```
+
 
 ### New Features added for 5.8 (includes new features of 5.7)
 
 ```text
-
 Module          Feature                                                            Capella
                                                                                    Reference #
 Cambria         Cambria Stream Solo Installer for Single-Machine Linux             21526
@@ -563,6 +476,7 @@ Stream Solo
                 examples are available in the Cambria Stream Solo 5.8.0 Guide.
 
 Source / NDI    NDI and NDI HX Source Support via NDI Discovery Server             21322,
+
 
                                                                                       21325
                Cambria Stream now supports NDI receive workflows through the
@@ -613,6 +527,7 @@ Source         Preview Support for Direct Capture Inputs                        
                output. Preview is enabled by default in Direct Capture mode. To
                disable it, open the program’s Options, go to Advanced Options,
                and uncheck Use Preview (Parse/Decode the incoming stream).
+
 
 
 Source         Preview Support for Non-Encode Projects                                 21712
@@ -666,6 +581,7 @@ Target         Edit Programs While Streaming                                    
                yellow * next to the program name. Users can also choose Apply
                Now to immediately stop, restart, and apply the updated program
 
+
                 settings. For Primary/Backup workflows, most settings can be
                 changed while streaming, but the Use Backup checkbox cannot
                 be changed during an active stream.
@@ -717,13 +633,12 @@ Kubernetes
                 and Loki running, and matching ingress hostnames for Stream
                 Manager and monitoring, such as webui.myhost.com and
                 monitoring.myhost.com.
-
 ```
+
 
 ### New Features added for 5.6
 
 ```text
-
 Module           Feature                                                             Capella
                                                                                      Reference #
 Source / Audio   Source Audio Mapper                                                 20819
@@ -770,6 +685,7 @@ Input            project type supports multiple audio per source.
                  - Within a target, users can only use either audio track numbers
 
 
+
                 or PID, not both
                 - For multiple targets, there is no restriction as to what method
                 can be used, as long as it is consistent within the targets
@@ -798,16 +714,12 @@ WebUI           Added direct link to Capella License WebUI from the             
 
 Grafana and     Grafana was updated to version 12.0 and Prometheus was              20730
 Prometheus      updated to version 3.3 in our deployments
-
-
-
-
 ```
+
 
 ### New Features added for 5.3
 
 ```text
-
 Module          Feature                                                             Capella
                                                                                     Reference #
 Encode /        Added HLS/TS source support                                         18777
@@ -823,6 +735,7 @@ Source
                 - Only TS-based HLS is supported currently
                 - HLS interleaved sources are not supported
                 - HLS sources with the BYTERANGE marker are not supported
+
 
 Encode /        Added support to use files as sources                            18805
 Source
@@ -877,6 +790,7 @@ Subtitles       (Unified Streaming) targets:                                    
                 ARIB STD-B37                                                     18790,
                                                                                  18792
 
+
               Subtitle embedding options added for single bitrate out:
 
               Embed ARIB STD-B24
@@ -924,16 +838,12 @@ Application   Standalone Ad Break Control can be used to monitor and
               manually insert ad break points into output program. Can be
               used with multiple Cambria Stream (Encode) programs at the
               same time.
-
-
-
-
 ```
+
 
 ### New Features added for 5.2
 
 ```text
-
 Module          Feature                                                               Capella
                                                                                       Reference #
 Encode          ‘Listener Mode’ supported for Multi Bitrate SRT output                18507
@@ -981,6 +891,7 @@ Options
                 Notes:
                 - On Linux, users must have the OCR build installed in order to
                 use the OCR feature.
+
 
              - On Windows, users need to copy the contents of
              CambriaStream_Analysis_CopyToCpx64Folder to the C:\Program
@@ -1034,6 +945,7 @@ DRM          Axinom DRM is now an option for adaptive streaming targets.
              Communication Key ID and Communication Key
              5. Generate JWT
 
+
                  6. In a player of choice (Eg. Shaka player), enter the playback
                  url, DRM license url, and in headers, add a header "X-AxDRM-
                  Message" with the value being the JWT generated
@@ -1057,16 +969,12 @@ Web UI           Right-click option to open Cambria Stream Ad Break             
 
 Web UI /         The Desktop Application UI for Cambria Stream Manager                 18592
 Windows          has been removed in favor of the Web UI
-
-
-
-
 ```
+
 
 ### New Features added for 5.1
 
 ```text
-
 Module           Feature                                                               Capella
                                                                                        Reference #
 Cambria          Encoding capabilities added to Cambria Stream                         17635
@@ -1089,6 +997,7 @@ Kubernetes       Akamai Kubernetes Support                                      
                  https://www.dropbox.com/s/4xldehrdf0o4tjg/Cambria_Stream_5
 
 
+
                 _1_0_on_Akamai_Kubernetes.pdf?dl=0
 
 
@@ -1109,16 +1018,12 @@ Kubernetes      Support API Usertoken                                           
 Kubernetes      Certificate Manager Configuration                                     18214
                 Given a domain name, a cert-manager can be configured to
                 generate valid certificates. Instructions in the Kubernetes guide.
-
-
-
-
 ```
+
 
 ### New Features added for 5.0
 
 ```text
-
 Module          Feature                                                               Capella
                                                                                       Reference #
 Source          Enhanced playlist file handling to detect when HRD is not             17448
@@ -1137,16 +1042,12 @@ Target          CPB handling improvement, subtitles properly synced to          
 Linux           Docker Supported Added (Beta)                                         17362
                 https://www.dropbox.com/s/umtwegzg80qvi17/Linux_LivePackag
                 er_Guide_1.1.0.pdf
-
-
-
-
 ```
+
 
 ### New Features added for 4.8
 
 ```text
-
 Module           Feature                                                           Capella
                                                                                    Reference #
 Linux            Linux OS Support Added                                            15308,
@@ -1188,16 +1089,12 @@ WebUI            WebUI Enhancements                                             
                  ‘Options’ tab.
                  - Maximum retry duration’ settings added to ‘Program Settings’
                  dialog.
-
-
-
-
 ```
+
 
 ### New Features added for 4.7
 
 ```text
-
 Module          Feature                                                             Capella
                                                                                     Reference #
 Source          SCTE support added to Playlist input                                15776
@@ -1243,8 +1140,4 @@ LPM             Program Failover (redundancy scenario) improved to              
 
                 The LPM system (firewall/security settings) will need to be
                 configured to be able to reach this location.
-
-
-
-
 ```
